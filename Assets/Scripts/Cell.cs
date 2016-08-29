@@ -4,34 +4,54 @@ using System;
 
 public class Cell : MonoBehaviour {
     public IntVector2 coords;
-    private MeshRenderer rend;
-    public MeshCollider col;
+    private SpriteRenderer rend;
+    public BoxCollider col;
     public Building building;
-   
-    public Material m1, m2;
+    public Map map;
+  
     void Start()
     {
-        rend = gameObject.GetComponentInChildren<MeshRenderer>();
-        col = gameObject.GetComponentInChildren<MeshCollider>();
+        rend = gameObject.GetComponentInChildren<SpriteRenderer>();
+        col = gameObject.GetComponentInChildren<BoxCollider>();
     }
 
     void Update()
     {
         
     }
+    void OnMouseEnter()
+    {
+        SwitchHighlight();
+    }
+    void OnMouseExit()
+    {
+        SwitchHighlight(false);
+    }
+    void OnMouseDown()
+    {
+        Build();
+    }
     public void SwitchHighlight(bool on = true)
     {
         try
         {
             if (on)
-                rend.material = m1;
+                rend.color = Color.magenta;
             else
-                rend.material = m2;
+                rend.color = Color.white;
         }
         catch (NullReferenceException e)
         {
-            print(e.Message +" "+ coords.x+", " +coords.z);
-            rend = gameObject.GetComponentInChildren<MeshRenderer>();
+            print(e.Message + " " + coords.x + ", " + coords.y);
+            rend = gameObject.GetComponentInChildren<SpriteRenderer>();
         }
+    }
+    private void Build()
+    {
+        if (building != null) return;
+
+        building = Instantiate < Building >(map.buildingPrefab);
+        building.transform.SetParent(transform, false);
+        building.transform.localPosition = Vector3.zero;
     }
 }
