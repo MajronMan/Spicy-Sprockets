@@ -7,7 +7,9 @@ using System.Collections.Generic;
 public abstract class Building : MonoBehaviour
 {
     string name;
-    SortedDictionary<Resource, int> cost;
+    private List<Resource> cost;
+
+   
 
 
 }
