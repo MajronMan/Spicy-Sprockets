@@ -29,7 +29,12 @@ public class Cell : MonoBehaviour {
     }
     void OnMouseDown()
     {
-        Build();
+        if (building != null) return;
+
+        if (map.chosenOne != null)
+            Build();
+        else
+            map.chosenOne = this;
     }
     public void SwitchHighlight(bool on = true)
     {
@@ -46,12 +51,19 @@ public class Cell : MonoBehaviour {
             rend = gameObject.GetComponentInChildren<SpriteRenderer>();
         }
     }
+    private IntVector2 getSize(Cell another)
+    {
+        int x = coords.x - another.coords.x;
+        int y = coords.y - another.coords.y;
+        int size = Math.Min(Math.Abs(x), Math.Abs(y));
+        size = Math.Min((int)BuildingSize.Big, size);
+        return new IntVector2(Math.Sign(x) * size, Math.Sign(y) * size);
+    }
     private void Build()
     {
-        if (building != null) return;
-
+        IntVector2 buildingSize = getSize(map.chosenOne);
         building = Instantiate < Building >(map.buildingPrefab);
-        building.transform.SetParent(transform, false);
-        building.transform.localPosition = Vector3.zero;
+        building.Occupy(map.getOccupiedCells(buildingSize), buildingSize, map.chosenOne);
+        map.chosenOne = null;
     }
 }

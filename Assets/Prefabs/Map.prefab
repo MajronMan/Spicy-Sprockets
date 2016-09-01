@@ -53,7 +53,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cellPrefab: {fileID: 114000010342656914, guid: 89e93f8d5b7ad2040af3d652913ab3d6,
     type: 2}
-  buildingPrefab: {fileID: 0}
+  buildingPrefab: {fileID: 114000010394992962, guid: b4981046e72561143a9ce72c2ae42771,
+    type: 2}
   size:
     x: 10
     y: 10
