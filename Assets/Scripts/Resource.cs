@@ -3,10 +3,10 @@ using System.Collections;
 
 public abstract class Resource : MonoBehaviour
 {
-    public string name;
     public int massPerUnit;
     public int volumePerUnit;
     private int defaultCost;
+    private int quantity;
     public int quality;
     
 

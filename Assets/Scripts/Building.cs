@@ -6,10 +6,7 @@ using System.Collections.Generic;
 
 public abstract class Building : MonoBehaviour
 {
-    string name;
     private List<Resource> cost;
-
-   
-
-
+    public Sprite mySprite;
+    protected Color myColor;
 }
