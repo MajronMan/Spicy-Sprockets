@@ -58,3 +58,4 @@ MonoBehaviour:
   size:
     x: 10
     y: 10
+  chosenOne: {fileID: 0}
