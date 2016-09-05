@@ -43,7 +43,7 @@ public class Cell : MonoBehaviour {
             if (on)
                 rend.color = Color.magenta;
             else
-                rend.color = Color.cyan;
+                rend.color = Color.white;
         }
         catch (NullReferenceException e)
         {

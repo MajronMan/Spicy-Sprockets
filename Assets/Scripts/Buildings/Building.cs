@@ -20,7 +20,7 @@ public abstract class Building : MonoBehaviour
         occupiedCells.AddRange(cells);
         theChosenCell = chosenOne;
         transform.SetParent(chosenOne.transform, false);
-        transform.localPosition = new Vector3(size.x/2.0f, size.y/2.0f, 0);
+        transform.localPosition = new Vector3((float)size.x/2.0f, (float)size.y/2.0f, 0);
         transform.localScale = new Vector3((float)mySize-0.1f, (float)mySize-0.1f, 1);
     }
 }
