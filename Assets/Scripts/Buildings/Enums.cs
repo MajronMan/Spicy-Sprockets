@@ -10,3 +10,12 @@ public enum BuildingSize
     Medium,
     Big,
 }
+
+public enum MovementEnvironment
+{
+    Water,
+    Ground,
+    Underground,
+    Air,
+    Ether
+}
