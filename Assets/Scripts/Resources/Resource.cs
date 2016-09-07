@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[System.Serializable]
 public abstract class Resource : MonoBehaviour
 {
     public int massPerUnit;
     public int volumePerUnit;
-    private int defaultCost;
-    private int quantity;
+    protected int defaultCost;
+    public int quantity;
     public int quality;
     
 
