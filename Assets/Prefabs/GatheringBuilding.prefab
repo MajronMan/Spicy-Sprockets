@@ -22,7 +22,7 @@ GameObject:
   - 212: {fileID: 212000013761930606}
   - 114: {fileID: 114000010394992962}
   m_Layer: 0
-  m_Name: Building
+  m_Name: GatheringBuilding
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
