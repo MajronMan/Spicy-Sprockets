@@ -2,7 +2,7 @@
 using System.Collections;
 
 [System.Serializable]
-public abstract class Resource : MonoBehaviour
+public class Resource : MonoBehaviour
 {
     protected int massPerUnit;
     protected int volumePerUnit;
@@ -11,34 +11,21 @@ public abstract class Resource : MonoBehaviour
     protected ResourceQuality quality;
     
     
-    public Resource(int quantity, ResourceQuality quality)
+    public Resource(ResourceType.Type type, int quantity, ResourceQuality quality)
     {
+        LoadProperties(type);
         this.quantity = quantity;
         this.quality = quality;
     }
-
     
-
-    
+    public ResourceQuality getQuality()
+    {
+        return quality;
+    }
 
     public int getQuantity()
     {
         return quantity;
-    }
-
-    public void setQuantity(int quantity)
-    {
-        this.quantity = quantity;
-    }
-
-    public void setName(string name)
-    {
-        this.name = name;
-    }
-
-    public ResourceQuality getQuality()
-    {
-        return quality;
     }
     
     
@@ -52,4 +39,24 @@ public abstract class Resource : MonoBehaviour
 	void Update () {
 	
 	}
+
+    private void LoadProperties(ResourceType.Type type)
+    {
+        switch (type)
+        {
+            case ResourceType.Type.Coal:
+                massPerUnit = ResourceType.Coal.massPerUnit;
+                volumePerUnit = ResourceType.Coal.volumePerUnit;
+                defaultCostPerUnit = ResourceType.Coal.defaultCostPerUnit;
+                name = ResourceType.Coal.name;
+                break;
+            default:
+                massPerUnit = 2137;
+                volumePerUnit = 410;
+                defaultCostPerUnit = 15;
+                name = "yomama";
+                break;
+
+        }
+    }
 }
