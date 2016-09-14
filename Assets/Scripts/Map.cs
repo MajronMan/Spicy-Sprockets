@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using JetBrains.Annotations;
+using UnityEngine.UI;
 
 public class Map : MonoBehaviour {
     public Cell cellPrefab;
@@ -11,11 +13,13 @@ public class Map : MonoBehaviour {
     public Cell chosenOne;
     public void Generate()
     {
+        
         cells = new Cell[size.x, size.y];
         for (int i = 0; i < size.x; i++)
             for (int j = 0; j < size.y; j++)
                 cells[i, j] = CreateCell(i, j);
     }
+    
     private Cell CreateCell(int x, int y)
     {
         Cell newCell = Instantiate < Cell >(cellPrefab);
@@ -42,11 +46,22 @@ public class Map : MonoBehaviour {
         }
         return occupied;
     }
-	// Use this for initialization
-	void Start () {
+
+    
+    void OnMouseDown()
+    {
+        
+        Debug.Log("korwo");
+    }
+
+    // Use this for initialization
+    void Start () {
         Generate();
         Physics.queriesHitTriggers = true;
-	}
+       
+    }
+
+    
     void Update()
     {
     

@@ -27,8 +27,10 @@ public class Cell : MonoBehaviour {
     {
         SwitchHighlight(false);
     }
+    
     void OnMouseDown()
     {
+        Debug.Log("kurwa");
         if (building != null) return;
 
         if (map.chosenOne != null)
@@ -36,6 +38,7 @@ public class Cell : MonoBehaviour {
         else
             map.chosenOne = this;
     }
+    
     public void SwitchHighlight(bool on = true)
     {
         try
