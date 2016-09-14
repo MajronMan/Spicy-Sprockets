@@ -30,7 +30,6 @@ public class Cell : MonoBehaviour {
     
     void OnMouseDown()
     {
-        Debug.Log("kurwa");
         if (building != null) return;
 
         if (map.chosenOne != null)

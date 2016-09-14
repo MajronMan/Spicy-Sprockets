@@ -12,5 +12,6 @@ public class ProductionBuilding : Building
         SpriteRenderer renderer = gameObject.GetComponent<SpriteRenderer>();
         renderer.sprite = mySprite;
         renderer.color = myColor;
+        renderer.sortingOrder = 1;
     }
 }

@@ -48,15 +48,11 @@ public class Map : MonoBehaviour {
     }
 
     
-    void OnMouseDown()
-    {
-        
-        Debug.Log("korwo");
-    }
+    
 
     // Use this for initialization
     void Start () {
-        Generate();
+        //Generate();
         Physics.queriesHitTriggers = true;
        
     }
