@@ -9,6 +9,7 @@ public class BuildingManager : MonoBehaviour
     private List<Building> Built;
     private Map MapInstance;
     public Building buildingPrefab;
+    public bool active;
 
     private  void Build(Vector2 location)
     {
@@ -25,12 +26,17 @@ public class BuildingManager : MonoBehaviour
     }
     void OnMouseDown()
     {
-        Debug.Log("Building");
-        Build(Input.mousePosition);
+        if (active)
+        {
+            Debug.Log("Building");
+            Build(Input.mousePosition);
+        }
+        
     }
     void Start()
     {
-        
+        active = false;
+
     }
 	// Update is called once per frame
 	void Update () {
