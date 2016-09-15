@@ -14,6 +14,9 @@ public class StrategyManager : MonoBehaviour {
     private void BeginGame()
     {
         mapInstance = Instantiate(mapPrefab) as Map;
+        mapInstance.transform.SetParent(transform);
+        mapInstance.name = "Map Instance";
+        
     }
 
     private void RestartGame()

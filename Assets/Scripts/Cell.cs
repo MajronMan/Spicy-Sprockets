@@ -27,6 +27,7 @@ public class Cell : MonoBehaviour {
     {
         SwitchHighlight(false);
     }
+    
     void OnMouseDown()
     {
         if (building != null) return;
@@ -36,6 +37,7 @@ public class Cell : MonoBehaviour {
         else
             map.chosenOne = this;
     }
+    
     public void SwitchHighlight(bool on = true)
     {
         try
