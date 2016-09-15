@@ -2525,6 +2525,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mapPrefab: {fileID: 114000011183668904, guid: 647bb63bbb1cf2845935aa716c5d14f8,
     type: 2}
+  buildingManagerPrefab: {fileID: 114000013228382424, guid: 5378f08a513478a4da8044f2a69bacaa,
+    type: 2}
 --- !u!114 &114000013284449102
 MonoBehaviour:
   m_ObjectHideFlags: 1
