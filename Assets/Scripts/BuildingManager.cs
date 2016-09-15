@@ -15,7 +15,9 @@ public class BuildingManager : MonoBehaviour
     {
         Building newBuilding = Instantiate(buildingPrefab);
         newBuilding.transform.position = location;
+        newBuilding.transform.localScale=new Vector3(20,20,20);
         newBuilding.transform.parent = mapInstance.transform;
+       
 
 
     }

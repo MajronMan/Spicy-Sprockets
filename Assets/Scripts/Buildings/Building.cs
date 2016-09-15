@@ -14,6 +14,10 @@ public abstract class Building : MonoBehaviour
     protected List<Cell> occupiedCells = new List<Cell>();
     protected Cell theChosenCell;
 
+    private void Start()
+    {
+        
+    }
     public void Occupy(List<Cell> cells, IntVector2 size, Cell chosenOne)
     {
         mySize = (BuildingSize)Math.Abs(size.x)+1;
