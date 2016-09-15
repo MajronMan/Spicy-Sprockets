@@ -7,39 +7,46 @@ public class BuildingManager : MonoBehaviour
 {
 
     private List<Building> Built;
-    private Map MapInstance;
+    private Map mapInstance;
     public Building buildingPrefab;
     public bool active;
 
-    private  void Build(Vector2 location)
+    public void Build(Vector2 location)
     {
         Building newBuilding = Instantiate(buildingPrefab);
-        newBuilding.transform.parent = transform;
         newBuilding.transform.position = location;
-        
+        newBuilding.transform.parent = mapInstance.transform;
+
 
     }
 
     public void SetMapInstance(Map MapInstance)
     {
-        this.MapInstance = MapInstance;
+        this.mapInstance = MapInstance;
     }
-    void OnMouseDown()
+   
+
+    public void elo()
     {
-        if (active)
-        {
-            Debug.Log("Building");
-            Build(Input.mousePosition);
-        }
-        
+        Debug.Log("Elo");
     }
     void Start()
     {
-        active = false;
+        active = true;
 
     }
 	// Update is called once per frame
 	void Update () {
 	
 	}
+
+    public void setActive(bool active)
+    {
+        this.active = active;
+    }
+
+    public bool getActive()
+    {
+        return active;
+    }
 }

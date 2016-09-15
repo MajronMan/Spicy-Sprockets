@@ -3,8 +3,9 @@ using System.Collections;
 
 public class StrategyManager : MonoBehaviour {
     public Map mapPrefab;
-    private Map mapInstance;
-
+    private Map mapInstance=null;
+    public BuildingManager buildingManagerPrefab;
+    private BuildingManager buildingManagerInstance=null;
 
     private void Start()
     {
@@ -16,7 +17,11 @@ public class StrategyManager : MonoBehaviour {
         mapInstance = Instantiate(mapPrefab) as Map;
         mapInstance.transform.SetParent(transform);
         mapInstance.name = "Map Instance";
-        
+        buildingManagerInstance = Instantiate(buildingManagerPrefab);
+        buildingManagerInstance.transform.SetParent(transform);
+        buildingManagerInstance.name = "Building Manager";
+        buildingManagerInstance.SetMapInstance(mapInstance);
+       
     }
 
     private void RestartGame()
@@ -31,6 +36,17 @@ public class StrategyManager : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Space))
         {
             RestartGame();
+        }
+    }
+
+    public void mapClicked()
+    {
+        Debug.Log("korwo");
+        if (buildingManagerInstance!=null && buildingManagerInstance.active)
+        {
+            Debug.Log("Build");
+            buildingManagerInstance.Build(Input.mousePosition);
+            
         }
     }
 }

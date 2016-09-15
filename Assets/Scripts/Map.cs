@@ -5,7 +5,9 @@ using System;
 using JetBrains.Annotations;
 using UnityEngine.UI;
 
-public class Map : MonoBehaviour {
+public class Map : MonoBehaviour
+{
+    private StrategyManager strategyManager;
     public Cell cellPrefab;
     public Building buildingPrefab;
     private Cell [,] cells;
@@ -54,9 +56,20 @@ public class Map : MonoBehaviour {
     void Start () {
         //Generate();
         Physics.queriesHitTriggers = true;
-       
+        strategyManager = gameObject.transform.parent.GetComponent<StrategyManager>();
+
     }
 
+    void OnMouseDown()
+    {
+        Debug.Log("I was clicked");
+        strategyManager.mapClicked();
+    }
+
+    public int objectIndex()
+    {
+        return gameObject.transform.GetSiblingIndex();
+    }
     
     void Update()
     {
