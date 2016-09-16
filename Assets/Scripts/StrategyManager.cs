@@ -14,7 +14,8 @@ public class StrategyManager : MonoBehaviour {
 
     private void BeginGame()
     {
-        mapInstance = Instantiate(mapPrefab) as Map;
+        mapInstance = Instantiate(mapPrefab, transform.position, transform.rotation) as Map;
+        mapInstance.transform.localScale = new Vector3(50, 50, 50);
         mapInstance.transform.SetParent(transform);
         mapInstance.name = "Map Instance";
         buildingManagerInstance = Instantiate(buildingManagerPrefab);
