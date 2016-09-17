@@ -62,17 +62,11 @@ public class Map : MonoBehaviour
 
     void OnMouseDown()
     {
-        Debug.Log("I was clicked");
         strategyManager.mapClicked();
     }
 
     public int objectIndex()
     {
         return gameObject.transform.GetSiblingIndex();
-    }
-    
-    void Update()
-    {
-    
     }
 }
