@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections;
+using Assets.Scripts;
 using UnityEngine.EventSystems;
 
 public class StrategyManager : MonoBehaviour {
@@ -8,6 +9,7 @@ public class StrategyManager : MonoBehaviour {
     private Map mapInstance=null;
     public BuildingManager buildingManagerPrefab;
     private BuildingManager buildingManagerInstance=null;
+    public Info CityInformation;
 
     private void Start()
     {
@@ -24,6 +26,7 @@ public class StrategyManager : MonoBehaviour {
         buildingManagerInstance.transform.SetParent(transform);
         buildingManagerInstance.name = "Building Manager";
         buildingManagerInstance.SetMapInstance(mapInstance);
+        CityInformation = new Info(buildingManagerInstance);
     }
 
     private void RestartGame()
@@ -60,6 +63,10 @@ public class StrategyManager : MonoBehaviour {
 
     public void ButtonClicked()
     {
+        foreach (var building in CityInformation.Buildings)
+        {
+            Debug.Log(building);
+        }
         buildingManagerInstance.setActive(true);
     }
 }

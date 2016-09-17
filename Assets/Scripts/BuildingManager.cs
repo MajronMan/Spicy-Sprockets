@@ -7,7 +7,7 @@ using System.Collections.Generic;
 public class BuildingManager : MonoBehaviour
 {
 
-    private List<Building> Built;
+    private List<Building> Built = new List<Building>();
     private Map mapInstance;
     public Building buildingPrefab;
     private bool active = false;
@@ -20,6 +20,7 @@ public class BuildingManager : MonoBehaviour
         newBuilding.transform.localScale=new Vector3(20,20,20);
         newBuilding.transform.SetParent(mapInstance.transform, true);
         this.active = false;
+        Built.Add(newBuilding);
     }
 
     public void SetMapInstance(Map MapInstance)
@@ -35,5 +36,10 @@ public class BuildingManager : MonoBehaviour
     public bool getActive()
     {
         return active;
+    }
+
+    public List<Building> GetBuilt()
+    {
+        return this.Built;
     }
 }
