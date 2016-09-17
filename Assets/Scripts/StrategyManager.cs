@@ -41,18 +41,25 @@ public class StrategyManager : MonoBehaviour {
         }
     }
 
-    public void mapClicked()
+    public void MapClicked()
     {
+        if (EventSystem.current.IsPointerOverGameObject()) return;
         try
         {
             buildingManagerInstance.Build(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 20));
-
         }
-        catch (NullReferenceException e) { }
+        catch (NullReferenceException e)
+        {
+        }
     }
 
     public BuildingManager GetBuildingManager()
     {
         return buildingManagerInstance;
+    }
+
+    public void ButtonClicked()
+    {
+        buildingManagerInstance.setActive(true);
     }
 }

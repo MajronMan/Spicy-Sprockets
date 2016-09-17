@@ -11,20 +11,9 @@ public abstract class Building : MonoBehaviour
     public Sprite mySprite;
     protected Color myColor;
     protected BuildingSize mySize;
-    protected List<Cell> occupiedCells = new List<Cell>();
-    protected Cell theChosenCell;
 
-    private void Start()
+    public void Start()
     {
-        
-    }
-    public void Occupy(List<Cell> cells, IntVector2 size, Cell chosenOne)
-    {
-        mySize = (BuildingSize)Math.Abs(size.x)+1;
-        occupiedCells.AddRange(cells);
-        theChosenCell = chosenOne;
-        transform.SetParent(chosenOne.transform, false);
-        transform.localPosition = new Vector3((float)size.x/2.0f, (float)size.y/2.0f, 0);
-        transform.localScale = new Vector3((float)mySize-0.1f, (float)mySize-0.1f, 1);
+        gameObject.GetComponent<SpriteRenderer>().sprite = mySprite;
     }
 }
