@@ -10,7 +10,8 @@ public class Map : MonoBehaviour
     private StrategyManager strategyManager;
     public Building buildingPrefab;
 
-    public void Start () {
+    public void Start()
+    {
         Physics.queriesHitTriggers = true;
         strategyManager = gameObject.transform.parent.GetComponent<StrategyManager>();
     }
