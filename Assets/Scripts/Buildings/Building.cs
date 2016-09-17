@@ -1,19 +1,19 @@
-﻿using System;
+﻿using System.Collections.Generic;
+using Assets.Scripts.Resources;
 using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
 
-
-
-public abstract class Building : MonoBehaviour
+namespace Assets.Scripts.Buildings
 {
-    protected List<Resource> cost;
-    public Sprite mySprite;
-    protected Color myColor;
-    protected BuildingSize mySize;
-
-    public void Start()
+    public abstract class Building : MonoBehaviour
     {
-        gameObject.GetComponent<SpriteRenderer>().sprite = mySprite;
+        protected List<Resource> Cost;
+        public Sprite MySprite;
+        protected Color MyColor;
+        protected BuildingSize MySize;
+
+        public void Start()
+        {
+            gameObject.GetComponent<SpriteRenderer>().sprite = MySprite;
+        }
     }
 }

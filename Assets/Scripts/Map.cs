@@ -1,28 +1,27 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
-using System;
-using JetBrains.Annotations;
-using UnityEngine.UI;
+﻿using Assets.Scripts.Buildings;
+using UnityEngine;
 
-public class Map : MonoBehaviour
+namespace Assets.Scripts
 {
-    private StrategyManager strategyManager;
-    public Building buildingPrefab;
-
-    public void Start()
+    public class Map : MonoBehaviour
     {
-        Physics.queriesHitTriggers = true;
-        strategyManager = gameObject.transform.parent.GetComponent<StrategyManager>();
-    }
+        private StrategyManager _strategyManager;
+        public Building BuildingPrefab;
 
-    public void OnMouseDown()
-    {
-        strategyManager.MapClicked();
-    }
+        public void Start()
+        {
+            Physics.queriesHitTriggers = true;
+            _strategyManager = gameObject.transform.parent.GetComponent<StrategyManager>();
+        }
 
-    public int objectIndex()
-    {
-        return gameObject.transform.GetSiblingIndex();
+        public void OnMouseDown()
+        {
+            _strategyManager.MapClicked();
+        }
+
+        public int objectIndex()
+        {
+            return gameObject.transform.GetSiblingIndex();
+        }
     }
 }

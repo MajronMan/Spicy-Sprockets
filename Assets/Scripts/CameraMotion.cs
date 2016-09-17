@@ -7,20 +7,20 @@ namespace Assets.Scripts
 {
     public class CameraMotion : MonoBehaviour
     {
-        private float speed;
-        private int boundary;
-        private Vector3[] directions;
+        private float _speed;
+        private int _boundary;
+        private Vector3[] _directions;
 
         public void Start()
         {
-            speed = 0.025f;
-            boundary = 32;
-            directions = new Vector3[4]
+            _speed = 0.025f;
+            _boundary = 32;
+            _directions = new Vector3[4]
             {
-                new Vector3(-speed, 0, 0),      //left
-                new Vector3(speed, 0, 0),       //right
-                new Vector3(0, -speed, 0),       //up    
-                new Vector3(0, speed, 0)       //down
+                new Vector3(-_speed, 0, 0),      //left
+                new Vector3(_speed, 0, 0),       //right
+                new Vector3(0, -_speed, 0),       //up    
+                new Vector3(0, _speed, 0)       //down
             };
         }
 
@@ -29,14 +29,14 @@ namespace Assets.Scripts
             if (Math.Abs(transform.position.x) > 2000 || Math.Abs(transform.position.y) > 2000) return;
             float[] deltas = new float[]
             {
-                boundary - Input.mousePosition.x,
-                Input.mousePosition.x - Screen.width + boundary,
-                boundary - Input.mousePosition.y,
-                Input.mousePosition.y - Screen.height + boundary
+                _boundary - Input.mousePosition.x,
+                Input.mousePosition.x - Screen.width + _boundary,
+                _boundary - Input.mousePosition.y,
+                Input.mousePosition.y - Screen.height + _boundary
             };
             for (int i = 0; i < 4; i++)
                 if (deltas[i] > 0)
-                    transform.Translate(directions[i]*deltas[i]);
+                    transform.Translate(_directions[i]*deltas[i]);
 
             //was in task, not sure if we want it
 
