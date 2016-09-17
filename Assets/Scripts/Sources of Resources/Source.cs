@@ -1,27 +1,19 @@
-﻿using System;
+﻿using Assets.Scripts.Resources;
 using UnityEngine;
-using System.Collections;
-using UnityEngine.Assertions.Comparers;
 
-public abstract class Source : MonoBehaviour
+namespace Assets.Scripts.Sources_of_Resources
 {
-    protected float radius;
-    protected Resource resource;
-
-    public float recourceQuantity(float distance)
+    public abstract class Source : MonoBehaviour
     {
-        float res;
-        if (distance > radius) res = 0;
-        else res = radius*radius - distance*distance;
-        return res;
+        protected float Radius;
+        protected Resource Resource;
+
+        public float RecourceQuantity(float distance)
+        {
+            float res;
+            if (distance > Radius) res = 0;
+            else res = Radius*Radius - distance*distance;
+            return res;
+        }
     }
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 }

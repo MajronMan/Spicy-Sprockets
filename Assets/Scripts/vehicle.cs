@@ -1,22 +1,22 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Assets.Scripts.Resources;
+using UnityEngine;
 
-namespace transport {
+namespace Assets.Scripts {
     public abstract class Vehicle : MonoBehaviour {
         // Use this for initialization
-        private int max_speed;
-        private int current_speed;
+        private int _maxSpeed;
+        private int _currentSpeed;
         private List<Resource> load = new List<Resource>();
-        private int weight_capacity;
-        private int volume_capacity;
-        private MovementEnvironment environment;
+        private int _weightCapacity;
+        private int _volumeCapacity;
+        private MovementEnvironment _environment;
         private List<Resource> cost = new List<Resource>();
-        private Quality quality;
-        private Resource fuel;
-        private int burning;
-        private Vector3 destination;
-        private bool moving = false;
+        private Quality _quality;
+        private Resource _fuel;
+        private int _burning;
+        private Vector3 _destination;
+        private bool _moving = false;
 
         protected virtual void Start() {
            
@@ -26,21 +26,21 @@ namespace transport {
 
         public int GetSpeed()
         {
-            return max_speed;
+            return _maxSpeed;
         }
         public int GetWeightCapacity()
         {
-            return weight_capacity;
+            return _weightCapacity;
         }
         public int GetVolumeCapacity()
         {
-            return volume_capacity;
+            return _volumeCapacity;
         }
 
         public virtual void StartMoving(Vector3 destination)
         {
-            moving = true;
-            this.destination = destination;
+            _moving = true;
+            this._destination = destination;
         }
 
         public virtual bool CloseEnough()
@@ -50,11 +50,11 @@ namespace transport {
 
         public virtual void Move()
         {
-            if (!moving) return;
+            if (!_moving) return;
             
             if(CloseEnough())
             {
-                moving = false;
+                _moving = false;
                 return;
             }
 
