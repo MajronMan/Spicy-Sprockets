@@ -7,7 +7,7 @@ namespace Assets.Scripts
 {
     public class CameraMotion : MonoBehaviour
     {
-        public float speed = 0.25f;
+        public float speed = 0.025f;
         public int boundary = 32;
         private Vector3[] directions;
 
@@ -17,8 +17,8 @@ namespace Assets.Scripts
             {
                 new Vector3(-speed, 0, 0),      //left
                 new Vector3(speed, 0, 0),       //right
-                new Vector3(0, speed, 0),       //up    
-                new Vector3(0, -speed, 0)       //down
+                new Vector3(0, -speed, 0),       //up    
+                new Vector3(0, speed, 0)       //down
             };
         }
 
@@ -34,6 +34,12 @@ namespace Assets.Scripts
             for (int i = 0; i < 4; i++)
                 if (deltas[i] > 0)
                     transform.Translate(directions[i]*deltas[i]);
+
+            //was in task, not sure if we want it
+
+            if (!Input.GetMouseButton(2)) return;
+
+            transform.Rotate(new Vector3(0, 0, Input.GetAxis("Mouse X"))); 
         }
     }
     
