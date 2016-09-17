@@ -7,12 +7,14 @@ namespace Assets.Scripts
 {
     public class CameraMotion : MonoBehaviour
     {
-        public float speed = 0.025f;
-        public int boundary = 32;
+        private float speed;
+        private int boundary;
         private Vector3[] directions;
 
         public void Start()
         {
+            speed = 0.025f;
+            boundary = 32;
             directions = new Vector3[4]
             {
                 new Vector3(-speed, 0, 0),      //left
@@ -24,6 +26,7 @@ namespace Assets.Scripts
 
         public void Update()
         {
+            if (Math.Abs(transform.position.x) > 2000 || Math.Abs(transform.position.y) > 2000) return;
             float[] deltas = new float[]
             {
                 boundary - Input.mousePosition.x,
