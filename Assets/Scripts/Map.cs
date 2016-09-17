@@ -53,14 +53,14 @@ public class Map : MonoBehaviour
     
 
     // Use this for initialization
-    void Start () {
+    private void Start () {
         //Generate();
         Physics.queriesHitTriggers = true;
         strategyManager = gameObject.transform.parent.GetComponent<StrategyManager>();
 
     }
 
-    void OnMouseDown()
+    private void OnMouseDown()
     {
         Debug.Log("I was clicked");
         strategyManager.mapClicked();
@@ -70,8 +70,8 @@ public class Map : MonoBehaviour
     {
         return gameObject.transform.GetSiblingIndex();
     }
-    
-    void Update()
+
+    private void Update()
     {
     
     }
