@@ -57,7 +57,7 @@ public class Map : MonoBehaviour
         //Generate();
         Physics.queriesHitTriggers = true;
         strategyManager = gameObject.transform.parent.GetComponent<StrategyManager>();
-
+        transform.rotation = Quaternion.Euler(60, 0, 60);
     }
 
     void OnMouseDown()

@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections;
+using UnityEngine.EventSystems;
 
 public class StrategyManager : MonoBehaviour {
     public Map mapPrefab;
@@ -47,10 +48,7 @@ public class StrategyManager : MonoBehaviour {
             buildingManagerInstance.Build(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 20));
 
         }
-        catch (NullReferenceException e)
-        {
-            
-        }
+        catch (NullReferenceException e) { }
     }
 
     public BuildingManager GetBuildingManager()
