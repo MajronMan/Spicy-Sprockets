@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.EventSystems;
 
@@ -23,7 +24,6 @@ public class StrategyManager : MonoBehaviour {
         buildingManagerInstance.transform.SetParent(transform);
         buildingManagerInstance.name = "Building Manager";
         buildingManagerInstance.SetMapInstance(mapInstance);
-       
     }
 
     private void RestartGame()
@@ -41,17 +41,25 @@ public class StrategyManager : MonoBehaviour {
         }
     }
 
-    public void mapClicked()
+    public void MapClicked()
     {
-        if (!EventSystem.current.IsPointerOverGameObject())
+        if (EventSystem.current.IsPointerOverGameObject()) return;
+        try
         {
-            Debug.Log("korwo");
-            if (buildingManagerInstance != null && buildingManagerInstance.active)
-            {
-                Debug.Log("Build");
-                buildingManagerInstance.Build(Input.mousePosition);
-
-            }
+            buildingManagerInstance.Build(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 20));
         }
+        catch (NullReferenceException e)
+        {
+        }
+    }
+
+    public BuildingManager GetBuildingManager()
+    {
+        return buildingManagerInstance;
+    }
+
+    public void ButtonClicked()
+    {
+        buildingManagerInstance.setActive(true);
     }
 }
