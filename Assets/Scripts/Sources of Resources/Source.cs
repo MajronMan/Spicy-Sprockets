@@ -7,6 +7,7 @@ public abstract class Source : MonoBehaviour
 {
     protected float radius;
     protected Resource resource;
+    protected CircleCollider2D circle;
 
     public float recourceQuantity(float distance)
     {
@@ -15,13 +16,14 @@ public abstract class Source : MonoBehaviour
         else res = radius*radius - distance*distance;
         return res;
     }
-	// Use this for initialization
-	void Start () {
+
+	protected virtual void Start ()
+    {
 	
 	}
 	
-	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
 	
 	}
 }
