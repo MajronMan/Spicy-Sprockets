@@ -1,52 +1,62 @@
 ﻿using UnityEngine;
+using System.Collections;
 
-namespace Assets.Scripts.Resources
+[System.Serializable]
+public class Resource : MonoBehaviour
 {
-    [System.Serializable]
-    public class Resource : MonoBehaviour
+    protected int massPerUnit;
+    protected int volumePerUnit;
+    protected int defaultCostPerUnit;
+    protected int quantity;
+    protected ResourceQuality quality;
+    
+    
+    public Resource(ResourceType.Type type, int quantity, ResourceQuality quality)
     {
-        protected int MassPerUnit;
-        protected int VolumePerUnit;
-        protected int DefaultCostPerUnit;
-        protected int Quantity;
-        protected ResourceQuality Quality;
+        LoadProperties(type);
+        this.quantity = quantity;
+        this.quality = quality;
+    }
+    
+    public ResourceQuality getQuality()
+    {
+        return quality;
+    }
+
+    public int getQuantity()
+    {
+        return quantity;
+    }
     
     
-        public Resource(ResourceType.Type type, int quantity, ResourceQuality quality)
-        {
-            LoadProperties(type);
-            this.Quantity = quantity;
-            this.Quality = quality;
-        }
-    
-        public ResourceQuality GetQuality()
-        {
-            return Quality;
-        }
 
-        public int GetQuantity()
-        {
-            return Quantity;
-        }
+	// Use this for initialization
+	void Start () {
+	
+	}
+	
+	// Update is called once per frame
+	void Update () {
+	
+	}
 
-        private void LoadProperties(ResourceType.Type type)
+    private void LoadProperties(ResourceType.Type type)
+    {
+        switch (type)
         {
-            switch (type)
-            {
-                case ResourceType.Type.Coal:
-                    MassPerUnit = ResourceType.Coal.MassPerUnit;
-                    VolumePerUnit = ResourceType.Coal.VolumePerUnit;
-                    DefaultCostPerUnit = ResourceType.Coal.DefaultCostPerUnit;
-                    name = ResourceType.Coal.Name;
-                    break;
-                default:
-                    MassPerUnit = 2137;
-                    VolumePerUnit = 410;
-                    DefaultCostPerUnit = 15;
-                    name = "yomama";
-                    break;
+            case ResourceType.Type.Coal:
+                massPerUnit = ResourceType.Coal.massPerUnit;
+                volumePerUnit = ResourceType.Coal.volumePerUnit;
+                defaultCostPerUnit = ResourceType.Coal.defaultCostPerUnit;
+                name = ResourceType.Coal.name;
+                break;
+            default:
+                massPerUnit = 2137;
+                volumePerUnit = 410;
+                defaultCostPerUnit = 15;
+                name = "yomama";
+                break;
 
-            }
         }
     }
 }

@@ -1,16 +1,17 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
-namespace Assets.Scripts.Buildings
+
+public class ProductionBuilding : Building
 {
-    public class ProductionBuilding : Building
+    void Start()
     {
-        public new void Start()
-        {
-            MyColor = new Color(0.5f, 0.2f, 0.25f);
-            SpriteRenderer myRenderer = gameObject.GetComponent<SpriteRenderer>();
-            myRenderer.sprite = MySprite;
-            myRenderer.color = MyColor;
-            myRenderer.sortingOrder = 1;
-        }
+        myColor = new Color(0.5f, 0.2f, 0.25f);
+        SpriteRenderer renderer = gameObject.GetComponent<SpriteRenderer>();
+        renderer.sprite = mySprite;
+        renderer.color = myColor;
+        renderer.sortingOrder = 1;
     }
 }

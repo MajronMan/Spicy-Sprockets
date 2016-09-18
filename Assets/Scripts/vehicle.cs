@@ -1,22 +1,22 @@
-﻿using System.Collections.Generic;
-using Assets.Scripts.Resources;
-using UnityEngine;
+﻿using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
-namespace Assets.Scripts {
+namespace transport {
     public abstract class Vehicle : MonoBehaviour {
         // Use this for initialization
-        private int _maxSpeed;
-        private int _currentSpeed;
+        private int max_speed;
+        private int current_speed;
         private List<Resource> load = new List<Resource>();
-        private int _weightCapacity;
-        private int _volumeCapacity;
-        private MovementEnvironment _environment;
+        private int weight_capacity;
+        private int volume_capacity;
+        private MovementEnvironment environment;
         private List<Resource> cost = new List<Resource>();
-        private Quality _quality;
-        private Resource _fuel;
-        private int _burning;
-        private Vector3 _destination;
-        private bool _moving = false;
+        private Quality quality;
+        private Resource fuel;
+        private int burning;
+        private Vector3 destination;
+        private bool moving = false;
 
         protected virtual void Start() {
            
@@ -26,21 +26,21 @@ namespace Assets.Scripts {
 
         public int GetSpeed()
         {
-            return _maxSpeed;
+            return max_speed;
         }
         public int GetWeightCapacity()
         {
-            return _weightCapacity;
+            return weight_capacity;
         }
         public int GetVolumeCapacity()
         {
-            return _volumeCapacity;
+            return volume_capacity;
         }
 
         public virtual void StartMoving(Vector3 destination)
         {
-            _moving = true;
-            this._destination = destination;
+            moving = true;
+            this.destination = destination;
         }
 
         public virtual bool CloseEnough()
@@ -50,11 +50,11 @@ namespace Assets.Scripts {
 
         public virtual void Move()
         {
-            if (!_moving) return;
+            if (!moving) return;
             
             if(CloseEnough())
             {
-                _moving = false;
+                moving = false;
                 return;
             }
 

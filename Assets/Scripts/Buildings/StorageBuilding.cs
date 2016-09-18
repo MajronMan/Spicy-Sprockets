@@ -1,11 +1,21 @@
-﻿using Assets.Scripts.Resources;
+﻿using UnityEngine;
+using System.Collections;
 
-namespace Assets.Scripts.Buildings
+public abstract class StorageBuilding : Building
 {
-    public abstract class StorageBuilding : Building
-    {
-        protected Resource BadBatch;
-        protected Resource MediumBatch;
-        protected Resource GoodBatch;
-    }
+
+    protected Resource badBatch;
+    protected Resource mediumBatch;
+    protected Resource goodBatch;
+
+
+	// Use this for initialization
+	void Start () {
+	
+	}
+	
+	// Update is called once per frame
+	void Update () {
+	
+	}
 }

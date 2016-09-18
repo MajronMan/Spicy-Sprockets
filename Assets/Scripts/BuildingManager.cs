@@ -1,47 +1,54 @@
-﻿using System.Collections.Generic;
-using Assets.Scripts.Buildings;
-using UnityEngine;
+﻿using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
-namespace Assets.Scripts
+[System.Serializable]
+public class BuildingManager : MonoBehaviour
 {
-    [System.Serializable]
-    public class BuildingManager : MonoBehaviour
+
+    private List<Building> Built;
+    private Map mapInstance;
+    public Building buildingPrefab;
+    public bool active;
+
+    public void Build(Vector2 location)
     {
+        Building newBuilding = Instantiate(buildingPrefab);
+        newBuilding.transform.position = location;
+        newBuilding.transform.localScale=new Vector3(20,20,20);
+        newBuilding.transform.parent = mapInstance.transform;
+       
 
-        private List<Building> _built = new List<Building>();
-        private Map _mapInstance;
-        public Building BuildingPrefab;
-        private bool _active = false;
 
-        public void Build(Vector3 location)
-        {
-            if (!this._active) return;
-            Building newBuilding = Instantiate(BuildingPrefab);
-            newBuilding.transform.position = Camera.main.ScreenToWorldPoint(location);
-            newBuilding.transform.localScale=new Vector3(20,20,20);
-            newBuilding.transform.SetParent(_mapInstance.transform, true);
-            this._active = false;
-            _built.Add(newBuilding);
-        }
+    }
 
-        public void SetMapInstance(Map MapInstance)
-        {
-            this._mapInstance = MapInstance;
-        }
+    public void SetMapInstance(Map MapInstance)
+    {
+        this.mapInstance = MapInstance;
+    }
+   
 
-        public void SetActive(bool active)
-        {
-            this._active = active;
-        }
+    public void elo()
+    {
+        Debug.Log("Elo");
+    }
+    void Start()
+    {
+        active = true;
 
-        public bool GetActive()
-        {
-            return _active;
-        }
+    }
+	// Update is called once per frame
+	void Update () {
+	
+	}
 
-        public List<Building> GetBuilt()
-        {
-            return this._built;
-        }
+    public void setActive(bool active)
+    {
+        this.active = active;
+    }
+
+    public bool getActive()
+    {
+        return active;
     }
 }

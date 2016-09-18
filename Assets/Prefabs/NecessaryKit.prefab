@@ -2523,7 +2523,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35e00719f799baf4f909bda7159a03ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapPrefab: {fileID: 114000013635299500, guid: 809e17fa5dfb5d546b196a41716cb221,
+  mapPrefab: {fileID: 114000011183668904, guid: 647bb63bbb1cf2845935aa716c5d14f8,
     type: 2}
   buildingManagerPrefab: {fileID: 114000013228382424, guid: 5378f08a513478a4da8044f2a69bacaa,
     type: 2}

@@ -1,11 +1,19 @@
-﻿using Assets.Scripts.Resources;
+﻿using UnityEngine;
+using System.Collections;
 
-namespace Assets.Scripts.Buildings
+[System.Serializable]
+public abstract class GatheringBuilding : Building
 {
-    [System.Serializable]
-    public abstract class GatheringBuilding : Building
-    {
-        public float GatheringRadius;
-        public Resource Resource;
-    }
+    public float gatheringRadius;
+    public Resource resource;
+
+	// Use this for initialization
+	void Start () {
+	
+	}
+	
+	// Update is called once per frame
+	void Update () {
+	
+	}
 }

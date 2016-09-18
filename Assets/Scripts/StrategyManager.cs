@@ -1,73 +1,53 @@
-﻿using System;
-using UnityEngine;
-using UnityEngine.EventSystems;
+﻿using UnityEngine;
+using System.Collections;
 
-namespace Assets.Scripts
-{
-    public class StrategyManager : MonoBehaviour {
-        public Map MapPrefab;
-        private Map _mapInstance=null;
-        public BuildingManager BuildingManagerPrefab;
-        private BuildingManager _buildingManagerInstance=null;
-        public Info CityInformation;
+public class StrategyManager : MonoBehaviour {
+    public Map mapPrefab;
+    private Map mapInstance=null;
+    public BuildingManager buildingManagerPrefab;
+    private BuildingManager buildingManagerInstance=null;
 
-        private void Start()
+    private void Start()
+    {
+        BeginGame();
+    }
+
+    private void BeginGame()
+    {
+        mapInstance = Instantiate(mapPrefab, transform.position, transform.rotation) as Map;
+        mapInstance.transform.localScale = new Vector3(50, 50, 50);
+        mapInstance.transform.SetParent(transform);
+        mapInstance.name = "Map Instance";
+        buildingManagerInstance = Instantiate(buildingManagerPrefab);
+        buildingManagerInstance.transform.SetParent(transform);
+        buildingManagerInstance.name = "Building Manager";
+        buildingManagerInstance.SetMapInstance(mapInstance);
+       
+    }
+
+    private void RestartGame()
+    {
+        StopAllCoroutines();
+        Destroy(mapInstance.gameObject);
+        BeginGame();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            BeginGame();
+            RestartGame();
         }
+    }
 
-        private void BeginGame()
+    public void mapClicked()
+    {
+        Debug.Log("korwo");
+        if (buildingManagerInstance!=null && buildingManagerInstance.active)
         {
-            _mapInstance = Instantiate(MapPrefab, transform.position, transform.rotation) as Map;
-            _mapInstance.transform.localScale = new Vector3(50, 50, 50);
-            _mapInstance.transform.SetParent(transform);
-            _mapInstance.name = "Map Instance";
-            _buildingManagerInstance = Instantiate(BuildingManagerPrefab);
-            _buildingManagerInstance.transform.SetParent(transform);
-            _buildingManagerInstance.name = "Building Manager";
-            _buildingManagerInstance.SetMapInstance(_mapInstance);
-            CityInformation = new Info(_buildingManagerInstance);
-        }
-
-        private void RestartGame()
-        {
-            StopAllCoroutines();
-            Destroy(_mapInstance.gameObject);
-            BeginGame();
-        }
-
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                RestartGame();
-            }
-        }
-
-        public void MapClicked()
-        {
-            if (EventSystem.current.IsPointerOverGameObject()) return;
-            try
-            {
-                _buildingManagerInstance.Build(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 20));
-            }
-            catch (NullReferenceException e)
-            {
-            }
-        }
-
-        public BuildingManager GetBuildingManager()
-        {
-            return _buildingManagerInstance;
-        }
-
-        public void ButtonClicked()
-        {
-            foreach (var building in CityInformation.Buildings)
-            {
-                Debug.Log(building);
-            }
-            _buildingManagerInstance.SetActive(true);
+            Debug.Log("Build");
+            buildingManagerInstance.Build(Input.mousePosition);
+            
         }
     }
 }

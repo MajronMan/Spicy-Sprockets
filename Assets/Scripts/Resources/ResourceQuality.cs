@@ -1,9 +1,9 @@
-﻿namespace Assets.Scripts.Resources
+﻿using UnityEngine;
+using System.Collections;
+
+public enum ResourceQuality
 {
-    public enum ResourceQuality
-    {
-        Bad,
-        Medium,
-        Good
-    }
+    Bad,
+    Medium,
+    Good
 }

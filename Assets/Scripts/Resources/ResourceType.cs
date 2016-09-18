@@ -1,18 +1,18 @@
-﻿namespace Assets.Scripts.Resources
-{
-    public static class ResourceType {
+﻿using UnityEngine;
+using System.Collections;
 
-        public enum Type
-        {
-            Coal
-        }
+public static class ResourceType {
 
-        public class Coal
-        {
-            public static int MassPerUnit = 2137;
-            public static  int VolumePerUnit = 410;
-            public static int DefaultCostPerUnit = 911;
-            public static string Name = "Coal";
-        }
+    public enum Type
+    {
+        Coal
+    }
+
+    public class Coal
+    {
+        public static int massPerUnit = 2137;
+        public static  int volumePerUnit = 410;
+        public static int defaultCostPerUnit = 911;
+        public static string name = "Coal";
     }
 }
