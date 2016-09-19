@@ -13,24 +13,16 @@ public abstract class Source : MonoBehaviour
     {
         float res;
         if (distance > radius) res = 0;
-        else res = Mathf.Cos((radius / (8 * Mathf.PI)) * distance) * resource.getQuantity();
+        else res = Mathf.Cos((Mathf.PI / (2 * radius)) * distance) * resource.getQuantity();
         return res;
     }
 
-    public ResourceGatheringRate gatheringSpeed(float distance)
+    public float gatheringSpeed(float distance)
     {
         if (distance >= radius)
-            return ResourceGatheringRate.Static;
-        if((distance / radius) >= 0.8)
-            return ResourceGatheringRate.VerySlow;
-        if ((distance / radius) >= 0.6)
-            return ResourceGatheringRate.Slow;
-        if ((distance / radius) >= 0.4)
-            return ResourceGatheringRate.Medium;
-        if ((distance / radius) >= 0.2)
-            return ResourceGatheringRate.Fast;
+            return 0;
         else
-            return ResourceGatheringRate.VeryFast;
+            return Mathf.Cos((Mathf.PI / (2 * radius)) * distance);
     }
 
 	protected virtual void Start ()
