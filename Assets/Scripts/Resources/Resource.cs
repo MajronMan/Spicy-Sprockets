@@ -4,11 +4,11 @@ using System.Collections;
 [System.Serializable]
 public class Resource : MonoBehaviour
 {
-    protected int massPerUnit;
-    protected int volumePerUnit;
-    protected int defaultCostPerUnit;
-    protected int quantity;
-    protected ResourceQuality quality;
+    private int massPerUnit;
+    private int volumePerUnit;
+    private int defaultCostPerUnit;
+    private int quantity;
+    private ResourceQuality quality;
     
     
     public Resource(ResourceType.Type type, int quantity, ResourceQuality quality)
