@@ -19,7 +19,7 @@ public class BuildingManager : MonoBehaviour
         if (!this.active) return;
         Building newBuilding = Instantiate(buildingPrefab);
         newBuilding.transform.position = Camera.main.ScreenToWorldPoint(location);
-        newBuilding.transform.localScale = new Vector3(20, 20, 20);
+        newBuilding.transform.localScale = new Vector3(40, 40, 40);
         newBuilding.transform.SetParent(mapInstance.transform, true);
         this.active = false;
     }
@@ -31,9 +31,11 @@ public class BuildingManager : MonoBehaviour
         {
             case "Shit":
                 Building newBuilding = Instantiate(buildingPrefab);
-                newBuilding.transform.position = Camera.main.ScreenToWorldPoint(location);
-                newBuilding.transform.localScale = new Vector3(20, 20, 20);
+                Vector3 mousePosition= Camera.main.ScreenToWorldPoint(location);
+                newBuilding.transform.position =new Vector3(mousePosition.x, mousePosition.y,0 );
+                newBuilding.transform.localScale = new Vector3(40, 40, 40);
                 newBuilding.transform.SetParent(mapInstance.transform, true);
+                Built.Add(newBuilding);
                 break;
             case "Tent":
                 Building newTent = Instantiate(tentPrefab);
@@ -66,5 +68,10 @@ public class BuildingManager : MonoBehaviour
     public string getValue()
     {
         return val;
+    }
+
+    public void Start()
+    {
+        Built=new List<Building>();
     }
 }
