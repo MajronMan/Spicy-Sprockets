@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 using System.Collections;
+using System;
 
 public class StrategyManager : MonoBehaviour {
     public Map mapPrefab;
@@ -40,14 +42,27 @@ public class StrategyManager : MonoBehaviour {
         }
     }
 
-    public void mapClicked()
+    public void MapClicked()
     {
-        Debug.Log("korwo");
-        if (buildingManagerInstance!=null && buildingManagerInstance.active)
+        if (EventSystem.current.IsPointerOverGameObject()) return;
+        try
         {
-            Debug.Log("Build");
-            buildingManagerInstance.Build(Input.mousePosition);
-            
+            string val = buildingManagerInstance.getValue();
+            buildingManagerInstance.Build(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 20), val);
         }
+        catch (NullReferenceException e)
+        {
+        }
+    }
+
+    public BuildingManager GetBuildingManager()
+    {
+        return buildingManagerInstance;
+    }
+
+    public void ButtonClicked(string value)
+    {
+        buildingManagerInstance.setActive(true);
+        buildingManagerInstance.setValue(value);
     }
 }
