@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 
-
 [System.Serializable]
 public class BuildingManager : MonoBehaviour
 {
@@ -14,9 +13,8 @@ public class BuildingManager : MonoBehaviour
     private bool active = false;
     private string val;
 
-    public void Build(Vector3 location)
+    public void Build(Vector2 location)
     {
-        if (!this.active) return;
         Building newBuilding = Instantiate(buildingPrefab);
         newBuilding.transform.position = Camera.main.ScreenToWorldPoint(location);
         newBuilding.transform.localScale = new Vector3(20, 20, 20);
@@ -49,6 +47,21 @@ public class BuildingManager : MonoBehaviour
     {
         this.mapInstance = MapInstance;
     }
+   
+
+    public void elo()
+    {
+        Debug.Log("Elo");
+    }
+    void Start()
+    {
+        active = true;
+
+    }
+	// Update is called once per frame
+	void Update () {
+	
+	}
 
     public void setActive(bool active)
     {

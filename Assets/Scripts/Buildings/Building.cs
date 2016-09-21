@@ -12,8 +12,8 @@ public abstract class Building : MonoBehaviour
     protected Color myColor;
     protected BuildingSize mySize;
 
-    public void Start()
+    private void Start()
     {
-        gameObject.GetComponent<SpriteRenderer>().sprite = mySprite;
+        
     }
 }

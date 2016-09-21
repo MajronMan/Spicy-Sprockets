@@ -1,7 +1,7 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.EventSystems;
+using System;
 
 public class StrategyManager : MonoBehaviour {
     public Map mapPrefab;
@@ -24,6 +24,7 @@ public class StrategyManager : MonoBehaviour {
         buildingManagerInstance.transform.SetParent(transform);
         buildingManagerInstance.name = "Building Manager";
         buildingManagerInstance.SetMapInstance(mapInstance);
+       
     }
 
     private void RestartGame()
@@ -41,7 +42,7 @@ public class StrategyManager : MonoBehaviour {
         }
     }
 
-    public void MapClicked()
+    public void mapClicked()
     {
         if (EventSystem.current.IsPointerOverGameObject()) return;
         try

@@ -8,21 +8,22 @@ using UnityEngine.UI;
 public class Map : MonoBehaviour
 {
     private StrategyManager strategyManager;
-    public Building buildingPrefab;
-
-    public void Start()
+    public IntVector2 size;
+    
+    void Start ()
     {
         Physics.queriesHitTriggers = true;
         strategyManager = gameObject.transform.parent.GetComponent<StrategyManager>();
     }
 
-    public void OnMouseDown()
+    void OnMouseDown()
     {
-        strategyManager.MapClicked();
+        strategyManager.mapClicked();
     }
 
     public int objectIndex()
     {
         return gameObject.transform.GetSiblingIndex();
     }
+    
 }
