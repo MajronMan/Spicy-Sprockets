@@ -8,14 +8,16 @@ public class BuildingManager : MonoBehaviour
 
     private List<Building> Built;
     private Map mapInstance;
-    public Building buildingPrefab;
+    //for now it's more convenient to hold this variable in this script, but I think we should aim for this script not to need to keep it
+    public Building TMPbuildingPrefab;
+    //
     public Building tentPrefab;
     private bool active = false;
     private string val;
     public Building preview;
 
 
-    public void Build(Vector3 location)
+    public void Build(Building buildingPrefab, Vector3 location)
     {
         Building newBuilding = Instantiate(buildingPrefab);
         newBuilding.transform.position = Camera.main.ScreenToWorldPoint(location);
@@ -60,10 +62,10 @@ public class BuildingManager : MonoBehaviour
 
     public Building getBuildingPrefab()
     {
-        return buildingPrefab;
+        return TMPbuildingPrefab;
     }
 
-    public void createPreview()
+    public void createPreview(Building buildingPrefab)
     {
         preview = Instantiate(buildingPrefab);
         preview.transform.localScale = new Vector3(20, 20, 20);
