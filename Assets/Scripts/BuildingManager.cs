@@ -43,21 +43,41 @@ public class BuildingManager : MonoBehaviour
         this.active = false;
     }
 
+	public Building FollowMouseBuilding(Vector3 location, string val)
+	{
+		switch (val)
+		{
+		case "Shit":
+			Building newBuilding = Instantiate (buildingPrefab);
+			newBuilding.transform.position = Camera.main.ScreenToWorldPoint (location);
+			newBuilding.transform.localScale = new Vector3 (20, 20, 20);
+			newBuilding.transform.SetParent (mapInstance.transform, true);
+			return newBuilding;
+		case "Tent":
+			Building newTent = Instantiate (tentPrefab);
+			newTent.transform.position = Camera.main.ScreenToWorldPoint (location);
+			newTent.transform.localScale = new Vector3 (20, 20, 20);
+			newTent.transform.SetParent (mapInstance.transform, true);
+			return newTent;
+		}
+		return null;
+	}
+
     public void SetMapInstance(Map MapInstance)
     {
         this.mapInstance = MapInstance;
     }
    
-
     public void elo()
     {
         Debug.Log("Elo");
     }
+
     void Start()
     {
-        active = true;
-
+		active = false;
     }
+
 	// Update is called once per frame
 	void Update () {
 	

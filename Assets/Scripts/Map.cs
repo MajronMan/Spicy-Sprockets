@@ -21,6 +21,10 @@ public class Map : MonoBehaviour
         strategyManager.mapClicked();
     }
 
+	void OnMouseOver(){
+		strategyManager.MouseOver();
+	}
+
     public int objectIndex()
     {
         return gameObject.transform.GetSiblingIndex();
