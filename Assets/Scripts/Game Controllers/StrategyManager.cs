@@ -65,4 +65,5 @@ public class StrategyManager : MonoBehaviour {
         buildingManagerInstance.setActive(true);
         buildingManagerInstance.setValue(value);
     }
+
 }
