@@ -9,7 +9,7 @@ public class BuildingManager : MonoBehaviour
     private List<Building> Built;
     private Map mapInstance;
     //for now it's more convenient to hold this variable in this script, but I think we should aim for this script not to need to keep it
-    public Building TMPbuildingPrefab;
+    public Building TMPBuildingPrefab;
     //
     public Building tentPrefab;
     private bool active = false;
@@ -34,7 +34,7 @@ public class BuildingManager : MonoBehaviour
 
     void Start()
     {
-        
+        Debug.Log("karwia");
     }
 
 	// Update is called once per frame
@@ -62,7 +62,7 @@ public class BuildingManager : MonoBehaviour
 
     public Building getBuildingPrefab()
     {
-        return TMPbuildingPrefab;
+        return TMPBuildingPrefab;
     }
 
     public void createPreview(Building buildingPrefab)

@@ -12,8 +12,9 @@ public class BuildingMode : GameMode
     {
         this.strategyManagerInstance = strategyManagerInstance;
         this.buildingManagerInstance = buildingManagerInstance;
-        this.toBeBuiltPrefab = this.buildingManagerInstance.TMPbuildingPrefab;
+        this.toBeBuiltPrefab = this.buildingManagerInstance.TMPBuildingPrefab;
         this.buildingManagerInstance.createPreview(toBeBuiltPrefab);
+        
     }
 
     public void RightMouseClicked()
