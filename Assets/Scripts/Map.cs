@@ -18,11 +18,23 @@ public class Map : MonoBehaviour
 
     void OnMouseDown()
     {
-        strategyManager.mapClicked();
-    }
 
+        if (Input.GetMouseButtonDown(0))
+        {
+            strategyManager.GetGameMode().LeftMouseClicked();
+        }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            strategyManager.GetGameMode().RightMouseClicked();
+        }
+        //strategyManager.mapClicked();
+            
+        
+    }
+    
 	void OnMouseOver(){
-		strategyManager.MouseOver();
+		//strategyManager.MouseOver();
 	}
 
     public int objectIndex()

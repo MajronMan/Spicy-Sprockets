@@ -7,8 +7,10 @@ public class StrategyManager : MonoBehaviour {
     public Map mapPrefab;
     private Map mapInstance=null;
     public BuildingManager buildingManagerPrefab;
-	private Building FollowMouse = null;
     private BuildingManager buildingManagerInstance=null;
+    private GameMode gameMode;
+
+    
 
     private void Start()
     {
@@ -16,7 +18,8 @@ public class StrategyManager : MonoBehaviour {
     }
 
     private void BeginGame()
-    {
+    { 
+        gameMode=new DefaultMode();
         mapInstance = Instantiate(mapPrefab, transform.position, transform.rotation) as Map;
         mapInstance.transform.localScale = new Vector3(50, 50, 50);
         mapInstance.transform.SetParent(transform);
@@ -36,43 +39,32 @@ public class StrategyManager : MonoBehaviour {
 
     private void Update()
     {
+        gameMode.Update();
         if (Input.GetKeyDown(KeyCode.Space))
         {
             RestartGame();
         }
+        
     }
 
-    public void mapClicked()
-    {
-        if (EventSystem.current.IsPointerOverGameObject()) return;
-        try
-        {
-            string val = buildingManagerInstance.getValue();
-			Destroy(FollowMouse.gameObject);
-            buildingManagerInstance.Build(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 20), val);
-        }
-        catch (NullReferenceException e)
-        {
-        }
-    }
-
-	public void MouseOver(){
-		bool val = buildingManagerInstance.getActive();
-		if (val) {
-			FollowMouse.transform.position = Camera.main.ScreenToWorldPoint (new Vector3 (Input.mousePosition.x, Input.mousePosition.y, 20));
-		}
-	}
-
+    
     public BuildingManager GetBuildingManager()
     {
         return buildingManagerInstance;
     }
 
-    public void ButtonClicked(string value)
+    public GameMode GetGameMode()
     {
-		FollowMouse = buildingManagerInstance.FollowMouseBuilding (new Vector3 (Input.mousePosition.x, Input.mousePosition.y, 20), value);
-        buildingManagerInstance.setActive(true);
-        buildingManagerInstance.setValue(value);
+        return gameMode;
     }
 
+    public void enterBuildingMode()
+    {
+        gameMode=new BuildingMode(this, buildingManagerInstance);
+    }
+
+    public void enterDefaultMode()
+    {
+        gameMode=new DefaultMode();
+    }
 }

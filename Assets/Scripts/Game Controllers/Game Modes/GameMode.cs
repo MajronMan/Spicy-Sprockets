@@ -7,5 +7,7 @@ public interface GameMode
 
     void RightMouseClicked();
     void LeftMouseClicked();
+    void Update();
+    void Exit();
 
 }

@@ -12,8 +12,10 @@ public class BuildingManager : MonoBehaviour
     public Building tentPrefab;
     private bool active = false;
     private string val;
+    public Building preview;
 
-    public void Build(Vector2 location)
+
+    public void Build(Vector3 location)
     {
         Building newBuilding = Instantiate(buildingPrefab);
         newBuilding.transform.position = Camera.main.ScreenToWorldPoint(location);
@@ -21,61 +23,16 @@ public class BuildingManager : MonoBehaviour
         newBuilding.transform.SetParent(mapInstance.transform, true);
         this.active = false;
     }
-
-    public void Build(Vector3 location, string val)
-    {
-        if (!this.active) return;
-        switch (val)
-        {
-            case "Shit":
-                Building newBuilding = Instantiate(buildingPrefab);
-                newBuilding.transform.position = Camera.main.ScreenToWorldPoint(location);
-                newBuilding.transform.localScale = new Vector3(20, 20, 20);
-                newBuilding.transform.SetParent(mapInstance.transform, true);
-                break;
-            case "Tent":
-                Building newTent = Instantiate(tentPrefab);
-                newTent.transform.position = Camera.main.ScreenToWorldPoint(location);
-                newTent.transform.localScale = new Vector3(20, 20, 20);
-                newTent.transform.SetParent(mapInstance.transform, true);
-                break;
-        }
-        this.active = false;
-    }
-
-	public Building FollowMouseBuilding(Vector3 location, string val)
-	{
-		switch (val)
-		{
-		case "Shit":
-			Building newBuilding = Instantiate (buildingPrefab);
-			newBuilding.transform.position = Camera.main.ScreenToWorldPoint (location);
-			newBuilding.transform.localScale = new Vector3 (20, 20, 20);
-			newBuilding.transform.SetParent (mapInstance.transform, true);
-			return newBuilding;
-		case "Tent":
-			Building newTent = Instantiate (tentPrefab);
-			newTent.transform.position = Camera.main.ScreenToWorldPoint (location);
-			newTent.transform.localScale = new Vector3 (20, 20, 20);
-			newTent.transform.SetParent (mapInstance.transform, true);
-			return newTent;
-		}
-		return null;
-	}
-
+    
+    
     public void SetMapInstance(Map MapInstance)
     {
         this.mapInstance = MapInstance;
     }
-   
-    public void elo()
-    {
-        Debug.Log("Elo");
-    }
 
     void Start()
     {
-		active = false;
+        
     }
 
 	// Update is called once per frame
@@ -100,4 +57,24 @@ public class BuildingManager : MonoBehaviour
     {
         return val;
     }
+
+    public Building getBuildingPrefab()
+    {
+        return buildingPrefab;
+    }
+
+    public void createPreview()
+    {
+        preview = Instantiate(buildingPrefab);
+        preview.transform.localScale = new Vector3(20, 20, 20);
+        preview.name = "Building Preview";
+        preview.transform.parent = transform;
+    }
+
+    public void DestroyPreview()
+    {
+        Destroy(preview.gameObject);
+    }
+
+    
 }
