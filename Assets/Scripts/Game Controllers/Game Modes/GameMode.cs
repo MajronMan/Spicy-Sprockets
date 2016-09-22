@@ -9,5 +9,6 @@ public interface GameMode
     void LeftMouseClicked();
     void Update();
     void Exit();
+    void Select(GameObject gameObject);
 
 }

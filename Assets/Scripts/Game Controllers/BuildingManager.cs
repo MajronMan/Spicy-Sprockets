@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -8,24 +9,24 @@ public class BuildingManager : MonoBehaviour
 
     private List<Building> Built;
     private Map mapInstance;
-    //for now it's more convenient to hold this variable in this script, but I think we should aim for this script not to need to keep it
-    public Building TMPBuildingPrefab;
-    //
     public Building tentPrefab;
-    private bool active = false;
-    private string val;
-    public Building preview;
+    public BuildingStub buildingStub;
+    private StorageBuilding korwo;
+    public Dictionary<String, System.Type> availableBuildings;
 
-
-    public void Build(Building buildingPrefab, Vector3 location)
+    
+    
+    public void Build(System.Type buildingType, Vector3 location)
     {
-        Building newBuilding = Instantiate(buildingPrefab);
+        BuildingStub stub = Instantiate(buildingStub);
+        Building newBuilding = stub.init(buildingType);
         newBuilding.transform.position = Camera.main.ScreenToWorldPoint(location);
         newBuilding.transform.localScale = new Vector3(20, 20, 20);
         newBuilding.transform.SetParent(mapInstance.transform, true);
-        this.active = false;
+        Destroy(stub);
+        Built.Add(newBuilding);
+        
     }
-    
     
     public void SetMapInstance(Map MapInstance)
     {
@@ -34,49 +35,36 @@ public class BuildingManager : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("karwia");
+        Built=new List<Building>();
+        availableBuildings.Add("Production Building", typeof(ProductionBuilding));
     }
 
 	// Update is called once per frame
 	void Update () {
 	
 	}
-
-    public void setActive(bool active)
-    {
-        this.active = active;
-    }
-
-    public bool getActive()
-    {
-        return active;
-    }
-    public void setValue(string value)
-    {
-        val = value;
-    }
-    public string getValue()
-    {
-        return val;
-    }
-
-    public Building getBuildingPrefab()
-    {
-        return TMPBuildingPrefab;
-    }
-
-    public void createPreview(Building buildingPrefab)
-    {
-        preview = Instantiate(buildingPrefab);
-        preview.transform.localScale = new Vector3(20, 20, 20);
-        preview.name = "Building Preview";
-        preview.transform.parent = transform;
-    }
-
-    public void DestroyPreview()
-    {
-        Destroy(preview.gameObject);
-    }
-
     
+    public Building preview(System.Type buildingType)
+    {
+        BuildingStub resStub = Instantiate(buildingStub);
+        Building res = resStub.init(buildingType);
+        res.transform.localScale = new Vector3(20, 20, 20);
+        res.name = "Building Preview";
+        res.transform.parent = transform;
+        Destroy(resStub);
+
+        return res;
+    }
+
+    /*
+    public void Build(Building buildingPrefab, Vector3 location)
+    {
+        Building newBuilding = Instantiate(buildingPrefab);
+        newBuilding.transform.position = Camera.main.ScreenToWorldPoint(location);
+        newBuilding.transform.localScale = new Vector3(20, 20, 20);
+        newBuilding.transform.SetParent(mapInstance.transform, true);
+        this.active = false;
+    }
+    */
+
 }

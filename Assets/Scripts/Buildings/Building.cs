@@ -11,6 +11,7 @@ public abstract class Building : MonoBehaviour
     public Sprite mySprite;
     protected Color myColor;
     protected BuildingSize mySize;
+    public string spriteFilePath;
 
     private void Start()
     {

@@ -5,16 +5,15 @@ public class BuildingMode : GameMode
 {
     private StrategyManager strategyManagerInstance;
     private BuildingManager buildingManagerInstance;
-    public Building toBeBuiltPrefab;
-   
+    public System.Type toBeBuiltType;
+    private Building preview;
 
     public BuildingMode(StrategyManager strategyManagerInstance, BuildingManager buildingManagerInstance)
     {
         this.strategyManagerInstance = strategyManagerInstance;
         this.buildingManagerInstance = buildingManagerInstance;
-        this.toBeBuiltPrefab = this.buildingManagerInstance.TMPBuildingPrefab;
-        this.buildingManagerInstance.createPreview(toBeBuiltPrefab);
-        
+        this.toBeBuiltType = typeof(ProductionBuilding);
+        setPreview();
     }
 
     public void RightMouseClicked()
@@ -24,26 +23,33 @@ public class BuildingMode : GameMode
 
     public void LeftMouseClicked()
     {
-        Debug.Log("Build");
-        buildingManagerInstance.Build(toBeBuiltPrefab, new Vector3(Input.mousePosition.x, Input.mousePosition.y, 20));
+        buildingManagerInstance.Build(toBeBuiltType, new Vector3(Input.mousePosition.x, Input.mousePosition.y, 20));
         Exit();
     }
 
     public void Update()
     {
-        buildingManagerInstance.preview.transform.position= Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 20));
+        if(preview!=null) preview.transform.position= Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 20));
     }
 
+    public void setPreview()
+    {
+        this.preview = buildingManagerInstance.preview(toBeBuiltType);
+    }
+
+    public void setToBeBuiltType(System.Type buildingType)
+    {
+        this.toBeBuiltType = buildingType;
+    }
     public void Exit()
     {
-        buildingManagerInstance.DestroyPreview();
+        BuildingManager.Destroy(preview);
         strategyManagerInstance.enterDefaultMode();
     }
 
-    public void setToBeBuiltPrefab(Building buildingPrefab)
+    public void Select(GameObject gameObject)
     {
-        this.toBeBuiltPrefab = buildingPrefab;
+        setToBeBuiltType(gameObject.GetType());
+        setPreview();
     }
-
-    
 }

@@ -51,8 +51,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fc550982a3c9764aa4eb93e04cf7599, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TMPBuildingPrefab: {fileID: 114000010394992962, guid: b4981046e72561143a9ce72c2ae42771,
-    type: 2}
   tentPrefab: {fileID: 114000010446777260, guid: b517b29c780b5944c8f68a0e79165088,
     type: 2}
   preview: {fileID: 0}
+  buildingStub: {fileID: 114000014211087148, guid: be06c4f2cc03a86498b57f3c20c726c0,
+    type: 2}
