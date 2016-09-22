@@ -24,8 +24,8 @@ public class BuildingMode : GameMode
 
     public void LeftMouseClicked()
     {
-        Debug.Log("Build");
         buildingManagerInstance.Build(toBeBuiltPrefab, new Vector3(Input.mousePosition.x, Input.mousePosition.y, 20));
+        
         Exit();
     }
 

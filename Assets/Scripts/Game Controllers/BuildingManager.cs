@@ -15,6 +15,8 @@ public class BuildingManager : MonoBehaviour
     private bool active = false;
     private string val;
     public Building preview;
+    public BuildingStub OPTRTA;
+    private StorageBuilding korwo;
 
 
     public void Build(Building buildingPrefab, Vector3 location)
@@ -24,6 +26,14 @@ public class BuildingManager : MonoBehaviour
         newBuilding.transform.localScale = new Vector3(20, 20, 20);
         newBuilding.transform.SetParent(mapInstance.transform, true);
         this.active = false;
+        //////////////////
+        BuildingStub someOther = Instantiate(OPTRTA);
+       
+        //someOther.init(StorageBuilding);
+        someOther.init(BuildingType.Production);
+        Destroy(someOther);
+        
+
     }
     
     
