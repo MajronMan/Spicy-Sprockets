@@ -22,19 +22,6 @@ public class BuildingStub : MonoBehaviour {
     {
         Building res = null;
         res = (Building)gameObject.AddComponent(type);
-        /*
-        switch (type)
-        {
-            case BuildingType.Production:
-                res= gameObject.AddComponent<ProductionBuilding>();
-                res = (Building)gameObject.AddComponent(type);
-                    
-                break;
-            default:
-                Destroy(gameObject);
-                break;
-        }
-        */
         return res;
     }
     

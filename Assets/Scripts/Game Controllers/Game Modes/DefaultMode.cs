@@ -27,4 +27,9 @@ public class DefaultMode : GameMode
     {
         
     }
+
+    public void Select(GameObject gameObject)
+    {
+        
+    }
 }
