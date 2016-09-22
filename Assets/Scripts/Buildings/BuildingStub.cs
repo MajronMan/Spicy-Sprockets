@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEditor;
 
 
 public class BuildingStub : MonoBehaviour {
@@ -17,17 +18,24 @@ public class BuildingStub : MonoBehaviour {
 	}
 
     
-    public void init(BuildingType type)
+    public Building init(System.Type type)
     {
+        Building res = null;
+        res = (Building)gameObject.AddComponent(type);
+        /*
         switch (type)
         {
             case BuildingType.Production:
-                gameObject.AddComponent<ProductionBuilding>();
+                res= gameObject.AddComponent<ProductionBuilding>();
+                res = (Building)gameObject.AddComponent(type);
+                    
                 break;
             default:
                 Destroy(gameObject);
                 break;
         }
+        */
+        return res;
     }
     
 }

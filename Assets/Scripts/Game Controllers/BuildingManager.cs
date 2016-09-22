@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -17,25 +18,22 @@ public class BuildingManager : MonoBehaviour
     public Building preview;
     public BuildingStub OPTRTA;
     private StorageBuilding korwo;
+    public Dictionary<String, System.Type> availableBuildings;
 
-
-    public void Build(Building buildingPrefab, Vector3 location)
+    
+    
+    public void Build(System.Type buildingType, Vector3 location)
     {
-        Building newBuilding = Instantiate(buildingPrefab);
+        BuildingStub stub = Instantiate(OPTRTA);
+        Building newBuilding = stub.init(buildingType);
         newBuilding.transform.position = Camera.main.ScreenToWorldPoint(location);
         newBuilding.transform.localScale = new Vector3(20, 20, 20);
         newBuilding.transform.SetParent(mapInstance.transform, true);
-        this.active = false;
-        //////////////////
-        BuildingStub someOther = Instantiate(OPTRTA);
-       
-        //someOther.init(StorageBuilding);
-        someOther.init(BuildingType.Production);
-        Destroy(someOther);
-        
-
+        Built.Add(newBuilding);
+        Destroy(stub);
     }
     
+
     
     public void SetMapInstance(Map MapInstance)
     {
@@ -44,7 +42,7 @@ public class BuildingManager : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("karwia");
+        Built=new List<Building>();
     }
 
 	// Update is called once per frame
@@ -88,5 +86,15 @@ public class BuildingManager : MonoBehaviour
         Destroy(preview.gameObject);
     }
 
-    
+    /*
+    public void Build(Building buildingPrefab, Vector3 location)
+    {
+        Building newBuilding = Instantiate(buildingPrefab);
+        newBuilding.transform.position = Camera.main.ScreenToWorldPoint(location);
+        newBuilding.transform.localScale = new Vector3(20, 20, 20);
+        newBuilding.transform.SetParent(mapInstance.transform, true);
+        this.active = false;
+    }
+    */
+
 }

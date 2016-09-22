@@ -6,6 +6,7 @@ public class BuildingMode : GameMode
     private StrategyManager strategyManagerInstance;
     private BuildingManager buildingManagerInstance;
     public Building toBeBuiltPrefab;
+    public System.Type toBeBuiltType;
    
 
     public BuildingMode(StrategyManager strategyManagerInstance, BuildingManager buildingManagerInstance)
@@ -14,7 +15,8 @@ public class BuildingMode : GameMode
         this.buildingManagerInstance = buildingManagerInstance;
         this.toBeBuiltPrefab = this.buildingManagerInstance.TMPBuildingPrefab;
         this.buildingManagerInstance.createPreview(toBeBuiltPrefab);
-        
+        this.toBeBuiltType = typeof(ProductionBuilding);
+
     }
 
     public void RightMouseClicked()
@@ -24,8 +26,7 @@ public class BuildingMode : GameMode
 
     public void LeftMouseClicked()
     {
-        buildingManagerInstance.Build(toBeBuiltPrefab, new Vector3(Input.mousePosition.x, Input.mousePosition.y, 20));
-        
+        buildingManagerInstance.Build(toBeBuiltType, new Vector3(Input.mousePosition.x, Input.mousePosition.y, 20));
         Exit();
     }
 
