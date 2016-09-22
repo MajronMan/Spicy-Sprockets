@@ -28,10 +28,31 @@ public class Resource : MonoBehaviour
         return quantity;
     }
     
-    
+    public static Resource operator +(Resource basicRes, int addedQuantity)
+    {
+        basicRes.quantity += addedQuantity;
+        return basicRes;
+    }
 
-	// Use this for initialization
-	void Start () {
+    public static Resource operator -(Resource basicRes, int subtractedQuantity)
+    {
+        basicRes.quantity -= subtractedQuantity;
+        return basicRes;
+    }
+
+    public static Resource operator ++(Resource basicRes)
+    {
+        basicRes.quantity++;
+        return basicRes;
+    }
+
+    public static Resource operator --(Resource basicRes)
+    {
+        basicRes.quantity--;
+        return basicRes;
+    }
+
+    void Start () {
 	
 	}
 	
