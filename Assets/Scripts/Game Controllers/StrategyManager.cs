@@ -8,6 +8,9 @@ public class StrategyManager : MonoBehaviour {
     private Map mapInstance=null;
     public BuildingManager buildingManagerPrefab;
     private BuildingManager buildingManagerInstance=null;
+    private GameMode gameMode;
+
+    
 
     private void Start()
     {
@@ -15,7 +18,8 @@ public class StrategyManager : MonoBehaviour {
     }
 
     private void BeginGame()
-    {
+    { 
+        gameMode=new DefaultMode();
         mapInstance = Instantiate(mapPrefab, transform.position, transform.rotation) as Map;
         mapInstance.transform.localScale = new Vector3(50, 50, 50);
         mapInstance.transform.SetParent(transform);
@@ -24,7 +28,6 @@ public class StrategyManager : MonoBehaviour {
         buildingManagerInstance.transform.SetParent(transform);
         buildingManagerInstance.name = "Building Manager";
         buildingManagerInstance.SetMapInstance(mapInstance);
-       
     }
 
     private void RestartGame()
@@ -36,33 +39,32 @@ public class StrategyManager : MonoBehaviour {
 
     private void Update()
     {
+        gameMode.Update();
         if (Input.GetKeyDown(KeyCode.Space))
         {
             RestartGame();
         }
+        
     }
 
-    public void mapClicked()
-    {
-        if (EventSystem.current.IsPointerOverGameObject()) return;
-        try
-        {
-            string val = buildingManagerInstance.getValue();
-            buildingManagerInstance.Build(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 20), val);
-        }
-        catch (NullReferenceException e)
-        {
-        }
-    }
-
+    
     public BuildingManager GetBuildingManager()
     {
         return buildingManagerInstance;
     }
 
-    public void ButtonClicked(string value)
+    public GameMode GetGameMode()
     {
-        buildingManagerInstance.setActive(true);
-        buildingManagerInstance.setValue(value);
+        return gameMode;
+    }
+
+    public void enterBuildingMode()
+    {
+        gameMode=new BuildingMode(this, buildingManagerInstance);
+    }
+
+    public void enterDefaultMode()
+    {
+        gameMode=new DefaultMode();
     }
 }

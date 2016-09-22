@@ -1,10 +1,14 @@
 fileFormatVersion: 2
 guid: 4fc550982a3c9764aa4eb93e04cf7599
-timeCreated: 1473804843
+timeCreated: 1474501311
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - TMPBuildingPrefab: {fileID: 114000010394992962, guid: b4981046e72561143a9ce72c2ae42771,
+      type: 2}
+  - tentPrefab: {instanceID: 0}
+  - preview: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
