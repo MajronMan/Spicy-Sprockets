@@ -10,6 +10,7 @@ public class BuildingMode : GameMode
 
     public BuildingMode(StrategyManager strategyManagerInstance, BuildingManager buildingManagerInstance)
     {
+        
         this.strategyManagerInstance = strategyManagerInstance;
         this.buildingManagerInstance = buildingManagerInstance;
         this.toBeBuiltType = typeof(ProductionBuilding);
