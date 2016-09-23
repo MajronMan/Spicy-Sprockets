@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 
 public class InteractiveButton : MonoBehaviour
 {
@@ -19,6 +20,16 @@ public class InteractiveButton : MonoBehaviour
     public GameObject lawPanel;
     public GameObject characterPanel;
 
+    public Transform systemButton;
+    public Transform toggleMapButton;
+    public Transform res1;
+    public Transform res2;
+    public Transform res3;
+    public Transform res4;
+    public Transform res5;
+    public Transform res6;
+    public Transform infoButton;
+
     private GameObject myPanel;
     private Transform myButton;
     private List<GameObject> panelList;
@@ -26,7 +37,6 @@ public class InteractiveButton : MonoBehaviour
 
     void Start ()
     {
-        string name = gameObject.transform.name;
         panelList = new List<GameObject>();
 
         panelList.Add(buildPanel);
@@ -35,6 +45,8 @@ public class InteractiveButton : MonoBehaviour
         panelList.Add(sciencePanel);
         panelList.Add(lawPanel);
         panelList.Add(characterPanel);
+
+        string name = gameObject.transform.name;
 
         switch (name)
         {
@@ -99,11 +111,27 @@ public class InteractiveButton : MonoBehaviour
 
     private void DisableButtons()
     {
-
+        systemButton.GetComponent<Toggle>().interactable = false;
+        toggleMapButton.GetComponent<Toggle>().interactable = false;
+        infoButton.GetComponent<Button>().interactable = false;
+        res1.GetComponent<EventTrigger>().enabled = false;
+        res2.GetComponent<EventTrigger>().enabled = false;
+        res3.GetComponent<EventTrigger>().enabled = false;
+        res4.GetComponent<EventTrigger>().enabled = false;
+        res5.GetComponent<EventTrigger>().enabled = false;
+        res6.GetComponent<EventTrigger>().enabled = false;
     }
 
     private void EnableButtons()
     {
-
+        systemButton.GetComponent<Toggle>().interactable = true;
+        toggleMapButton.GetComponent<Toggle>().interactable = true;
+        infoButton.GetComponent<Button>().interactable = true;
+        res1.GetComponent<EventTrigger>().enabled = true;
+        res2.GetComponent<EventTrigger>().enabled = true;
+        res3.GetComponent<EventTrigger>().enabled = true;
+        res4.GetComponent<EventTrigger>().enabled = true;
+        res5.GetComponent<EventTrigger>().enabled = true;
+        res6.GetComponent<EventTrigger>().enabled = true;
     }
 }
