@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public abstract class StorageBuilding : Building
+public  class StorageBuilding : Building
 {
 
     protected Resource badBatch;
@@ -11,6 +11,7 @@ public abstract class StorageBuilding : Building
 
 	// Use this for initialization
 	void Start () {
+        Debug.Log("kierwa");
 	
 	}
 	
