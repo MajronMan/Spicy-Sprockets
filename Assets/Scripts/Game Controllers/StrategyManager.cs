@@ -9,12 +9,13 @@ public class StrategyManager : MonoBehaviour {
     public BuildingManager buildingManagerPrefab;
     private BuildingManager buildingManagerInstance=null;
     private GameMode gameMode;
+	private static string dataPath = string.Empty;
 
-    
-
+   
     private void Start()
     {
         BeginGame();
+		dataPath = System.IO.Path.Combine(Application.dataPath, "Resources/Data.xml");
     }
 
     private void BeginGame()
@@ -67,4 +68,30 @@ public class StrategyManager : MonoBehaviour {
     {
         gameMode=new DefaultMode();
     }
+
+	public void Save(){
+//		SaveData.Save
+		SaveData.ClearBuildings();
+		for (int i = 0; i < buildingManagerInstance.Built.Count; i++) {
+			SaveData.AddBuildingData (buildingManagerInstance.Built [i]);
+			gameMode=new BuildingMode(this, buildingManagerInstance);
+		}
+		SaveData.Save(dataPath, SaveData.buildingContainer);
+//		SaveData.Save(dataPath, SaveData.actorContainer); 
+//		Debug.Log (buildingManagerInstance.Built.Count);
+
+	}
+
+	public void Load(){
+
+		SaveData.Load(dataPath);
+		for (int i = 0; i < SaveData.buildingContainer.bulidings.Count; i++) {
+			Debug.Log (SaveData.buildingContainer.bulidings[i].posX);
+			Building toBeBuiltPrefab;
+			toBeBuiltPrefab = this.buildingManagerInstance.TMPBuildingPrefab;
+			buildingManagerInstance.Build(toBeBuiltPrefab, new Vector3(SaveData.buildingContainer.bulidings[i].posX, SaveData.buildingContainer.bulidings[i].posY, SaveData.buildingContainer.bulidings[i].posZ));
+		}
+		SaveData.ClearBuildings();
+	}
+
 }

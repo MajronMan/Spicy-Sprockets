@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public class BuildingManager : MonoBehaviour
 {
 
-    private List<Building> Built;
+    public List<Building> Built;
     private Map mapInstance;
     //for now it's more convenient to hold this variable in this script, but I think we should aim for this script not to need to keep it
     public Building TMPBuildingPrefab;
@@ -23,6 +23,7 @@ public class BuildingManager : MonoBehaviour
         newBuilding.transform.position = Camera.main.ScreenToWorldPoint(location);
         newBuilding.transform.localScale = new Vector3(20, 20, 20);
         newBuilding.transform.SetParent(mapInstance.transform, true);
+		Built.Add (newBuilding);
         this.active = false;
     }
     
