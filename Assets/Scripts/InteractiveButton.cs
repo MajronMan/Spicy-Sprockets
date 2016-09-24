@@ -34,6 +34,7 @@ public class InteractiveButton : MonoBehaviour
     private Transform myButton;
     private List<GameObject> panelList;
     private bool clicked = false;
+    private bool buttonsDisabled = false;
 
     void Start ()
     {
@@ -84,15 +85,26 @@ public class InteractiveButton : MonoBehaviour
     {
         if (clicked && myPanel.activeSelf == false)
             clicked = false;
+        if (buttonsDisabled && !clicked)
+        {
+            EnableButtons();
+            buttonsDisabled = false;
+        }
     }
 
     public void Clicked()
+    {
+        StartCoroutine("Clicker");
+    }
+
+    public IEnumerator Clicker()
     {
         if (!clicked)
         {
             clicked = true;
             ClosePanels();
             myPanel.SetActive(true);
+            yield return null;
             DisableButtons();
         }
         else
@@ -111,6 +123,8 @@ public class InteractiveButton : MonoBehaviour
 
     private void DisableButtons()
     {
+        buttonsDisabled = true;
+
         systemButton.GetComponent<Toggle>().interactable = false;
         toggleMapButton.GetComponent<Toggle>().interactable = false;
         infoButton.GetComponent<Button>().interactable = false;
@@ -124,6 +138,8 @@ public class InteractiveButton : MonoBehaviour
 
     private void EnableButtons()
     {
+        buttonsDisabled = false;
+
         systemButton.GetComponent<Toggle>().interactable = true;
         toggleMapButton.GetComponent<Toggle>().interactable = true;
         infoButton.GetComponent<Button>().interactable = true;

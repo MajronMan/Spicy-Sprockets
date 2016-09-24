@@ -9,6 +9,7 @@ public class Resource : MonoBehaviour
     private int defaultCostPerUnit;
     private int quantity;
     private ResourceQuality quality;
+    private ResourceType.Type resType;
     
     
     public Resource(ResourceType.Type type, int quantity, ResourceQuality quality)
@@ -16,6 +17,7 @@ public class Resource : MonoBehaviour
         LoadProperties(type);
         this.quantity = quantity;
         this.quality = quality;
+        this.resType = type;
     }
     
     public ResourceQuality getQuality()
@@ -79,5 +81,26 @@ public class Resource : MonoBehaviour
                 break;
 
         }
+    }
+
+    public Resource Divide(int newQuantity)
+    {
+        if(newQuantity > quantity)
+        {
+            Debug.Log("Cant subtract");
+            return this;
+        }
+
+        Resource newRes = new Resource(resType, newQuantity, quality);
+        quantity -= newQuantity;
+        return newRes;
+    }
+
+    public Resource Fuse(Resource newRes)
+    {
+        quantity = newRes.quantity;
+        //trzeba pozniej zmienic zeby quality jakos wplywalo
+        Destroy(newRes);
+        return this;
     }
 }
