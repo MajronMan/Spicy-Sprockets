@@ -44,7 +44,7 @@ public class BuildingMode : GameMode
     }
     public void Exit()
     {
-        BuildingManager.Destroy(preview);
+        BuildingManager.Destroy(preview.gameObject);
         strategyManagerInstance.enterDefaultMode();
     }
 

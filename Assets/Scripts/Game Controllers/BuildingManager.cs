@@ -56,6 +56,8 @@ public class BuildingManager : MonoBehaviour
         return res;
     }
 
+    
+
     /*
     public void Build(Building buildingPrefab, Vector3 location)
     {
