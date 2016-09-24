@@ -1,4 +1,6 @@
-﻿namespace Assets.Scripts.Resources
+﻿using UnityEngine;
+
+namespace Assets.Scripts.Resources
 {
     [System.Serializable]
     public class Resource
@@ -9,16 +11,21 @@
         private int defaultPricePerUnit;
 
         private int quantity;
-        private ResourceQuality quality;
+        private Quality quality;
+   
     
-    
-        public Resource(int quantity, ResourceQuality quality)
+		public Resource(string type, int quantity, Quality quality, Info info)
         {
+			this.type = type;
+			var data = info.ResourceTypes.GetData (type);
+			int.TryParse(data ["mass"], out this.massPerUnit);
+			int.TryParse(data ["volume"], out this.volumePerUnit);
+			int.TryParse(data ["price"], out this.defaultPricePerUnit);
             this.quantity = quantity;
             this.quality = quality;
         }
     
-        public ResourceQuality GetQuality()
+        public Quality GetQuality()
         {
             return quality;
         }
@@ -52,6 +59,9 @@
             return basicRes;
         }
 
+		public override string ToString(){
+			return quantity.ToString() + " of " + quality.ToString() + " " + type;
+		}
 //        private void LoadProperties(ResourceType.Type type)
 //        {
 //            switch (type)

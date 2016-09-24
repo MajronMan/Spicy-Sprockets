@@ -16,7 +16,6 @@ public class StrategyManager : MonoBehaviour {
     private void Start()
     {
         BeginGame();
-		info = new Info ();
     }
 
     private void BeginGame()
@@ -30,6 +29,10 @@ public class StrategyManager : MonoBehaviour {
         buildingManagerInstance.transform.SetParent(transform);
         buildingManagerInstance.name = "Building Manager";
         buildingManagerInstance.SetMapInstance(mapInstance);
+		info = new Info ();
+		foreach (var res in info.Resources) {
+			Debug.Log (res.ToString ());
+		}
     }
 
     private void RestartGame()
