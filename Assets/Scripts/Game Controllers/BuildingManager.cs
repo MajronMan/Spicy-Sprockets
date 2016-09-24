@@ -7,7 +7,7 @@ using System.Collections.Generic;
 public class BuildingManager : MonoBehaviour
 {
 
-    private List<Building> Built;
+    public List<Building> Built;
     private Map mapInstance;
     public Building tentPrefab;
     public BuildingStub buildingStub;

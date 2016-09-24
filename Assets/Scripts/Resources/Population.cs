@@ -11,7 +11,7 @@ public class Population : MonoBehaviour {
 	//TODO: class Statistic working like a Dictionary<string, float> which values add up to 1.0f (100%)
 
 	public void Start(){
-		StartCoroutine (Grow);
+		StartCoroutine ("Grow");
 		Religions.Add ("Hinduism", 1.0f);
 		Cultures.Add ("Hindu", 1.0f);
 	}

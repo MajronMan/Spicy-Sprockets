@@ -5272,6 +5272,7 @@ GameObject:
   - 224: {fileID: 1526001675}
   - 222: {fileID: 1526001677}
   - 114: {fileID: 1526001676}
+  - 114: {fileID: 1526001678}
   m_Layer: 5
   m_Name: WoodText
   m_TagString: Untagged
@@ -5336,6 +5337,20 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1526001674}
+--- !u!114 &1526001678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1526001674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe96940a5a0194b4e9eadb8c4497846e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ResourceText: {fileID: 0}
+  strategyManager: {fileID: 1813298210}
+  type: wood
 --- !u!1 &1531723390
 GameObject:
   m_ObjectHideFlags: 0

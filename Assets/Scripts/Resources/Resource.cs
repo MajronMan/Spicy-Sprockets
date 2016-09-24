@@ -9,7 +9,7 @@ namespace Assets.Scripts.Resources
         private int massPerUnit;
 		private int volumePerUnit;
         private int defaultPricePerUnit;
-
+		private Info info;
         private int quantity;
         private Quality quality;
    
@@ -17,6 +17,7 @@ namespace Assets.Scripts.Resources
 		public Resource(string type, int quantity, Quality quality, Info info)
         {
 			this.type = type;
+			this.info = info;
 			var data = info.ResourceTypes.GetData (type);
 			int.TryParse(data ["mass"], out this.massPerUnit);
 			int.TryParse(data ["volume"], out this.volumePerUnit);
@@ -91,5 +92,26 @@ namespace Assets.Scripts.Resources
 //
 //            }
 //        }
-    }
+    
+
+	    public Resource Divide(int newQuantity)
+	    {
+	        if(newQuantity > quantity)
+	        {
+	            Debug.Log("Cant subtract");
+	            return this;
+	        }
+
+	        Resource newRes = new Resource(type, newQuantity, quality, info);
+	        quantity -= newQuantity;
+	        return newRes;
+	    }
+
+	    public Resource Fuse(Resource newRes)
+	    {
+	        quantity = newRes.quantity;
+	        //trzeba pozniej zmienic zeby quality jakos wplywalo
+	        return this;
+	    }
+	}
 }
