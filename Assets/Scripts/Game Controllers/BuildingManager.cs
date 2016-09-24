@@ -12,7 +12,7 @@ public class BuildingManager : MonoBehaviour
     public Building tentPrefab;
     public BuildingStub buildingStub;
     private StorageBuilding korwo;
-    public Dictionary<String, System.Type> availableBuildings;
+	public Dictionary<string, System.Type> availableBuildings = new Dictionary<string, System.Type>();
 
     
     

@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<resource>
+  <coal mass="87" volume="100" price="10"/>
+  <mineral mass="3" volume="1" price="130"/>
+  <metal mass="8557" volume="10550" price="1"/>
+  <wood mass="1237" volume="1550" price="13"/>
+  <food mass="123" volume="100" price="123"/>
+  <stone mass="8557" volume="2550" price="431"/>
+  <yomama mass="8557" volume="10550" price="1"/>
+</resource>

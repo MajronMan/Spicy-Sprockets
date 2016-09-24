@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.EventSystems;
 using System;
+using System.IO;
 
 public class StrategyManager : MonoBehaviour {
     public Map mapPrefab;
@@ -9,12 +10,13 @@ public class StrategyManager : MonoBehaviour {
     public BuildingManager buildingManagerPrefab;
     private BuildingManager buildingManagerInstance=null;
     private GameMode gameMode;
-
+	public Info info;
     
 
     private void Start()
     {
         BeginGame();
+		info = new Info ();
     }
 
     private void BeginGame()

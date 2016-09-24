@@ -52,11 +52,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000011581920880}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ec5230d158404845ab7650e06a9a693, type: 3}
+  m_Script: {fileID: 11500000, guid: f042ba788d545d84fbb93251c9f6227e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildingPrefab: {fileID: 114000010394992962, guid: 09f08de52f13f5e40890001b8823182a,
-    type: 2}
+  size:
+    x: 0
+    y: 0
 --- !u!212 &212000013483314370
 SpriteRenderer:
   m_ObjectHideFlags: 1

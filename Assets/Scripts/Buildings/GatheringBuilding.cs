@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Assets.Scripts.Resources;
 
 [System.Serializable]
 public abstract class GatheringBuilding : Building

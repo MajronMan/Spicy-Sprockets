@@ -1,83 +1,85 @@
-﻿using UnityEngine;
-using System.Collections;
-
-[System.Serializable]
-public class Resource : MonoBehaviour
+﻿namespace Assets.Scripts.Resources
 {
-    private int massPerUnit;
-    private int volumePerUnit;
-    private int defaultCostPerUnit;
-    private int quantity;
-    private ResourceQuality quality;
+    [System.Serializable]
+    public class Resource
+    {
+		private string type;
+        private int massPerUnit;
+		private int volumePerUnit;
+        private int defaultPricePerUnit;
+
+        private int quantity;
+        private ResourceQuality quality;
     
     
-    public Resource(ResourceType.Type type, int quantity, ResourceQuality quality)
-    {
-        LoadProperties(type);
-        this.quantity = quantity;
-        this.quality = quality;
-    }
-    
-    public ResourceQuality getQuality()
-    {
-        return quality;
-    }
-
-    public int getQuantity()
-    {
-        return quantity;
-    }
-    
-    public static Resource operator +(Resource basicRes, int addedQuantity)
-    {
-        basicRes.quantity += addedQuantity;
-        return basicRes;
-    }
-
-    public static Resource operator -(Resource basicRes, int subtractedQuantity)
-    {
-        basicRes.quantity -= subtractedQuantity;
-        return basicRes;
-    }
-
-    public static Resource operator ++(Resource basicRes)
-    {
-        basicRes.quantity++;
-        return basicRes;
-    }
-
-    public static Resource operator --(Resource basicRes)
-    {
-        basicRes.quantity--;
-        return basicRes;
-    }
-
-    void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
-    private void LoadProperties(ResourceType.Type type)
-    {
-        switch (type)
+        public Resource(int quantity, ResourceQuality quality)
         {
-            case ResourceType.Type.Coal:
-                massPerUnit = ResourceType.Coal.massPerUnit;
-                volumePerUnit = ResourceType.Coal.volumePerUnit;
-                defaultCostPerUnit = ResourceType.Coal.defaultCostPerUnit;
-                name = ResourceType.Coal.name;
-                break;
-            default:
-                massPerUnit = 2137;
-                volumePerUnit = 410;
-                defaultCostPerUnit = 15;
-                name = "yomama";
-                break;
-
+            this.quantity = quantity;
+            this.quality = quality;
         }
+    
+        public ResourceQuality GetQuality()
+        {
+            return quality;
+        }
+
+        public int GetQuantity()
+        {
+            return quantity;
+        }
+    
+        public static Resource operator +(Resource basicRes, int addedQuantity)
+        {
+            basicRes.quantity += addedQuantity;
+            return basicRes;
+        }
+
+        public static Resource operator -(Resource basicRes, int subtractedQuantity)
+        {
+            basicRes.quantity -= subtractedQuantity;
+            return basicRes;
+        }
+
+        public static Resource operator ++(Resource basicRes)
+        {
+            basicRes.quantity++;
+            return basicRes;
+        }
+
+        public static Resource operator --(Resource basicRes)
+        {
+            basicRes.quantity--;
+            return basicRes;
+        }
+
+//        private void LoadProperties(ResourceType.Type type)
+//        {
+//            switch (type)
+//            {
+//                case ResourceType.Type.Coal:
+//                    massPerUnit = ResourceType.Coal.MassPerUnit;
+//                    volumePerUnit = ResourceType.Coal.VolumePerUnit;
+//                    defaultCostPerUnit = ResourceType.Coal.DefaultCostPerUnit;
+//                    name = ResourceType.Coal.Name;
+//                    break;
+//                case ResourceType.Type.Food:
+//                    break;
+//                case ResourceType.Type.Metal:
+//                    break;
+//                case ResourceType.Type.Wood:
+//                    break;
+//                case ResourceType.Type.Mineral:
+//                    break;
+//                case ResourceType.Type.Stone:
+//                    break;
+//                default:
+//                    massPerUnit = 2137;
+//                    volumePerUnit = 410;
+//                    defaultCostPerUnit = 15;
+//                    name = "yomama";
+//                    break;
+//
+//            }
+//        }
     }
 }

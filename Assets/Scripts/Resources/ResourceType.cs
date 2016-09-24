@@ -1,18 +1,39 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
+using System.Xml;
+using System.Xml.Linq;
 
-public static class ResourceType {
-
-    public enum Type
+namespace Assets.Scripts.Resources
+{
+	public enum ResourceData{
+		mass,
+		volume,
+		price
+	}
+    public class ResourceType
     {
-        Coal
-    }
+        public List<string> Keys;
+		public Dictionary<string, Dictionary<string, string>> Data;
 
-    public class Coal
-    {
-        public static int massPerUnit = 2137;
-        public static  int volumePerUnit = 410;
-        public static int defaultCostPerUnit = 911;
-        public static string name = "Coal";
+		public ResourceType(IEnumerable<XElement> elements)
+		{
+			Data = new Dictionary<string, Dictionary<string, string>>();
+			foreach (XElement el in elements) {
+				string key = el.Name.ToString();
+				Data.Add (key, GetAttributes (el));
+			}
+			Debug.Log (Data ["coal"] ["mass"]);
+			foreach (var k in Data)
+				Debug.Log (k);
+		}
+			
+		private Dictionary<string, string> GetAttributes(XElement element){
+			Dictionary <string, string> dict = new Dictionary<string, string> ();
+			foreach (var atr in element.Attributes()) {
+				dict.Add (atr.Name.ToString(), atr.Value);
+			}
+			return dict;
+		}
     }
 }
