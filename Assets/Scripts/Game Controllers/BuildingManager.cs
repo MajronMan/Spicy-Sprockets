@@ -36,6 +36,7 @@ public class BuildingManager : MonoBehaviour
     void Start()
     {
         Built=new List<Building>();
+        availableBuildings=new Dictionary<string, Type>();
         availableBuildings.Add("Production Building", typeof(ProductionBuilding));
     }
 
@@ -52,7 +53,6 @@ public class BuildingManager : MonoBehaviour
         res.name = "Building Preview";
         res.transform.parent = transform;
         Destroy(resStub);
-
         return res;
     }
 
