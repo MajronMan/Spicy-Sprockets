@@ -15,7 +15,7 @@ public class Info {
 	public List<Building> Buildings;
 
 	public Info(){
-		strategyManager = GameObject.Find ("Strategy Manager").GetComponent<StrategyManager>();
+		strategyManager = GameObject.Find ("StrategyManager").GetComponent<StrategyManager>();
 		//Get path to file with resource type
 		string path = Directory.GetCurrentDirectory()+@"\Assets\Data\ResourceTypes.xml";
 		XDocument doc = XDocument.Load (path);
