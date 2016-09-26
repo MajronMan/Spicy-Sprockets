@@ -5,17 +5,18 @@ using Assets.Scripts.Resources;
 using System.IO;
 using System;
 using System.Xml.Linq;
+using GameControllers;
 
 public class Info {
 	public ResourceType ResourceTypes;
 	public Dictionary<string, Resource> Resources = new Dictionary<string, Resource>();
 	public Population ThePeople;
 	public Money MyMoney = new Money();
-	public StrategyManager strategyManager;
+	public GameController gameController;
 	public List<Building> Buildings;
 
 	public Info(){
-		strategyManager = GameObject.Find ("StrategyManager").GetComponent<StrategyManager>();
+		gameController = GameObject.Find ("Game Controller").GetComponent<GameController>();
 		//Get path to file with resource type
 		string path = Directory.GetCurrentDirectory()+@"\Assets\Data\ResourceTypes.xml";
 		XDocument doc = XDocument.Load (path);
@@ -28,7 +29,7 @@ public class Info {
 			Resource res = new Resource (key, Int32.Parse(data [key] ["initial"]), Quality.Lux, this); 
 			Resources.Add (key, res);
 		}
-		Buildings = strategyManager.GetBuildingManager ().Built; 
+		Buildings = gameController.GetCurrentCity().GetBuildingManager ().Built; 
 		//I hope it passes a reference, so it's always current list of buildings
 	}
 }

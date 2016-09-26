@@ -4,16 +4,19 @@ using System.Collections.Generic;
 using System;
 using JetBrains.Annotations;
 using UnityEngine.UI;
+using GameControllers;
 
 public class Map : MonoBehaviour
 {
-    private StrategyManager strategyManager;
+	private CityController cityController;
+	private GameController gameController;
     public IntVector2 size;
     
     void Start ()
     {
         Physics.queriesHitTriggers = true;
-        strategyManager = gameObject.transform.parent.GetComponent<StrategyManager>();
+        cityController = gameObject.transform.parent.GetComponent<CityController>();
+		gameController = GameObject.Find ("Game Controller").GetComponent<GameController> ();
     }
 
     void OnMouseDown()
@@ -21,12 +24,12 @@ public class Map : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            strategyManager.GetGameMode().LeftMouseClicked();
+            gameController.GetGameMode().LeftMouseClicked();
         }
 
         if (Input.GetMouseButtonDown(1))
         {
-            strategyManager.GetGameMode().RightMouseClicked();
+            gameController.GetGameMode().RightMouseClicked();
         }
         //strategyManager.mapClicked();
             

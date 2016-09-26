@@ -4,23 +4,13 @@ using UnityEngine.EventSystems;
 using System;
 using System.IO;
 
-public class StrategyManager : MonoBehaviour {
-    public Map mapPrefab;
+public class CityController : MonoBehaviour {
     private Map mapInstance=null;
-    public BuildingManager buildingManagerPrefab;
     private BuildingManager buildingManagerInstance=null;
-    private GameMode gameMode;
 	public Info info;
-    
 
-    private void Start()
-    {
-        BeginGame();
-    }
-
-    private void BeginGame()
+	public void BeginGame(Map mapPrefab, BuildingManager buildingManagerPrefab)
     { 
-        gameMode=new DefaultMode();
         mapInstance = Instantiate(mapPrefab, transform.position, transform.rotation) as Map;
         mapInstance.transform.localScale = new Vector3(50, 50, 50);
         mapInstance.transform.SetParent(transform);
@@ -30,46 +20,23 @@ public class StrategyManager : MonoBehaviour {
         buildingManagerInstance.name = "Building Manager";
         buildingManagerInstance.SetMapInstance(mapInstance);
 		info = new Info ();
-		foreach (var res in info.Resources) {
-			Debug.Log (res.ToString ());
-		}
-    }
-
-    private void RestartGame()
-    {
-        StopAllCoroutines();
-        Destroy(mapInstance.gameObject);
-        BeginGame();
     }
 
     private void Update()
     {
-        gameMode.Update();
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            RestartGame();
-        }
+        //gameMode.Update();
+		//pretty sure we don't want to check things every frame, but delegate events to change the state
         
     }
-
-    
+		
     public BuildingManager GetBuildingManager()
     {
         return buildingManagerInstance;
     }
 
-    public GameMode GetGameMode()
-    {
-        return gameMode;
-    }
+   
 
-    public void enterBuildingMode()
-    {
-        gameMode=new BuildingMode(this, buildingManagerInstance);
-    }
+   
 
-    public void enterDefaultMode()
-    {
-        gameMode=new DefaultMode();
-    }
+ 
 }
