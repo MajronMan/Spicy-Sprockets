@@ -7,12 +7,12 @@ using UnityEditor;
 
 public class ProductionBuilding : Building
 {
-    private ResourceType.Type processedResource = ResourceType.Type.Coal;
+    //private ResourceType.Type processedResource = ResourceType.Type.Coal;
     private int time;
     private int resQuantity;
     private int processTime = 300;
-    private List<Resource> playerResources;
-    Predicate<Resource> ironFinder = (Resource res) => { return res.name == "Iron"; };
+   // private List<Resource> playerResources;
+    //Predicate<Resource> ironFinder = (Resource res) => { return res.name == "Iron"; };
 
     void Start()
     {
@@ -41,16 +41,16 @@ public class ProductionBuilding : Building
 
     private void Process()
     {
-        Resource product;
+        //Resource product;
 
         resQuantity--;
 
-        switch (processedResource)
+        /*switch (processedResource)
         {
             case ResourceType.Type.Coal:
                 playerResources[playerResources.FindIndex(ironFinder)]++;
                 break;
-        } 
+        } */
 
     }
 }

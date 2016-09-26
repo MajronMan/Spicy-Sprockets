@@ -1,106 +1,117 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-[System.Serializable]
-public class Resource : MonoBehaviour
+namespace Assets.Scripts.Resources
 {
-    private int massPerUnit;
-    private int volumePerUnit;
-    private int defaultCostPerUnit;
-    private int quantity;
-    private ResourceQuality quality;
-    private ResourceType.Type resType;
+    [System.Serializable]
+    public class Resource
+    {
+		private string type;
+        private int massPerUnit;
+		private int volumePerUnit;
+        private int defaultPricePerUnit;
+		private Info info;
+        private int quantity;
+        private Quality quality;
+   
     
-    
-    public Resource(ResourceType.Type type, int quantity, ResourceQuality quality)
-    {
-        LoadProperties(type);
-        this.quantity = quantity;
-        this.quality = quality;
-        this.resType = type;
-    }
-    
-    public ResourceQuality getQuality()
-    {
-        return quality;
-    }
-
-    public int getQuantity()
-    {
-        return quantity;
-    }
-    
-    public static Resource operator +(Resource basicRes, int addedQuantity)
-    {
-        basicRes.quantity += addedQuantity;
-        return basicRes;
-    }
-
-    public static Resource operator -(Resource basicRes, int subtractedQuantity)
-    {
-        basicRes.quantity -= subtractedQuantity;
-        return basicRes;
-    }
-
-    public static Resource operator ++(Resource basicRes)
-    {
-        basicRes.quantity++;
-        return basicRes;
-    }
-
-    public static Resource operator --(Resource basicRes)
-    {
-        basicRes.quantity--;
-        return basicRes;
-    }
-
-    void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
-    private void LoadProperties(ResourceType.Type type)
-    {
-        switch (type)
+		public Resource(string type, int quantity, Quality quality, Info info)
         {
-            case ResourceType.Type.Coal:
-                massPerUnit = ResourceType.Coal.massPerUnit;
-                volumePerUnit = ResourceType.Coal.volumePerUnit;
-                defaultCostPerUnit = ResourceType.Coal.defaultCostPerUnit;
-                name = ResourceType.Coal.name;
-                break;
-            default:
-                massPerUnit = 2137;
-                volumePerUnit = 410;
-                defaultCostPerUnit = 15;
-                name = "yomama";
-                break;
-
+			this.type = type;
+			this.info = info;
+			var data = info.ResourceTypes.GetData (type);
+			int.TryParse(data ["mass"], out this.massPerUnit);
+			int.TryParse(data ["volume"], out this.volumePerUnit);
+			int.TryParse(data ["price"], out this.defaultPricePerUnit);
+            this.quantity = quantity;
+            this.quality = quality;
         }
-    }
-
-    public Resource Divide(int newQuantity)
-    {
-        if(newQuantity > quantity)
+    
+        public Quality GetQuality()
         {
-            Debug.Log("Cant subtract");
-            return this;
+            return quality;
         }
 
-        Resource newRes = new Resource(resType, newQuantity, quality);
-        quantity -= newQuantity;
-        return newRes;
-    }
+        public int GetQuantity()
+        {
+            return quantity;
+        }
+    
+        public static Resource operator +(Resource basicRes, int addedQuantity)
+        {
+            basicRes.quantity += addedQuantity;
+            return basicRes;
+        }
 
-    public Resource Fuse(Resource newRes)
-    {
-        quantity = newRes.quantity;
-        //trzeba pozniej zmienic zeby quality jakos wplywalo
-        Destroy(newRes);
-        return this;
-    }
+        public static Resource operator -(Resource basicRes, int subtractedQuantity)
+        {
+            basicRes.quantity -= subtractedQuantity;
+            return basicRes;
+        }
+
+        public static Resource operator ++(Resource basicRes)
+        {
+            basicRes.quantity++;
+            return basicRes;
+        }
+
+        public static Resource operator --(Resource basicRes)
+        {
+            basicRes.quantity--;
+            return basicRes;
+        }
+
+		public override string ToString(){
+			return quantity.ToString() + " of " + quality.ToString() + " " + type;
+		}
+//        private void LoadProperties(ResourceType.Type type)
+//        {
+//            switch (type)
+//            {
+//                case ResourceType.Type.Coal:
+//                    massPerUnit = ResourceType.Coal.MassPerUnit;
+//                    volumePerUnit = ResourceType.Coal.VolumePerUnit;
+//                    defaultCostPerUnit = ResourceType.Coal.DefaultCostPerUnit;
+//                    name = ResourceType.Coal.Name;
+//                    break;
+//                case ResourceType.Type.Food:
+//                    break;
+//                case ResourceType.Type.Metal:
+//                    break;
+//                case ResourceType.Type.Wood:
+//                    break;
+//                case ResourceType.Type.Mineral:
+//                    break;
+//                case ResourceType.Type.Stone:
+//                    break;
+//                default:
+//                    massPerUnit = 2137;
+//                    volumePerUnit = 410;
+//                    defaultCostPerUnit = 15;
+//                    name = "yomama";
+//                    break;
+//
+//            }
+//        }
+    
+
+	    public Resource Divide(int newQuantity)
+	    {
+	        if(newQuantity > quantity)
+	        {
+	            Debug.Log("Cant subtract");
+	            return this;
+	        }
+
+	        Resource newRes = new Resource(type, newQuantity, quality, info);
+	        quantity -= newQuantity;
+	        return newRes;
+	    }
+
+	    public Resource Fuse(Resource newRes)
+	    {
+	        quantity = newRes.quantity;
+	        //trzeba pozniej zmienic zeby quality jakos wplywalo
+	        return this;
+	    }
+	}
 }

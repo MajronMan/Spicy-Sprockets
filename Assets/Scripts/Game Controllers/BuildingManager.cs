@@ -7,12 +7,12 @@ using System.Collections.Generic;
 public class BuildingManager : MonoBehaviour
 {
 
-    private List<Building> Built;
+    public List<Building> Built;
     private Map mapInstance;
     public Building tentPrefab;
     public BuildingStub buildingStub;
     private StorageBuilding korwo;
-    public Dictionary<String, System.Type> availableBuildings;
+	public Dictionary<string, System.Type> availableBuildings = new Dictionary<string, System.Type>();
 
     
     

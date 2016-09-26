@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.EventSystems;
 using System;
+using System.IO;
 
 public class StrategyManager : MonoBehaviour {
     public Map mapPrefab;
@@ -9,7 +10,7 @@ public class StrategyManager : MonoBehaviour {
     public BuildingManager buildingManagerPrefab;
     private BuildingManager buildingManagerInstance=null;
     private GameMode gameMode;
-
+	public Info info;
     
 
     private void Start()
@@ -28,6 +29,10 @@ public class StrategyManager : MonoBehaviour {
         buildingManagerInstance.transform.SetParent(transform);
         buildingManagerInstance.name = "Building Manager";
         buildingManagerInstance.SetMapInstance(mapInstance);
+		info = new Info ();
+		foreach (var res in info.Resources) {
+			Debug.Log (res.ToString ());
+		}
     }
 
     private void RestartGame()
