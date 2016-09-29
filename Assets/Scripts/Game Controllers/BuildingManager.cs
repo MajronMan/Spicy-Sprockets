@@ -13,7 +13,7 @@ public class BuildingManager : MonoBehaviour
     public BuildingStub buildingStub;
     private StorageBuilding korwo;
 	public Dictionary<string, System.Type> availableBuildings = new Dictionary<string, System.Type>();
-
+    public StrategyManager strategyManager;
     
     
     public void Build(System.Type buildingType, Vector3 location)
@@ -23,9 +23,12 @@ public class BuildingManager : MonoBehaviour
         newBuilding.transform.position = Camera.main.ScreenToWorldPoint(location);
         newBuilding.transform.localScale = new Vector3(20, 20, 20);
         newBuilding.transform.SetParent(mapInstance.transform, true);
+        newBuilding.info = this.strategyManager.info;
         Destroy(stub);
         Built.Add(newBuilding);
-        
+        for (int i = 0; i < newBuilding.cost.Count; i++)
+            strategyManager.info.Resources[newBuilding.cost[i].GetResType()] = strategyManager.info.Resources[newBuilding.cost[i].GetResType()] - newBuilding.cost[0];
+        strategyManager.UpgradeResourcesValues();
     }
     
     public void SetMapInstance(Map MapInstance)
@@ -55,8 +58,6 @@ public class BuildingManager : MonoBehaviour
         Destroy(resStub);
         return res;
     }
-
-    
 
     /*
     public void Build(Building buildingPrefab, Vector3 location)

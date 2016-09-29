@@ -2,7 +2,8 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class ResourceData : MonoBehaviour {
+public class ResourceData : MonoBehaviour
+{
 	public Text ResourceText;
 	public StrategyManager strategyManager;
 	public string type;

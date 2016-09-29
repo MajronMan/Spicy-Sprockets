@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 namespace Assets.Scripts.Resources
 {
@@ -35,6 +36,11 @@ namespace Assets.Scripts.Resources
         {
             return quantity;
         }
+
+        public string GetResType()
+        {
+            return type;
+        }
     
         public static Resource operator +(Resource basicRes, int addedQuantity)
         {
@@ -45,6 +51,18 @@ namespace Assets.Scripts.Resources
         public static Resource operator -(Resource basicRes, int subtractedQuantity)
         {
             basicRes.quantity -= subtractedQuantity;
+            return basicRes;
+        }
+
+        public static Resource operator +(Resource basicRes, Resource addedRes)
+        {
+            basicRes.quantity += addedRes.GetQuantity();
+            return basicRes;
+        }
+
+        public static Resource operator -(Resource basicRes, Resource subtractedRes)
+        {
+            basicRes.quantity -= subtractedRes.GetQuantity();
             return basicRes;
         }
 
@@ -101,7 +119,6 @@ namespace Assets.Scripts.Resources
 	            Debug.Log("Cant subtract");
 	            return this;
 	        }
-
 	        Resource newRes = new Resource(type, newQuantity, quality, info);
 	        quantity -= newQuantity;
 	        return newRes;
@@ -109,7 +126,13 @@ namespace Assets.Scripts.Resources
 
 	    public Resource Fuse(Resource newRes)
 	    {
+            if(this.type != newRes.type)
+            {
+                Debug.Log("Cant fuse");
+                return this;
+            }
 	        quantity = newRes.quantity;
+            //Destroy(newRes); <- nie da sie, ktos moze mi powiedziec dlaczego -.-
 	        //trzeba pozniej zmienic zeby quality jakos wplywalo
 	        return this;
 	    }
