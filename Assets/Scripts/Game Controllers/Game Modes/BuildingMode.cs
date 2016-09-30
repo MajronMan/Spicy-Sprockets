@@ -48,8 +48,13 @@ public class BuildingMode : GameMode
     }
     public void Exit()
     {
+<<<<<<< HEAD
         BuildingManager.Destroy(preview);
         GameControllerInstance.enterDefaultMode();
+=======
+        BuildingManager.Destroy(preview.gameObject);
+        strategyManagerInstance.enterDefaultMode();
+>>>>>>> develop
     }
 
     public void Select(GameObject gameObject)
