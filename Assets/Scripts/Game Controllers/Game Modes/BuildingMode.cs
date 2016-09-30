@@ -1,18 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
+using GameControllers;
 
 public class BuildingMode : GameMode
 {
-    private StrategyManager strategyManagerInstance;
+    private CityController cityControllerInstance;
+	private GameController GameControllerInstance;
     private BuildingManager buildingManagerInstance;
     public System.Type toBeBuiltType;
     private Building preview;
 
-    public BuildingMode(StrategyManager strategyManagerInstance, BuildingManager buildingManagerInstance)
+	public BuildingMode(GameController GameControllerInstance, CityController strategyManagerInstance, BuildingManager buildingManagerInstance)
     {
         
-        this.strategyManagerInstance = strategyManagerInstance;
+        this.cityControllerInstance = strategyManagerInstance;
         this.buildingManagerInstance = buildingManagerInstance;
+		this.GameControllerInstance = GameControllerInstance;
         this.toBeBuiltType = typeof(ProductionBuilding);
         setPreview();
     }
@@ -30,7 +33,8 @@ public class BuildingMode : GameMode
 
     public void Update()
     {
-        if(preview!=null) preview.transform.position= Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 20));
+        if (preview == null) return;
+        preview.transform.position= Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 20));
     }
 
     public void setPreview()
@@ -44,8 +48,8 @@ public class BuildingMode : GameMode
     }
     public void Exit()
     {
-        BuildingManager.Destroy(preview.gameObject);
-        strategyManagerInstance.enterDefaultMode();
+        BuildingManager.Destroy(preview);
+        GameControllerInstance.enterDefaultMode();
     }
 
     public void Select(GameObject gameObject)
