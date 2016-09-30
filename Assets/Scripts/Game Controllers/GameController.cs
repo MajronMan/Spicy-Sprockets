@@ -23,6 +23,11 @@ namespace GameControllers
 			gameMode = new DefaultMode();
 		}
 
+        public void Update()
+        {
+            gameMode.Update();
+        }
+
 		public GameMode GetGameMode()
 		{
 			return gameMode;
