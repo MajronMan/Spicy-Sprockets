@@ -6,29 +6,31 @@ using UnityEngine.EventSystems;
 
 public class InteractiveButton : MonoBehaviour
 {
-    public Transform buildButton;
-    public Transform productionButton;
-    public Transform diplomacyButton;
-    public Transform scienceButton;
-    public Transform lawButton;
-    public Transform characterButton;
+    public GameObject UI;
 
-    public GameObject buildPanel;
-    public GameObject productionPanel;
-    public GameObject diplomacyPanel;
-    public GameObject sciencePanel;
-    public GameObject lawPanel;
-    public GameObject characterPanel;
+    private Transform buildButton;
+    private Transform productionButton;
+    private Transform diplomacyButton;
+    private Transform scienceButton;
+    private Transform lawButton;
+    private Transform characterButton;
 
-    public Transform systemButton;
-    public Transform toggleMapButton;
-    public Transform res1;
-    public Transform res2;
-    public Transform res3;
-    public Transform res4;
-    public Transform res5;
-    public Transform res6;
-    public Transform infoButton;
+    private GameObject buildPanel;
+    private GameObject productionPanel;
+    private GameObject diplomacyPanel;
+    private GameObject sciencePanel;
+    private GameObject lawPanel;
+    private GameObject characterPanel;
+
+    private Transform systemButton;
+    private Transform toggleMapButton;
+    private Transform res1;
+    private Transform res2;
+    private Transform res3;
+    private Transform res4;
+    private Transform res5;
+    private Transform res6;
+    private Transform infoButton;
 
     private GameObject myPanel;
     private Transform myButton;
@@ -36,8 +38,22 @@ public class InteractiveButton : MonoBehaviour
     private bool clicked = false;
     private bool buttonsDisabled = false;
 
-    void Start ()
+    void Start()
     {
+        buildButton = UI.transform.Find("MainPanel/Buttons/BuildButton");
+        productionButton = UI.transform.Find("MainPanel/Buttons/ProductionButton");
+        diplomacyButton = UI.transform.Find("MainPanel/Buttons/DiplomacyButton");
+        scienceButton = UI.transform.Find("MainPanel/Buttons/ScienceButton");
+        lawButton = UI.transform.Find("MainPanel/Buttons/LawButton");
+        characterButton = UI.transform.Find("MainPanel/Buttons/CharacterButton");
+
+        buildPanel = UI.transform.Find("ButtonPanels/BuildPanel").gameObject;
+        productionPanel = UI.transform.Find("ButtonPanels/ProductionPanel").gameObject;
+        diplomacyPanel = UI.transform.Find("ButtonPanels/DiplomacyPanel").gameObject;
+        sciencePanel = UI.transform.Find("ButtonPanels/SciencePanel").gameObject;
+        lawPanel = UI.transform.Find("ButtonPanels/LawPanel").gameObject;
+        characterPanel = UI.transform.Find("ButtonPanels/CharacterPanel").gameObject;
+
         panelList = new List<GameObject>();
 
         panelList.Add(buildPanel);
@@ -79,9 +95,19 @@ public class InteractiveButton : MonoBehaviour
                 Debug.Log("Button not added!");
                 break;
         }
+
+        systemButton = UI.transform.Find("SystemButton");
+        toggleMapButton = UI.transform.Find("ToggleMapButton");
+        res1 = UI.transform.Find("StoragePanel/Images/Image");
+        res2 = UI.transform.Find("StoragePanel/Images/Image (1)");
+        res3 = UI.transform.Find("StoragePanel/Images/Image (2)");
+        res4 = UI.transform.Find("StoragePanel/Images/Image (3)");
+        res5 = UI.transform.Find("StoragePanel/Images/Image (4)");
+        res6 = UI.transform.Find("StoragePanel/Images/Image (5)");
+        infoButton = UI.transform.Find("InfoButton");
     }
-	
-	void Update ()
+
+    void Update()
     {
         if (clicked && myPanel.activeSelf == false)
             clicked = false;
