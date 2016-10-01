@@ -27,7 +27,7 @@ public class ProductionBuilding : Building
     }
 
     void Update()
-    {
+    {   //coroutine pls
         if (resQuantity != 0)
         {
             time++;

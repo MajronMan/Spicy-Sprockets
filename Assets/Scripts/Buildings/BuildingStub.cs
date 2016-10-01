@@ -20,9 +20,7 @@ public class BuildingStub : MonoBehaviour {
     
     public Building init(System.Type type)
     {
-        Building res = null;
-        res = (Building)gameObject.AddComponent(type);
-        return res;
+        return (Building)gameObject.AddComponent(type);
     }
     
 }

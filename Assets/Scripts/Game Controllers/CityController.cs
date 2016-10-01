@@ -15,7 +15,9 @@ public class CityController : MonoBehaviour {
         mapInstance.transform.localScale = new Vector3(50, 50, 50);
         mapInstance.transform.SetParent(transform);
         mapInstance.name = "Map Instance";
-        buildingManagerInstance = Instantiate(buildingManagerPrefab);
+        var go = new GameObject();
+        go.AddComponent<BuildingManager>();
+        buildingManagerInstance = go.GetComponent<BuildingManager>();
         buildingManagerInstance.transform.SetParent(transform);
         buildingManagerInstance.name = "Building Manager";
         buildingManagerInstance.SetMapInstance(mapInstance);
@@ -33,10 +35,4 @@ public class CityController : MonoBehaviour {
     {
         return buildingManagerInstance;
     }
-
-   
-
-   
-
- 
 }
