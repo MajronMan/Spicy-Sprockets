@@ -7,7 +7,7 @@ using System.Collections.Generic;
 public class BuildingManager : MonoBehaviour
 {
 
-    public List<Building> Built;
+    public List<Building> Built = new List<Building>();
     private Map mapInstance;
     public Building tentPrefab;
     public BuildingStub buildingStub;
@@ -35,8 +35,6 @@ public class BuildingManager : MonoBehaviour
 
     void Start()
     {
-        Built=new List<Building>();
-        availableBuildings=new Dictionary<string, Type>();
         availableBuildings.Add("Production Building", typeof(ProductionBuilding));
     }
 
