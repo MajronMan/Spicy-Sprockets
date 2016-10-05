@@ -35,7 +35,6 @@ namespace GameControllers
 
 		public void enterBuildingMode()
 		{
-			//maybe gamemode as an enum would suffice.
 			gameMode=new BuildingMode(this, Cities[current_city], Cities[current_city].GetBuildingManager());
 		}
 

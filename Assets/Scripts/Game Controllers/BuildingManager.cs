@@ -20,8 +20,9 @@ public class BuildingManager : MonoBehaviour
     {
         BuildingStub stub = GetBuildingStub();
         Building newBuilding = stub.init(buildingType, info);
-        newBuilding.transform.position = Camera.main.ScreenToWorldPoint(location);
-        newBuilding.transform.localScale = new Vector3(50, 50, 50);
+        Vector3 buildingPosition = Camera.main.ScreenToWorldPoint(location);
+        buildingPosition.z = 0;
+        newBuilding.transform.position = buildingPosition;
         newBuilding.transform.SetParent(mapInstance.transform, true);
         Built.Add(newBuilding);
     }
@@ -41,7 +42,6 @@ public class BuildingManager : MonoBehaviour
     {
         BuildingStub resStub = GetBuildingStub();
         Building res = resStub.init(buildingType, info);
-        res.transform.localScale = new Vector3(50, 50, 50);
         res.name = "Building Preview";
         res.transform.parent = transform;
         return res;

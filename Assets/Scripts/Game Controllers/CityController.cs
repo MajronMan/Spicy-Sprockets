@@ -22,6 +22,7 @@ public class CityController : MonoBehaviour {
         buildingManagerInstance.SetMapInstance(mapInstance);
         buildingManagerInstance.info = info;
 		info = new Info ();
+        
     }
 
     private void Update()
