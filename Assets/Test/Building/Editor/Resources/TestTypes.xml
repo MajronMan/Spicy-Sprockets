@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+  <a mass="1" volume="1" price="1" initial="1"/>
+  <b mass="2" volume="2" price="2" initial="2"/>
+  <c mass="3" volume="3" price="3" initial="3"/>
+  <d mass="4" volume="4" price="4" initial="4"/>
+</resources>

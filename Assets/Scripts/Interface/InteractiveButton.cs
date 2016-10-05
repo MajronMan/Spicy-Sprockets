@@ -40,6 +40,7 @@ public class InteractiveButton : MonoBehaviour
 
     void Start()
     {
+        UI = GameObject.Find("UI").gameObject;
         buildButton = UI.transform.Find("MainPanel/Buttons/BuildButton");
         productionButton = UI.transform.Find("MainPanel/Buttons/ProductionButton");
         diplomacyButton = UI.transform.Find("MainPanel/Buttons/DiplomacyButton");
