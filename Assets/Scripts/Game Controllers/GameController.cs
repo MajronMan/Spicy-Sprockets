@@ -19,6 +19,7 @@ namespace GameControllers
 			var city_controller = Instantiate (CityControllerPrefab) as CityController;
 			Cities.Add (city_controller);
 			city_controller.BeginGame (MapPrefab, BuildingManagerPrefab);
+		    city_controller.gameObject.transform.parent = transform;
 			// later also add enemies
 			gameMode = new DefaultMode();
 		}
