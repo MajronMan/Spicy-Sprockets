@@ -15,10 +15,10 @@ public class Info {
 	public GameController gameController;
 	public List<Building> Buildings;
 
-	public Info(){
+	public Info(string otherPath = ""){
 		gameController = GameObject.Find ("Game Controller").GetComponent<GameController>();
-		//Get path to file with resource type
-		string path = Directory.GetCurrentDirectory()+@"\Assets\Data\ResourceTypes.xml";
+        //Get path to file with resource type
+        string path = otherPath == "" ? Directory.GetCurrentDirectory() + @"\Assets\Data\ResourceTypes.xml" : otherPath;
 		XDocument doc = XDocument.Load (path);
 		//Constructor loads types from xml
 		ResourceTypes = new ResourceType (doc.Root.Elements ());
@@ -29,7 +29,5 @@ public class Info {
 			Resource res = new Resource (key, Int32.Parse(data [key] ["initial"]), Quality.Lux, this); 
 			Resources.Add (key, res);
 		}
-		Buildings = gameController.GetCurrentCity().GetBuildingManager ().Built; 
-		//I hope it passes a reference, so it's always current list of buildings
 	}
 }

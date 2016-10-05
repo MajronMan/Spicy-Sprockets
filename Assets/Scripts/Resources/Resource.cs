@@ -35,7 +35,7 @@ namespace Assets.Scripts.Resources
         {
             return quantity;
         }
-    
+            
         public static Resource operator +(Resource basicRes, int addedQuantity)
         {
             basicRes.quantity += addedQuantity;
@@ -63,36 +63,6 @@ namespace Assets.Scripts.Resources
 		public override string ToString(){
 			return quantity.ToString() + " of " + quality.ToString() + " " + type;
 		}
-//        private void LoadProperties(ResourceType.Type type)
-//        {
-//            switch (type)
-//            {
-//                case ResourceType.Type.Coal:
-//                    massPerUnit = ResourceType.Coal.MassPerUnit;
-//                    volumePerUnit = ResourceType.Coal.VolumePerUnit;
-//                    defaultCostPerUnit = ResourceType.Coal.DefaultCostPerUnit;
-//                    name = ResourceType.Coal.Name;
-//                    break;
-//                case ResourceType.Type.Food:
-//                    break;
-//                case ResourceType.Type.Metal:
-//                    break;
-//                case ResourceType.Type.Wood:
-//                    break;
-//                case ResourceType.Type.Mineral:
-//                    break;
-//                case ResourceType.Type.Stone:
-//                    break;
-//                default:
-//                    massPerUnit = 2137;
-//                    volumePerUnit = 410;
-//                    defaultCostPerUnit = 15;
-//                    name = "yomama";
-//                    break;
-//
-//            }
-//        }
-    
 
 	    public Resource Divide(int newQuantity)
 	    {
