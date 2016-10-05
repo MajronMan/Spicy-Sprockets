@@ -34,7 +34,11 @@ public class BuildingMode : GameMode
     public void Update()
     {
         if (preview == null) return;
-        preview.transform.position =Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 465));
+        Vector3 previewPosition= Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        previewPosition.z = 0;
+        preview.transform.position = previewPosition;
+        //Debug.Log(preview.transform.position);
+
     }
 
     public void setPreview()

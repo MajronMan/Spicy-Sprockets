@@ -13,6 +13,7 @@ public static class Util  {
             float scaleX = desiredX/resX;
             float scaleY = desiredY/resY;
             renderer.gameObject.transform.localScale = new Vector3(scaleX, scaleY, 0);
+            Debug.Log(scaleX);
         }
     }
 }

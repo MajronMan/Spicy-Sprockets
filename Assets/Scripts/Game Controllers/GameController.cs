@@ -26,6 +26,12 @@ namespace GameControllers
         public void Update()
         {
             gameMode.Update();
+            
+            //Now you can pause the game by pressing 'p'
+            if (Input.GetKeyDown("p"))
+            {
+                Debug.Break();
+            }
         }
 
 		public GameMode GetGameMode()

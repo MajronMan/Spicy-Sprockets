@@ -21,14 +21,12 @@ public class CityController : MonoBehaviour {
         buildingManagerInstance.name = "Building Manager";
         buildingManagerInstance.SetMapInstance(mapInstance);
         buildingManagerInstance.info = info;
-		info = new Info ();
+        info = new Info ();
         
     }
 
     private void Update()
     {
-        //gameMode.Update();
-		//pretty sure we don't want to check things every frame, but delegate events to change the state
         
     }
 		
