@@ -10,6 +10,16 @@ public class Events : MonoBehaviour {
     {
         System.Random rnd = new System.Random();
         nextevent = rnd.Next(60, 120);
+        StartCoroutine("GetEvent");
+    }
+
+    public IEnumerator GetEvent()
+    {
+        while (true)
+        {
+            Event();
+            yield return new WaitForSeconds(new System.Random().Next(60, 120));
+        }
     }
 	
 	void Update ()
@@ -25,6 +35,7 @@ public class Events : MonoBehaviour {
     }
     void Event()
     {
-        EventPanel.SetActive(true);
+        var eventGameObject = new GameObject("Event", typeof(Sprite));
+        eventGameObject.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(50, 50, 50));
     }
 }
