@@ -9,18 +9,18 @@ public class CityController : MonoBehaviour {
     private BuildingManager buildingManagerInstance=null;
 	public Info info;
 
-	public void BeginGame(Map mapPrefab, BuildingManager buildingManagerPrefab)
+	public void BeginGame(Map mapPrefab)
     { 
         mapInstance = Instantiate(mapPrefab, transform.position, transform.rotation) as Map;
-        mapInstance.transform.localScale = new Vector3(50, 50, 50);
+        mapInstance.transform.localScale = new Vector3(100, 100, 100);
         mapInstance.transform.SetParent(transform);
         mapInstance.name = "Map Instance";
-        var go = new GameObject();
-        go.AddComponent<BuildingManager>();
-        buildingManagerInstance = go.GetComponent<BuildingManager>();
+        var newGameObject = new GameObject("Building Manager", typeof(BuildingManager));
+        buildingManagerInstance = newGameObject.GetComponent<BuildingManager>();
         buildingManagerInstance.transform.SetParent(transform);
         buildingManagerInstance.name = "Building Manager";
         buildingManagerInstance.SetMapInstance(mapInstance);
+        buildingManagerInstance.info = info;
 		info = new Info ();
     }
 

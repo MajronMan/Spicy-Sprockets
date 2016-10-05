@@ -17,10 +17,12 @@ public class BuildingStub : MonoBehaviour {
 	
 	}
 
-    
-    public Building init(System.Type type)
+
+    public Building init(System.Type type, Info info)
     {
-        return (Building)gameObject.AddComponent(type);
+        Building building = (Building)gameObject.AddComponent(type);
+        building.info = info;
+        return building;
     }
     
 }

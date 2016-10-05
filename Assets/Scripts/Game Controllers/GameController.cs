@@ -4,21 +4,20 @@ using System.Collections.Generic;
 
 namespace GameControllers
 {
-	public class GameController: MonoBehaviour
+    public class GameController: MonoBehaviour
 	{
 		//Main class used to control diplomacy, all local maps (controlled by CityController), all enemy cities (EnemyControllers) 
-		public List<CityController> Cities;
-		public List<EnemyController> Enemies;
+		public List<CityController> Cities = new List<CityController>();
+		public List<EnemyController> Enemies = new List<EnemyController>();
 		public Map MapPrefab;
-		public BuildingManager BuildingManagerPrefab;
-		public CityController CityControllerPrefab;
 		private GameMode gameMode;
 		private int current_city = 0;
 
 		public void Start(){
-			var city_controller = Instantiate (CityControllerPrefab) as CityController;
+            var newGameObject = new GameObject("City Controller", typeof(CityController));
+            var city_controller = newGameObject.GetComponent<CityController>();
 			Cities.Add (city_controller);
-			city_controller.BeginGame (MapPrefab, BuildingManagerPrefab);
+			city_controller.BeginGame (MapPrefab);
 			// later also add enemies
 			gameMode = new DefaultMode();
 		}

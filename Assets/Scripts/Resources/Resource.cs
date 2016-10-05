@@ -35,7 +35,7 @@ namespace Assets.Scripts.Resources
         {
             return quantity;
         }
-    
+            
         public static Resource operator +(Resource basicRes, int addedQuantity)
         {
             basicRes.quantity += addedQuantity;
