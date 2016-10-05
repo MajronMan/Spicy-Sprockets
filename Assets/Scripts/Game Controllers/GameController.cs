@@ -18,6 +18,7 @@ namespace GameControllers
             var city_controller = newGameObject.GetComponent<CityController>();
 			Cities.Add (city_controller);
 			city_controller.BeginGame (MapPrefab);
+		    city_controller.gameObject.transform.parent = transform;
 			// later also add enemies
 			gameMode = new DefaultMode();
 		}
