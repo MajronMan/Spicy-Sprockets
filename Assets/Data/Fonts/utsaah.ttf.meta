@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: e89a4cec0757561458f49d0f34921545
+timeCreated: 1475761707
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Utsaah
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 6c39e355d0336dc43a660cb9ad52c5d4, type: 3}
+  - {fileID: 12800000, guid: bfd9364998daba54f9f1e7c1b9f679a4, type: 3}
+  - {fileID: 12800000, guid: a96681aaeaaa1f04898f66a7a2550919, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
