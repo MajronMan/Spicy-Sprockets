@@ -14,4 +14,12 @@ public abstract class Building : MonoBehaviour
     protected BuildingSize mySize;
     public string spriteFilePath;
     public Info info;
+    private static string spriteFolderPath = "Assets/Graphics/Buildings/";
+    public string spriteFileName;
+
+    public static string getSpriteFolderPath()
+    {
+        return spriteFolderPath;
+    }
+
 }
