@@ -42,7 +42,7 @@ public class BuildingManager : MonoBehaviour
     
     public Building preview(System.Type buildingType)
     {
-        Building res=Build(buildingType, Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        Building res=Build(buildingType, Input.mousePosition);
         res.transform.name = "Building Preview";
         return res;
     }
