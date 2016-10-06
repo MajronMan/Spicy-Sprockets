@@ -16,14 +16,17 @@ public class BuildingManager : MonoBehaviour
     public Info info;
     
     
-    public void Build(System.Type buildingType, Vector3 location)
+    public Building Build(System.Type buildingType, Vector3 location)
     {
         BuildingStub stub = GetBuildingStub();
         Building newBuilding = stub.init(buildingType, info);
-        newBuilding.transform.position = Camera.main.ScreenToWorldPoint(location);
-        newBuilding.transform.localScale = new Vector3(50, 50, 50);
+        Vector3 buildingPosition = Camera.main.ScreenToWorldPoint(location);
+        buildingPosition.z = 0;
+        newBuilding.transform.position = buildingPosition;
         newBuilding.transform.SetParent(mapInstance.transform, true);
+        Destroy(newBuilding.gameObject.GetComponent<BuildingStub>());
         Built.Add(newBuilding);
+        return newBuilding;
     }
 
     public void SetMapInstance(Map MapInstance)
@@ -39,11 +42,8 @@ public class BuildingManager : MonoBehaviour
     
     public Building preview(System.Type buildingType)
     {
-        BuildingStub resStub = GetBuildingStub();
-        Building res = resStub.init(buildingType, info);
-        res.transform.localScale = new Vector3(50, 50, 50);
-        res.name = "Building Preview";
-        res.transform.parent = transform;
+        Building res=Build(buildingType, Input.mousePosition);
+        res.transform.name = "Building Preview";
         return res;
     }
     
