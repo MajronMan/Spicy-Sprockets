@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.IO;
 
 public static class Util  {
 
@@ -16,4 +17,5 @@ public static class Util  {
             Debug.Log(scaleX);
         }
     }
+
 }
