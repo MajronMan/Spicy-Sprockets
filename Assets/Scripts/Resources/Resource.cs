@@ -35,6 +35,11 @@ namespace Assets.Scripts.Resources
         {
             return quantity;
         }
+
+        public string GetResType()
+        {
+            return type;
+        }
             
         public static Resource operator +(Resource basicRes, int addedQuantity)
         {
@@ -60,7 +65,35 @@ namespace Assets.Scripts.Resources
             return basicRes;
         }
 
-		public override string ToString(){
+        public static Resource operator +(Resource basicRes, Resource addedRes)
+        {
+            if (basicRes.GetResType() == addedRes.GetResType())
+            {
+                basicRes.quantity += addedRes.GetQuantity();
+                return basicRes;
+            }
+            else
+            {
+                Debug.Log("Cant add different resources!");
+                return basicRes;
+            }
+        }
+
+        public static Resource operator -(Resource basicRes, Resource subtractedRes)
+        {
+            if (basicRes.GetResType() == subtractedRes.GetResType())
+            {
+                basicRes.quantity -= subtractedRes.GetQuantity();
+                return basicRes;
+            }
+            else
+            {
+                Debug.Log("Cant subtract different resources!");
+                return basicRes;
+            }
+        }
+
+        public override string ToString(){
 			return quantity.ToString() + " of " + quality.ToString() + " " + type;
 		}
 

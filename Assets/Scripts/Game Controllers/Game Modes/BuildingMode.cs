@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using GameControllers;
+using Assets.Scripts.Resources;
 
 public class BuildingMode : GameMode
 {
@@ -12,11 +13,11 @@ public class BuildingMode : GameMode
 
 	public BuildingMode(GameController GameControllerInstance, CityController strategyManagerInstance, BuildingManager buildingManagerInstance)
     {
-        
         this.cityControllerInstance = strategyManagerInstance;
         this.buildingManagerInstance = buildingManagerInstance;
 		this.GameControllerInstance = GameControllerInstance;
         this.toBeBuiltType = typeof(ProductionBuilding);
+        //CheckIfAffordable();
         setPreview();
     }
 
@@ -61,4 +62,14 @@ public class BuildingMode : GameMode
         setToBeBuiltType(gameObject.GetType());
         setPreview();
     }
+
+    //public void CheckIfAffordable()
+    //{
+    //    for (int i = 0; i < ProductionBuilding.GetCount(); i++)
+    //    {
+    //        string resName = ProductionBuilding.GetCostByIndex(i).GetResType();
+    //        if (ProductionBuilding.GetCostByIndex(i).GetQuantity() > buildingManagerInstance.info.Resources[resName].GetQuantity())
+    //            Exit();
+    //    }
+    //}
 }

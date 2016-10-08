@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
+using Assets.Scripts.Resources;
 
 
 public class ProductionBuilding : Building
@@ -24,6 +25,12 @@ public class ProductionBuilding : Building
         renderer.sortingOrder = 1;
         Util.rescale(renderer, 30, 30);
         time = 0;
+        Debug.Log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        cost = new List<Resource>();
+        cost.Add(new Resource("coal", 5000, Quality.Lux, info));
+        cost.Add(new Resource("metal", 10, Quality.Lux, info));
+        cost.Add(new Resource("wood", 25, Quality.Lux, info));
+        cost.Add(new Resource("stone", 20, Quality.Lux, info));
     }
 
     void Update()

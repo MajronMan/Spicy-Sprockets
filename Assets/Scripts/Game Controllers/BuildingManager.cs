@@ -24,8 +24,10 @@ public class BuildingManager : MonoBehaviour
         buildingPosition.z = 0;
         newBuilding.transform.position = buildingPosition;
         newBuilding.transform.SetParent(mapInstance.transform, true);
+        Pay(newBuilding);
         Destroy(newBuilding.gameObject.GetComponent<BuildingStub>());
         Built.Add(newBuilding);
+        
         return newBuilding;
     }
 
@@ -58,5 +60,14 @@ public class BuildingManager : MonoBehaviour
     public Map GetMapInstance()
     {
         return mapInstance;
+    }
+
+    private void Pay(Building newBuilding)
+    {
+        for (int i = 0; i < newBuilding.GetCount(); i++)
+        {
+            string resName = newBuilding.GetCostByIndex(i).GetResType();
+            info.Resources[resName] = info.Resources[resName] - newBuilding.GetCostByIndex(i);
+        }
     }
 }
