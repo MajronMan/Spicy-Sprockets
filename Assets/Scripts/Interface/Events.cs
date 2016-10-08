@@ -22,7 +22,7 @@ public class Events : MonoBehaviour {
     {
         while (true)
         {
-            yield return new WaitForSeconds(new System.Random().Next(1, 5));
+            yield return new WaitForSeconds(new System.Random().Next(60, 120));
             if (ActiveEvent == false)
             {
                 Event();
