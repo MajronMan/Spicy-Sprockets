@@ -26,6 +26,15 @@ namespace Assets.Scripts
 
         public void Update()
         {
+            if(Input.GetAxis("Mouse ScrollWheel") > 0 && GetComponent<Camera>().orthographicSize > 140) //zoom
+            {
+                GetComponent<Camera>().orthographicSize -= 10;
+            }
+            if(Input.GetAxis("Mouse ScrollWheel") < 0 && GetComponent<Camera>().orthographicSize < 500)
+            {
+                GetComponent<Camera>().orthographicSize += 10;
+            }
+
             if (Math.Abs(transform.position.x) > 2000 || Math.Abs(transform.position.y) > 2000) return;
             float[] deltas = new float[]
             {
