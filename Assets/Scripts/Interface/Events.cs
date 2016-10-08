@@ -6,15 +6,12 @@ using UnityEditor;
 public class Events : MonoBehaviour {
 
     private const int LayerUI = 5;
-    public GameObject canvasObject;
+    private GameObject canvasObject;
     private bool ActiveEvent = false;
-    //private int nextevent;
-    //public GameObject EventPanel;
 
     void Start ()
     {
-        //System.Random rnd = new System.Random();
-        //nextevent = rnd.Next(60, 120);
+        canvasObject = GameObject.Find("UI");
         StartCoroutine("GetEvent");
     }
 
@@ -33,20 +30,9 @@ public class Events : MonoBehaviour {
 	void Update ()
     {
 
-       /* if ((int)Time.time == nextevent)
-        {
-            System.Random rnd = new System.Random();
-            int period = rnd.Next(60, 120);
-            nextevent = (int)Time.time + period;
-            Event();
-        }
-        */
     }
     void Event()
     {
-        //var eventGameObject = new GameObject("Event", typeof(Sprite));
-        //eventGameObject.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(650, 280, 50));
-
         var eventGameObject = new GameObject("EventPanel"); //New event panel
         eventGameObject.transform.SetParent(canvasObject.transform);
         eventGameObject.layer = LayerUI;
