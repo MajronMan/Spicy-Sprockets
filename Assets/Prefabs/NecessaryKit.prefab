@@ -1441,6 +1441,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000014024634744}
   - 114: {fileID: 114000012521526842}
+  - 114: {fileID: 114000013093808752}
   m_Layer: 0
   m_Name: Game Controller
   m_TagString: Untagged
@@ -2558,27 +2559,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74da287f4c92d8143b6300fde668d8df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildButton: {fileID: 224000013315975440}
-  productionButton: {fileID: 224000010610840384}
-  diplomacyButton: {fileID: 224000014217803680}
-  scienceButton: {fileID: 224000012418853928}
-  lawButton: {fileID: 224000010795747832}
-  characterButton: {fileID: 224000012422808200}
-  buildPanel: {fileID: 1000011007919788}
-  productionPanel: {fileID: 1000014166646918}
-  diplomacyPanel: {fileID: 1000013354586220}
-  sciencePanel: {fileID: 1000012779990038}
-  lawPanel: {fileID: 1000011187316336}
-  characterPanel: {fileID: 1000011925191526}
-  systemButton: {fileID: 224000011714021944}
-  toggleMapButton: {fileID: 224000014055120314}
-  res1: {fileID: 224000010578595924}
-  res2: {fileID: 224000011954239752}
-  res3: {fileID: 224000010425176748}
-  res4: {fileID: 224000013353725306}
-  res5: {fileID: 224000014003028026}
-  res6: {fileID: 224000014112474184}
-  infoButton: {fileID: 224000010386408572}
+  UI: {fileID: 0}
 --- !u!114 &114000010432711594
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3296,27 +3277,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74da287f4c92d8143b6300fde668d8df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildButton: {fileID: 224000013315975440}
-  productionButton: {fileID: 224000010610840384}
-  diplomacyButton: {fileID: 224000014217803680}
-  scienceButton: {fileID: 224000012418853928}
-  lawButton: {fileID: 224000010795747832}
-  characterButton: {fileID: 224000012422808200}
-  buildPanel: {fileID: 1000011007919788}
-  productionPanel: {fileID: 1000014166646918}
-  diplomacyPanel: {fileID: 1000013354586220}
-  sciencePanel: {fileID: 1000012779990038}
-  lawPanel: {fileID: 1000011187316336}
-  characterPanel: {fileID: 1000011925191526}
-  systemButton: {fileID: 224000011714021944}
-  toggleMapButton: {fileID: 224000014055120314}
-  res1: {fileID: 224000010578595924}
-  res2: {fileID: 224000011954239752}
-  res3: {fileID: 224000010425176748}
-  res4: {fileID: 224000013353725306}
-  res5: {fileID: 224000014003028026}
-  res6: {fileID: 224000014112474184}
-  infoButton: {fileID: 224000010386408572}
+  UI: {fileID: 0}
 --- !u!114 &114000011292286440
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4250,27 +4211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74da287f4c92d8143b6300fde668d8df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildButton: {fileID: 224000013315975440}
-  productionButton: {fileID: 224000010610840384}
-  diplomacyButton: {fileID: 224000014217803680}
-  scienceButton: {fileID: 224000012418853928}
-  lawButton: {fileID: 224000010795747832}
-  characterButton: {fileID: 224000012422808200}
-  buildPanel: {fileID: 1000011007919788}
-  productionPanel: {fileID: 1000014166646918}
-  diplomacyPanel: {fileID: 1000013354586220}
-  sciencePanel: {fileID: 1000012779990038}
-  lawPanel: {fileID: 1000011187316336}
-  characterPanel: {fileID: 1000011925191526}
-  systemButton: {fileID: 224000011714021944}
-  toggleMapButton: {fileID: 224000014055120314}
-  res1: {fileID: 224000010578595924}
-  res2: {fileID: 224000011954239752}
-  res3: {fileID: 224000010425176748}
-  res4: {fileID: 224000013353725306}
-  res5: {fileID: 224000014003028026}
-  res6: {fileID: 224000014112474184}
-  infoButton: {fileID: 224000010386408572}
+  UI: {fileID: 0}
 --- !u!114 &114000012378351940
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4579,10 +4520,6 @@ MonoBehaviour:
   Cities: []
   Enemies: []
   MapPrefab: {fileID: 114000013635299500, guid: 647bb63bbb1cf2845935aa716c5d14f8,
-    type: 2}
-  BuildingManagerPrefab: {fileID: 114000013228382424, guid: 5378f08a513478a4da8044f2a69bacaa,
-    type: 2}
-  CityControllerPrefab: {fileID: 114000013789372506, guid: 8ad51ae1c49ec3c44b8b5bc9e1ac81a0,
     type: 2}
 --- !u!114 &114000012651096752
 MonoBehaviour:
@@ -4990,6 +4927,17 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: X
+--- !u!114 &114000013093808752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014108194176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e75a6776db480eb46835b5261f9a5390, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114000013147386620
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5067,27 +5015,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74da287f4c92d8143b6300fde668d8df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildButton: {fileID: 224000013315975440}
-  productionButton: {fileID: 224000010610840384}
-  diplomacyButton: {fileID: 224000014217803680}
-  scienceButton: {fileID: 224000012418853928}
-  lawButton: {fileID: 224000010795747832}
-  characterButton: {fileID: 224000012422808200}
-  buildPanel: {fileID: 1000011007919788}
-  productionPanel: {fileID: 1000014166646918}
-  diplomacyPanel: {fileID: 1000013354586220}
-  sciencePanel: {fileID: 1000012779990038}
-  lawPanel: {fileID: 1000011187316336}
-  characterPanel: {fileID: 1000011925191526}
-  systemButton: {fileID: 224000011714021944}
-  toggleMapButton: {fileID: 224000014055120314}
-  res1: {fileID: 224000010578595924}
-  res2: {fileID: 224000011954239752}
-  res3: {fileID: 224000010425176748}
-  res4: {fileID: 224000013353725306}
-  res5: {fileID: 224000014003028026}
-  res6: {fileID: 224000014112474184}
-  infoButton: {fileID: 224000010386408572}
+  UI: {fileID: 0}
 --- !u!114 &114000013275800816
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5306,27 +5234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74da287f4c92d8143b6300fde668d8df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildButton: {fileID: 224000013315975440}
-  productionButton: {fileID: 224000010610840384}
-  diplomacyButton: {fileID: 224000014217803680}
-  scienceButton: {fileID: 224000012418853928}
-  lawButton: {fileID: 224000010795747832}
-  characterButton: {fileID: 224000012422808200}
-  buildPanel: {fileID: 1000011007919788}
-  productionPanel: {fileID: 1000014166646918}
-  diplomacyPanel: {fileID: 1000013354586220}
-  sciencePanel: {fileID: 1000012779990038}
-  lawPanel: {fileID: 1000011187316336}
-  characterPanel: {fileID: 1000011925191526}
-  systemButton: {fileID: 224000011714021944}
-  toggleMapButton: {fileID: 224000014055120314}
-  res1: {fileID: 224000010578595924}
-  res2: {fileID: 224000011954239752}
-  res3: {fileID: 224000010425176748}
-  res4: {fileID: 224000013353725306}
-  res5: {fileID: 224000014003028026}
-  res6: {fileID: 224000014112474184}
-  infoButton: {fileID: 224000010386408572}
+  UI: {fileID: 0}
 --- !u!114 &114000013608346958
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5428,27 +5336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74da287f4c92d8143b6300fde668d8df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildButton: {fileID: 224000013315975440}
-  productionButton: {fileID: 224000010610840384}
-  diplomacyButton: {fileID: 224000014217803680}
-  scienceButton: {fileID: 224000012418853928}
-  lawButton: {fileID: 224000010795747832}
-  characterButton: {fileID: 224000012422808200}
-  buildPanel: {fileID: 1000011007919788}
-  productionPanel: {fileID: 1000014166646918}
-  diplomacyPanel: {fileID: 1000013354586220}
-  sciencePanel: {fileID: 1000012779990038}
-  lawPanel: {fileID: 1000011187316336}
-  characterPanel: {fileID: 1000011925191526}
-  systemButton: {fileID: 224000011714021944}
-  toggleMapButton: {fileID: 224000014055120314}
-  res1: {fileID: 224000010578595924}
-  res2: {fileID: 224000011954239752}
-  res3: {fileID: 224000010425176748}
-  res4: {fileID: 224000013353725306}
-  res5: {fileID: 224000014003028026}
-  res6: {fileID: 224000014112474184}
-  infoButton: {fileID: 224000010386408572}
+  UI: {fileID: 0}
 --- !u!114 &114000013702945720
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5737,7 +5625,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 030f986c5f617aa4aa113d91c925e3b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EventPanel: {fileID: 1000013070350866}
 --- !u!114 &114000014047411774
 MonoBehaviour:
   m_ObjectHideFlags: 1

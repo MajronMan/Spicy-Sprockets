@@ -26,6 +26,12 @@ namespace GameControllers
         public void Update()
         {
             gameMode.Update();
+            
+            //Now you can pause the game by pressing 'p'
+            if (Input.GetKeyDown("p"))
+            {
+                Debug.Break();
+            }
         }
 
 		public GameMode GetGameMode()
@@ -35,7 +41,6 @@ namespace GameControllers
 
 		public void enterBuildingMode()
 		{
-			//maybe gamemode as an enum would suffice.
 			gameMode=new BuildingMode(this, Cities[current_city], Cities[current_city].GetBuildingManager());
 		}
 
