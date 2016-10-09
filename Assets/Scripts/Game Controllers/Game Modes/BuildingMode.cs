@@ -1,64 +1,68 @@
-﻿using UnityEngine;
+﻿using System;
 using System.Collections;
-using GameControllers;
+using Assets.Scripts.Buildings;
+using Assets.Scripts.Utils;
+using UnityEngine;
+using Object = UnityEngine.Object;
 
-public class BuildingMode : GameMode
+namespace Assets.Scripts.Game_Controllers.Game_Modes
 {
-    private CityController cityControllerInstance;
-	private GameController GameControllerInstance;
-    private BuildingManager buildingManagerInstance;
-    public System.Type toBeBuiltType;
-    private Building preview;
-
-	public BuildingMode(GameController GameControllerInstance, CityController strategyManagerInstance, BuildingManager buildingManagerInstance)
+    public class BuildingMode : IGameMode
     {
-        
-        this.cityControllerInstance = strategyManagerInstance;
-        this.buildingManagerInstance = buildingManagerInstance;
-		this.GameControllerInstance = GameControllerInstance;
-        this.toBeBuiltType = typeof(ProductionBuilding);
-        setPreview();
-    }
+        public System.Type ToBeBuiltType;
+        private Building _preview;
+        private int time;
 
-    public void RightMouseClicked()
-    {
-        Exit();
-    }
+        public BuildingMode(Type buildingType)
+        {
+            this.ToBeBuiltType = buildingType;
+            SetPreview();
+        }
 
-    public void LeftMouseClicked()
-    {
-        buildingManagerInstance.Build(toBeBuiltType, new Vector3(Input.mousePosition.x, Input.mousePosition.y, 20));
-        Exit();
-    }
+        public void RightMouseClicked()
+        {
+            Exit();
+        }
 
-    public void Update()
-    {
-        if (preview == null) return;
-        Vector3 previewPosition= Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        previewPosition.z = 0;
-        preview.transform.position = previewPosition;
-        //Debug.Log(preview.transform.position);
+        public void LeftMouseClicked()
+        {
+            Controllers.CurrentBuildingManager.Build(ToBeBuiltType, new Vector3(Input.mousePosition.x, Input.mousePosition.y, 20));
+            Exit();
+        }
 
-    }
+        public void Update()
+        {
+            if (_preview == null) return;
+            var previewPosition= Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            previewPosition.z = 0;
+            _preview.transform.position = previewPosition;
 
-    public void setPreview()
-    {
-        this.preview = buildingManagerInstance.preview(toBeBuiltType);
-    }
+            if (time > 30)
+            {
+                time = 0;
+                Debug.Log(_preview.transform.position);
+            }
+            time++;
+        }
 
-    public void setToBeBuiltType(System.Type buildingType)
-    {
-        this.toBeBuiltType = buildingType;
-    }
-    public void Exit()
-    {
-        BuildingManager.Destroy(preview.gameObject);
-        GameControllerInstance.enterDefaultMode();
-    }
+        public void SetPreview()
+        {
+            var gameObject = new GameObject("Preview", typeof(SpriteRenderer), typeof(BuildingPreview));
+            _preview = (Building) gameObject.GetComponent(typeof(BuildingPreview));
+            _preview.SetSprite(ToBeBuiltType);
+            _preview.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        }
 
-    public void Select(GameObject gameObject)
-    {
-        setToBeBuiltType(gameObject.GetType());
-        setPreview();
+        public void Exit()
+        {
+            Object.Destroy(_preview.gameObject);
+            Controllers.GameController.EnterDefaultMode();
+        }
+
+        public void Select(GameObject gameObject)
+        {
+            ToBeBuiltType = gameObject.GetType();
+            SetPreview();
+        }
     }
 }

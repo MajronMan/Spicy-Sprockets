@@ -1,8 +1,10 @@
-﻿using System;
+﻿using System.Collections.Generic;
+using Assets.Scripts.Buildings;
+using Assets.Scripts.Game_Controllers.Game_Modes;
+using Assets.Scripts.Interface;
 using UnityEngine;
-using System.Collections.Generic;
 
-namespace GameControllers
+namespace Assets.Scripts.Game_Controllers
 {
     public class GameController: MonoBehaviour
 	{
@@ -10,22 +12,23 @@ namespace GameControllers
 		public List<CityController> Cities = new List<CityController>();
 		public List<EnemyController> Enemies = new List<EnemyController>();
 		public Map MapPrefab;
-		private GameMode gameMode;
-		private int current_city = 0;
+		private IGameMode _gameMode;
+		private int _currentCity = 0;
 
-		public void Start(){
+        //cannot wait until first frame with start, so calling this explicitly
+		public void BeginGame(){
             var newGameObject = new GameObject("City Controller", typeof(CityController));
-            var city_controller = newGameObject.GetComponent<CityController>();
-			Cities.Add (city_controller);
-			city_controller.BeginGame (MapPrefab);
-		    city_controller.gameObject.transform.parent = transform;
+            var cityController = newGameObject.GetComponent<CityController>();
+			Cities.Add (cityController);
+			cityController.BeginGame (MapPrefab);
+		    cityController.gameObject.transform.parent = transform;
 			// later also add enemies
-			gameMode = new DefaultMode();
+			_gameMode = new DefaultMode();
 		}
 
         public void Update()
         {
-            gameMode.Update();
+            _gameMode.Update();
             
             //Now you can pause the game by pressing 'p'
             if (Input.GetKeyDown("p"))
@@ -34,23 +37,23 @@ namespace GameControllers
             }
         }
 
-		public GameMode GetGameMode()
+		public IGameMode GetGameMode()
 		{
-			return gameMode;
+			return _gameMode;
 		}
 
-		public void enterBuildingMode()
+		public void EnterBuildingMode(System.Type buildingType)
 		{
-			gameMode=new BuildingMode(this, Cities[current_city], Cities[current_city].GetBuildingManager());
+			_gameMode=new BuildingMode(buildingType);
 		}
 
-		public void enterDefaultMode()
+		public void EnterDefaultMode()
 		{
-			gameMode=new DefaultMode();
+			_gameMode=new DefaultMode();
 		}
 
 		public CityController GetCurrentCity(){
-			return Cities [current_city];
+			return Cities [_currentCity];
 		}
 	}
 }

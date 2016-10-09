@@ -1,37 +1,31 @@
-﻿using UnityEngine;
-using System.Collections;
-using UnityEngine.EventSystems;
-using System;
-using System.IO;
+﻿using Assets.Scripts.Interface;
+using Assets.Scripts.Utils;
+using UnityEngine;
 
-public class CityController : MonoBehaviour {
-    private Map mapInstance=null;
-    private BuildingManager buildingManagerInstance=null;
-	public Info info;
-
-	public void BeginGame(Map mapPrefab)
-    { 
-        mapInstance = Instantiate(mapPrefab, transform.position, transform.rotation) as Map;
-        mapInstance.transform.localScale = new Vector3(100, 100, 100);
-        mapInstance.transform.SetParent(transform);
-        mapInstance.name = "Map Instance";
-        var newGameObject = new GameObject("Building Manager", typeof(BuildingManager));
-        buildingManagerInstance = newGameObject.GetComponent<BuildingManager>();
-        buildingManagerInstance.transform.SetParent(transform);
-        buildingManagerInstance.name = "Building Manager";
-        buildingManagerInstance.SetMapInstance(mapInstance);
-        buildingManagerInstance.info = info;
-        info = new Info ();
-        
-    }
-
-    private void Update()
+namespace Assets.Scripts.Game_Controllers
+{
+    public class CityController : MonoBehaviour
     {
-        
-    }
-		
-    public BuildingManager GetBuildingManager()
-    {
-        return buildingManagerInstance;
+        public Map _mapInstance;
+        private BuildingManager _buildingManagerInstance;
+        public Info MyInfo;
+
+        public void BeginGame(Map mapPrefab)
+        { 
+            _mapInstance = Instantiate(mapPrefab, transform.position, transform.rotation) as Map;
+            _mapInstance.transform.localScale = new Vector3(100, 100, 100);
+            _mapInstance.transform.SetParent(transform);
+            _mapInstance.name = "Map";
+            var newGameObject = new GameObject("Building Manager", typeof(BuildingManager));
+            _buildingManagerInstance = newGameObject.GetComponent<BuildingManager>();
+            _buildingManagerInstance.transform.SetParent(transform);
+            _buildingManagerInstance.SetMapInstance(_mapInstance);
+            MyInfo = new Info();
+        }
+
+        public BuildingManager GetBuildingManager()
+        {
+            return _buildingManagerInstance;
+        }
     }
 }

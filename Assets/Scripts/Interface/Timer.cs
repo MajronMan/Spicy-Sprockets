@@ -1,22 +1,24 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 
-public class Timer : MonoBehaviour {
+namespace Assets.Scripts.Interface
+{
+    public class Timer : MonoBehaviour {
 
-    public Text timerText;
-    private float seconds, minutes, hours;
+        public Text TimerText;
+        private float _seconds, _minutes, _hours;
 
-    void Start()
-    {
-        timerText = GetComponent<Text>() as Text;
-    }
-    void Update()
-    {
-        hours = (int)(Time.time / 3600f);
-        minutes = (int)((Time.time / 60f) % 60);
-        seconds = (int)(Time.time % 60f);
+        public void Start()
+        {
+            TimerText = GetComponent<Text>() as Text;
+        }
+        public void Update()
+        {
+            _hours = (int)(Time.time / 3600f);
+            _minutes = (int)((Time.time / 60f) % 60);
+            _seconds = (int)(Time.time % 60f);
 
-        timerText.text = hours.ToString() + ":" + minutes.ToString("00") + ":" + seconds.ToString("00");
+            TimerText.text = _hours.ToString() + ":" + _minutes.ToString("00") + ":" + _seconds.ToString("00");
+        }
     }
 }

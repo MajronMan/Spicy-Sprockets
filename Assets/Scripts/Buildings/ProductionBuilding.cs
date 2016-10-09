@@ -1,56 +1,44 @@
-﻿using System;
+﻿using System.Collections;
+using Assets.Scripts.Resources;
+using Assets.Scripts.Utils;
 using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 
-
-public class ProductionBuilding : Building
+namespace Assets.Scripts.Buildings
 {
-    
-    private int time;
-    private int resQuantity;
-    private int processTime = 300;
-    
-    public void Start()
+    public class ProductionBuilding : Building
     {
-        //TODO: make it more non-coder-friendly and definitely not hard-coded
-        //e.g. write just a name of a sprite and hold them all in the same folder
-        Debug.Log("position= "+transform.position);
-        spriteFilePath = "Assets/Graphics/Buildings/building.png";
-        mySprite = AssetDatabase.LoadAssetAtPath<Sprite>(spriteFilePath);
-        SpriteRenderer renderer = gameObject.GetComponent<SpriteRenderer>();
-        renderer.sprite = mySprite;
-        renderer.sortingOrder = 1;
-        Util.rescale(renderer, 30, 30);
-        time = 0;
-    }
+        private Resource _prefabricate;
+        private Resource _produced;
+        private int _processTime = 30;
+        private int _efficiency = 1;
 
-    void Update()
-    {   //coroutine pls
-        if (resQuantity != 0)
+        public override void Start()
         {
-            time++;
-            if (time == processTime)
+            MySize = BuildingSize.Big;
+            base.Start();
+
+            _prefabricate = new Resource("stone", 10);
+            _produced = new Resource("coal", 0);
+
+            StartCoroutine("Work");
+        }
+
+        public IEnumerator Work()
+        {
+            while (true)
             {
-                time = 0;
-                Process();
+                if (_prefabricate.GetQuantity() > 0)
+                {
+                    Process();
+                }
+                yield return new WaitForSeconds(_processTime);
             }
         }
-    }
 
-    private void Process()
-    {
-        //Resource product;
-
-        resQuantity--;
-
-        /*switch (processedResource)
+        private void Process()
         {
-            case ResourceType.Type.Coal:
-                playerResources[playerResources.FindIndex(ironFinder)]++;
-                break;
-        } */
-
+            _prefabricate -= _efficiency;
+            _produced += _efficiency;
+        }
     }
 }

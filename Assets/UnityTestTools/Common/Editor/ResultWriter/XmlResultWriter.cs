@@ -174,7 +174,7 @@ namespace UnityTest
                 {"current-culture", CultureInfo.CurrentCulture.ToString()},
                 {"current-uiculture", CultureInfo.CurrentUICulture.ToString()}
             };
-            WriteOpeningElement("culture-info", attributes, true);
+            WriteOpeningElement("culture-MyInfo", attributes, true);
         }
 
         private void WriteTestSuite(string resultsName, ResultSummarizer summaryResults)

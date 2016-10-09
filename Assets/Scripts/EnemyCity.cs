@@ -1,12 +1,16 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections.Generic;
+using Assets.Scripts.Buildings;
 using Assets.Scripts.Resources;
-using System.Collections.Generic;
+using Assets.Scripts.Utils;
+using UnityEngine;
 
-public class EnemyCity : MonoBehaviour {
-	public Dictionary<string, Resource> Resources;
-	public Dictionary<string, Resource> Needs;
-	public Quality Wealth;
-	public List<Building> Buildings;
-	//This is just a stub
+namespace Assets.Scripts
+{
+    public class EnemyCity : MonoBehaviour {
+        public Dictionary<string, Resource> Resources;
+        public Dictionary<string, Resource> Needs;
+        public int Wealth;
+        public List<Building> Buildings;
+        //This is just a stub
+    }
 }

@@ -1,45 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using UnityEngine;
-using UnityEditor;
-using NUnit.Framework;
-using NSubstitute;
+﻿using System.Collections.Generic;
 using System.IO;
-using GameControllers;
+using Assets.Scripts.Game_Controllers;
+using Assets.Scripts.Interface;
 using Assets.Scripts.Resources;
-using System.Xml.Linq;
+using Assets.Scripts.Utils;
+using NUnit.Framework;
+using UnityEngine;
 
-namespace Assets.Test.Building.Editor.Resources
+namespace Assets.Test.Editor.Resources
 {
-    class InfoResourceTypeTestCase
+    public class InfoResourceTypeTestCase
     {
-        Info info;
-        GameObject testGameObject;
-        string path;
+        private Data _data;
+        private GameObject _testGameObject;
+        private string _path;
 
         [Test]
         public void TestInfo()
         {
             SetUp();
-            CheckLoadsTypesFromXML();
+            CheckLoadsTypesFromXml();
             CheckCreatesResources();
         }
 
         private void SetUp()
         {
-            testGameObject = new GameObject("Game Controller", typeof(GameController));
-            var testGameController = testGameObject.GetComponent<GameController>();
-            var mapGameObject = new GameObject("map", typeof(Map));
-            var mapPrefab = mapGameObject.GetComponent<Map>();
-            testGameController.MapPrefab = mapPrefab;
-            testGameController.Start();
-            path = Directory.GetCurrentDirectory() + @"\Assets\Test\Building\Editor\Resources\TestTypes.xml";
-            info = new Info(path);
+            _path = Directory.GetCurrentDirectory() + @"\Assets\Test\Editor\Resources\TestTypes.xml";
+            _data = new Data(_path);
         }
 
-        private void CheckLoadsTypesFromXML()
+        private void CheckLoadsTypesFromXml()
         {
             var expectedTypes = new Dictionary<string, Dictionary<string, string>>()
             {
@@ -72,20 +62,20 @@ namespace Assets.Test.Building.Editor.Resources
                                                       }
                 }
             };
-            CollectionAssert.AreEquivalent(expectedTypes, info.ResourceTypes.Data);
+            CollectionAssert.AreEquivalent(expectedTypes, _data.ResourceTypes);
         }
 
         private void CheckCreatesResources()
         {
             var expectedResources = new Dictionary<string, Resource>()
             {
-                { "a", new Resource("a", 1, Quality.Lux, info) },
-                { "b", new Resource("b", 2, Quality.Lux, info) },
-                { "c", new Resource("c", 3, Quality.Lux, info) },
-                { "d", new Resource("d", 4, Quality.Lux, info) }
+                { "a", new Resource("a", 1) },
+                { "b", new Resource("b", 2) },
+                { "c", new Resource("c", 3) },
+                { "d", new Resource("d", 4) }
             };
             foreach(var key in expectedResources.Keys)
-                Assert.AreEqual(expectedResources[key].ToString(), info.Resources[key].ToString());
+                Assert.AreEqual(expectedResources[key].ToString(), Controllers.CurrentInfo.Resources[key].ToString());
         }
     }
 }

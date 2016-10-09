@@ -1,48 +1,31 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
-using System;
-using JetBrains.Annotations;
-using UnityEngine.UI;
-using GameControllers;
+﻿using Assets.Scripts.Game_Controllers;
+using UnityEngine;
 
-public class Map : MonoBehaviour
+namespace Assets.Scripts.Interface
 {
-	private CityController cityController;
-	private GameController gameController;
-    public IntVector2 size;
-    
-    void Start ()
+    public class Map : MonoBehaviour
     {
-        Physics.queriesHitTriggers = true;
-        cityController = gameObject.transform.parent.GetComponent<CityController>();
-		gameController = GameObject.Find ("Game Controller").GetComponent<GameController> ();
-    }
-
-    void OnMouseDown()
-    {
-
-        if (Input.GetMouseButtonDown(0))
+        public void Start ()
         {
-            gameController.GetGameMode().LeftMouseClicked();
+            Physics.queriesHitTriggers = true;
         }
 
-        if (Input.GetMouseButtonDown(1))
+        public void OnMouseDown()
         {
-            gameController.GetGameMode().RightMouseClicked();
-        }
-        //strategyManager.mapClicked();
-            
-        
-    }
-    
-	void OnMouseOver(){
-		//strategyManager.MouseOver();
-	}
+            if (Input.GetMouseButtonDown(0))
+            {
+                Controllers.CurrentGameMode.LeftMouseClicked();
+            }
 
-    public int objectIndex()
-    {
-        return gameObject.transform.GetSiblingIndex();
+            if (Input.GetMouseButtonDown(1))
+            {
+                Controllers.CurrentGameMode.RightMouseClicked();
+            }  
+        }
+
+        public void OnMouseOver()
+        {
+            //just a hook
+        }
     }
-    
 }

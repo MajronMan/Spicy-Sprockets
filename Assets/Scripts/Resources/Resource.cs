@@ -1,87 +1,88 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Game_Controllers;
+using UnityEngine;
 
 namespace Assets.Scripts.Resources
 {
     [System.Serializable]
     public class Resource
     {
-		private string type;
-        private int massPerUnit;
-		private int volumePerUnit;
-        private int defaultPricePerUnit;
-		private Info info;
-        private int quantity;
-        private Quality quality;
-   
+		private readonly string _type;
+        private readonly int _massPerUnit;
+		private readonly int _volumePerUnit;
+        private readonly int _defaultPricePerUnit;
+        private int _quantity;
     
-		public Resource(string type, int quantity, Quality quality, Info info)
+		public Resource(string type, int quantity)
         {
-			this.type = type;
-			this.info = info;
-			var data = info.ResourceTypes.GetData (type);
-			int.TryParse(data ["mass"], out this.massPerUnit);
-			int.TryParse(data ["volume"], out this.volumePerUnit);
-			int.TryParse(data ["price"], out this.defaultPricePerUnit);
-            this.quantity = quantity;
-            this.quality = quality;
-        }
-    
-        public Quality GetQuality()
-        {
-            return quality;
+			_type = type;
+            //load constant values from world data
+			var resourceTypes = Controllers.ConstantData.ResourceTypes[type];
+			int.TryParse(resourceTypes ["mass"], out _massPerUnit);
+			int.TryParse(resourceTypes ["volume"], out _volumePerUnit);
+			int.TryParse(resourceTypes ["price"], out _defaultPricePerUnit);
+            _quantity = quantity;
         }
 
         public int GetQuantity()
         {
-            return quantity;
+            return _quantity;
         }
             
         public static Resource operator +(Resource basicRes, int addedQuantity)
         {
-            basicRes.quantity += addedQuantity;
-            return basicRes;
+            return new Resource(basicRes._type, basicRes._quantity + addedQuantity);
+        }
+
+        public static Resource operator +(Resource self, Resource other)
+        {
+            if (other._type == self._type)
+                return new Resource(self._type, self._quantity + other._quantity);
+            //else
+            Debug.Log("Types don't match");
+            return self;
         }
 
         public static Resource operator -(Resource basicRes, int subtractedQuantity)
         {
-            basicRes.quantity -= subtractedQuantity;
-            return basicRes;
+            if (basicRes._quantity < subtractedQuantity)
+            {
+                Debug.Log("Cannot substract");
+                return basicRes;
+            }
+            return new Resource(basicRes._type, basicRes._quantity - subtractedQuantity);
+        }
+
+        public static Resource operator -(Resource self, Resource other)
+        {
+            if (self._quantity < other._quantity)
+            {
+                Debug.Log("Cannot substract");
+                return self;
+            }
+            if (other._type != self._type)
+            {
+                Debug.Log("Types don't match");
+                return self;
+            }
+
+            return new Resource(self._type, self._quantity - other._quantity);
+            
         }
 
         public static Resource operator ++(Resource basicRes)
         {
-            basicRes.quantity++;
+            basicRes._quantity++;
             return basicRes;
         }
 
         public static Resource operator --(Resource basicRes)
         {
-            basicRes.quantity--;
+            basicRes._quantity--;
             return basicRes;
         }
 
 		public override string ToString(){
-			return quantity.ToString() + " of " + quality.ToString() + " " + type;
+			return _quantity.ToString() + " of " + _type;
 		}
-
-	    public Resource Divide(int newQuantity)
-	    {
-	        if(newQuantity > quantity)
-	        {
-	            Debug.Log("Cant subtract");
-	            return this;
-	        }
-
-	        Resource newRes = new Resource(type, newQuantity, quality, info);
-	        quantity -= newQuantity;
-	        return newRes;
-	    }
-
-	    public Resource Fuse(Resource newRes)
-	    {
-	        quantity = newRes.quantity;
-	        //trzeba pozniej zmienic zeby quality jakos wplywalo
-	        return this;
-	    }
 	}
 }

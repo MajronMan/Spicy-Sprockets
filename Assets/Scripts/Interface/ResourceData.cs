@@ -1,25 +1,28 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System;
+using Assets.Scripts.Game_Controllers;
+using UnityEngine;
 using UnityEngine.UI;
-using GameControllers;
-using System;
 
-public class ResourceData : MonoBehaviour {
-	public Text ResourceText;
-    public GameController gameController;
-	public string type;
-	// Use this for initialization
-	void Start () {
-		ResourceText = GetComponent<Text>() as Text;
-	}
+namespace Assets.Scripts.Interface
+{
+    public class ResourceData : MonoBehaviour {
+        public Text ResourceText;
+        public string Type;
+        
+        public void Start ()
+        {
+            ResourceText = GetComponent<Text>() as Text;
+        }
 	
-	void Update () {
-		try{
-		ResourceText.text = gameController.GetCurrentCity().info.Resources [type].GetQuantity ().ToString ();
-		}
-		catch(NullReferenceException e){
-			ResourceText.text = "dupa";
-		}
-	}
+        public void Update () {
+            try{
+                ResourceText.text = Controllers.CurrentInfo[Type].GetQuantity ().ToString ();
+            }
+            catch(Exception e){
+                Debug.Log(e.Message + " " + e.StackTrace);
+                ResourceText.text = "dupa";
+            }
+        }
 
+    }
 }

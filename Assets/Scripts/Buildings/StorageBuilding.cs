@@ -1,23 +1,19 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections.Generic;
 using Assets.Scripts.Resources;
+using Assets.Scripts.Utils;
+using UnityEditor;
+using UnityEngine;
 
-public  class StorageBuilding : Building
+namespace Assets.Scripts.Buildings
 {
+    public  class StorageBuilding : Building
+    {
+        public Dictionary<string, Resource> Storage;
 
-    protected Resource badBatch;
-    protected Resource mediumBatch;
-    protected Resource goodBatch;
-
-
-	// Use this for initialization
-	void Start () {
-        Debug.Log("kierwa");
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+        public override void Start()
+        {
+            MySize = BuildingSize.Small;
+            base.Start();
+        }
+    }
 }

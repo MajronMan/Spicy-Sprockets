@@ -1,16 +1,12 @@
 ﻿using UnityEngine;
-using System.Collections;
-public class ToggleLocalMap : MonoBehaviour
+
+namespace Assets.Scripts.Interface
 {
-    public void Toggle()
+    public class ToggleLocalMap : MonoBehaviour
     {
-        if (gameObject.activeInHierarchy)
+        public void Toggle()
         {
-            gameObject.SetActive(false);
-        }
-        else
-        {
-            gameObject.SetActive(true);
+            gameObject.SetActive(!gameObject.activeInHierarchy);
         }
     }
 }

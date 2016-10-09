@@ -1,21 +1,18 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.IO;
+﻿using System.Collections;
+using UnityEngine;
 
-public static class Util  {
-
-    public static void rescale(SpriteRenderer renderer, float desiredX, float desiredY)
-    {
-        Sprite sprite = renderer.sprite;
-        if (sprite != null)
+namespace Assets.Scripts.Utils
+{
+    public static class Util  {
+        public static void Rescale(SpriteRenderer renderer, float desiredX, float desiredY)
         {
-            float resX = sprite.rect.width;
-            float resY = sprite.rect.height;
-            float scaleX = desiredX/resX;
-            float scaleY = desiredY/resY;
+            var sprite = renderer.sprite;
+            if (sprite == null) return;
+
+            float resX = sprite.rect.width, resY = sprite.rect.height;
+            float scaleX = desiredX/resX, scaleY = desiredY/resY;
+
             renderer.gameObject.transform.localScale = new Vector3(scaleX, scaleY, 0);
-            Debug.Log(scaleX);
         }
     }
-
 }

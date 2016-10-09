@@ -1,7 +1,6 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace GameControllers
+namespace Assets.Scripts.Game_Controllers
 {
 	//maybe a main class/interface after which every manager inherits?
 	public class EnemyController : MonoBehaviour
