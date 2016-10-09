@@ -50,9 +50,9 @@ public class Events : MonoBehaviour {
         eventGameObject.AddComponent<CanvasRenderer>();
 
         Image i = eventGameObject.AddComponent<Image>();
-        i.color = Color.cyan;
+        i.color = Color.white;
 
-        string spriteFilePath = "Assets/Graphics/Interface graphics&textures/Panel.png";
+        string spriteFilePath = "Assets/Graphics/Interface graphics&textures/Papier3.png";
         eventGameObject.GetComponent<Image>().sprite = AssetDatabase.LoadAssetAtPath<Sprite>(spriteFilePath);
 
         ActiveEvent = true;
@@ -70,12 +70,12 @@ public class Events : MonoBehaviour {
         buttontrans.offsetMax = new Vector2(0, 0);
         buttontrans.localPosition = new Vector3(0, -200, 0);
         buttontrans.sizeDelta = new Vector2(0, 0);
-        buttontrans.localScale = new Vector3(0.2f, 0.1f, 0);
+        buttontrans.localScale = new Vector3(0.4f, 0.2f, 0);
         eventButton.AddComponent<CanvasRenderer>();
         eventButton.AddComponent<Image>();
         eventButton.AddComponent<Button>();
 
-        string buttonFilePath = "Assets/Graphics/Interface graphics&textures/Trybik.png";
+        string buttonFilePath = "Assets/Graphics/Interface graphics&textures/Zarys.png";
         eventButton.GetComponent<Image>().sprite = AssetDatabase.LoadAssetAtPath<Sprite>(buttonFilePath);
         eventButton.GetComponent<Image>().preserveAspect = true;
 
@@ -99,6 +99,7 @@ public class Events : MonoBehaviour {
         eventText.AddComponent<Text>();
 
         eventText.GetComponent<Text>().text = "Zrób tutorial do gita ;_;";
+        eventText.GetComponent<Text>().color = Color.black;
         eventText.GetComponent<Text>().font = AssetDatabase.LoadAssetAtPath<Font>("Assets/Data/Fonts/utsaah.ttf");
         eventText.GetComponent<Text>().fontSize = 130;
 
