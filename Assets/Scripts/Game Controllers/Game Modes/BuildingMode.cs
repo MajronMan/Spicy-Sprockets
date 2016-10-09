@@ -9,12 +9,14 @@ namespace Assets.Scripts.Game_Controllers.Game_Modes
 {
     public class BuildingMode : IGameMode
     {
+        private GameController _gameController;
         public System.Type ToBeBuiltType;
         private Building _preview;
         private int time;
 
-        public BuildingMode(Type buildingType)
+        public BuildingMode(Type buildingType, GameController gameController)
         {
+            this._gameController = gameController;
             this.ToBeBuiltType = buildingType;
             SetPreview();
         }
@@ -36,13 +38,15 @@ namespace Assets.Scripts.Game_Controllers.Game_Modes
             var previewPosition= Camera.main.ScreenToWorldPoint(Input.mousePosition);
             previewPosition.z = 0;
             _preview.transform.position = previewPosition;
-
+            
+            /*
             if (time > 30)
             {
                 time = 0;
                 Debug.Log(_preview.transform.position);
             }
             time++;
+            */
         }
 
         public void SetPreview()
@@ -50,7 +54,13 @@ namespace Assets.Scripts.Game_Controllers.Game_Modes
             var gameObject = new GameObject("Preview", typeof(SpriteRenderer), typeof(BuildingPreview));
             _preview = (Building) gameObject.GetComponent(typeof(BuildingPreview));
             _preview.SetSprite(ToBeBuiltType);
-            _preview.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            var buildingPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            buildingPosition.z = 0;
+            _preview.transform.position = Camera.main.ScreenToWorldPoint(buildingPosition);
+            _preview.transform.SetParent(_gameController.GetCurrentCity()._mapInstance.transform, true);
+            Util.Rescale(_preview.GetComponent<SpriteRenderer>(), 60, 60);
+
+
         }
 
         public void Exit()

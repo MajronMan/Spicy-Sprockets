@@ -24,6 +24,7 @@ namespace Assets.Scripts.Buildings
             MyRenderer.sprite = Controllers.ConstantData.BuildingData[type];
             MyRenderer.sortingOrder = 1;
             Util.Rescale(MyRenderer, (int)MySize * 20, (int)MySize * 20);
+            
         }
 
     }

@@ -44,7 +44,7 @@ namespace Assets.Scripts.Game_Controllers
 
 		public void EnterBuildingMode(System.Type buildingType)
 		{
-			_gameMode=new BuildingMode(buildingType);
+			_gameMode=new BuildingMode(buildingType, this);
 		}
 
 		public void EnterDefaultMode()
