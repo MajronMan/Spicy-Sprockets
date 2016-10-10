@@ -17,7 +17,8 @@ public class ProductionBuilding : Building
         //TODO: make it more non-coder-friendly and definitely not hard-coded
         //e.g. write just a name of a sprite and hold them all in the same folder
         Debug.Log("position= "+transform.position);
-        spriteFilePath = "Assets/Graphics/Buildings/building.png";
+        spriteFileName = "building.png";
+        spriteFilePath = Building.getSpriteFolderPath() + spriteFileName;
         mySprite = AssetDatabase.LoadAssetAtPath<Sprite>(spriteFilePath);
         SpriteRenderer renderer = gameObject.GetComponent<SpriteRenderer>();
         renderer.sprite = mySprite;
