@@ -9,10 +9,8 @@ namespace Assets.Scripts.Game_Controllers
     [System.Serializable]
     public class BuildingManager : MonoBehaviour
     {
-
         public List<Building> Built = new List<Building>();
         private Map _mapInstance;
-        public Building TentPrefab;
         public Dictionary<string, System.Type> AvailableBuildings = new Dictionary<string, System.Type>();
     
         public Building Build(System.Type buildingType, Vector3 location)

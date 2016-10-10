@@ -9,11 +9,12 @@ namespace Assets.Scripts.Game_Controllers
     public sealed class Controllers
     {
         private readonly GameController _gameController;
-        private static readonly Data Data = new Data();
+        private static readonly GameData Data = new GameData();
         private static readonly Controllers Instance = new Controllers();
 
         private Controllers()
         {
+            Debug.Log("costam");
             var gameObject = new GameObject("Game Controller", typeof(GameController));
             _gameController = gameObject.GetComponent<GameController>();
             _gameController.MapPrefab = AssetDatabase.LoadAssetAtPath(@"Assets\Prefabs\Map.prefab", typeof(Map)) as Map;
@@ -46,7 +47,7 @@ namespace Assets.Scripts.Game_Controllers
             get { return CurrentCityController.MyInfo; }
         }
 
-        public static Data ConstantData
+        public static GameData ConstantData
         {
             get { return Data; }
         }

@@ -76,6 +76,10 @@
     <Compile Include="Assets\Scripts\Buildings\GatheringBuilding.cs" />
     <Compile Include="Assets\Scripts\Buildings\ProductionBuilding.cs" />
     <Compile Include="Assets\Scripts\Buildings\StorageBuilding.cs" />
+    <Compile Include="Assets\Scripts\Buildings\UnbuildableTerrain.cs" />
+    <Compile Include="Assets\Scripts\Data\BuildingContainer.cs" />
+    <Compile Include="Assets\Scripts\Data\BuildingData.cs" />
+    <Compile Include="Assets\Scripts\Data\SaveData.cs" />
     <Compile Include="Assets\Scripts\EnemyCity.cs" />
     <Compile Include="Assets\Scripts\Game Controllers\BuildingManager.cs" />
     <Compile Include="Assets\Scripts\Game Controllers\CityController.cs" />
@@ -87,6 +91,7 @@
     <Compile Include="Assets\Scripts\Game Controllers\GameController.cs" />
     <Compile Include="Assets\Scripts\Game Controllers\GameControllerReferencer.cs" />
     <Compile Include="Assets\Scripts\Interface\CameraMotion.cs" />
+    <Compile Include="Assets\Scripts\Interface\Events.cs" />
     <Compile Include="Assets\Scripts\Interface\InteractiveButton.cs" />
     <Compile Include="Assets\Scripts\Interface\Map.cs" />
     <Compile Include="Assets\Scripts\Interface\ResourceData.cs" />
@@ -96,7 +101,7 @@
     <Compile Include="Assets\Scripts\Resources\Population.cs" />
     <Compile Include="Assets\Scripts\Resources\Resource.cs" />
     <Compile Include="Assets\Scripts\Sources of Resources\Source.cs" />
-    <Compile Include="Assets\Scripts\Utils\Data.cs" />
+    <Compile Include="Assets\Scripts\Utils\GameData.cs" />
     <Compile Include="Assets\Scripts\Utils\Enums.cs" />
     <Compile Include="Assets\Scripts\Utils\Info.cs" />
     <Compile Include="Assets\Scripts\Utils\IntVector2.cs" />
@@ -146,6 +151,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Data\ResourceTypes.xml" />
+    <None Include="Assets\Resources\Data.xml" />
     <None Include="Assets\Test\Editor\Resources\TestTypes.xml" />
     <None Include="Assets\UnityTestTools\Examples\IntegrationTestsFrameworkExamples\AngryBotsTests\Shaders\BackgroundAndCharacters\AngryInclude.cginc" />
     <None Include="Assets\UnityTestTools\Examples\IntegrationTestsFrameworkExamples\AngryBotsTests\Shaders\BackgroundAndCharacters\CharacterSelfIlluminationReflective.shader" />

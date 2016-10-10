@@ -24,6 +24,16 @@ namespace Assets.Scripts.Interface
 
         public void Update()
         {
+
+            if(Input.GetAxis("Mouse ScrollWheel") > 0 && GetComponent<Camera>().orthographicSize > 140) //zoom
+            {
+                GetComponent<Camera>().orthographicSize -= 10;
+            }
+            if(Input.GetAxis("Mouse ScrollWheel") < 0 && GetComponent<Camera>().orthographicSize < 500)
+            {
+                GetComponent<Camera>().orthographicSize += 10;
+            }
+
             var deltas = new float[]
             {
                 _boundary - Input.mousePosition.x,

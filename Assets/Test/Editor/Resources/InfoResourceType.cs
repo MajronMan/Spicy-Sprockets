@@ -11,7 +11,7 @@ namespace Assets.Test.Editor.Resources
 {
     public class InfoResourceTypeTestCase
     {
-        private Data _data;
+        private GameData _gameData;
         private GameObject _testGameObject;
         private string _path;
 
@@ -26,7 +26,7 @@ namespace Assets.Test.Editor.Resources
         private void SetUp()
         {
             _path = Directory.GetCurrentDirectory() + @"\Assets\Test\Editor\Resources\TestTypes.xml";
-            _data = new Data(_path);
+            _gameData = new GameData(_path);
         }
 
         private void CheckLoadsTypesFromXml()
@@ -62,7 +62,7 @@ namespace Assets.Test.Editor.Resources
                                                       }
                 }
             };
-            CollectionAssert.AreEquivalent(expectedTypes, _data.ResourceTypes);
+            CollectionAssert.AreEquivalent(expectedTypes, _gameData.ResourceTypes);
         }
 
         private void CheckCreatesResources()

@@ -15,4 +15,6 @@ namespace Assets.Scripts.Utils
             renderer.gameObject.transform.localScale = new Vector3(scaleX, scaleY, 0);
         }
     }
+
+    
 }
