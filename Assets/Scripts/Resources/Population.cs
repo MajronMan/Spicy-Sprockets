@@ -22,7 +22,7 @@ namespace Assets.Scripts.Resources
         public IEnumerator Grow(){
             while (true) {
                 Number += Number / 20;
-                yield return new WaitForSeconds(60);
+                yield return new WaitForSeconds(1);
             }
         }
     }
