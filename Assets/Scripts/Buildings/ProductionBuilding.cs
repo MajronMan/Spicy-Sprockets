@@ -1,17 +1,45 @@
-﻿using System;
+﻿using System.Collections;
+using Assets.Scripts.Game_Controllers;
+using Assets.Scripts.Resources;
+using Assets.Scripts.Utils;
 using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
 
-
-public class ProductionBuilding : Building
+namespace Assets.Scripts.Buildings
 {
-    void Start()
+    public class ProductionBuilding : Building
     {
-        myColor = new Color(0.5f, 0.2f, 0.25f);
-        SpriteRenderer renderer = gameObject.GetComponent<SpriteRenderer>();
-        renderer.sprite = mySprite;
-        renderer.color = myColor;
-        renderer.sortingOrder = 1;
+        private Resource _prefabricate;
+        private Resource _produced;
+        private int _processTime = 30;
+        private int _efficiency = 1;
+
+        public override void Start()
+        {
+            MySize = BuildingSize.Big;
+            base.Start();
+
+            _prefabricate = new Resource("stone", 10);
+            _produced = new Resource("coal", 0);
+
+            StartCoroutine("Work");
+        }
+
+        public IEnumerator Work()
+        {
+            while (true)
+            {
+                if (_prefabricate.GetQuantity() > 0)
+                {
+                    Process();
+                }
+                yield return new WaitForSeconds(_processTime);
+            }
+        }
+
+        private void Process()
+        {
+            _prefabricate -= _efficiency;
+            _produced += _efficiency;
+        }
     }
 }

@@ -1,103 +1,45 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Assets.Scripts.Buildings;
+using Assets.Scripts.Interface;
+using Assets.Scripts.Utils;
+using UnityEngine;
 
-[System.Serializable]
-public class BuildingManager : MonoBehaviour
+namespace Assets.Scripts.Game_Controllers
 {
-
-    private List<Building> Built;
-    private Map mapInstance;
-    public Building buildingPrefab;
-    public Building tentPrefab;
-    private bool active = false;
-    private string val;
-
-    public void Build(Vector2 location)
+    [System.Serializable]
+    public class BuildingManager : MonoBehaviour
     {
-        Building newBuilding = Instantiate(buildingPrefab);
-        newBuilding.transform.position = Camera.main.ScreenToWorldPoint(location);
-        newBuilding.transform.localScale = new Vector3(20, 20, 20);
-        newBuilding.transform.SetParent(mapInstance.transform, true);
-        this.active = false;
-    }
-
-    public void Build(Vector3 location, string val)
-    {
-        if (!this.active) return;
-        switch (val)
+        public List<Building> Built = new List<Building>();
+        private Map _mapInstance;
+        public Dictionary<string, System.Type> AvailableBuildings = new Dictionary<string, System.Type>();
+    
+        public Building Build(System.Type buildingType, Vector3 location)
         {
-            case "Shit":
-                Building newBuilding = Instantiate(buildingPrefab);
-                newBuilding.transform.position = Camera.main.ScreenToWorldPoint(location);
-                newBuilding.transform.localScale = new Vector3(20, 20, 20);
-                newBuilding.transform.SetParent(mapInstance.transform, true);
-                break;
-            case "Tent":
-                Building newTent = Instantiate(tentPrefab);
-                newTent.transform.position = Camera.main.ScreenToWorldPoint(location);
-                newTent.transform.localScale = new Vector3(20, 20, 20);
-                newTent.transform.SetParent(mapInstance.transform, true);
-                break;
+            var go = new GameObject("Building", buildingType, typeof(SpriteRenderer));
+            var newBuilding = go.GetComponent<Building>();
+            var buildingPosition = Camera.main.ScreenToWorldPoint(location);
+            buildingPosition.z = 0;
+            newBuilding.transform.position = buildingPosition;
+            newBuilding.transform.SetParent(_mapInstance.transform, true);
+            Built.Add(newBuilding);
+            return newBuilding;
         }
-        this.active = false;
-    }
 
-	public Building FollowMouseBuilding(Vector3 location, string val)
-	{
-		switch (val)
-		{
-		case "Shit":
-			Building newBuilding = Instantiate (buildingPrefab);
-			newBuilding.transform.position = Camera.main.ScreenToWorldPoint (location);
-			newBuilding.transform.localScale = new Vector3 (20, 20, 20);
-			newBuilding.transform.SetParent (mapInstance.transform, true);
-			return newBuilding;
-		case "Tent":
-			Building newTent = Instantiate (tentPrefab);
-			newTent.transform.position = Camera.main.ScreenToWorldPoint (location);
-			newTent.transform.localScale = new Vector3 (20, 20, 20);
-			newTent.transform.SetParent (mapInstance.transform, true);
-			return newTent;
-		}
-		return null;
-	}
+        public void SetMapInstance(Map mapInstance)
+        {
+            this._mapInstance = mapInstance;
+        }
 
-    public void SetMapInstance(Map MapInstance)
-    {
-        this.mapInstance = MapInstance;
-    }
+        public void Start()
+        {
+            // load that from a xml pls
+            AvailableBuildings.Add("Production Building", typeof(ProductionBuilding));
+            AvailableBuildings.Add("Storage Building", typeof(StorageBuilding));
+        }
    
-    public void elo()
-    {
-        Debug.Log("Elo");
-    }
-
-    void Start()
-    {
-		active = false;
-    }
-
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
-    public void setActive(bool active)
-    {
-        this.active = active;
-    }
-
-    public bool getActive()
-    {
-        return active;
-    }
-    public void setValue(string value)
-    {
-        val = value;
-    }
-    public string getValue()
-    {
-        return val;
+        public Map GetMapInstance()
+        {
+            return _mapInstance;
+        }
     }
 }

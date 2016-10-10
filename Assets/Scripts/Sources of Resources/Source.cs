@@ -1,45 +1,39 @@
 ﻿using System;
+using Assets.Scripts.Resources;
 using UnityEngine;
-using System.Collections;
-using UnityEngine.Assertions.Comparers;
+using Random = System.Random;
 
-public abstract class Source : MonoBehaviour
+namespace Assets.Scripts.Sources_of_Resources
 {
-    protected float radius;
-    protected Resource resource;
-    protected CircleCollider2D circle;
-
-    public float resourceQuantity(float distance)
+    public class Source : MonoBehaviour
     {
-        float res;
-        if (distance > radius) res = 0;
-        else res = Mathf.Cos((radius / (8 * Mathf.PI)) * distance) * resource.getQuantity();
-        return res;
+        public float Radius;
+        public Resource Resource;
+        //well, maybe just calculate it, there won't be like 10^6 sources anyway
+        protected CircleCollider2D Circle;
+
+        public void Start()
+        {
+            float r0 = 25.0f;
+            var r = new Random();
+            while (r.Next(2) == 0)
+                r0 *= 2;
+            Radius = r0;
+        }
+
+        public float GatheringSpeed(float distance)
+        {
+            float speed;
+            try
+            {
+                speed = 1/(distance+5);
+            }
+            catch (Exception e)
+            {
+                Debug.Log(e.Message);
+                speed = 0;
+            }
+            return speed;
+        }
     }
-
-    public ResourceGatheringRate gatheringSpeed(float distance)
-    {
-        if (distance >= radius)
-            return ResourceGatheringRate.Static;
-        if((distance / radius) >= 0.8)
-            return ResourceGatheringRate.VerySlow;
-        if ((distance / radius) >= 0.6)
-            return ResourceGatheringRate.Slow;
-        if ((distance / radius) >= 0.4)
-            return ResourceGatheringRate.Medium;
-        if ((distance / radius) >= 0.2)
-            return ResourceGatheringRate.Fast;
-        else
-            return ResourceGatheringRate.VeryFast;
-    }
-
-	protected virtual void Start ()
-    {
-	
-	}
-	
-	void Update ()
-    {
-	
-	}
 }
