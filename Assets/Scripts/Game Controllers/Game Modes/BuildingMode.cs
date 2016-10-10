@@ -38,15 +38,6 @@ namespace Assets.Scripts.Game_Controllers.Game_Modes
             var previewPosition= Camera.main.ScreenToWorldPoint(Input.mousePosition);
             previewPosition.z = 0;
             _preview.transform.position = previewPosition;
-            
-            /*
-            if (time > 30)
-            {
-                time = 0;
-                Debug.Log(_preview.transform.position);
-            }
-            time++;
-            */
         }
 
         public void SetPreview()
@@ -59,8 +50,6 @@ namespace Assets.Scripts.Game_Controllers.Game_Modes
             _preview.transform.position = Camera.main.ScreenToWorldPoint(buildingPosition);
             _preview.transform.SetParent(_gameController.GetCurrentCity()._mapInstance.transform, true);
             Util.Rescale(_preview.GetComponent<SpriteRenderer>(), 60, 60);
-
-
         }
 
         public void Exit()

@@ -11,10 +11,13 @@ namespace Assets.Scripts.Game_Controllers
         public Info MyInfo;
 
         public void BeginGame(Map mapPrefab)
-        { 
-            _mapInstance = Instantiate(mapPrefab, transform.position, transform.rotation) as Map;
-            _mapInstance.transform.localScale = new Vector3(100, 100, 100);
+        {
+            
+            var mapPosition = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width/2, Screen.height/2));
+            mapPosition.z = 0;
+            _mapInstance = Instantiate(mapPrefab, mapPosition, transform.rotation) as Map;
             _mapInstance.transform.SetParent(transform);
+            Util.Rescale(_mapInstance.GetComponent<SpriteRenderer>(), 10000, 10000);
             _mapInstance.name = "Map";
             var newGameObject = new GameObject("Building Manager", typeof(BuildingManager));
             _buildingManagerInstance = newGameObject.GetComponent<BuildingManager>();

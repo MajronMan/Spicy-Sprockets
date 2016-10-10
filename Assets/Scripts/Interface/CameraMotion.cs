@@ -11,7 +11,7 @@ namespace Assets.Scripts.Interface
 
         public void Start()
         {
-            _speed = 0.05f;
+            _speed = 0.005f;
             _boundary = 50;
             _directions = new Vector3[4]
             {
@@ -23,8 +23,7 @@ namespace Assets.Scripts.Interface
         }
 
         public void Update()
-        {/*
-            if (Math.Abs(transform.position.x) > 2000 || Math.Abs(transform.position.y) > 2000) return;
+        {
             var deltas = new float[]
             {
                 _boundary - Input.mousePosition.x,
@@ -34,13 +33,19 @@ namespace Assets.Scripts.Interface
             };
             for (var i = 0; i < 4; i++)
                 if (deltas[i] > 0)
-                    transform.Translate(_directions[i]*deltas[i]);
+                {
+                    var newPosition = transform.position + _directions[i]*deltas[i];
+                    if (Math.Abs(newPosition.x) < 30 && Math.Abs(newPosition.y) < 30)
+                    {
+                        transform.position = newPosition;
+                    }
+                }
 
             //was in task, not sure if we want it
 
             if (!Input.GetMouseButton(2)) return;
 
-            transform.Rotate(new Vector3(0, 0, Input.GetAxis("Mouse X"))); */
+            transform.Rotate(new Vector3(0, 0, Input.GetAxis("Mouse X"))); 
         }
     }
     
