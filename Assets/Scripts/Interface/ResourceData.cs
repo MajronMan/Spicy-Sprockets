@@ -19,7 +19,7 @@ namespace Assets.Scripts.Interface
                 ResourceText.text = Controllers.CurrentInfo[Type].GetQuantity ().ToString ();
             }
             catch(Exception e){
-                Debug.Log(e.Message + " " + e.StackTrace);
+                Debug.Log(e.InnerException);
                 ResourceText.text = "dupa";
             }
         }
