@@ -21,6 +21,7 @@ GameObject:
   - 4: {fileID: 4000013498076904}
   - 212: {fileID: 212000013761930606}
   - 114: {fileID: 114000010394992962}
+  - 114: {fileID: 114000012615950050}
   m_Layer: 0
   m_Name: Building
   m_TagString: Untagged
@@ -53,7 +54,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mySprite: {fileID: 21300000, guid: 6bf31bb736aa63a4f8db33fe7a1f876c, type: 3}
-  spriteFilePath: 
+--- !u!114 &114000012615950050
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010566987290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9cb62b9bb8d79649b9250d5559011c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212000013761930606
 SpriteRenderer:
   m_ObjectHideFlags: 1

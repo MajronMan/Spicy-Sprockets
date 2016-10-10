@@ -21,6 +21,7 @@ GameObject:
   - 4: {fileID: 4000010031824604}
   - 212: {fileID: 212000010327402768}
   - 114: {fileID: 114000010446777260}
+  - 61: {fileID: 61000012683723748}
   m_Layer: 0
   m_Name: Tent
   m_TagString: Untagged
@@ -41,6 +42,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!61 &61000012683723748
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011048411310}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0.635, y: 0.865}
+  serializedVersion: 2
+  m_Size: {x: 1.27, y: 1.73}
 --- !u!114 &114000010446777260
 MonoBehaviour:
   m_ObjectHideFlags: 1
