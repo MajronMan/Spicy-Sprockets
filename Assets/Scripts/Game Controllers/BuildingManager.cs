@@ -6,7 +6,7 @@ using System.Collections.Generic;
 [System.Serializable]
 public class BuildingManager : MonoBehaviour
 {
-
+    
     public List<Building> Built = new List<Building>();
     private Map mapInstance;
     public Building tentPrefab;
@@ -14,7 +14,15 @@ public class BuildingManager : MonoBehaviour
     private StorageBuilding korwo;
 	public Dictionary<string, System.Type> availableBuildings = new Dictionary<string, System.Type>();
     public Info info;
-    
+
+    public void Build(Building buildingPrefab, Vector3 location)
+    {
+        Building newBuilding = Instantiate(buildingPrefab);
+        newBuilding.transform.position = Camera.main.ScreenToWorldPoint(location);
+        newBuilding.transform.localScale = new Vector3(20, 20, 20);
+        newBuilding.transform.SetParent(mapInstance.transform, true);
+		Built.Add (newBuilding);
+    }
     
     public Building Build(System.Type buildingType, Vector3 location)
     {
