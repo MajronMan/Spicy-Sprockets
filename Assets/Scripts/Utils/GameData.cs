@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Xml.Linq;
 using Assets.Scripts.Buildings;
+using Assets.Scripts.Resources;
 using UnityEditor;
 using UnityEngine;
 
@@ -13,6 +14,7 @@ namespace Assets.Scripts.Utils
     {
         public Dictionary<string, Dictionary<string, string>> ResourceTypes = new Dictionary<string, Dictionary<string, string>>();
         public Dictionary<System.Type, Sprite> BuildingData = new Dictionary<Type, Sprite>();
+        public Dictionary<System.Type, List<Resource>> BuildingCosts = new Dictionary<Type, List<Resource>>();
 
         public GameData(string testPath = "")
         {
@@ -39,6 +41,9 @@ namespace Assets.Scripts.Utils
             var tent = AssetDatabase.LoadAssetAtPath<Sprite>(tentFilePath);
             BuildingData.Add(typeof(ProductionBuilding), cube);
             BuildingData.Add(typeof(StorageBuilding), tent);
+
+            BuildingCosts.Add(typeof(StorageBuilding), new List<Resource>() { new Resource("wood", 5), new Resource("stone", 3)});
+            BuildingCosts.Add(typeof(ProductionBuilding), new List<Resource>() { new Resource("wood", 10), new Resource("stone", 11) });
         }
 
         private Dictionary<string, string> GetAttributes(XElement element)

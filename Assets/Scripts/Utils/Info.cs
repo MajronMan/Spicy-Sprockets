@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Xml.Linq;
+using Assets.Scripts.Game_Controllers;
 using Assets.Scripts.Resources;
 
 namespace Assets.Scripts.Utils
@@ -23,6 +25,25 @@ namespace Assets.Scripts.Utils
         {
             get { return Resources[key]; }
             set { Resources[key] = value; }
+        }
+
+        public bool SufficientResources(List<Resource> costs)
+        {
+            //no idea again but I hope it works
+            return costs.Aggregate(true, (current, resource) => current & Resources[resource.MyType] >= resource);
+        }
+
+        public void UseResources(List<Resource> costs)
+        {
+            foreach (var resource in costs)
+            {
+                Resources[resource.MyType] -= resource;
+            }
+        }
+
+        public void BuildingCosts(System.Type buildingType)
+        {
+            UseResources(Controllers.ConstantData.BuildingCosts[buildingType]);
         }
     }
 }
