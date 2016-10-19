@@ -16,8 +16,8 @@ namespace Assets.Scripts.Utils
         public int CurrentStorageVolume;
 
         //maybe later use given limits from file or depending on sth
-        private int _maxStorageVolume;
-        private int _maxPopulation;
+        private int _maxStorageVolume = 10000;
+        private int _maxPopulation = 200;
 
         public void LoadInitialResources(Dictionary<string, Dictionary<string, string>> resourceTypes)
         {
@@ -35,11 +35,15 @@ namespace Assets.Scripts.Utils
         {
             get
             {
-                {
-                    return Resources[key];
-                }
+               return Resources[key];
             }
+
             set { Resources[key] = value; }
+        }
+
+        public int GetPopulationLimit()
+        {
+            return _maxPopulation;
         }
 
         public bool SufficientResources(List<Resource> costs)
