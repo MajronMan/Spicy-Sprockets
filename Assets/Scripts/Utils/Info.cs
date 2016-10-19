@@ -5,6 +5,7 @@ using System.Linq;
 using System.Xml.Linq;
 using Assets.Scripts.Game_Controllers;
 using Assets.Scripts.Resources;
+using UnityEngine;
 
 namespace Assets.Scripts.Utils
 {
@@ -26,11 +27,18 @@ namespace Assets.Scripts.Utils
                 Resources.Add(type, res);
                 CurrentStorageVolume += res.GetVolume();
             }
+            var gameObject = new GameObject("People", typeof(Population));
+            ThePeople = gameObject.GetComponent<Population>();
         }
 
         public Resource this[string key]
         {
-            get { return Resources[key]; }
+            get
+            {
+                {
+                    return Resources[key];
+                }
+            }
             set { Resources[key] = value; }
         }
 
