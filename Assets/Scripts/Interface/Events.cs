@@ -100,7 +100,7 @@ public class Events : MonoBehaviour {
 
         eventText.GetComponent<Text>().text = "Zrób tutorial do gita ;_;";
         eventText.GetComponent<Text>().color = Color.black;
-        eventText.GetComponent<Text>().font = AssetDatabase.LoadAssetAtPath<Font>("Assets/GameData/Fonts/utsaah.ttf");
+        eventText.GetComponent<Text>().font = AssetDatabase.LoadAssetAtPath<Font>("Assets/Data/Fonts/utsaah.ttf");
         eventText.GetComponent<Text>().fontSize = 130;
 
         var eventImage = new GameObject("EventImage"); //New event image
