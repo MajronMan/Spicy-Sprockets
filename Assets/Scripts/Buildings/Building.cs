@@ -8,7 +8,6 @@ namespace Assets.Scripts.Buildings
 {
     public abstract class Building : MonoBehaviour
     {
-        protected List<Resource> Cost;
         protected Color MyColor;
         protected BuildingSize MySize = BuildingSize.Medium;
         public SpriteRenderer MyRenderer;

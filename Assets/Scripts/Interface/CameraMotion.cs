@@ -25,13 +25,13 @@ namespace Assets.Scripts.Interface
         public void Update()
         {
 
-            if(Input.GetAxis("Mouse ScrollWheel") > 0 && GetComponent<Camera>().orthographicSize > 140) //zoom
+            if(Input.GetAxis("Mouse ScrollWheel") > 0 && GetComponent<Camera>().orthographicSize > 5) //zoom
             {
-                GetComponent<Camera>().orthographicSize -= 10;
+                GetComponent<Camera>().orthographicSize -= 5;
             }
-            if(Input.GetAxis("Mouse ScrollWheel") < 0 && GetComponent<Camera>().orthographicSize < 500)
+            if(Input.GetAxis("Mouse ScrollWheel") < 0 && GetComponent<Camera>().orthographicSize < 35)
             {
-                GetComponent<Camera>().orthographicSize += 10;
+                GetComponent<Camera>().orthographicSize += 5;
             }
 
             var deltas = new float[]

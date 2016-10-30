@@ -13,6 +13,12 @@ namespace Assets.Scripts.Game_Controllers
                 case "tent":
                     Controllers.GameController.EnterBuildingMode(typeof(StorageBuilding));
                     break;
+                case "mine":
+                    Controllers.GameController.EnterBuildingMode(typeof(Mine));
+                    break;
+                case "lumber":
+                    Controllers.GameController.EnterBuildingMode(typeof(LumberMill));
+                    break;
                 default:
                     Controllers.GameController.EnterBuildingMode(typeof(ProductionBuilding));
                     break;

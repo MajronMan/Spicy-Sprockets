@@ -48,7 +48,7 @@ namespace Assets.Scripts.Game_Controllers.Game_Modes
             var buildingPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             buildingPosition.z = 0;
             _preview.transform.position = Camera.main.ScreenToWorldPoint(buildingPosition);
-            _preview.transform.SetParent(_gameController.GetCurrentCity()._mapInstance.transform, true);
+            _preview.transform.SetParent(_gameController.GetCurrentCity().MapInstance.transform, true);
             Util.Rescale(_preview.GetComponent<SpriteRenderer>(), 60, 60);
         }
 

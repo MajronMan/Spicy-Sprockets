@@ -22,6 +22,8 @@ namespace Assets.Scripts.Game_Controllers
             newBuilding.transform.position = buildingPosition;
             newBuilding.transform.SetParent(_mapInstance.transform, true);
             Built.Add(newBuilding);
+
+            Controllers.CurrentInfo.BuildingCosts(buildingType);
             return newBuilding;
         }
 
