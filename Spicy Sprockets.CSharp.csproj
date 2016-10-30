@@ -75,6 +75,7 @@
     <Compile Include="Assets\Scripts\Buildings\LumberMill.cs" />
     <Compile Include="Assets\Scripts\Buildings\Mine.cs" />
     <Compile Include="Assets\Scripts\Buildings\ProductionBuilding.cs" />
+    <Compile Include="Assets\Scripts\Buildings\ResidentialBuilding.cs" />
     <Compile Include="Assets\Scripts\Buildings\StorageBuilding.cs" />
     <Compile Include="Assets\Scripts\Buildings\UnbuildableTerrain.cs" />
     <Compile Include="Assets\Scripts\Data\BuildingContainer.cs" />

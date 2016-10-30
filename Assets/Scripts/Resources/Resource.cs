@@ -16,11 +16,32 @@ namespace Assets.Scripts.Resources
         {
 			MyType = type;
             _quantity = quantity;
-        }
+            _massPerUnit = -1;
+            _volumePerUnit = -1;
+            _defaultPricePerUnit = -1;
+    }
 
         public int GetQuantity()
         {
             return _quantity;
+        }
+
+        public int GetVolume()
+        {
+            if (_volumePerUnit == -1)
+            {
+                LoadData();
+            }
+            return _quantity*_volumePerUnit;
+        }
+
+        public int GetMass()
+        {
+            if (_massPerUnit == -1)
+            { 
+                LoadData();
+            }
+            return _quantity * _massPerUnit;
         }
 
         public static bool operator >(Resource self, Resource other)
