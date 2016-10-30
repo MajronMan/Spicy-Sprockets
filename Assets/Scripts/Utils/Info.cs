@@ -2,6 +2,7 @@
 using System.IO;
 using System.Xml.Linq;
 using Assets.Scripts.Resources;
+using UnityEngine;
 
 namespace Assets.Scripts.Utils
 {
@@ -17,11 +18,18 @@ namespace Assets.Scripts.Utils
                 var res = new Resource(type, int.Parse(resourceTypes[type]["initial"]));
                 Resources.Add(type, res);
             }
+            var gameObject = new GameObject("People", typeof(Population));
+            ThePeople = gameObject.GetComponent<Population>();
         }
 
         public Resource this[string key]
         {
-            get { return Resources[key]; }
+            get
+            {
+                {
+                    return Resources[key];
+                }
+            }
             set { Resources[key] = value; }
         }
     }

@@ -15,10 +15,20 @@ namespace Assets.Scripts.Interface
         }
 	
         public void Update () {
-            try{
-                ResourceText.text = Controllers.CurrentInfo[Type].GetQuantity ().ToString ();
+            try
+            {
+                if (Type == "people")
+                {
+                    ResourceText.text = Controllers.CurrentInfo.ThePeople.Number.ToString();
+                }
+                else
+                {
+                    ResourceText.text = Controllers.CurrentInfo[Type].GetQuantity().ToString();
+                }
             }
-            catch(Exception e){
+            catch (Exception e)
+            {
+                Debug.Log(e.Message);
                 Debug.Log(e.InnerException);
                 ResourceText.text = "dupa";
             }
