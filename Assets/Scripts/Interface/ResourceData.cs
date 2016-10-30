@@ -21,6 +21,10 @@ namespace Assets.Scripts.Interface
                 {
                     ResourceText.text = Controllers.CurrentInfo.ThePeople.Number.ToString();
                 }
+                else if (Type == "money")
+                {
+                    ResourceText.text = Controllers.CurrentInfo.MyMoney.GetAmount().ToString();
+                }
                 else
                 {
                     ResourceText.text = Controllers.CurrentInfo[Type].GetQuantity().ToString();
