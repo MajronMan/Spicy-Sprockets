@@ -17,6 +17,7 @@ namespace Assets.Scripts.Interface
         private Transform scienceButton;
         private Transform lawButton;
         private Transform characterButton;
+        private Transform tradeButton;
 
         private GameObject buildPanel;
         private GameObject productionPanel;
@@ -24,6 +25,7 @@ namespace Assets.Scripts.Interface
         private GameObject sciencePanel;
         private GameObject lawPanel;
         private GameObject characterPanel;
+        private GameObject tradePanel;
 
         private Transform systemButton;
         private Transform toggleMapButton;
@@ -50,6 +52,8 @@ namespace Assets.Scripts.Interface
             scienceButton = UI.transform.Find("MainPanel/Buttons/ScienceButton");
             lawButton = UI.transform.Find("MainPanel/Buttons/LawButton");
             characterButton = UI.transform.Find("MainPanel/Buttons/CharacterButton");
+            tradeButton = UI.transform.Find("MainPanel/Buttons/TradeButton");
+
 
             buildPanel = UI.transform.Find("ButtonPanels/BuildPanel").gameObject;
             productionPanel = UI.transform.Find("ButtonPanels/ProductionPanel").gameObject;
@@ -57,6 +61,7 @@ namespace Assets.Scripts.Interface
             sciencePanel = UI.transform.Find("ButtonPanels/SciencePanel").gameObject;
             lawPanel = UI.transform.Find("ButtonPanels/LawPanel").gameObject;
             characterPanel = UI.transform.Find("ButtonPanels/CharacterPanel").gameObject;
+            tradePanel = UI.transform.Find("ButtonPanels/TradePanel").gameObject;
 
             panelList = new List<GameObject>();
 
@@ -66,6 +71,7 @@ namespace Assets.Scripts.Interface
             panelList.Add(sciencePanel);
             panelList.Add(lawPanel);
             panelList.Add(characterPanel);
+            panelList.Add(tradePanel);
 
             string name = gameObject.transform.name;
 
@@ -94,6 +100,10 @@ namespace Assets.Scripts.Interface
                 case "CharacterButton":
                     myPanel = characterPanel;
                     myButton = characterButton;
+                    break;
+                case "TradeButton":
+                    myPanel = tradePanel;
+                    myButton = tradeButton;
                     break;
                 default:
                     Debug.Log("Button not added!");
