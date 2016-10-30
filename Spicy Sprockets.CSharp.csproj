@@ -13,13 +13,11 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile>
-    </CompilerResponseFile>
+    <CompilerResponseFile></CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>5.4.1f1</UnityVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <LangVersion Condition=" '$(VisualStudioVersion)' != '10.0' ">4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -74,6 +72,8 @@
     <Compile Include="Assets\Scripts\Buildings\Building.cs" />
     <Compile Include="Assets\Scripts\Buildings\BuildingPreview.cs" />
     <Compile Include="Assets\Scripts\Buildings\GatheringBuilding.cs" />
+    <Compile Include="Assets\Scripts\Buildings\LumberMill.cs" />
+    <Compile Include="Assets\Scripts\Buildings\Mine.cs" />
     <Compile Include="Assets\Scripts\Buildings\ProductionBuilding.cs" />
     <Compile Include="Assets\Scripts\Buildings\StorageBuilding.cs" />
     <Compile Include="Assets\Scripts\Buildings\UnbuildableTerrain.cs" />
@@ -97,12 +97,13 @@
     <Compile Include="Assets\Scripts\Interface\ResourceData.cs" />
     <Compile Include="Assets\Scripts\Interface\Timer.cs" />
     <Compile Include="Assets\Scripts\Interface\ToggleLocalMap.cs" />
+    <Compile Include="Assets\Scripts\Interface\Trade.cs" />
     <Compile Include="Assets\Scripts\Resources\Money.cs" />
     <Compile Include="Assets\Scripts\Resources\Population.cs" />
     <Compile Include="Assets\Scripts\Resources\Resource.cs" />
     <Compile Include="Assets\Scripts\Sources of Resources\Source.cs" />
-    <Compile Include="Assets\Scripts\Utils\GameData.cs" />
     <Compile Include="Assets\Scripts\Utils\Enums.cs" />
+    <Compile Include="Assets\Scripts\Utils\GameData.cs" />
     <Compile Include="Assets\Scripts\Utils\Info.cs" />
     <Compile Include="Assets\Scripts\Utils\IntVector2.cs" />
     <Compile Include="Assets\Scripts\Utils\Util.cs" />

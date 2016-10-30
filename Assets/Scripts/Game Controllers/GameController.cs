@@ -42,9 +42,16 @@ namespace Assets.Scripts.Game_Controllers
 			return _gameMode;
 		}
 
+
+        //isn't that work for building manager?
 		public void EnterBuildingMode(System.Type buildingType)
 		{
-			_gameMode=new BuildingMode(buildingType, this);
+		    if (!_checkSufficientResources(buildingType))
+		    {
+                Debug.Log("Insufficient resources!");
+                return;
+		    }
+            _gameMode =new BuildingMode(buildingType, this);
 		}
 
 		public void EnterDefaultMode()
@@ -55,6 +62,11 @@ namespace Assets.Scripts.Game_Controllers
 		public CityController GetCurrentCity(){
 			return Cities [_currentCity];
 		}
-	}
+
+        private bool _checkSufficientResources(System.Type buildingType)
+        {
+            return Controllers.CurrentInfo.SufficientResources(Controllers.ConstantData.BuildingCosts[buildingType]);
+        }
+    }
 }
 

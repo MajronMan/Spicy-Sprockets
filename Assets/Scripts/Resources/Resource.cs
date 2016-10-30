@@ -6,20 +6,15 @@ namespace Assets.Scripts.Resources
     [System.Serializable]
     public class Resource
     {
-		private readonly string _type;
-        private readonly int _massPerUnit;
-		private readonly int _volumePerUnit;
-        private readonly int _defaultPricePerUnit;
+		public readonly string MyType;
+        private int _massPerUnit;
+		private int _volumePerUnit;
+        private int _defaultPricePerUnit;
         private int _quantity;
     
 		public Resource(string type, int quantity)
         {
-			_type = type;
-            //load constant values from world data
-			var resourceTypes = Controllers.ConstantData.ResourceTypes[type];
-			int.TryParse(resourceTypes ["mass"], out _massPerUnit);
-			int.TryParse(resourceTypes ["volume"], out _volumePerUnit);
-			int.TryParse(resourceTypes ["price"], out _defaultPricePerUnit);
+			MyType = type;
             _quantity = quantity;
         }
 
@@ -27,16 +22,36 @@ namespace Assets.Scripts.Resources
         {
             return _quantity;
         }
-            
+
+        public static bool operator >(Resource self, Resource other)
+        {
+            return self.MyType == other.MyType && self._quantity > other._quantity;
+        }
+
+        public static bool operator <(Resource self, Resource other)
+        {
+            return self.MyType == other.MyType && self._quantity < other._quantity;
+        }
+
+        public static bool operator >=(Resource self, Resource other)
+        {
+            return self.MyType == other.MyType && self._quantity >= other._quantity;
+        }
+
+        public static bool operator <=(Resource self, Resource other)
+        {
+            return self.MyType == other.MyType && self._quantity <= other._quantity;
+        }
+
         public static Resource operator +(Resource basicRes, int addedQuantity)
         {
-            return new Resource(basicRes._type, basicRes._quantity + addedQuantity);
+            return new Resource(basicRes.MyType, basicRes._quantity + addedQuantity);
         }
 
         public static Resource operator +(Resource self, Resource other)
         {
-            if (other._type == self._type)
-                return new Resource(self._type, self._quantity + other._quantity);
+            if (other.MyType == self.MyType)
+                return new Resource(self.MyType, self._quantity + other._quantity);
             //else
             Debug.Log("Types don't match");
             return self;
@@ -49,7 +64,7 @@ namespace Assets.Scripts.Resources
                 Debug.Log("Cannot substract");
                 return basicRes;
             }
-            return new Resource(basicRes._type, basicRes._quantity - subtractedQuantity);
+            return new Resource(basicRes.MyType, basicRes._quantity - subtractedQuantity);
         }
 
         public static Resource operator -(Resource self, Resource other)
@@ -59,13 +74,13 @@ namespace Assets.Scripts.Resources
                 Debug.Log("Cannot substract");
                 return self;
             }
-            if (other._type != self._type)
+            if (other.MyType != self.MyType)
             {
                 Debug.Log("Types don't match");
                 return self;
             }
 
-            return new Resource(self._type, self._quantity - other._quantity);
+            return new Resource(self.MyType, self._quantity - other._quantity);
             
         }
 
@@ -82,7 +97,17 @@ namespace Assets.Scripts.Resources
         }
 
 		public override string ToString(){
-			return _quantity.ToString() + " of " + _type;
+			return _quantity.ToString() + " of " + MyType;
 		}
+
+        //be lazy, load data only when needed
+        private void LoadData()
+        {
+            //load constant values from world data
+            var resourceTypes = Controllers.ConstantData.ResourceTypes[MyType];
+            int.TryParse(resourceTypes["mass"], out _massPerUnit);
+            int.TryParse(resourceTypes["volume"], out _volumePerUnit);
+            int.TryParse(resourceTypes["price"], out _defaultPricePerUnit);
+        }
 	}
 }
