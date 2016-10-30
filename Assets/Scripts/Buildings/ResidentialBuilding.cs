@@ -2,20 +2,15 @@
 using Assets.Scripts.Game_Controllers;
 using Assets.Scripts.Resources;
 using Assets.Scripts.Utils;
-using UnityEditor;
-using UnityEngine;
 
 namespace Assets.Scripts.Buildings
 {
-    public  class StorageBuilding : Building
+    public class ResidentialBuilding : Building
     {
-        public Dictionary<string, Resource> Storage;
-
         public override void Start()
         {
-            MySize = BuildingSize.Small;
             base.Start();
-            Controllers.CurrentInfo.ChangeStorageLimit(100);
+            Controllers.CurrentInfo.ChangePopulationLimit(10);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts.Game_Controllers;
 using UnityEngine;
 
 namespace Assets.Scripts.Resources
@@ -20,8 +21,14 @@ namespace Assets.Scripts.Resources
         }
 
         public IEnumerator Grow(){
-            while (true) {
-                Number += Number / 20;
+            while (true)
+            {
+                var growing = Number/20;
+                var space = Controllers.CurrentInfo.GetPopulationLimit() - Number;
+                if (space > growing)
+                    Number += growing;
+                else
+                    Number += space;
                 yield return new WaitForSeconds(1);
             }
         }
