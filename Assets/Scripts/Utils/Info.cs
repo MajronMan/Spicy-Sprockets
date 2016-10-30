@@ -27,6 +27,12 @@ namespace Assets.Scripts.Utils
             set { Resources[key] = value; }
         }
 
+        public Resource this[Resource key]
+        {
+            get { return Resources[key.MyType]; }
+            set { Resources[key.MyType] = value; }
+        }
+
         public bool SufficientResources(List<Resource> costs)
         {
             //no idea again but I hope it works
