@@ -7,32 +7,37 @@ public class Events : MonoBehaviour {
 
     private const int LayerUI = 5;
     private GameObject canvasObject;
-    private bool ActiveEvent = false;
+    private bool _isActive = false;
 
-    void Start ()
+    public void Start ()
     {
         canvasObject = GameObject.Find("UI");
-        StartCoroutine("GetEvent");
+        StartCoroutine(GetEvent(60, 120));
     }
 
-    public IEnumerator GetEvent()
+    /// <summary>
+    /// Use as coroutine to create a new event popup every (minTime, maxTime) seconds 
+    /// </summary>
+    /// <param name="minTime">New event will appear at least after minTime seconds</param>
+    /// <param name="maxTime">New event will appear before maxTime seconds</param>
+    public IEnumerator GetEvent(int minTime, int maxTime)
     {
         while (true)
         {
             yield return new WaitForSeconds(new System.Random().Next(60, 120));
-            if (ActiveEvent == false)
+            if (_isActive == false)
             {
                 Event();
             }
         }
     }
-	
-	void Update ()
-    {
 
-    }
+    /// <summary>
+    /// Creates a new event popup and displays it on screen
+    /// </summary>
     void Event()
     {
+        //needs refactor
         var eventGameObject = new GameObject("EventPanel"); //New event panel
         eventGameObject.transform.SetParent(canvasObject.transform);
         eventGameObject.layer = LayerUI;
@@ -55,7 +60,7 @@ public class Events : MonoBehaviour {
         string spriteFilePath = "Assets/Graphics/Interface graphics&textures/Papier3.png";
         eventGameObject.GetComponent<Image>().sprite = AssetDatabase.LoadAssetAtPath<Sprite>(spriteFilePath);
 
-        ActiveEvent = true;
+        _isActive = true;
 
         var eventButton = new GameObject("EventButton"); //New event button
         eventButton.transform.SetParent(eventGameObject.transform);
@@ -79,7 +84,7 @@ public class Events : MonoBehaviour {
         eventButton.GetComponent<Image>().sprite = AssetDatabase.LoadAssetAtPath<Sprite>(buttonFilePath);
         eventButton.GetComponent<Image>().preserveAspect = true;
 
-        eventButton.GetComponent<Button>().onClick.AddListener(() => { Destroy(eventGameObject); SetEventFalse(); });
+        eventButton.GetComponent<Button>().onClick.AddListener(() => { Destroy(eventGameObject); _setIsActive(false); });
 
         var eventText = new GameObject("EventText"); //New event text
         eventText.transform.SetParent(eventGameObject.transform);
@@ -125,9 +130,9 @@ public class Events : MonoBehaviour {
 
     }
 
-    void SetEventFalse()
+    private void _setIsActive(bool to)
     {
-        ActiveEvent = false;
+        _isActive = to;
     }
 
 }

@@ -23,6 +23,12 @@ namespace Assets.Test.Editor.Resources
             CheckCreatesResources();
         }
 
+        [Test]
+        public void TestLimits()
+        {
+            
+        }
+
         private void SetUp()
         {
             _path = Directory.GetCurrentDirectory() + @"\Assets\Test\Editor\Resources\TestTypes.xml";

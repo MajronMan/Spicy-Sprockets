@@ -51,7 +51,7 @@ namespace Assets.Scripts.Game_Controllers
                 Debug.Log("Insufficient resources!");
                 return;
 		    }
-            _gameMode =new BuildingMode(buildingType, this);
+            _gameMode =new BuildingMode(buildingType);
 		}
 
 		public void EnterDefaultMode()
