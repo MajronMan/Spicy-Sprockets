@@ -124,8 +124,8 @@ RectTransform:
   m_RootOrder: 2
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 43.238983, y: -121.13098}
-  m_SizeDelta: {x: 86.47797, y: 48.452393}
+  m_AnchoredPosition: {x: 24.67183, y: -79.084076}
+  m_SizeDelta: {x: 49.34366, y: 31.63363}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2687957
 MonoBehaviour:
@@ -168,13 +168,13 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2687960}
         m_MethodName: Buy
-        m_Mode: 1
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: metal
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -359,8 +359,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 43.238983, y: -24.226196}
-  m_SizeDelta: {x: 86.47797, y: 48.452393}
+  m_AnchoredPosition: {x: 24.67183, y: -15.816815}
+  m_SizeDelta: {x: 49.34366, y: 31.63363}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &32937510
 MonoBehaviour:
@@ -403,13 +403,13 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 32937513}
         m_MethodName: Buy
-        m_Mode: 1
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: food
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -1738,8 +1738,8 @@ RectTransform:
   m_RootOrder: 5
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 43.238983, y: -266.48816}
-  m_SizeDelta: {x: 86.47797, y: 48.452393}
+  m_AnchoredPosition: {x: 24.67183, y: -173.98497}
+  m_SizeDelta: {x: 49.34366, y: 31.63363}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &245210677
 MonoBehaviour:
@@ -1782,13 +1782,13 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 245210680}
         m_MethodName: Buy
-        m_Mode: 1
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: wood
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -2377,8 +2377,8 @@ RectTransform:
   m_RootOrder: 2
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 43.25997, y: -121.13098}
-  m_SizeDelta: {x: 86.51994, y: 48.452393}
+  m_AnchoredPosition: {x: 24.255402, y: -79.084076}
+  m_SizeDelta: {x: 48.510803, y: 31.63363}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &320361479
 MonoBehaviour:
@@ -2421,13 +2421,13 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 320361482}
         m_MethodName: Sell
-        m_Mode: 1
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: metal
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -2736,8 +2736,8 @@ RectTransform:
   m_RootOrder: 3
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 43.25997, y: -169.58337}
-  m_SizeDelta: {x: 86.51994, y: 48.452393}
+  m_AnchoredPosition: {x: 24.255402, y: -110.71771}
+  m_SizeDelta: {x: 48.510803, y: 31.63363}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &378158349
 MonoBehaviour:
@@ -2780,13 +2780,13 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 378158352}
         m_MethodName: Sell
-        m_Mode: 1
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: mineral
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -3878,8 +3878,8 @@ RectTransform:
   m_RootOrder: 4
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 43.25997, y: -218.03577}
-  m_SizeDelta: {x: 86.51994, y: 48.452393}
+  m_AnchoredPosition: {x: 24.255402, y: -142.35133}
+  m_SizeDelta: {x: 48.510803, y: 31.63363}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &595122424
 MonoBehaviour:
@@ -3922,13 +3922,13 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 595122427}
         m_MethodName: Sell
-        m_Mode: 1
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: stone
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -4011,8 +4011,8 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 43.25997, y: -72.67859}
-  m_SizeDelta: {x: 86.51994, y: 48.452393}
+  m_AnchoredPosition: {x: 24.255402, y: -47.450447}
+  m_SizeDelta: {x: 48.510803, y: 31.63363}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &596662511
 MonoBehaviour:
@@ -4055,13 +4055,13 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 596662514}
         m_MethodName: Sell
-        m_Mode: 1
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: coal
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -4613,8 +4613,8 @@ RectTransform:
   m_RootOrder: 4
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 43.238983, y: -218.03577}
-  m_SizeDelta: {x: 86.47797, y: 48.452393}
+  m_AnchoredPosition: {x: 24.67183, y: -142.35133}
+  m_SizeDelta: {x: 49.34366, y: 31.63363}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &632869188
 MonoBehaviour:
@@ -4657,13 +4657,13 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 632869191}
         m_MethodName: Buy
-        m_Mode: 1
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: stone
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -6387,8 +6387,8 @@ RectTransform:
   m_RootOrder: 3
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 43.238983, y: -169.58337}
-  m_SizeDelta: {x: 86.47797, y: 48.452393}
+  m_AnchoredPosition: {x: 24.67183, y: -110.71771}
+  m_SizeDelta: {x: 49.34366, y: 31.63363}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1107182010
 MonoBehaviour:
@@ -6431,13 +6431,13 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1107182013}
         m_MethodName: Buy
-        m_Mode: 1
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: mineral
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -6520,8 +6520,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 43.25997, y: -24.226196}
-  m_SizeDelta: {x: 86.51994, y: 48.452393}
+  m_AnchoredPosition: {x: 24.255402, y: -15.816815}
+  m_SizeDelta: {x: 48.510803, y: 31.63363}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1179290371
 MonoBehaviour:
@@ -6564,13 +6564,13 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1179290374}
         m_MethodName: Sell
-        m_Mode: 1
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: food
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -8215,8 +8215,8 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 43.238983, y: -72.67859}
-  m_SizeDelta: {x: 86.47797, y: 48.452393}
+  m_AnchoredPosition: {x: 24.67183, y: -47.450447}
+  m_SizeDelta: {x: 49.34366, y: 31.63363}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1646754277
 MonoBehaviour:
@@ -8259,13 +8259,13 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1646754280}
         m_MethodName: Buy
-        m_Mode: 1
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: coal
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -9069,6 +9069,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e66f5bf73b4f0a5488292b10c89d468d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Slider: {fileID: 0}
   value: {fileID: 1849130031}
 --- !u!114 &1849130031
 MonoBehaviour:
@@ -10283,8 +10284,8 @@ RectTransform:
   m_RootOrder: 5
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 43.25997, y: -266.48816}
-  m_SizeDelta: {x: 86.51994, y: 48.452393}
+  m_AnchoredPosition: {x: 24.255402, y: -173.98497}
+  m_SizeDelta: {x: 48.510803, y: 31.63363}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2051628607
 MonoBehaviour:
@@ -10327,13 +10328,13 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2051628610}
         m_MethodName: Sell
-        m_Mode: 1
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: wood
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
