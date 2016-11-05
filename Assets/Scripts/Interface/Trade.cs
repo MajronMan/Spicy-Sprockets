@@ -1,96 +1,143 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
-using System.Collections;
+﻿using Assets.Scripts.Game_Controllers;
 using UnityEditor;
-using Assets.Scripts.Game_Controllers;
+using UnityEngine;
+using UnityEngine.Networking.NetworkSystem;
+using UnityEngine.UI;
 
-public class Trade : MonoBehaviour {
+namespace Assets.Scripts.Interface
+{
+    /// <summary>
+    /// Handles trade panel where player may exchange resources for money
+    /// </summary>
+    public class Trade : MonoBehaviour {
 
-    private GameObject UI;
-    private GameObject TransactionImage;
-    private GameObject ItemImage;
-    private GameObject Slider;
-    private float money;
-    private string Type;
-    private float resource;
+        /// <summary>
+        /// Image of current action (buy/sell)
+        /// </summary>
+        private static Image _transactionImage;
+        /// <summary>
+        /// Image of currently selected resource
+        /// </summary>
+        private static Image _itemImage;
 
-    public void Start()
-    {
-        UI = GameObject.Find("UI").gameObject;
-        TransactionImage = GameObject.Find("TradePanel/Transaction");
-        ItemImage = GameObject.Find("TradePanel/Item");
-        Slider = GameObject.Find("TradePanel/Slider");
-        money = Controllers.CurrentInfo.MyMoney.GetAmount();
-    }
+        /// <summary>
+        /// Sprite displayed when player is buying
+        /// </summary>
+        private static Sprite _sellSprite;
+        /// <summary>
+        /// Sprite displayed when player is selling
+        /// </summary>
+        private static Sprite _buySprite;
 
-    public void Sell()
-    {
-        ItemImage.GetComponent<Image>().sprite = gameObject.GetComponent<Image>().sprite;
-        ItemImage.GetComponent<Image>().preserveAspect = true;
-         
-        TransactionImage.GetComponent<Image>().sprite = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Graphics/Interface graphics&textures/Sell.png");
-        TransactionImage.GetComponent<Image>().preserveAspect = true;
+        private static Text _sliderValue;
+        private static Slider _slider;
 
-        if (ItemImage.GetComponent<Image>().sprite == AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Graphics/Interface graphics&textures/Bread.png"))
+        /// <summary>
+        /// Currently selected resource type
+        /// </summary>
+        private static string _type;
+        private static bool _buying;
+        /// <summary>
+        /// Used to load images and find game objects only once
+        /// </summary>
+        private static bool _firstRun = true;
+        
+        public void Start()
         {
-            Type = "food";
-        }
-        if (ItemImage.GetComponent<Image>().sprite == AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Graphics/Interface graphics&textures/Coal.png"))
-        {
-            Type = "coal";
-        }
-        if (ItemImage.GetComponent<Image>().sprite == AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Graphics/Interface graphics&textures/Metal.png"))
-        {
-            Type = "metal";
-        }
-        if (ItemImage.GetComponent<Image>().sprite == AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Graphics/Interface graphics&textures/Mineral.png"))
-        {
-            Type = "mineral";
-        }
-        if (ItemImage.GetComponent<Image>().sprite == AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Graphics/Interface graphics&textures/Stone.png"))
-        {
-            Type = "stone";
-        }
-        if (ItemImage.GetComponent<Image>().sprite == AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Graphics/Interface graphics&textures/Wood.png"))
-        {
-            Type = "wood";
-        }
+            // Don't load images and stuff each time for each instance of Trade
+            if (!_firstRun) return;
 
-        resource = Controllers.CurrentInfo[Type].GetQuantity();
-        Slider.GetComponent<Slider>().maxValue = resource;
-    }
-    public void Buy()
-    {
-        ItemImage.GetComponent<Image>().sprite = gameObject.GetComponent<Image>().sprite;
-        ItemImage.GetComponent<Image>().preserveAspect = true;
+            _transactionImage = GameObject.Find("TradePanel/Transaction").GetComponent<Image>();
+            _itemImage = GameObject.Find("TradePanel/Item").GetComponent<Image>();
+            _slider = GameObject.Find("TradePanel/Slider").GetComponent<Slider>();
+            _sellSprite = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Graphics/Interface graphics&textures/Sell.png");
+            _buySprite = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Graphics/Interface graphics&textures/Buy.png");
+            _slider.gameObject.SetActive(false);
+            _sliderValue = GameObject.Find("TradePanel/Value").GetComponent<Text>();
 
-        TransactionImage.GetComponent<Image>().sprite = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Graphics/Interface graphics&textures/Buy.png");
-        TransactionImage.GetComponent<Image>().preserveAspect = true;
-
-        Slider.GetComponent<Slider>().maxValue = money;
-    }
-    public void Confirm()
-    {
-        if (TransactionImage.GetComponent<Image>().sprite == AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Graphics/Interface graphics&textures/Buy.png"))
-        {
-            name = "Buy";
-        }
-        if (TransactionImage.GetComponent<Image>().sprite == AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Graphics/Interface graphics&textures/Sell.png"))
-        {
-            name = "Sell";
+            _firstRun = false;
         }
 
-        switch (name)
+        public void Update()
         {
-            case "Sell":
-                resource -= Slider.GetComponent<Slider>().value;
-                money += Slider.GetComponent<Slider>().value;
-                break;
-            case "Buy":
-                money -= Slider.GetComponent<Slider>().value;
-                resource += Slider.GetComponent<Slider>().value;
-                break;
+            if (_slider.IsActive())
+            {
+                var val = (int)_slider.value;
+                _sliderValue.text = val.ToString();
+            }
+            else
+            {
+                _sliderValue.text = "";
+            }
         }
 
+        /// <summary>
+        /// Used after click of resource from 'sell' column
+        /// </summary>
+        /// <param name="which">Type of resource that's sold</param>
+        public void Sell(string which)
+        {
+            _slider.gameObject.SetActive(true);
+            _buying = false;
+            _type = which;
+
+            SetSprites();
+            _slider.maxValue = Controllers.CurrentInfo[_type].GetQuantity();
+        }
+        /// <summary>
+        /// Called after click of resource from 'buy' column
+        /// </summary>
+        /// <param name="which">Type of resource that's bought</param>
+        public void Buy(string which)
+        {
+            _slider.gameObject.SetActive(true);
+            _buying = true;
+            _type = which;
+
+            int price = int.Parse(Controllers.ConstantData.ResourceTypes[_type]["price"]);
+
+            SetSprites();       
+            _slider.maxValue = Controllers.CurrentInfo.MyMoney.GetAmount()/price;
+        }
+        /// <summary>
+        /// Called after click of 'confirm' button
+        /// </summary>
+        public void Confirm()
+        {
+            // get slider value when buying and -slider value when selling
+            int svalue = (int)_slider.value;
+            svalue = _buying ? svalue : -svalue;
+
+            int price = int.Parse(Controllers.ConstantData.ResourceTypes[_type]["price"]);
+           
+            // buy cheap
+            Controllers.CurrentInfo[_type] += svalue;
+            // sell expensive 
+            Controllers.CurrentInfo.MyMoney -= svalue*price;
+            // profit
+
+            SetSprites(true);
+            _slider.gameObject.SetActive(false);
+
+        }
+
+        /// <summary>
+        /// (un)set transaction and image sprite according to currently clicked resource
+        /// </summary>
+        /// <param name="unset">if true, hides sprites</param>
+        private void SetSprites(bool unset = false)
+        {
+            if (unset)
+            {
+                _itemImage.sprite = null;
+                _transactionImage.sprite = null;
+            }
+            else
+            {
+                _itemImage.sprite = GetComponent<Image>().sprite;
+                _transactionImage.sprite = _buying ? _buySprite : _sellSprite;
+                _itemImage.preserveAspect = _transactionImage.preserveAspect = true;
+            }
+        }
     }
 }
