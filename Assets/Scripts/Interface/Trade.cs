@@ -21,11 +21,11 @@ namespace Assets.Scripts.Interface
         private static Image _itemImage;
 
         /// <summary>
-        /// Sprite displayed when player is buying
+        /// Sprite displayed when player is selling
         /// </summary>
         private static Sprite _sellSprite;
         /// <summary>
-        /// Sprite displayed when player is selling
+        /// Sprite displayed when player is buying
         /// </summary>
         private static Sprite _buySprite;
 
@@ -134,6 +134,7 @@ namespace Assets.Scripts.Interface
             }
             else
             {
+                // Sets itemImage sprite to selected image/resource sprite
                 _itemImage.sprite = GetComponent<Image>().sprite;
                 _transactionImage.sprite = _buying ? _buySprite : _sellSprite;
                 _itemImage.preserveAspect = _transactionImage.preserveAspect = true;
