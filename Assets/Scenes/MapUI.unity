@@ -3844,6 +3844,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 030f986c5f617aa4aa113d91c925e3b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eventPrefab: {fileID: 1000013444541684, guid: 4e02d6b5477de824884ad15706b145d0,
+    type: 2}
 --- !u!1 &595122422
 GameObject:
   m_ObjectHideFlags: 0
@@ -9069,8 +9071,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e66f5bf73b4f0a5488292b10c89d468d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Slider: {fileID: 0}
-  value: {fileID: 1849130031}
 --- !u!114 &1849130031
 MonoBehaviour:
   m_ObjectHideFlags: 0
