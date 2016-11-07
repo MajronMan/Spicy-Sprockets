@@ -3846,6 +3846,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eventPrefab: {fileID: 1000013444541684, guid: 4e02d6b5477de824884ad15706b145d0,
     type: 2}
+  eventbuttonPrefab: {fileID: 1000014020670048, guid: eee2788597e401e4184aad17139e4580,
+    type: 2}
 --- !u!1 &595122422
 GameObject:
   m_ObjectHideFlags: 0
