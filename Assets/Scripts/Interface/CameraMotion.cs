@@ -3,15 +3,25 @@ using UnityEngine;
 
 namespace Assets.Scripts.Interface
 {
+    /// <summary>
+    /// Used to control the camera
+    /// </summary>
     public class CameraMotion : MonoBehaviour
     {
+        /// <summary>
+        /// How fast the camera moves
+        /// </summary>
         private float _speed;
+        /// <summary>
+        /// How far from the edge pointer needs to be to move the camera
+        /// </summary>
         private int _boundary;
         private Vector3[] _directions;
+        private Camera MyCamera;
 
         public void Start()
         {
-            _speed = 0.005f;
+            _speed = 0.5f;
             _boundary = 50;
             _directions = new Vector3[4]
             {
@@ -20,20 +30,21 @@ namespace Assets.Scripts.Interface
                 new Vector3(0, -_speed, 0),       //up    
                 new Vector3(0, _speed, 0)       //down
             };
+            MyCamera = GetComponent<Camera>();
         }
 
         public void Update()
         {
-
-            if(Input.GetAxis("Mouse ScrollWheel") > 0 && GetComponent<Camera>().orthographicSize > 5) //zoom
+          
+            if(Input.GetAxis("Mouse ScrollWheel") > 0 && MyCamera.orthographicSize > 5) //zoom
             {
                 GetComponent<Camera>().orthographicSize -= 5;
             }
-            if(Input.GetAxis("Mouse ScrollWheel") < 0 && GetComponent<Camera>().orthographicSize < 35)
+            if(Input.GetAxis("Mouse ScrollWheel") < 0 && MyCamera.orthographicSize < 35)
             {
                 GetComponent<Camera>().orthographicSize += 5;
             }
-
+            /*
             var deltas = new float[]
             {
                 _boundary - Input.mousePosition.x,
@@ -56,6 +67,31 @@ namespace Assets.Scripts.Interface
             if (!Input.GetMouseButton(2)) return;
 
             transform.Rotate(new Vector3(0, 0, Input.GetAxis("Mouse X"))); 
+            */
+            Vector3 newPosition = transform.position;
+           
+            // move camera on arrow keys down
+            if (Input.GetKey("up"))
+            {
+                newPosition.y += _speed;
+            }
+            if (Input.GetKey("down"))
+            {
+                newPosition.y -= _speed;
+            }
+            if (Input.GetKey("left"))
+            {
+                newPosition.x -= _speed;
+            }
+            if (Input.GetKey("right"))
+            {
+                newPosition.x += _speed;
+            }
+            //empirical, should do it in some nicer way
+            if (Math.Abs(newPosition.x-150) < 50 && Math.Abs(newPosition.y-150) < 50)
+            {
+                transform.position = newPosition;
+            }
         }
     }
     

@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace Assets.Scripts.Utils
 {
+    /// <summary>
+    /// General tools
+    /// </summary>
     public static class Util  {
         /// <summary>
         /// Change size of the object to match desired size(in pixels) 

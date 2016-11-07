@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.Resources
 {
+    //luknw will change it so I don't need to write documentation here
     [System.Serializable]
     public class Resource
     {

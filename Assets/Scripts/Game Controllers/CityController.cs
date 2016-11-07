@@ -8,15 +8,20 @@ using UnityEngine.SocialPlatforms;
 namespace Assets.Scripts.Game_Controllers
 {
     /// <summary>
-    /// Retrieves the widget at the specified index
+    /// Manages a single city owned by the player
     /// </summary>
-    /// <param name="widgetIndex">Index of the widget to retrieve.</param>
-    /// <returns>The widget at the specified index</returns>
     public class CityController : MonoBehaviour
     {
+        /// <summary>
+        /// Actual map where the city is built
+        /// </summary>
         public Map MapInstance;
         private BuildingManager _buildingManagerInstance;
+        /// <summary>
+        /// This city's data, e. g. collected resources, population etc.
+        /// </summary>
         public Info MyInfo;
+
         private IntVector2 _mapSize = new IntVector2(10000, 10000);
         public List<Source> Sources = new List<Source>();
 
@@ -42,7 +47,7 @@ namespace Assets.Scripts.Game_Controllers
             _buildingManagerInstance.transform.SetParent(transform);
             _buildingManagerInstance.SetMapInstance(MapInstance);
             // create basic information container for this city
-            MyInfo = new Info();
+            MyInfo = new Info(this);
             CreateSources();
         }
 
@@ -62,15 +67,15 @@ namespace Assets.Scripts.Game_Controllers
             var ymax = mrenderer.bounds.size.y/2;
             for (var i = 0; i < 20; i++)
             {
-                var go = new GameObject("Source " + i);
+                var sourceGameObject = new GameObject("Source " + i);
                 // remember the source which is a script attatched to new game object
-                Sources.Add(go.AddComponent<Source>());
-                go.transform.SetParent(MapInstance.transform);
+                Sources.Add(sourceGameObject.AddComponent<Source>());
+                sourceGameObject.transform.SetParent(MapInstance.transform);
                 // find a random place for this source
-                go.transform.localPosition = Vector3.zero;
+                sourceGameObject.transform.localPosition = Vector3.zero;
                 var x = Random.Range(-xmax, xmax);
                 var y = Random.Range(-ymax, ymax);
-                go.transform.Translate(x, y, 0);
+                sourceGameObject.transform.Translate(x, y, 0);
             }
         }
     }

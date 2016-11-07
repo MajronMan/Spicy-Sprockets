@@ -5,11 +5,17 @@ using Random = System.Random;
 
 namespace Assets.Scripts.Sources_of_Resources
 {
+    /// <summary>
+    /// A general concept of something which gives resources
+    /// </summary>
     public class Source : MonoBehaviour
     {
         public string MyResource;
         //Colliders are troublesome
         public float Radius;
+        /// <summary>
+        /// How much of resource it yields
+        /// </summary>
         public int Magnitude;
 
         public void Start()

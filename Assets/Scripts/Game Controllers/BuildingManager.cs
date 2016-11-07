@@ -32,21 +32,18 @@ namespace Assets.Scripts.Game_Controllers
         public Building Build(System.Type buildingType, Vector3 location)
         {
             // create a new game object which behaviour is defined by buldingType's script and renders a sprite
-            var go = new GameObject("Building", buildingType, typeof(SpriteRenderer));
-            // actual building is the script attatched to game object
-            var newBuilding = go.GetComponent<Building>();
+            var buildingGameObject = new GameObject("Building", buildingType, typeof(SpriteRenderer));
+            var newBuilding = buildingGameObject.GetComponent<Building>();
             // building should appear at given location on screen, which is not the same as its world location
             var buildingPosition = Camera.main.ScreenToWorldPoint(location);
             // to set proper order of sprites rendered
             buildingPosition.z = 0;
-            // set position to desired one
             newBuilding.transform.position = buildingPosition;
-            // make the building a child of the map
             newBuilding.transform.SetParent(_mapInstance.transform, true);
             // remember we built it
             Built.Add(newBuilding);
 
-            // take building cost from  the storage
+            // take building cost from the storage
             Controllers.CurrentInfo.BuildingCosts(buildingType);
             return newBuilding;
         }

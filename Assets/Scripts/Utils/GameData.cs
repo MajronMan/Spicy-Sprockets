@@ -10,8 +10,13 @@ using UnityEngine;
 
 namespace Assets.Scripts.Utils
 {
+    /// <summary>
+    /// Data that's constant through the entire game
+    /// </summary>
     public class GameData
     {
+        //is a mess, needs refactor
+
         public Dictionary<string, Dictionary<string, string>> ResourceTypes = new Dictionary<string, Dictionary<string, string>>();
         public Dictionary<System.Type, Sprite> BuildingData = new Dictionary<Type, Sprite>();
         public Dictionary<System.Type, List<Resource>> BuildingCosts = new Dictionary<Type, List<Resource>>();

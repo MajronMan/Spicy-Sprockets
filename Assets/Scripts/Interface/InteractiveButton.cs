@@ -43,6 +43,7 @@ namespace Assets.Scripts.Interface
         private bool clicked = false;
         private bool buttonsDisabled = false;
 
+        // Needs big refactor
         public void Start()
         {
             UI = GameObject.Find("UI").gameObject;
