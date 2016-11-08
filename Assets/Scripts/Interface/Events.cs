@@ -8,6 +8,7 @@ using UnityEditor;
 /// </summary>
 public class Events : MonoBehaviour {
 
+    public GameObject Content;
     private bool ActiveEvent = false;
     public GameObject eventPrefab;
     public GameObject eventbuttonPrefab;
@@ -51,8 +52,19 @@ public class Events : MonoBehaviour {
         OptionInstance.transform.SetParent(EventInstance.transform.Find("Options"), false);
         OptionInstance.name = "Option";
         OptionInstance.GetComponent<Button>().onClick.AddListener(() => { Destroy(EventInstance); SetEventFalse(); }); //On click function which closes event for now
+
+        News();
     }
 
+    /// <summary>
+    /// A method used to save last events to the newspaper in the info panel
+    /// </summary>
+    void News() //It's just a stub
+    {
+        GameObject NewsInstance = Instantiate(eventPrefab) as GameObject;
+        NewsInstance.transform.SetParent(Content.transform, false);
+        NewsInstance.name = "News";
+    }
     /// <summary>
     /// Used in onClick function, permits to open new event
     /// </summary>
