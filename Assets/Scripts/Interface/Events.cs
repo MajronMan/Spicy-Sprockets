@@ -3,18 +3,24 @@ using UnityEngine.UI;
 using System.Collections;
 using UnityEditor;
 
+/// <summary>
+/// Creates random game events
+/// </summary>
 public class Events : MonoBehaviour {
 
-    private const int LayerUI = 5;
-    private GameObject canvasObject;
+    public GameObject Content;
     private bool ActiveEvent = false;
+    public GameObject eventPrefab;
+    public GameObject eventbuttonPrefab;
 
     void Start ()
     {
-        canvasObject = GameObject.Find("UI");
         StartCoroutine("GetEvent");
     }
 
+    /// <summary>
+    /// Uses Event() method after random amount of time
+    /// </summary>
     public IEnumerator GetEvent()
     {
         while (true)
@@ -26,105 +32,42 @@ public class Events : MonoBehaviour {
             }
         }
     }
-	
-	void Update ()
-    {
 
-    }
+    /// <summary>
+    /// A method used to create new event panel from a prefab
+    /// </summary>
     void Event()
     {
-        var eventGameObject = new GameObject("EventPanel"); //New event panel
-        eventGameObject.transform.SetParent(canvasObject.transform);
-        eventGameObject.layer = LayerUI;
+        ActiveEvent = true; //Prevents from opening new event when other is active
 
-        RectTransform trans = eventGameObject.AddComponent<RectTransform>();
-        trans.anchorMin = new Vector2(0, 0);
-        trans.anchorMax = new Vector2(1, 1);
-        trans.anchoredPosition3D = new Vector3(0, 0, 0);
-        trans.anchoredPosition = new Vector2(0, 0);
-        trans.offsetMin = new Vector2(0, 0);
-        trans.offsetMax = new Vector2(0, 0);
-        trans.localPosition = new Vector3(0, 0, 0);
-        trans.sizeDelta = new Vector2(0, 0);
-        trans.localScale = new Vector3(0.4f, 0.8f, 1.0f);
-        eventGameObject.AddComponent<CanvasRenderer>();
+        GameObject EventInstance = Instantiate(eventPrefab) as GameObject; //New instance of event panel
+        EventInstance.transform.SetParent(transform, false); //Somehow it sets prefab position where it used to be when it was GameObject
+        EventInstance.name = "EventPanel";
 
-        Image i = eventGameObject.AddComponent<Image>();
-        i.color = Color.white;
+        //TODO: Here there would be reading information from a file and loading it into panel elements like text, title and image
 
-        string spriteFilePath = "Assets/Graphics/Interface graphics&textures/Papier3.png";
-        eventGameObject.GetComponent<Image>().sprite = AssetDatabase.LoadAssetAtPath<Sprite>(spriteFilePath);
+        //TODO: Here there would be reading button options from file and also creating earlier defined amount of options
+        //for(int i=1, i<=options i++){}
+        GameObject OptionInstance = Instantiate(eventbuttonPrefab) as GameObject; //New instance of event option button
+        OptionInstance.transform.SetParent(EventInstance.transform.Find("Options"), false);
+        OptionInstance.name = "Option";
+        OptionInstance.GetComponent<Button>().onClick.AddListener(() => { Destroy(EventInstance); SetEventFalse(); }); //On click function which closes event for now
 
-        ActiveEvent = true;
-
-        var eventButton = new GameObject("EventButton"); //New event button
-        eventButton.transform.SetParent(eventGameObject.transform);
-        eventButton.layer = LayerUI;
-
-        RectTransform buttontrans = eventButton.AddComponent<RectTransform>();
-        buttontrans.anchorMin = new Vector2(0, 0);
-        buttontrans.anchorMax = new Vector2(1, 1);
-        buttontrans.anchoredPosition3D = new Vector3(0, 0, 0);
-        buttontrans.anchoredPosition = new Vector2(0, 0);
-        buttontrans.offsetMin = new Vector2(0, 0);
-        buttontrans.offsetMax = new Vector2(0, 0);
-        buttontrans.localPosition = new Vector3(0, -200, 0);
-        buttontrans.sizeDelta = new Vector2(0, 0);
-        buttontrans.localScale = new Vector3(0.4f, 0.2f, 0);
-        eventButton.AddComponent<CanvasRenderer>();
-        eventButton.AddComponent<Image>();
-        eventButton.AddComponent<Button>();
-
-        string buttonFilePath = "Assets/Graphics/Interface graphics&textures/Zarys.png";
-        eventButton.GetComponent<Image>().sprite = AssetDatabase.LoadAssetAtPath<Sprite>(buttonFilePath);
-        eventButton.GetComponent<Image>().preserveAspect = true;
-
-        eventButton.GetComponent<Button>().onClick.AddListener(() => { Destroy(eventGameObject); SetEventFalse(); });
-
-        var eventText = new GameObject("EventText"); //New event text
-        eventText.transform.SetParent(eventGameObject.transform);
-        eventText.layer = LayerUI;
-
-        RectTransform texttrans = eventText.AddComponent<RectTransform>();
-        texttrans.anchorMin = new Vector2(0, 0);
-        texttrans.anchorMax = new Vector2(1, 1);
-        texttrans.anchoredPosition3D = new Vector3(0, 0, 0);
-        texttrans.anchoredPosition = new Vector2(0, 0);
-        texttrans.offsetMin = new Vector2(0, 0);
-        texttrans.offsetMax = new Vector2(0, 0);
-        texttrans.localPosition = new Vector3(0, -65, 0);
-        texttrans.sizeDelta = new Vector2(0, 0);
-        texttrans.localScale = new Vector3(0.85f, 0.3f, 0);
-        eventText.AddComponent<CanvasRenderer>();
-        eventText.AddComponent<Text>();
-
-        eventText.GetComponent<Text>().text = "Zrób tutorial do gita ;_;";
-        eventText.GetComponent<Text>().color = Color.black;
-        eventText.GetComponent<Text>().font = AssetDatabase.LoadAssetAtPath<Font>("Assets/Data/Fonts/utsaah.ttf");
-        eventText.GetComponent<Text>().fontSize = 130;
-
-        var eventImage = new GameObject("EventImage"); //New event image
-        eventImage.transform.SetParent(eventGameObject.transform);
-        eventImage.layer = LayerUI;
-
-        RectTransform imagetrans = eventImage.AddComponent<RectTransform>();
-        imagetrans.anchorMin = new Vector2(0, 0);
-        imagetrans.anchorMax = new Vector2(1, 1);
-        imagetrans.anchoredPosition3D = new Vector3(0, 0, 0);
-        imagetrans.anchoredPosition = new Vector2(0, 0);
-        imagetrans.offsetMin = new Vector2(0, 0);
-        imagetrans.offsetMax = new Vector2(0, 0);
-        imagetrans.localPosition = new Vector3(0, 165, 0);
-        imagetrans.sizeDelta = new Vector2(0, 0);
-        imagetrans.localScale = new Vector3(0.85f, 0.4f, 0);
-        eventImage.AddComponent<CanvasRenderer>();
-        eventImage.AddComponent<Image>();
-
-        string eventimageFilePath = "Assets/Graphics/Interface graphics&textures/Event.png";
-        eventImage.GetComponent<Image>().sprite = AssetDatabase.LoadAssetAtPath<Sprite>(eventimageFilePath);
-
+        News();
     }
 
+    /// <summary>
+    /// A method used to save last events to the newspaper in the info panel
+    /// </summary>
+    void News() //It's just a stub
+    {
+        GameObject NewsInstance = Instantiate(eventPrefab) as GameObject;
+        NewsInstance.transform.SetParent(Content.transform, false);
+        NewsInstance.name = "News";
+    }
+    /// <summary>
+    /// Used in onClick function, permits to open new event
+    /// </summary>
     void SetEventFalse()
     {
         ActiveEvent = false;
