@@ -3,6 +3,9 @@ using UnityEngine.UI;
 using System.Collections;
 using UnityEditor;
 
+/// <summary>
+/// Creates random game events
+/// </summary>
 public class Events : MonoBehaviour {
 
     private bool ActiveEvent = false;
@@ -45,7 +48,7 @@ public class Events : MonoBehaviour {
         //TODO: Here there would be reading button options from file and also creating earlier defined amount of options
         //for(int i=1, i<=options i++){}
         GameObject OptionInstance = Instantiate(eventbuttonPrefab) as GameObject; //New instance of event option button
-        OptionInstance.transform.SetParent(EventInstance.transform, false);
+        OptionInstance.transform.SetParent(EventInstance.transform.Find("Options"), false);
         OptionInstance.name = "Option";
         OptionInstance.GetComponent<Button>().onClick.AddListener(() => { Destroy(EventInstance); SetEventFalse(); }); //On click function which closes event for now
     }
