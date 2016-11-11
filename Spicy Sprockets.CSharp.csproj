@@ -99,8 +99,9 @@
     <Compile Include="Assets\Scripts\Interface\Map.cs" />
     <Compile Include="Assets\Scripts\Interface\ResourceData.cs" />
     <Compile Include="Assets\Scripts\Interface\Timer.cs" />
-    <Compile Include="Assets\Scripts\Interface\ToggleLocalMap.cs" />
+    <Compile Include="Assets\Scripts\Interface\ToggleMap.cs" />
     <Compile Include="Assets\Scripts\Interface\Trade.cs" />
+    <Compile Include="Assets\Scripts\MapGenerator\SourcesGenerator.cs" />
     <Compile Include="Assets\Scripts\Resources\Money.cs" />
     <Compile Include="Assets\Scripts\Resources\Population.cs" />
     <Compile Include="Assets\Scripts\Resources\Resource.cs" />

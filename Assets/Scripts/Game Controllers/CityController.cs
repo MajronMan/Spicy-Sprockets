@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Assets.Scripts.Interface;
+using Assets.Scripts.MapGenerator;
 using Assets.Scripts.Sources_of_Resources;
 using Assets.Scripts.Utils;
 using UnityEditor;
@@ -14,7 +15,6 @@ namespace Assets.Scripts.Game_Controllers
         private BuildingManager _buildingManagerInstance;
         public Info MyInfo;
         private IntVector2 _mapSize = new IntVector2(10000, 10000);
-        public List<Source> Sources = new List<Source>();
 
         public void BeginGame(Map mapPrefab)
         {
@@ -30,34 +30,12 @@ namespace Assets.Scripts.Game_Controllers
             _buildingManagerInstance.transform.SetParent(transform);
             _buildingManagerInstance.SetMapInstance(MapInstance);
             MyInfo = new Info();
-            CreateSources();
+            SourcesGenerator.Generate(MapInstance);
         }
 
         public BuildingManager GetBuildingManager()
         {
             return _buildingManagerInstance;
-        }
-
-        public void CreateSources()
-        {
-            Sprite sourceSprite = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Graphics/Buildings/Source.png");
-            var mrenderer = MapInstance.GetComponent<Renderer>();
-            var xmax = mrenderer.bounds.size.x/2;
-            var ymax = mrenderer.bounds.size.y/2;
-            for (var i = 0; i < 20; i++)
-            {
-                var go = new GameObject("Source " + i);
-                Sources.Add(go.AddComponent<Source>());
-                var srenderer = go.AddComponent<SpriteRenderer>();
-                srenderer.sprite = sourceSprite;
-                srenderer.sortingOrder = 1;
-                Util.Rescale(srenderer, 50, 50);
-                go.transform.SetParent(MapInstance.transform);
-                go.transform.localPosition = new Vector3(xmax, ymax, 0);
-                var x = Random.Range(-xmax, xmax);
-                var y = Random.Range(-ymax, ymax);
-                go.transform.Translate(x, y, 0);
-            }
         }
     }
 }

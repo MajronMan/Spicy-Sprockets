@@ -1,10 +1,14 @@
-﻿using Assets.Scripts.Game_Controllers;
+﻿using System.Collections.Generic;
+using Assets.Scripts.Game_Controllers;
+using Assets.Scripts.Sources_of_Resources;
 using UnityEngine;
 
 namespace Assets.Scripts.Interface
 {
     public class Map : MonoBehaviour
     {
+        public List<Source> Sources = new List<Source>();
+
         public void Start ()
         {
             Physics.queriesHitTriggers = true;

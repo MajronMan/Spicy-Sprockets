@@ -20,7 +20,7 @@ namespace Assets.Scripts.Buildings
         {
             base.Start();
    
-            foreach (var source in Controllers.CurrentCityController.Sources)
+            foreach (var source in Controllers.CurrentCityController.MapInstance.Sources)
             {
                 if (Vector3.Distance(source.transform.position, transform.position) < Radius && source.MyResource == GatheredResource)
                 {
