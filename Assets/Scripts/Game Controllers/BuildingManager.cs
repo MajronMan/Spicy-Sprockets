@@ -19,8 +19,22 @@ namespace Assets.Scripts.Game_Controllers
             var newBuilding = go.GetComponent<Building>();
             var buildingPosition = Camera.main.ScreenToWorldPoint(location);
             buildingPosition.z = 0;
+            go.layer = 8;
+            go.AddComponent<BoxCollider2D>();
+            var newCollider = go.GetComponent<BoxCollider2D>();
+            newCollider.transform.localPosition = new Vector2(0, 0);
+            newCollider.transform.SetParent(_mapInstance.transform, true);
+            
+            newCollider.enabled = true;
+            newCollider.isTrigger = false;
+            //need to change it so that size depends on building type 
+            //(couldn't make it work with sprite sizes, will look into it as well)
+            newCollider.size = new Vector2(4,2);
+            
+
             newBuilding.transform.position = buildingPosition;
             newBuilding.transform.SetParent(_mapInstance.transform, true);
+
             Built.Add(newBuilding);
 
             Controllers.CurrentInfo.BuildingCosts(buildingType);

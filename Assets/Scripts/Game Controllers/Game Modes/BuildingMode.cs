@@ -5,6 +5,7 @@ using Assets.Scripts.Utils;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
+
 namespace Assets.Scripts.Game_Controllers.Game_Modes
 {
     public class BuildingMode : IGameMode
@@ -26,10 +27,43 @@ namespace Assets.Scripts.Game_Controllers.Game_Modes
             Exit();
         }
 
+        private bool Overlaps(Vector2 where, System.Type what)
+        {
+            //need to replace 20 with size of buildings of type what - xsize/20 and ysize/2
+            
+            if (Physics2D.OverlapArea(new Vector2((where.x-10f), (where.y+10f)), new Vector2((where.x + 10f), (where.y - 10f)),8) == null)
+                return false;
+            else
+                return true;
+        }
+
+        //feedback todo
+        private void CantBuildShit (string why, Vector2 where)
+        {
+            switch (why)
+            {
+                case "overlap":
+                    break;
+                default:
+                    return;
+                
+            }
+
+        }
+        
+
         public void LeftMouseClicked()
         {
-            Controllers.CurrentBuildingManager.Build(ToBeBuiltType, new Vector3(Input.mousePosition.x, Input.mousePosition.y, 20));
-            Exit();
+            
+            if (Overlaps(new Vector2(Input.mousePosition.x, Input.mousePosition.y), ToBeBuiltType))
+            {
+                CantBuildShit("overlap", new Vector2 (Input.mousePosition.x, Input.mousePosition.y));
+            }
+            else
+            {
+                Controllers.CurrentBuildingManager.Build(ToBeBuiltType, new Vector3(Input.mousePosition.x, Input.mousePosition.y, 20));
+                Exit();
+            }
         }
 
         public void Update()
