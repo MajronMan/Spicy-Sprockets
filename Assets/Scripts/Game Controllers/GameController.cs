@@ -6,9 +6,11 @@ using UnityEngine;
 
 namespace Assets.Scripts.Game_Controllers
 {
+    /// <summary>
+    /// Main class used to control diplomacy, all local maps (controlled by CityController), all enemy cities (EnemyControllers) 
+    /// </summary>
     public class GameController: MonoBehaviour
 	{
-		//Main class used to control diplomacy, all local maps (controlled by CityController), all enemy cities (EnemyControllers) 
 		public List<CityController> Cities = new List<CityController>();
 		public List<EnemyController> Enemies = new List<EnemyController>();
 		public Map MapPrefab;
@@ -51,7 +53,7 @@ namespace Assets.Scripts.Game_Controllers
                 Debug.Log("Insufficient resources!");
                 return;
 		    }
-            _gameMode =new BuildingMode(buildingType, this);
+            _gameMode =new BuildingMode(buildingType);
 		}
 
 		public void EnterDefaultMode()

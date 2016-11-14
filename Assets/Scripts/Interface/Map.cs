@@ -5,17 +5,16 @@ using UnityEngine;
 
 namespace Assets.Scripts.Interface
 {
+    /// <summary>
+    /// Controls the behaviour of a single map upon which a city is built
+    /// </summary>
     public class Map : MonoBehaviour
     {
         public List<Source> Sources = new List<Source>();
 
-        public void Start ()
-        {
-            Physics.queriesHitTriggers = true;
-        }
-
         public void OnMouseDown()
         {
+            //behave properly according to game mode
             if (Input.GetMouseButtonDown(0))
             {
                 Controllers.CurrentGameMode.LeftMouseClicked();

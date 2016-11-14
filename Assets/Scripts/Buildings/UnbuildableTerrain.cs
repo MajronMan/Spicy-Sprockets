@@ -2,6 +2,9 @@
 
 namespace Assets.Scripts.Buildings
 {
+    /// <summary>
+    /// A class that is supposed to prevent building in certain place
+    /// </summary>
     public class UnbuildableTerrain : MonoBehaviour
     {
 
