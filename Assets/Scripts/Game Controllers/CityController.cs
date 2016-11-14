@@ -15,10 +15,9 @@ namespace Assets.Scripts.Game_Controllers
         private BuildingManager _buildingManagerInstance;
         public Info MyInfo;
         private IntVector2 _mapSize = new IntVector2(10000, 10000);
-
-        public void BeginGame(Map mapPrefab)
+        
+        public void CreateCity(Map mapPrefab)
         {
-            
             var mapPosition = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width/2, Screen.height/2));
             mapPosition.z = 0;
             MapInstance = Instantiate(mapPrefab, mapPosition, transform.rotation) as Map;
