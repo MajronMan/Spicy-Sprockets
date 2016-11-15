@@ -35,17 +35,16 @@ public class Collider : MonoBehaviour {
     {
         to.AddComponent<Rigidbody2D>();
         var newRigidBody = to.GetComponent<Rigidbody2D>();
-        
-        newRigidBody.angularDrag = 0;
-        newRigidBody.angularVelocity = 0;
-        newRigidBody.constraints = 0;
-        newRigidBody.drag = 0;
-        newRigidBody.inertia = 0;
+        //newRigidBody.angularDrag = 0;
+        //newRigidBody.angularVelocity = 0;
+        //newRigidBody.constraints = 0;
+        //newRigidBody.drag = 0;
+        //newRigidBody.inertia = 0;
         newRigidBody.gravityScale = 0;
         newRigidBody.freezeRotation = true;
         newRigidBody.mass = 0;
         newRigidBody.rotation = 0;
-        //newRigidBody.simulated = false;*/
+        //newRigidBody.simulated = false;
         return newRigidBody;
     }
 
