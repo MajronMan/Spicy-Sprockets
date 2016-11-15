@@ -5,8 +5,12 @@ using UnityEngine;
 
 namespace Assets.Scripts.Resources
 {
+    /// <summary>
+    /// People living in a certain city
+    /// </summary>
     public class Population : MonoBehaviour {
         public int Number = 100;
+        // Those are just stubs for actual statistics
         public float Hygiene = 0.1f;
         public Dictionary<string, float> Religions = new Dictionary<string, float>();
         public Dictionary<string, float> Cultures = new Dictionary<string, float>();
@@ -20,6 +24,9 @@ namespace Assets.Scripts.Resources
             Cultures.Add ("Hindu", 1.0f);
         }
 
+        /// <summary>
+        /// Increase the population in a regular manner
+        /// </summary>
         public IEnumerator Grow(){
             while (true)
             {

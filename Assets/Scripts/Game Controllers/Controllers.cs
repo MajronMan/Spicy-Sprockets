@@ -6,14 +6,27 @@ using UnityEngine;
 
 namespace Assets.Scripts.Game_Controllers
 {
+    /// <summary>
+    /// Implements singleton pattern to make controllers available globally, without passing references everywhere
+    /// </summary>
     public sealed class Controllers
     {
-        private readonly GameController _gameController;
-        private static readonly GameData Data = new GameData();
-        private static readonly Controllers Instance = new Controllers();
+        /// <summary>
+        /// The controller that defines game behaviour
+        /// </summary>
+        private GameController _gameController;
+        /// <summary>
+        /// Data that does not change throughout the game, loaded from file
+        /// </summary>
+        private static GameData Data = new GameData();
+        /// <summary>
+        /// Implementation of singleton
+        /// </summary>
+        private static Controllers Instance = new Controllers();
 
         private Controllers()
         {
+            // create a new game object with behaviour defined in GameController script
             var gameObject = new GameObject("Game Controller", typeof(GameController));
             _gameController = gameObject.GetComponent<GameController>();
             _gameController.MapPrefab = AssetDatabase.LoadAssetAtPath(@"Assets\Prefabs\Map.prefab", typeof(Map)) as Map;

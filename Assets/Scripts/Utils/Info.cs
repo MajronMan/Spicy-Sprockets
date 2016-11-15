@@ -9,15 +9,24 @@ using UnityEngine;
 
 namespace Assets.Scripts.Utils
 {
+    /// <summary>
+    /// Contains variable data about a single city
+    /// </summary>
     public class Info {
         public Dictionary<string, Resource> Resources = new Dictionary<string, Resource>();
         public Population ThePeople;
         public Money MyMoney = new Money();
         public int CurrentStorageVolume;
+        public CityController MyCity;
 
         //maybe later use given limits from file or depending on sth
         private int _maxStorageVolume = 10000;
         private int _maxPopulation = 200;
+
+        public Info(CityController cityController)
+        {
+            MyCity = cityController;
+        }
 
         public void LoadInitialResources(Dictionary<string, Dictionary<string, string>> resourceTypes)
         {
@@ -28,6 +37,7 @@ namespace Assets.Scripts.Utils
                 CurrentStorageVolume += res.GetVolume();
             }
             var gameObject = new GameObject("People", typeof(Population));
+            gameObject.transform.SetParent(MyCity.transform);
             ThePeople = gameObject.GetComponent<Population>();
         }
 
