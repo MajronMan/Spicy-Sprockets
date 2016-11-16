@@ -24,7 +24,7 @@ namespace Assets.Scripts.Buildings
         /// GetComponent takes too much time
         /// </summary>
         public SpriteRenderer MyRenderer;
-        public bool Collides = false;
+        public int Collides = 0;
         public virtual void Start()
         {
             SetSprite(GetType());
@@ -46,12 +46,12 @@ namespace Assets.Scripts.Buildings
 
         void OnCollisionExit2D()
         {
-            Collides = false;
+            Collides --;
         }
         
-        void OnCollisionStay2D()
+        void OnCollisionEnter2D()
         {   
-            Collides = true;
+            Collides ++;
         }
         
     }   

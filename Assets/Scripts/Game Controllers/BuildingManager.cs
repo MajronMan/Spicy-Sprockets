@@ -36,22 +36,16 @@ namespace Assets.Scripts.Game_Controllers
             var newBuilding = buildingGameObject.GetComponent<Building>();
             // building should appear at given location on screen, which is not the same as its world location
             var buildingPosition = Camera.main.ScreenToWorldPoint(location);
-<<<<<<< HEAD
-            buildingPosition.z = 2;
-            
-            //need to find a way to get size dependant on building
-            Collider.addCollider(go, new Vector2(2, 1), buildingPosition, _mapInstance.transform);
 
-            newBuilding.transform.position = buildingPosition;
-            newBuilding.transform.SetParent(_mapInstance.transform, true);
-
-=======
             // to set proper order of sprites rendered
             buildingPosition.z = 0;
+
+            //need to find a way to get size dependant on building
+            Collider.addCollider(buildingGameObject, new Vector2(2, 1), buildingPosition, _mapInstance.transform);
+
             newBuilding.transform.position = buildingPosition;
             newBuilding.transform.SetParent(_mapInstance.transform, true);
             // remember we built it
->>>>>>> origin/develop
             Built.Add(newBuilding);
 
             // take building cost from the storage
