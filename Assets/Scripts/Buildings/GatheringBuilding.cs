@@ -27,6 +27,19 @@ namespace Assets.Scripts.Buildings
         /// How far sources may be to be reachable
         /// </summary>
         public float Radius;
+        /// <summary>
+        /// The list of employees this building has
+        /// </summary>
+        public int CurrentStaff;
+        /// <summary>
+        /// The maximum of emplyees this building can hold
+        /// </summary>
+        public int MaxStaff = 50;
+        /// <summary>
+        /// Minimum staff, required to keep building working
+        /// </summary>
+        public int MinStaff = 10;
+        private Population ThePeople;
 
         public override void Start()
         {
@@ -41,6 +54,8 @@ namespace Assets.Scripts.Buildings
                     Sources.Add(source);
                 }
             }
+            ThePeople = Controllers.CurrentInfo.ThePeople;
+
             // don't gather if there are no nearby sources
             if(Sources.Count > 0)
                 StartCoroutine("Gather");
@@ -57,6 +72,13 @@ namespace Assets.Scripts.Buildings
                 //wait for next turn of gathering
                 yield return new WaitForSeconds(1.0f);
             }
+        }
+        /// <summary>
+        /// checks if we can build it, based on the population
+        /// </summary>
+        protected void CheckPossibleStaff()
+        {
+
         }
     }
 }
