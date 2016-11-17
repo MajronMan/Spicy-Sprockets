@@ -10,6 +10,8 @@ namespace Assets.Scripts.Resources
     /// </summary>
     public class Population : MonoBehaviour {
         public int Number = 100;
+        //There is no actual class Statistics, so I'm making a mock for real employment check
+        public int employed = 0;
         // Those are just stubs for actual statistics
         public float Hygiene = 0.1f;
         public Dictionary<string, float> Religions = new Dictionary<string, float>();
@@ -38,6 +40,19 @@ namespace Assets.Scripts.Resources
                     Number += space;
                 yield return new WaitForSeconds(1);
             }
+        }
+
+        public void Employ(int workers)
+        {
+            employed += workers;
+        }
+
+        //returns true if there are enough workers for basic tasks
+        public bool CheckEmployment(int potentialWorkers)
+        {
+            if (employed + potentialWorkers > Number)
+                return false;
+            return true;
         }
     }
 }

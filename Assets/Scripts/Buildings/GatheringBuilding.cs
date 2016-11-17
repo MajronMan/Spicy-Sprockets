@@ -40,6 +40,11 @@ namespace Assets.Scripts.Buildings
         /// </summary>
         public int MinStaff = 10;
         private Population ThePeople;
+        //I need it to check if gather is working
+        private bool GatherRunning = false;
+        //maybe someone will change it later, for now I think it looks pretty
+        private BuildingPanel panel;
+        public BuildingPanel prefab;
 
         public override void Start()
         {
@@ -54,11 +59,48 @@ namespace Assets.Scripts.Buildings
                     Sources.Add(source);
                 }
             }
+            //employing staff
             ThePeople = Controllers.CurrentInfo.ThePeople;
+            if(Controllers.CurrentInfo.ThePeople.CheckEmployment(MinStaff))
+            {
+                Controllers.CurrentInfo.ThePeople.Employ(MinStaff);
+                CurrentStaff = MinStaff;
+            }
+            panel = Instantiate(prefab);
+            panel.motherBuilding = this;
 
             // don't gather if there are no nearby sources
-            if(Sources.Count > 0)
+            if (Sources.Count > 0 && CurrentStaff>=MinStaff)
+            {
                 StartCoroutine("Gather");
+                GatherRunning = true;
+            }
+        }
+
+        //will gather only if manned
+        public void Update()
+        {
+            if (CurrentStaff < MinStaff)
+            {
+                StopCoroutine("Gather");
+                GatherRunning = false;
+            }
+            if(!GatherRunning)
+                if (CurrentStaff >= MinStaff)
+                {
+                    StartCoroutine("Gather");
+                    GatherRunning = true;
+                }
+        }
+
+        //used to hire and fire
+        public void ManageStaff(int newStaff)
+        {
+            if (newStaff <= MaxStaff)
+            {
+                CurrentStaff = newStaff;
+            }
+
         }
 
         public IEnumerator Gather()
@@ -72,13 +114,6 @@ namespace Assets.Scripts.Buildings
                 //wait for next turn of gathering
                 yield return new WaitForSeconds(1.0f);
             }
-        }
-        /// <summary>
-        /// checks if we can build it, based on the population
-        /// </summary>
-        protected void CheckPossibleStaff()
-        {
-
         }
     }
 }
