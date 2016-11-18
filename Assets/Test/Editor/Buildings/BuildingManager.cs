@@ -5,7 +5,7 @@ using Assets.Scripts.Interface;
 using NUnit.Framework;
 using UnityEngine;
 
-namespace Assets.Test.Building.Editor.Buildings
+namespace Assets.Test.Editor.Buildings
 {
     public class BuildingManagerTestCase {
         private GameObject _gameObject;

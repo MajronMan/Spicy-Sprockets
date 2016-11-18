@@ -10,8 +10,13 @@ using UnityEngine;
 
 namespace Assets.Scripts.Utils
 {
+    /// <summary>
+    /// Data that's constant through the entire game
+    /// </summary>
     public class GameData
-    {
+    {       
+        //is a mess, needs refactor
+        public Dictionary<string, Sprite> SourceSprites = new Dictionary<string, Sprite>();
         public Dictionary<string, Dictionary<string, string>> ResourceTypes = new Dictionary<string, Dictionary<string, string>>();
         public Dictionary<System.Type, Sprite> BuildingData = new Dictionary<Type, Sprite>();
         public Dictionary<System.Type, List<Resource>> BuildingCosts = new Dictionary<Type, List<Resource>>();
@@ -54,6 +59,13 @@ namespace Assets.Scripts.Utils
             BuildingCosts.Add(typeof(ProductionBuilding), new List<Resource>() { new Resource("wood", 10), new Resource("stone", 11) });
             BuildingCosts.Add(typeof(Mine), new List<Resource>() { new Resource("wood", 5), new Resource("stone", 3) });
             BuildingCosts.Add(typeof(LumberMill), new List<Resource>() { new Resource("wood", 5), new Resource("stone", 3) });
+
+            var sources = new List<string>(ResourceTypes.Keys);
+            foreach (var source in sources)
+            {
+                var sourcePath = "Assets/Graphics/Sources/" + source + "Source.png";
+                SourceSprites.Add(source, AssetDatabase.LoadAssetAtPath<Sprite>(sourcePath));
+            }
         }
 
         private Dictionary<string, string> GetAttributes(XElement element)
