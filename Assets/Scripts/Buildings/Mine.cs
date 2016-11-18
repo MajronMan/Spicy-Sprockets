@@ -14,6 +14,8 @@ namespace Assets.Scripts.Buildings
             Radius = 1000;
             GatheredResource = "coal";
             MySize = BuildingSize.Big;
+            MaxStaff = 50;
+            MinStaff = 10;
             base.Start();
         }
     }

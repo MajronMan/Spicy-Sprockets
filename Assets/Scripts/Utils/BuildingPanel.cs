@@ -18,8 +18,7 @@ public class BuildingPanel : MonoBehaviour
         int staff = motherBuilding.CurrentStaff;
         staff.ToString();
         text.text = "Employees: " + staff;
-        this.transform.SetParent(motherBuilding.transform);
-        //this.transform.right += new Vector3(20,0,0);
+        transform.SetParent(motherBuilding.transform);
 	}
 
     public void ManageWorkers()

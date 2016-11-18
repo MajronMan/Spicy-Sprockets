@@ -34,17 +34,16 @@ namespace Assets.Scripts.Buildings
         /// <summary>
         /// The maximum of emplyees this building can hold
         /// </summary>
-        public int MaxStaff = 50;
+        public int MaxStaff;
         /// <summary>
         /// Minimum staff, required to keep building working
         /// </summary>
-        public int MinStaff = 10;
+        public int MinStaff;
         private Population ThePeople;
         //I need it to check if gather is working
         private bool GatherRunning = false;
         //maybe someone will change it later, for now I think it looks pretty
         private BuildingPanel panel;
-        public BuildingPanel prefab;
 
         public override void Start()
         {
@@ -61,13 +60,11 @@ namespace Assets.Scripts.Buildings
             }
             //employing staff
             ThePeople = Controllers.CurrentInfo.ThePeople;
-            if(Controllers.CurrentInfo.ThePeople.CheckEmployment(MinStaff))
+            if(Controllers.CurrentInfo.ThePeople.CheckPossibleEmployment(MinStaff))
             {
                 Controllers.CurrentInfo.ThePeople.Employ(MinStaff);
                 CurrentStaff = MinStaff;
             }
-            panel = Instantiate(prefab);
-            panel.motherBuilding = this;
 
             // don't gather if there are no nearby sources
             if (Sources.Count > 0 && CurrentStaff>=MinStaff)
@@ -98,7 +95,16 @@ namespace Assets.Scripts.Buildings
         {
             if (newStaff <= MaxStaff)
             {
-                CurrentStaff = newStaff;
+                if(newStaff < CurrentStaff)
+                {
+                    Controllers.CurrentInfo.ThePeople.Fire(CurrentStaff - newStaff);
+                    CurrentStaff = newStaff;
+                }
+                else
+                {
+                    Controllers.CurrentInfo.ThePeople.Employ(newStaff - CurrentStaff);
+                    CurrentStaff = newStaff;
+                }
             }
 
         }

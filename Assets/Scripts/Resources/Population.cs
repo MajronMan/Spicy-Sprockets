@@ -11,7 +11,7 @@ namespace Assets.Scripts.Resources
     public class Population : MonoBehaviour {
         public int Number = 100;
         //There is no actual class Statistics, so I'm making a mock for real employment check
-        public int employed = 0;
+        private int employed = 0;
         // Those are just stubs for actual statistics
         public float Hygiene = 0.1f;
         public Dictionary<string, float> Religions = new Dictionary<string, float>();
@@ -44,15 +44,27 @@ namespace Assets.Scripts.Resources
 
         public void Employ(int workers)
         {
-            employed += workers;
+            if(employed + workers <= Number)
+                employed += workers;
+        }
+
+        public void Fire(int workers)
+        {
+            if (employed >= workers)
+                employed -= workers;
         }
 
         //returns true if there are enough workers for basic tasks
-        public bool CheckEmployment(int potentialWorkers)
+        public bool CheckPossibleEmployment(int potentialWorkers)
         {
             if (employed + potentialWorkers > Number)
                 return false;
             return true;
+        }
+
+        public int CheckEmployment()
+        {
+            return employed;
         }
     }
 }
