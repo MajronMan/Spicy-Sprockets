@@ -20,7 +20,6 @@ namespace Assets.Scripts.Sources_of_Resources
 
         public void Start()
         {
-            MyResource = "coal";
             Radius = 100.0f; 
             var mag = 500;
             var r = new Random();

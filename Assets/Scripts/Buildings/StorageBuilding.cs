@@ -19,7 +19,7 @@ namespace Assets.Scripts.Buildings
 
         public override void Start()
         {
-            MySize = BuildingSize.Small;
+            MySize = BuildingSize.Big;
             base.Start();
             //increase the storage limit
             Controllers.CurrentInfo.ChangeStorageLimit(100);

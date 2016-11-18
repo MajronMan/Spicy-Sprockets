@@ -10,6 +10,9 @@ namespace Assets.Scripts.Interface
     /// </summary>
     public class Map : MonoBehaviour
     {
+        /// <summary>
+        /// All sources present on this map
+        /// </summary>
         public List<Source> Sources = new List<Source>();
 
         public void OnMouseDown()
