@@ -3,6 +3,9 @@ using UnityEngine.UI;
 
 namespace Assets.Scripts.Interface
 {
+    /// <summary>
+    /// Counts time (I know right)
+    /// </summary>
     public class Timer : MonoBehaviour {
 
         public Text TimerText;

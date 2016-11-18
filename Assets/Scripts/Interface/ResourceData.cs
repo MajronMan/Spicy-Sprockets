@@ -5,29 +5,33 @@ using UnityEngine.UI;
 
 namespace Assets.Scripts.Interface
 {
+    /// <summary>
+    /// Controls the numbers on resource panel in the bottom of the screen
+    /// </summary>
     public class ResourceData : MonoBehaviour {
         public Text ResourceText;
         public string Type;
         
         public void Start ()
         {
-            ResourceText = GetComponent<Text>() as Text;
+            ResourceText = GetComponent<Text>();
         }
 	
         public void Update () {
+            //show current value
             try
             {
-                if (Type == "people")
+                switch (Type)
                 {
-                    ResourceText.text = Controllers.CurrentInfo.ThePeople.Number.ToString();
-                }
-                else if (Type == "money")
-                {
-                    ResourceText.text = Controllers.CurrentInfo.MyMoney.GetAmount().ToString();
-                }
-                else
-                {
-                    ResourceText.text = Controllers.CurrentInfo[Type].GetQuantity().ToString();
+                    case "people":
+                        ResourceText.text = Controllers.CurrentInfo.ThePeople.Number.ToString();
+                        break;
+                    case "money":
+                        ResourceText.text = Controllers.CurrentInfo.MyMoney.GetAmount().ToString();
+                        break;
+                    default:
+                        ResourceText.text = Controllers.CurrentInfo[Type].GetQuantity().ToString();
+                        break;
                 }
             }
             catch (Exception e)

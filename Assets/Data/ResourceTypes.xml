@@ -2,9 +2,9 @@
 <resource>
   <coal mass="87" volume="100" price="10" initial="10"/>
   <mineral mass="3" volume="1" price="130" initial="5"/>
-  <metal mass="8557" volume="10550" price="1" initial="50"/>
-  <wood mass="1237" volume="1550" price="13" initial="100"/>
-  <food mass="123" volume="100" price="123" initial="100"/>
+  <metal mass="8557" volume="10550" price="115" initial="50"/>
+  <wood mass="1237" volume="1550" price="40" initial="100"/>
+  <food mass="123" volume="100" price="12" initial="100"/>
   <stone mass="8557" volume="2550" price="431" initial="100"/>
   <yomama mass="8557" volume="10550" price="1" initial="1"/>
 </resource>

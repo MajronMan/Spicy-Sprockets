@@ -43,6 +43,7 @@ namespace Assets.Scripts.Interface
         private bool clicked = false;
         private bool buttonsDisabled = false;
 
+        // Needs big refactor
         public void Start()
         {
             UI = GameObject.Find("UI").gameObject;
@@ -165,7 +166,7 @@ namespace Assets.Scripts.Interface
 
             systemButton.GetComponent<Toggle>().interactable = false;
             toggleMapButton.GetComponent<Toggle>().interactable = false;
-            infoButton.GetComponent<Button>().interactable = false;
+            infoButton.GetComponent<Toggle>().interactable = false;
             res1.GetComponent<EventTrigger>().enabled = false;
             res2.GetComponent<EventTrigger>().enabled = false;
             res3.GetComponent<EventTrigger>().enabled = false;
@@ -180,7 +181,7 @@ namespace Assets.Scripts.Interface
 
             systemButton.GetComponent<Toggle>().interactable = true;
             toggleMapButton.GetComponent<Toggle>().interactable = true;
-            infoButton.GetComponent<Button>().interactable = true;
+            infoButton.GetComponent<Toggle>().interactable = true;
             res1.GetComponent<EventTrigger>().enabled = true;
             res2.GetComponent<EventTrigger>().enabled = true;
             res3.GetComponent<EventTrigger>().enabled = true;
