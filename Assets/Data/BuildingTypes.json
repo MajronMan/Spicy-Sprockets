@@ -1,0 +1,8 @@
+[
+  "Assets.Scripts.Buildings.ProductionBuilding, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+  "Assets.Scripts.Buildings.StorageBuilding, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+  "Assets.Scripts.Buildings.Mine, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+  "Assets.Scripts.Buildings.LumberMill, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+  "Assets.Scripts.Buildings.Quarry, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+  "Assets.Scripts.Buildings.ResidentialBuilding, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"
+]

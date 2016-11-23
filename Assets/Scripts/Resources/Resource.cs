@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Game_Controllers;
+using Newtonsoft.Json;
 using UnityEngine;
 
 namespace Assets.Scripts.Resources
@@ -7,11 +8,11 @@ namespace Assets.Scripts.Resources
     [System.Serializable]
     public class Resource
     {
-		public readonly string MyType;
-        private int _massPerUnit;
-		private int _volumePerUnit;
-        private int _defaultPricePerUnit;
-        private int _quantity;
+		[JsonProperty] public readonly string MyType;
+        [JsonProperty] private int _massPerUnit;
+		[JsonProperty] private int _volumePerUnit;
+        [JsonProperty] private int _defaultPricePerUnit;
+        [JsonProperty] private int _quantity;
     
 		public Resource(string type, int quantity)
         {

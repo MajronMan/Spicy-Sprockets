@@ -1,0 +1,98 @@
+{
+  "Assets.Scripts.Buildings.ProductionBuilding, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": [
+    {
+      "MyType": "wood",
+      "_massPerUnit": -1,
+      "_volumePerUnit": -1,
+      "_defaultPricePerUnit": -1,
+      "_quantity": 7
+    },
+    {
+      "MyType": "stone",
+      "_massPerUnit": -1,
+      "_volumePerUnit": -1,
+      "_defaultPricePerUnit": -1,
+      "_quantity": 16
+    }
+  ],
+  "Assets.Scripts.Buildings.StorageBuilding, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": [
+    {
+      "MyType": "wood",
+      "_massPerUnit": -1,
+      "_volumePerUnit": -1,
+      "_defaultPricePerUnit": -1,
+      "_quantity": 7
+    },
+    {
+      "MyType": "stone",
+      "_massPerUnit": -1,
+      "_volumePerUnit": -1,
+      "_defaultPricePerUnit": -1,
+      "_quantity": 25
+    }
+  ],
+  "Assets.Scripts.Buildings.Mine, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": [
+    {
+      "MyType": "wood",
+      "_massPerUnit": -1,
+      "_volumePerUnit": -1,
+      "_defaultPricePerUnit": -1,
+      "_quantity": 11
+    },
+    {
+      "MyType": "stone",
+      "_massPerUnit": -1,
+      "_volumePerUnit": -1,
+      "_defaultPricePerUnit": -1,
+      "_quantity": 23
+    }
+  ],
+  "Assets.Scripts.Buildings.LumberMill, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": [
+    {
+      "MyType": "wood",
+      "_massPerUnit": -1,
+      "_volumePerUnit": -1,
+      "_defaultPricePerUnit": -1,
+      "_quantity": 15
+    },
+    {
+      "MyType": "stone",
+      "_massPerUnit": -1,
+      "_volumePerUnit": -1,
+      "_defaultPricePerUnit": -1,
+      "_quantity": 11
+    }
+  ],
+  "Assets.Scripts.Buildings.Quarry, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": [
+    {
+      "MyType": "wood",
+      "_massPerUnit": -1,
+      "_volumePerUnit": -1,
+      "_defaultPricePerUnit": -1,
+      "_quantity": 7
+    },
+    {
+      "MyType": "stone",
+      "_massPerUnit": -1,
+      "_volumePerUnit": -1,
+      "_defaultPricePerUnit": -1,
+      "_quantity": 29
+    }
+  ],
+  "Assets.Scripts.Buildings.ResidentialBuilding, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null": [
+    {
+      "MyType": "wood",
+      "_massPerUnit": -1,
+      "_volumePerUnit": -1,
+      "_defaultPricePerUnit": -1,
+      "_quantity": 11
+    },
+    {
+      "MyType": "stone",
+      "_massPerUnit": -1,
+      "_volumePerUnit": -1,
+      "_defaultPricePerUnit": -1,
+      "_quantity": 18
+    }
+  ]
+}
