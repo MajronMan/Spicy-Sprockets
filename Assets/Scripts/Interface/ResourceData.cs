@@ -10,6 +10,7 @@ namespace Assets.Scripts.Interface
     /// </summary>
     public class ResourceData : MonoBehaviour {
         public Text ResourceText;
+        public Text MaxText;
         public string Type;
         
         public void Start ()
@@ -25,6 +26,7 @@ namespace Assets.Scripts.Interface
                 {
                     case "people":
                         ResourceText.text = Controllers.CurrentInfo.ThePeople.Number.ToString();
+                        MaxText.text = Controllers.CurrentInfo.GetPopulationLimit().ToString();
                         break;
                     case "money":
                         ResourceText.text = Controllers.CurrentInfo.MyMoney.GetAmount().ToString();
