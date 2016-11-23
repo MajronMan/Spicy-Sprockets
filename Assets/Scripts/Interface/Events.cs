@@ -13,6 +13,8 @@ namespace Assets.Scripts.Interface
         private bool _activeEvent;
         public GameObject EventPrefab;
         public GameObject EventbuttonPrefab;
+        private int _numberofevents = 0;
+        private GameObject eventInstance; //Have to pass the reference to News method
 
         public void Start ()
         {
@@ -41,7 +43,7 @@ namespace Assets.Scripts.Interface
         {
             _activeEvent = true; //Prevents from opening new event when other is active
 
-            GameObject eventInstance = Instantiate(EventPrefab); //New instance of event panel
+            eventInstance = Instantiate(EventPrefab); //New instance of event panel
             eventInstance.transform.SetParent(transform, false); //Somehow it sets prefab position where it used to be when it was GameObject
             eventInstance.name = "EventPanel";
 
@@ -51,9 +53,22 @@ namespace Assets.Scripts.Interface
             //for(int i=1, i<=options i++){}
             GameObject optionInstance = Instantiate(EventbuttonPrefab); //New instance of event option button
             optionInstance.transform.SetParent(eventInstance.transform.Find("Options"), false);
+            optionInstance.transform.localPosition = new Vector3(0, 0, 0);
             optionInstance.name = "Option";
             optionInstance.GetComponent<Button>().onClick.AddListener(() => { Destroy(eventInstance); SetEventFalse(); }); //On click function which closes event for now
 
+            //This fragment is just temporary
+            GameObject optionInstance1 = Instantiate(EventbuttonPrefab); //New instance of event option button
+            optionInstance1.transform.SetParent(eventInstance.transform.Find("Options"), false);
+            optionInstance1.transform.localPosition = new Vector3(0, 50, 0);
+            optionInstance1.name = "Option1";
+
+            GameObject optionInstance2 = Instantiate(EventbuttonPrefab); //New instance of event option button
+            optionInstance2.transform.SetParent(eventInstance.transform.Find("Options"), false);
+            optionInstance2.transform.localPosition = new Vector3(0, -50, 0);
+            optionInstance2.name = "Option2";
+
+            _numberofevents++;
             News();
         }
 
@@ -62,9 +77,51 @@ namespace Assets.Scripts.Interface
         /// </summary>
         public void News() //It's just a stub
         {
-            GameObject newsInstance = Instantiate(EventPrefab) as GameObject;
-            newsInstance.transform.SetParent(Content.transform, false);
-            newsInstance.name = "News";
+            //TODO: There should also be something about destroying option prefabs etc.
+            //TODO: And scaling the shit out of it because it looks terrible in the newspaper menu, maybe something with transform.localScale
+            //TODO: Also I wrote here some constant values, should change it I think
+            //TODO: And try to think what happens when more than 6 events have occured already
+            switch (_numberofevents)
+            {
+                case 1:
+                    GameObject newsInstance1 = Instantiate(eventInstance) as GameObject;
+                    newsInstance1.transform.SetParent(Content.transform, false);
+                    newsInstance1.transform.localPosition = new Vector3(-500, 450, 0);
+                    newsInstance1.name = "News1";
+                    break;
+                case 2:
+                    GameObject newsInstance2 = Instantiate(eventInstance) as GameObject;
+                    newsInstance2.transform.SetParent(Content.transform, false);
+                    newsInstance2.transform.localPosition = new Vector3(0, 450, 0);
+                    newsInstance2.name = "News2";
+                    break;
+                case 3:
+                    GameObject newsInstance3 = Instantiate(eventInstance) as GameObject;
+                    newsInstance3.transform.SetParent(Content.transform, false);
+                    newsInstance3.transform.localPosition = new Vector3(500, 450, 0);
+                    newsInstance3.name = "News3";
+                    break;
+                case 4:
+                    GameObject newsInstance4 = Instantiate(eventInstance) as GameObject;
+                    newsInstance4.transform.SetParent(Content.transform, false);
+                    newsInstance4.transform.localPosition = new Vector3(-500, -450, 0);
+                    newsInstance4.name = "News4";
+                    break;
+                case 5:
+                    GameObject newsInstance5 = Instantiate(eventInstance) as GameObject;
+                    newsInstance5.transform.SetParent(Content.transform, false);
+                    newsInstance5.transform.localPosition = new Vector3(0, -450, 0);
+                    newsInstance5.name = "News5";
+                    break;
+                case 6:
+                    GameObject newsInstance6 = Instantiate(eventInstance) as GameObject;
+                    newsInstance6.transform.SetParent(Content.transform, false);
+                    newsInstance6.transform.localPosition = new Vector3(500, -450, 0);
+                    newsInstance6.name = "News6";
+                    break;
+                default:                   
+                    break;
+            }
         }
         /// <summary>
         /// Used in onClick function, permits to open new event
