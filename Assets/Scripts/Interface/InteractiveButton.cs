@@ -4,190 +4,178 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace Assets.Scripts.Interface
-{
-    public class InteractiveButton : MonoBehaviour
-    {
+namespace Assets.Scripts.Interface {
+    public class InteractiveButton : MonoBehaviour {
         //TODO fukin' generate'em, 10^6 references are not what we want
         public GameObject UI;
 
-        private Transform buildButton;
-        private Transform productionButton;
-        private Transform diplomacyButton;
-        private Transform scienceButton;
-        private Transform lawButton;
-        private Transform characterButton;
-        private Transform tradeButton;
+        private Transform _buildButton;
+        private Transform _productionButton;
+        private Transform _diplomacyButton;
+        private Transform _scienceButton;
+        private Transform _lawButton;
+        private Transform _characterButton;
+        private Transform _tradeButton;
 
-        private GameObject buildPanel;
-        private GameObject productionPanel;
-        private GameObject diplomacyPanel;
-        private GameObject sciencePanel;
-        private GameObject lawPanel;
-        private GameObject characterPanel;
-        private GameObject tradePanel;
+        private GameObject _buildPanel;
+        private GameObject _productionPanel;
+        private GameObject _diplomacyPanel;
+        private GameObject _sciencePanel;
+        private GameObject _lawPanel;
+        private GameObject _characterPanel;
+        private GameObject _tradePanel;
 
-        private Transform systemButton;
-        private Transform toggleMapButton;
-        private Transform res1;
-        private Transform res2;
-        private Transform res3;
-        private Transform res4;
-        private Transform res5;
-        private Transform res6;
-        private Transform infoButton;
+        private Transform _systemButton;
+        private Transform _toggleMapButton;
+        private Transform _res1;
+        private Transform _res2;
+        private Transform _res3;
+        private Transform _res4;
+        private Transform _res5;
+        private Transform _res6;
+        private Transform _infoButton;
 
-        private GameObject myPanel;
-        private Transform myButton;
-        private List<GameObject> panelList;
-        private bool clicked = false;
-        private bool buttonsDisabled = false;
+        private GameObject _myPanel;
+        private Transform _myButton;
+        private List<GameObject> _panelList;
+        private bool _clicked = false;
+        private bool _buttonsDisabled = false;
 
         // Needs big refactor
-        public void Start()
-        {
+        public void Start() {
             UI = GameObject.Find("UI").gameObject;
-            buildButton = UI.transform.Find("MainPanel/Buttons/BuildButton");
-            productionButton = UI.transform.Find("MainPanel/Buttons/ProductionButton");
-            diplomacyButton = UI.transform.Find("MainPanel/Buttons/DiplomacyButton");
-            scienceButton = UI.transform.Find("MainPanel/Buttons/ScienceButton");
-            lawButton = UI.transform.Find("MainPanel/Buttons/LawButton");
-            characterButton = UI.transform.Find("MainPanel/Buttons/CharacterButton");
-            tradeButton = UI.transform.Find("MainPanel/Buttons/TradeButton");
+            _buildButton = UI.transform.Find("MainPanel/Buttons/BuildButton");
+            _productionButton = UI.transform.Find("MainPanel/Buttons/ProductionButton");
+            _diplomacyButton = UI.transform.Find("MainPanel/Buttons/DiplomacyButton");
+            _scienceButton = UI.transform.Find("MainPanel/Buttons/ScienceButton");
+            _lawButton = UI.transform.Find("MainPanel/Buttons/LawButton");
+            _characterButton = UI.transform.Find("MainPanel/Buttons/CharacterButton");
+            _tradeButton = UI.transform.Find("MainPanel/Buttons/TradeButton");
 
 
-            buildPanel = UI.transform.Find("ButtonPanels/BuildPanel").gameObject;
-            productionPanel = UI.transform.Find("ButtonPanels/ProductionPanel").gameObject;
-            diplomacyPanel = UI.transform.Find("ButtonPanels/DiplomacyPanel").gameObject;
-            sciencePanel = UI.transform.Find("ButtonPanels/SciencePanel").gameObject;
-            lawPanel = UI.transform.Find("ButtonPanels/LawPanel").gameObject;
-            characterPanel = UI.transform.Find("ButtonPanels/CharacterPanel").gameObject;
-            tradePanel = UI.transform.Find("ButtonPanels/TradePanel").gameObject;
+            _buildPanel = UI.transform.Find("ButtonPanels/BuildPanel").gameObject;
+            _productionPanel = UI.transform.Find("ButtonPanels/ProductionPanel").gameObject;
+            _diplomacyPanel = UI.transform.Find("ButtonPanels/DiplomacyPanel").gameObject;
+            _sciencePanel = UI.transform.Find("ButtonPanels/SciencePanel").gameObject;
+            _lawPanel = UI.transform.Find("ButtonPanels/LawPanel").gameObject;
+            _characterPanel = UI.transform.Find("ButtonPanels/CharacterPanel").gameObject;
+            _tradePanel = UI.transform.Find("ButtonPanels/TradePanel").gameObject;
 
-            panelList = new List<GameObject>();
+            _panelList = new List<GameObject> {
+                _buildPanel,
+                _productionPanel,
+                _diplomacyPanel,
+                _sciencePanel,
+                _lawPanel,
+                _characterPanel,
+                _tradePanel
+            };
 
-            panelList.Add(buildPanel);
-            panelList.Add(productionPanel);
-            panelList.Add(diplomacyPanel);
-            panelList.Add(sciencePanel);
-            panelList.Add(lawPanel);
-            panelList.Add(characterPanel);
-            panelList.Add(tradePanel);
 
             string name = gameObject.transform.name;
 
-            switch (name)
-            {
+            switch (name) {
                 case "BuildButton":
-                    myPanel = buildPanel;
-                    myButton = buildButton;
+                    _myPanel = _buildPanel;
+                    _myButton = _buildButton;
                     break;
                 case "ProductionButton":
-                    myPanel = productionPanel;
-                    myButton = productionButton;
+                    _myPanel = _productionPanel;
+                    _myButton = _productionButton;
                     break;
                 case "DiplomacyButton":
-                    myPanel = diplomacyPanel;
-                    myButton = diplomacyButton;
+                    _myPanel = _diplomacyPanel;
+                    _myButton = _diplomacyButton;
                     break;
                 case "ScienceButton":
-                    myPanel = sciencePanel;
-                    myButton = scienceButton;
+                    _myPanel = _sciencePanel;
+                    _myButton = _scienceButton;
                     break;
                 case "LawButton":
-                    myPanel = lawPanel;
-                    myButton = lawButton;
+                    _myPanel = _lawPanel;
+                    _myButton = _lawButton;
                     break;
                 case "CharacterButton":
-                    myPanel = characterPanel;
-                    myButton = characterButton;
+                    _myPanel = _characterPanel;
+                    _myButton = _characterButton;
                     break;
                 case "TradeButton":
-                    myPanel = tradePanel;
-                    myButton = tradeButton;
+                    _myPanel = _tradePanel;
+                    _myButton = _tradeButton;
                     break;
                 default:
                     Debug.Log("Button not added!");
                     break;
             }
 
-            systemButton = UI.transform.Find("SystemButton");
-            toggleMapButton = UI.transform.Find("ToggleMapButton");
-            res1 = UI.transform.Find("StoragePanel/Images/Image");
-            res2 = UI.transform.Find("StoragePanel/Images/Image (1)");
-            res3 = UI.transform.Find("StoragePanel/Images/Image (2)");
-            res4 = UI.transform.Find("StoragePanel/Images/Image (3)");
-            res5 = UI.transform.Find("StoragePanel/Images/Image (4)");
-            res6 = UI.transform.Find("StoragePanel/Images/Image (5)");
-            infoButton = UI.transform.Find("InfoButton");
+            _systemButton = UI.transform.Find("SystemButton");
+            _toggleMapButton = UI.transform.Find("ToggleMapButton");
+            _res1 = UI.transform.Find("StoragePanel/Images/Image");
+            _res2 = UI.transform.Find("StoragePanel/Images/Image (1)");
+            _res3 = UI.transform.Find("StoragePanel/Images/Image (2)");
+            _res4 = UI.transform.Find("StoragePanel/Images/Image (3)");
+            _res5 = UI.transform.Find("StoragePanel/Images/Image (4)");
+            _res6 = UI.transform.Find("StoragePanel/Images/Image (5)");
+            _infoButton = UI.transform.Find("InfoButton");
         }
 
-        public void Update()
-        {
-            if (clicked && myPanel.activeSelf == false)
-                clicked = false;
-            if (!buttonsDisabled || clicked) return;
+        public void Update() {
+            if (_clicked && _myPanel.activeSelf == false)
+                _clicked = false;
+            if (!_buttonsDisabled || _clicked) return;
             EnableButtons();
-            buttonsDisabled = false;
+            _buttonsDisabled = false;
         }
 
-        public void Clicked()
-        {
+        public void Clicked() {
             StartCoroutine("Clicker");
         }
 
-        public IEnumerator Clicker()
-        {
-            if (!clicked)
-            {
-                clicked = true;
+        public IEnumerator Clicker() {
+            if (!_clicked) {
+                _clicked = true;
                 ClosePanels();
-                myPanel.SetActive(true);
+                _myPanel.SetActive(true);
                 yield return null;
                 DisableButtons();
-            }
-            else
-            {
-                clicked = false;
-                myPanel.SetActive(false);
+            } else {
+                _clicked = false;
+                _myPanel.SetActive(false);
                 EnableButtons();
             }
         }
 
-        private void ClosePanels()
-        {
-            foreach (var panel in panelList)
+        private void ClosePanels() {
+            foreach (var panel in _panelList)
                 panel.SetActive(false);
         }
 
-        private void DisableButtons()
-        {
-            buttonsDisabled = true;
+        private void DisableButtons() {
+            _buttonsDisabled = true;
 
-            systemButton.GetComponent<Toggle>().interactable = false;
-            toggleMapButton.GetComponent<Toggle>().interactable = false;
-            infoButton.GetComponent<Toggle>().interactable = false;
-            res1.GetComponent<EventTrigger>().enabled = false;
-            res2.GetComponent<EventTrigger>().enabled = false;
-            res3.GetComponent<EventTrigger>().enabled = false;
-            res4.GetComponent<EventTrigger>().enabled = false;
-            res5.GetComponent<EventTrigger>().enabled = false;
-            res6.GetComponent<EventTrigger>().enabled = false;
+            _systemButton.GetComponent<Toggle>().interactable = false;
+            _toggleMapButton.GetComponent<Toggle>().interactable = false;
+            _infoButton.GetComponent<Toggle>().interactable = false;
+            _res1.GetComponent<EventTrigger>().enabled = false;
+            _res2.GetComponent<EventTrigger>().enabled = false;
+            _res3.GetComponent<EventTrigger>().enabled = false;
+            _res4.GetComponent<EventTrigger>().enabled = false;
+            _res5.GetComponent<EventTrigger>().enabled = false;
+            _res6.GetComponent<EventTrigger>().enabled = false;
         }
 
-        private void EnableButtons()
-        {
-            buttonsDisabled = false;
+        private void EnableButtons() {
+            _buttonsDisabled = false;
 
-            systemButton.GetComponent<Toggle>().interactable = true;
-            toggleMapButton.GetComponent<Toggle>().interactable = true;
-            infoButton.GetComponent<Toggle>().interactable = true;
-            res1.GetComponent<EventTrigger>().enabled = true;
-            res2.GetComponent<EventTrigger>().enabled = true;
-            res3.GetComponent<EventTrigger>().enabled = true;
-            res4.GetComponent<EventTrigger>().enabled = true;
-            res5.GetComponent<EventTrigger>().enabled = true;
-            res6.GetComponent<EventTrigger>().enabled = true;
+            _systemButton.GetComponent<Toggle>().interactable = true;
+            _toggleMapButton.GetComponent<Toggle>().interactable = true;
+            _infoButton.GetComponent<Toggle>().interactable = true;
+            _res1.GetComponent<EventTrigger>().enabled = true;
+            _res2.GetComponent<EventTrigger>().enabled = true;
+            _res3.GetComponent<EventTrigger>().enabled = true;
+            _res4.GetComponent<EventTrigger>().enabled = true;
+            _res5.GetComponent<EventTrigger>().enabled = true;
+            _res6.GetComponent<EventTrigger>().enabled = true;
         }
     }
 }

@@ -15,8 +15,8 @@ namespace Assets.Scripts.Utils {
 
         public Dictionary<string, Dictionary<string, string>> ResourceTypes;
 
-        public Dictionary<System.Type, Sprite> BuildingData = new Dictionary<Type, Sprite>();
-        public Dictionary<System.Type, List<Resource>> BuildingCosts;
+        public Dictionary<Type, Sprite> BuildingData = new Dictionary<Type, Sprite>();
+        public Dictionary<Type, List<Resource>> BuildingCosts;
 
         public GameData(string testPath = "") {
             ResourceTypes =
@@ -38,6 +38,16 @@ namespace Assets.Scripts.Utils {
 
             //            File.WriteAllText(Application.dataPath + "/Data/BuildingCosts.json",
             //                JsonConvert.SerializeObject(BuildingCosts, Formatting.Indented));
+            //            Debug.Break();
+
+            //            string path = Application.dataPath + "/GameData.json";
+            //            File.WriteAllText(path,
+            //                JsonConvert.SerializeObject(Controllers.Data, Formatting.Indented, new JsonSerializerSettings() {
+            //                    PreserveReferencesHandling = PreserveReferencesHandling.Objects,
+            //                    TypeNameHandling = TypeNameHandling.Auto,
+            //                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+            //                    TypeNameAssemblyFormat = FormatterAssemblyStyle.Simple
+            //                }));
             //            Debug.Break();
 
             var sources = new List<string>(ResourceTypes.Keys);

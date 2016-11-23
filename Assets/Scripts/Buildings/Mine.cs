@@ -1,16 +1,11 @@
-﻿using Assets.Scripts.Sources_of_Resources;
-using Assets.Scripts.Utils;
-using UnityEngine;
+﻿using Assets.Scripts.Utils;
 
-namespace Assets.Scripts.Buildings
-{
+namespace Assets.Scripts.Buildings {
     /// <summary>
     /// Traditional silesian restaurant
     /// </summary>
-    public class Mine : GatheringBuilding
-    {
-        public override void Start()
-        {
+    public class Mine : GatheringBuilding {
+        public override void Start() {
             Radius = 1000;
             GatheredResource = "coal";
             MySize = BuildingSize.Big;

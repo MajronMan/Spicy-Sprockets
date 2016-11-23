@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using Assets.Scripts.Game_Controllers;
 using UnityEngine;
 
-namespace Assets.Scripts.Resources
-{
+namespace Assets.Scripts.Resources {
     /// <summary>
     /// People living in a certain city
     /// </summary>
@@ -18,19 +17,18 @@ namespace Assets.Scripts.Resources
         public int[] Age = new int[100];
         //TODO: class Statistic working like a Dictionary<string, float> which values add up to 1.0f (100%)
 
-        public void Start(){
-            StartCoroutine ("Grow");
-            Religions.Add ("Hinduism", 1.0f);
-            Cultures.Add ("Hindu", 1.0f);
+        public void Start() {
+            StartCoroutine("Grow");
+            Religions.Add("Hinduism", 1.0f);
+            Cultures.Add("Hindu", 1.0f);
         }
 
         /// <summary>
         /// Increase the population in a regular manner
         /// </summary>
-        public IEnumerator Grow(){
-            while (true)
-            {
-                var growing = Number/20;
+        public IEnumerator Grow() {
+            while (true) {
+                var growing = Number / 20;
                 var space = Controllers.CurrentInfo.GetPopulationLimit() - Number;
                 if (space > growing)
                     Number += growing;

@@ -1,22 +1,22 @@
 ﻿using System.Collections.Generic;
 using Assets.Scripts.Buildings;
 using Assets.Scripts.Interface;
-using Assets.Scripts.Utils;
 using UnityEngine;
+using Collider = Assets.Scripts.Buildings.Collider;
 
-namespace Assets.Scripts.Game_Controllers
-{
+namespace Assets.Scripts.Game_Controllers {
     [System.Serializable]
-    public class BuildingManager : MonoBehaviour
-    {
+    public class BuildingManager : MonoBehaviour {
         /// <summary>
         /// A list of all buildings that were created and are active
         /// </summary>
         public List<Building> Built = new List<Building>();
+
         /// <summary>
         /// Map on which buildings associated with this manager are built
         /// </summary>
         private Map _mapInstance;
+
         /// <summary>
         /// A dictionary informing which buildings is player allowed to build
         /// </summary>
@@ -29,8 +29,7 @@ namespace Assets.Scripts.Game_Controllers
         /// <param name="buildingType">Type of the building you want to create</param>
         /// <param name="location">Point on screen where the building will appear</param>
         /// <returns>The created building</returns>
-        public Building Build(System.Type buildingType, Vector3 location)
-        {
+        public Building Build(System.Type buildingType, Vector3 location) {
             // create a new game object which behaviour is defined by buldingType's script and renders a sprite
             var buildingGameObject = new GameObject("Building", buildingType, typeof(SpriteRenderer));
             var newBuilding = buildingGameObject.GetComponent<Building>();
@@ -41,7 +40,7 @@ namespace Assets.Scripts.Game_Controllers
             buildingPosition.z = 0;
 
             //need to find a way to get size dependant on building
-            Collider.addCollider(buildingGameObject, new Vector2(2, 1), buildingPosition, _mapInstance.transform);
+            Collider.AddCollider(buildingGameObject, new Vector2(2, 1), buildingPosition, _mapInstance.transform);
 
             newBuilding.transform.position = buildingPosition;
             newBuilding.transform.SetParent(_mapInstance.transform, true);
@@ -53,20 +52,17 @@ namespace Assets.Scripts.Game_Controllers
             return newBuilding;
         }
 
-        public void SetMapInstance(Map mapInstance)
-        {
+        public void SetMapInstance(Map mapInstance) {
             this._mapInstance = mapInstance;
         }
 
-        public void Start()
-        {
+        public void Start() {
             // load that from a xml pls
             AvailableBuildings.Add("Production Building", typeof(ProductionBuilding));
             AvailableBuildings.Add("Storage Building", typeof(StorageBuilding));
         }
-   
-        public Map GetMapInstance()
-        {
+
+        public Map GetMapInstance() {
             return _mapInstance;
         }
     }

@@ -2,77 +2,63 @@
 using Newtonsoft.Json;
 using UnityEngine;
 
-namespace Assets.Scripts.Resources
-{
+namespace Assets.Scripts.Resources {
     //luknw will change it so I don't need to write documentation here
     [System.Serializable]
-    public class Resource
-    {
-		[JsonProperty] public readonly string MyType;
+    public class Resource {
+        [JsonProperty] public readonly string MyType;
         [JsonProperty] private int _massPerUnit;
-		[JsonProperty] private int _volumePerUnit;
+        [JsonProperty] private int _volumePerUnit;
         [JsonProperty] private int _defaultPricePerUnit;
         [JsonProperty] private int _quantity;
-    
-		public Resource(string type, int quantity)
-        {
-			MyType = type;
+
+        public Resource(string type, int quantity) {
+            MyType = type;
             _quantity = quantity;
             _massPerUnit = -1;
             _volumePerUnit = -1;
             _defaultPricePerUnit = -1;
-    }
+        }
 
-        public int GetQuantity()
-        {
+        public int GetQuantity() {
             return _quantity;
         }
 
-        public int GetVolume()
-        {
-            if (_volumePerUnit == -1)
-            {
+        public int GetVolume() {
+            if (_volumePerUnit == -1) {
                 LoadData();
             }
-            return _quantity*_volumePerUnit;
+            return _quantity * _volumePerUnit;
         }
 
-        public int GetMass()
-        {
-            if (_massPerUnit == -1)
-            { 
+        public int GetMass() {
+            if (_massPerUnit == -1) {
                 LoadData();
             }
             return _quantity * _massPerUnit;
         }
 
-        public static bool operator >(Resource self, Resource other)
-        {
+        public static bool operator >(Resource self, Resource other) {
             return self.MyType == other.MyType && self._quantity > other._quantity;
         }
 
-        public static bool operator <(Resource self, Resource other)
-        {
+        public static bool operator <(Resource self, Resource other) {
             return self.MyType == other.MyType && self._quantity < other._quantity;
         }
 
-        public static bool operator >=(Resource self, Resource other)
-        {
+        public static bool operator >=(Resource self, Resource other) {
             return self.MyType == other.MyType && self._quantity >= other._quantity;
         }
 
-        public static bool operator <=(Resource self, Resource other)
-        {
+        public static bool operator <=(Resource self, Resource other) {
             return self.MyType == other.MyType && self._quantity <= other._quantity;
         }
 
-        public static Resource operator +(Resource basicRes, int addedQuantity)
-        {
+        public static Resource operator +(Resource basicRes, int addedQuantity) {
             return new Resource(basicRes.MyType, basicRes._quantity + addedQuantity);
         }
 
-        public static Resource operator +(Resource self, Resource other)
-        {
+        public static Resource operator +(Resource self, Resource other) {
             if (other.MyType == self.MyType)
                 return new Resource(self.MyType, self._quantity + other._quantity);
             //else
@@ -80,57 +66,48 @@ namespace Assets.Scripts.Resources
             return self;
         }
 
-        public static Resource operator -(Resource basicRes, int subtractedQuantity)
-        {
-            if (basicRes._quantity < subtractedQuantity)
-            {
+        public static Resource operator -(Resource basicRes, int subtractedQuantity) {
+            if (basicRes._quantity < subtractedQuantity) {
                 Debug.Log("Cannot substract");
                 return basicRes;
             }
             return new Resource(basicRes.MyType, basicRes._quantity - subtractedQuantity);
         }
 
-        public static Resource operator -(Resource self, Resource other)
-        {
-            if (self._quantity < other._quantity)
-            {
+        public static Resource operator -(Resource self, Resource other) {
+            if (self._quantity < other._quantity) {
                 Debug.Log("Cannot substract");
                 return self;
             }
-            if (other.MyType != self.MyType)
-            {
+            if (other.MyType != self.MyType) {
                 Debug.Log("Types don't match");
                 return self;
             }
 
             return new Resource(self.MyType, self._quantity - other._quantity);
-            
         }
 
-        public static Resource operator ++(Resource basicRes)
-        {
+        public static Resource operator ++(Resource basicRes) {
             basicRes._quantity++;
             return basicRes;
         }
 
-        public static Resource operator --(Resource basicRes)
-        {
+        public static Resource operator --(Resource basicRes) {
             basicRes._quantity--;
             return basicRes;
         }
 
-		public override string ToString(){
-			return _quantity.ToString() + " of " + MyType;
-		}
+        public override string ToString() {
+            return _quantity.ToString() + " of " + MyType;
+        }
 
         //be lazy, load data only when needed
-        private void LoadData()
-        {
+        private void LoadData() {
             //load constant values from world data
             var resourceTypes = Controllers.ConstantData.ResourceTypes[MyType];
             int.TryParse(resourceTypes["mass"], out _massPerUnit);
             int.TryParse(resourceTypes["volume"], out _volumePerUnit);
             int.TryParse(resourceTypes["price"], out _defaultPricePerUnit);
         }
-	}
+    }
 }
