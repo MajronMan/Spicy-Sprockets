@@ -21,11 +21,11 @@ namespace Assets.Scripts.Utils {
         public GameData(string testPath = "") {
             ResourceTypes =
                 JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, string>>>(
-                    File.ReadAllText(Application.dataPath + "/Data/ResourceTypes.json"));
+                    File.ReadAllText(Application.streamingAssetsPath + "/Data/ResourceTypes.json"));
 
             List<Type> buildingTypes =
                 JsonConvert.DeserializeObject<List<Type>>(
-                    File.ReadAllText(Application.dataPath + "/Data/BuildingTypes.json"));
+                    File.ReadAllText(Application.streamingAssetsPath + "/Data/BuildingTypes.json"));
 
             var buildingPath = "Graphics/Buildings/";
             foreach (var buildingType in buildingTypes) {
@@ -34,7 +34,7 @@ namespace Assets.Scripts.Utils {
             }
             BuildingCosts =
                 JsonConvert.DeserializeObject<Dictionary<Type, List<Resource>>>(
-                    File.ReadAllText(Application.dataPath + "/Data/BuildingCosts.json"));
+                    File.ReadAllText(Application.streamingAssetsPath + "/Data/BuildingCosts.json"));
 
             //            File.WriteAllText(Application.dataPath + "/Data/BuildingCosts.json",
             //                JsonConvert.SerializeObject(BuildingCosts, Formatting.Indented));
