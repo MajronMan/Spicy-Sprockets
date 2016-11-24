@@ -27,6 +27,23 @@ namespace Assets.Scripts.Buildings
         /// How far sources may be to be reachable
         /// </summary>
         public float Radius;
+        /// <summary>
+        /// The list of employees this building has
+        /// </summary>
+        public int CurrentStaff;
+        /// <summary>
+        /// The maximum of emplyees this building can hold
+        /// </summary>
+        public int MaxStaff;
+        /// <summary>
+        /// Minimum staff, required to keep building working
+        /// </summary>
+        public int MinStaff;
+        private Population ThePeople;
+        //I need it to check if gather is working
+        private bool GatherRunning = false;
+        //maybe someone will change it later, for now I think it looks pretty
+        private BuildingPanel panel;
 
         public override void Start()
         {
@@ -41,9 +58,55 @@ namespace Assets.Scripts.Buildings
                     Sources.Add(source);
                 }
             }
+            //employing staff
+            ThePeople = Controllers.CurrentInfo.ThePeople;
+            if(Controllers.CurrentInfo.ThePeople.CheckPossibleEmployment(MinStaff))
+            {
+                Controllers.CurrentInfo.ThePeople.Employ(MinStaff);
+                CurrentStaff = MinStaff;
+            }
+
             // don't gather if there are no nearby sources
-            if(Sources.Count > 0)
+            if (Sources.Count > 0 && CurrentStaff>=MinStaff)
+            {
                 StartCoroutine("Gather");
+                GatherRunning = true;
+            }
+        }
+
+        //will gather only if manned
+        public void Update()
+        {
+            if (CurrentStaff < MinStaff)
+            {
+                StopCoroutine("Gather");
+                GatherRunning = false;
+            }
+            if(!GatherRunning)
+                if (CurrentStaff >= MinStaff)
+                {
+                    StartCoroutine("Gather");
+                    GatherRunning = true;
+                }
+        }
+
+        //used to hire and fire
+        public void ManageStaff(int newStaff)
+        {
+            if (newStaff <= MaxStaff)
+            {
+                if(newStaff < CurrentStaff)
+                {
+                    Controllers.CurrentInfo.ThePeople.Fire(CurrentStaff - newStaff);
+                    CurrentStaff = newStaff;
+                }
+                else
+                {
+                    Controllers.CurrentInfo.ThePeople.Employ(newStaff - CurrentStaff);
+                    CurrentStaff = newStaff;
+                }
+            }
+
         }
 
         public IEnumerator Gather()
