@@ -1462,6 +1462,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ResourceText: {fileID: 170853329}
+  MaxText: {fileID: 0}
   Type: stone
 --- !u!114 &170853329
 MonoBehaviour:
@@ -1627,6 +1628,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ResourceText: {fileID: 207235072}
+  MaxText: {fileID: 0}
   Type: food
 --- !u!114 &207235072
 MonoBehaviour:
@@ -1933,6 +1935,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ResourceText: {fileID: 275652659}
+  MaxText: {fileID: 0}
   Type: mineral
 --- !u!114 &275652659
 MonoBehaviour:
@@ -3653,6 +3656,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ResourceText: {fileID: 539817069}
+  MaxText: {fileID: 992762773}
   Type: people
 --- !u!114 &539817069
 MonoBehaviour:
@@ -3818,9 +3822,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Content: {fileID: 1412992417}
-  EventPrefab: {fileID: 1000013444541684, guid: 4e02d6b5477de824884ad15706b145d0,
+  EventPrefab: {fileID: 1000013444541684, guid: d8738ceaa3899ae459e22aa782468c1e,
     type: 2}
-  EventbuttonPrefab: {fileID: 1000014020670048, guid: eee2788597e401e4184aad17139e4580,
+  EventbuttonPrefab: {fileID: 1000014020670048, guid: 4f0301575da57234291011da56d46e76,
     type: 2}
 --- !u!1 &595122422
 GameObject:
@@ -4573,6 +4577,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ResourceText: {fileID: 626958293}
+  MaxText: {fileID: 0}
   Type: metal
 --- !u!114 &626958293
 MonoBehaviour:
@@ -7246,7 +7251,6 @@ GameObject:
   - 224: {fileID: 1412992418}
   - 222: {fileID: 1412992420}
   - 114: {fileID: 1412992419}
-  - 114: {fileID: 1412992421}
   m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
@@ -7305,26 +7309,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1412992417}
---- !u!114 &1412992421
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1412992417}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -405508275, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Padding:
-    m_Left: 0
-    m_Right: 0
-    m_Top: 0
-    m_Bottom: 0
-  m_ChildAlignment: 0
-  m_Spacing: 0
-  m_ChildForceExpandWidth: 0
-  m_ChildForceExpandHeight: 1
 --- !u!1 &1415923965
 GameObject:
   m_ObjectHideFlags: 0
@@ -9816,6 +9800,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ResourceText: {fileID: 1930721075}
+  MaxText: {fileID: 0}
   Type: money
 --- !u!1 &1965707517
 GameObject:
@@ -10555,6 +10540,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ResourceText: {fileID: 2041861402}
+  MaxText: {fileID: 0}
   Type: wood
 --- !u!114 &2041861402
 MonoBehaviour:
@@ -11261,6 +11247,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ResourceText: {fileID: 2115598982}
+  MaxText: {fileID: 0}
   Type: coal
 --- !u!114 &2115598982
 MonoBehaviour:
