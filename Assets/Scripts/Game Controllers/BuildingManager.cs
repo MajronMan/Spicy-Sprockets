@@ -2,6 +2,7 @@
 using Assets.Scripts.Buildings;
 using Assets.Scripts.Interface;
 using Assets.Scripts.Utils;
+using UnityEditor;
 using UnityEngine;
 
 namespace Assets.Scripts.Game_Controllers
@@ -31,20 +32,18 @@ namespace Assets.Scripts.Game_Controllers
         /// <returns>The created building</returns>
         public Building Build(System.Type buildingType, Vector3 location)
         {
-            // create a new game object which behaviour is defined by buldingType's script and renders a sprite
-            var buildingGameObject = new GameObject("Building", buildingType, typeof(SpriteRenderer));
-            var newBuilding = buildingGameObject.GetComponent<Building>();
+            // create a new building from prefab
+            var prefab = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/Building.prefab");
+            var buildingGameObject = Instantiate(prefab);
+            var newBuilding = buildingGameObject.AddComponent(buildingType) as Building;
             // building should appear at given location on screen, which is not the same as its world location
             var buildingPosition = Camera.main.ScreenToWorldPoint(location);
 
             // to set proper order of sprites rendered
             buildingPosition.z = 0;
-
-            //need to find a way to get size dependant on building
-            Collider.addCollider(buildingGameObject, new Vector2(2, 1), buildingPosition, _mapInstance.transform);
-
-            newBuilding.transform.position = buildingPosition;
-            newBuilding.transform.SetParent(_mapInstance.transform, true);
+            
+            buildingGameObject.transform.position = buildingPosition;
+            buildingGameObject.transform.SetParent(_mapInstance.transform, true);
             // remember we built it
             Built.Add(newBuilding);
 

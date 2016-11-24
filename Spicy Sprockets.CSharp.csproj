@@ -71,10 +71,12 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Buildings\Building.cs" />
     <Compile Include="Assets\Scripts\Buildings\BuildingPreview.cs" />
+    <Compile Include="Assets\Scripts\Buildings\Collider.cs" />
     <Compile Include="Assets\Scripts\Buildings\GatheringBuilding.cs" />
     <Compile Include="Assets\Scripts\Buildings\LumberMill.cs" />
     <Compile Include="Assets\Scripts\Buildings\Mine.cs" />
     <Compile Include="Assets\Scripts\Buildings\ProductionBuilding.cs" />
+    <Compile Include="Assets\Scripts\Buildings\Quarry.cs" />
     <Compile Include="Assets\Scripts\Buildings\ResidentialBuilding.cs" />
     <Compile Include="Assets\Scripts\Buildings\StorageBuilding.cs" />
     <Compile Include="Assets\Scripts\Buildings\UnbuildableTerrain.cs" />
@@ -108,6 +110,7 @@
     <Compile Include="Assets\Scripts\Utils\GameData.cs" />
     <Compile Include="Assets\Scripts\Utils\Info.cs" />
     <Compile Include="Assets\Scripts\Utils\IntVector2.cs" />
+    <Compile Include="Assets\Scripts\Utils\Statistics.cs" />
     <Compile Include="Assets\Scripts\Utils\Util.cs" />
     <Compile Include="Assets\UnityTestTools\Assertions\AssertionComponent.cs" />
     <Compile Include="Assets\UnityTestTools\Assertions\AssertionException.cs" />

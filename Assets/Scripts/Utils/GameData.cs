@@ -41,24 +41,20 @@ namespace Assets.Scripts.Utils
             }
 
             //later load from XML
-            string cubeFilePath = "Assets/Graphics/Buildings/building.png",
-                tentFilePath = "Assets/Graphics/Buildings/tent.png",
-                mineFilePath = "Assets/Graphics/Buildings/Mine.png",
-                lumberFilePath = "Assets/Graphics/Buildings/Lumber_Mill.png";
-            var cube = AssetDatabase.LoadAssetAtPath<Sprite>(cubeFilePath);
-            var tent = AssetDatabase.LoadAssetAtPath<Sprite>(tentFilePath);
-            var mine = AssetDatabase.LoadAssetAtPath<Sprite>(mineFilePath);
-            var lumber = AssetDatabase.LoadAssetAtPath<Sprite>(lumberFilePath);
-            BuildingData.Add(typeof(ProductionBuilding), cube);
-            BuildingData.Add(typeof(StorageBuilding), tent);
-            BuildingData.Add(typeof(Mine), mine);
-            BuildingData.Add(typeof(LumberMill), lumber);
-
-
-            BuildingCosts.Add(typeof(StorageBuilding), new List<Resource>() { new Resource("wood", 5), new Resource("stone", 3)});
-            BuildingCosts.Add(typeof(ProductionBuilding), new List<Resource>() { new Resource("wood", 10), new Resource("stone", 11) });
-            BuildingCosts.Add(typeof(Mine), new List<Resource>() { new Resource("wood", 5), new Resource("stone", 3) });
-            BuildingCosts.Add(typeof(LumberMill), new List<Resource>() { new Resource("wood", 5), new Resource("stone", 3) });
+            var buildingPath = "Assets/Graphics/Buildings/";
+            Type[] buildingTypes = { typeof(ProductionBuilding), typeof(StorageBuilding), typeof(Mine), typeof(LumberMill), typeof(Quarry), typeof(ResidentialBuilding)};
+            foreach (var buildingType in buildingTypes)
+            {
+                var spritePath = buildingPath + buildingType.Name + ".png";
+                BuildingData.Add(buildingType, AssetDatabase.LoadAssetAtPath<Sprite>(spritePath));
+                // Just hash me up fam
+                BuildingCosts.Add(buildingType,
+                    new List<Resource>()
+                    {
+                        new Resource("wood", 3 + buildingType.GetHashCode()%20),
+                        new Resource("stone", 5 + buildingType.GetHashCode()%27)
+                    });
+            }
 
             var sources = new List<string>(ResourceTypes.Keys);
             foreach (var source in sources)
