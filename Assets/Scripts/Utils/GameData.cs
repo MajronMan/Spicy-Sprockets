@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using Assets.Scripts.Resources;
+using Assets.Scripts.Res;
 using Newtonsoft.Json;
 using UnityEngine;
 
@@ -18,7 +18,7 @@ namespace Assets.Scripts.Utils {
         public Dictionary<Type, Sprite> BuildingData = new Dictionary<Type, Sprite>();
         public Dictionary<Type, List<Resource>> BuildingCosts;
 
-        public GameData(string testPath = "") {
+        public GameData() {
             ResourceTypes =
                 JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, string>>>(
                     File.ReadAllText(Application.streamingAssetsPath + "/Data/ResourceTypes.json"));
