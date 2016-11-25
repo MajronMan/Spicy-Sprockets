@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Assets.Scripts.Game_Controllers;
-using Assets.Scripts.Sources_of_Resources;
+using Assets.Scripts.ResourcePools;
 using UnityEngine;
 
 namespace Assets.Scripts.Interface {
@@ -11,7 +11,7 @@ namespace Assets.Scripts.Interface {
         /// <summary>
         /// All sources present on this map
         /// </summary>
-        public List<Source> Sources = new List<Source>();
+        public List<ResourcePool> Sources = new List<ResourcePool>();
 
         public void OnMouseDown() {
             //behave properly according to game mode

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Game_Controllers;
-using Assets.Scripts.Sources_of_Resources;
+using Assets.Scripts.ResourcePools;
 using UnityEngine;
 
 namespace Assets.Scripts.Buildings {
@@ -19,7 +19,7 @@ namespace Assets.Scripts.Buildings {
         /// <summary>
         /// Sources from which the resource is gathered
         /// </summary>
-        public List<Source> Sources = new List<Source>();
+        public List<ResourcePool> Sources = new List<ResourcePool>();
 
         /// <summary>
         /// How far sources may be to be reachable
@@ -32,7 +32,7 @@ namespace Assets.Scripts.Buildings {
             foreach (var source in Controllers.CurrentCityController.MapInstance.Sources) {
                 // check if the source is in range and yields proper resource
                 if (Vector3.Distance(source.transform.position, transform.position) < Radius &&
-                    source.MyResource == GatheredResource) {
+                    source.Type == GatheredResource) {
                     // if so, remember it
                     Sources.Add(source);
                 }

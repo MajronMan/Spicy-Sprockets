@@ -1,12 +1,13 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Res;
+using UnityEngine;
 using Random = System.Random;
 
-namespace Assets.Scripts.Sources_of_Resources {
+namespace Assets.Scripts.ResourcePools {
     /// <summary>
     /// A general concept of something which gives resources
     /// </summary>
-    public class Source : MonoBehaviour {
-        public string MyResource;
+    public class ResourcePool : MonoBehaviour {
+        public ResourceType Type;
         //Colliders are troublesome
         public float Radius;
 

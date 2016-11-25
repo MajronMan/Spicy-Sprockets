@@ -2,7 +2,7 @@
 using System.Linq;
 using Assets.Scripts.Game_Controllers;
 using Assets.Scripts.Interface;
-using Assets.Scripts.Sources_of_Resources;
+using Assets.Scripts.ResourcePools;
 using Assets.Scripts.Utils;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -26,7 +26,7 @@ namespace Assets.Scripts.MapGenerator {
             var mapRenderer = theMap.GetComponent<SpriteRenderer>();
             var r = mapRenderer.sprite.textureRect.width / 4;
 
-            //get the first source
+            //get the first resourcePool
             var currentResource = NewSource(theMap, middle, r);
             //and all other
             for (var i = 1; i < sourcesCount; i++) {
@@ -35,7 +35,7 @@ namespace Assets.Scripts.MapGenerator {
             }
         }
 
-        private static Source NewSource(Map theMap, Vector2 around, float r) {
+        private static ResourcePool NewSource(Map theMap, Vector2 around, float r) {
             var position = RandomInCircle(around, r);
             var collider = theMap.GetComponent<PolygonCollider2D>();
             while (!collider.OverlapPoint(position)) {
@@ -43,14 +43,14 @@ namespace Assets.Scripts.MapGenerator {
                 r /= 2;
                 position = RandomInCircle(around, r);
             }
-            var gameObject = new GameObject("Source", typeof(Source), typeof(SpriteRenderer));
+            var gameObject = new GameObject("ResourcePool", typeof(ResourcePool), typeof(SpriteRenderer));
             var renderer = gameObject.GetComponent<SpriteRenderer>();
-            var ret = gameObject.GetComponent<Source>();
+            var ret = gameObject.GetComponent<ResourcePool>();
             RandomizeResource(ret);
 
             gameObject.transform.position = new Vector3(position.x, position.y, 0);
             gameObject.transform.SetParent(theMap.transform, true);
-            renderer.sprite = Controllers.ConstantData.SourceSprites[ret.MyResource];
+            renderer.sprite = Controllers.ConstantData.SourceSprites[ret.Type];
             // place it over the map
             renderer.sortingOrder = 1;
             Util.Rescale(renderer, 50, 50);
@@ -66,10 +66,10 @@ namespace Assets.Scripts.MapGenerator {
             return ret;
         }
 
-        private static void RandomizeResource(Source source) {
+        private static void RandomizeResource(ResourcePool resourcePool) {
             var types = new List<string>(Controllers.ConstantData.ResourceTypes.Keys);
             var rand = Random.Range(0, types.Count);
-            source.MyResource = types.ElementAt(rand);
+            resourcePool.Type = types.ElementAt(rand);
         }
     }
 }
