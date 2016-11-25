@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Assets.Scripts.Game_Controllers;
 using UnityEngine;
 
-namespace Assets.Scripts.Resource {
+namespace Assets.Scripts.Res {
     /// <summary>
     /// People living in a certain city
     /// </summary>

@@ -1,4 +1,4 @@
-﻿namespace Assets.Scripts.Resource {
+﻿namespace Assets.Scripts.Res {
     public class Money {
         private int _amount;
 

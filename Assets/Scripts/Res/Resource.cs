@@ -1,6 +1,6 @@
 ﻿using UnityEngine.Assertions;
 
-namespace Assets.Scripts.Resource {
+namespace Assets.Scripts.Res {
     /// <summary>
     /// <para>
     /// *Non-negative* <c>Amount</c> of resource of some <c>Type</c>.

@@ -1,4 +1,4 @@
-﻿namespace Assets.Scripts.Resource {
+﻿namespace Assets.Scripts.Res {
     /// <summary>
     /// Provides info like mass, volume, about some resource type, e.g. wood, stone, etc.
     /// </summary>
