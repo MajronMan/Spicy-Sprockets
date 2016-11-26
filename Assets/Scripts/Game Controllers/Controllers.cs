@@ -34,6 +34,11 @@ namespace Assets.Scripts.Game_Controllers
             _gameController.GetCurrentCity().MyInfo.LoadInitialResources(Data.ResourceTypes);
         }
 
+        /// <summary>
+        /// Fuckin static classes
+        /// </summary>
+        public static void Begin() { }
+
         public static GameController GameController
         {
             get { return Instance._gameController; }
@@ -62,6 +67,16 @@ namespace Assets.Scripts.Game_Controllers
         public static GameData ConstantData
         {
             get { return Data; }
+        }
+
+        public static GameObject UIBase
+        {
+            get { return Instance._gameController.Canvas; }
+        }
+
+        public static Camera MainCamera
+        {
+            get { return Instance._gameController.MainCamera; }
         }
     }
 }
