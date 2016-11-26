@@ -12,7 +12,7 @@ namespace Assets.Scripts.Sources_of_Resources
     {
         public string MyResource;
         //Colliders are troublesome
-        public float Radius;
+        private float Radius;
         /// <summary>
         /// How much of resource it yields
         /// </summary>
@@ -29,6 +29,22 @@ namespace Assets.Scripts.Sources_of_Resources
                 mag *= 2;
             }
             Magnitude = mag;
+        }
+
+        public void ChangeVar(float rad, int mag)
+        {
+            Radius = rad;
+            Magnitude = mag;
+        }
+
+        public float GetRadius()
+        {
+            return Radius;
+        }
+
+        public int GetMagnitude()
+        {
+            return Magnitude;
         }
     }
 }
