@@ -59,7 +59,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000014065904838}
   m_Layer: 0
-  m_Name: Starter
+  m_Name: Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
