@@ -1,4 +1,5 @@
 ﻿using System;
+using Assets.Scripts.Game_Controllers;
 using UnityEngine;
 
 namespace Assets.Scripts.Interface
@@ -87,11 +88,7 @@ namespace Assets.Scripts.Interface
             {
                 newPosition.x += _speed;
             }
-            //empirical, should do it in some nicer way
-            if (Math.Abs(newPosition.x-150) < 50 && Math.Abs(newPosition.y-150) < 50)
-            {
-                transform.position = newPosition;
-            }
+            //TODO: something nice to block going out of map
         }
     }
     

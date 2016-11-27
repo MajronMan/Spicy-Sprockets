@@ -1,4 +1,4 @@
-﻿namespace Assets.Scripts.Utils
+﻿namespace Assets.Static
 {
     /// <summary>
     /// Container with paths to prefabs, so that if one prefab is renamed, we just change its path here instead of searching for usages
@@ -12,6 +12,9 @@
         private static string _canvas = "CanvasPrefab.prefab";
         private static string _building = "Building.prefab";
         private static string _panel = "GenericPanel.prefab";
+        private static string _cogwheelButton = "CogwheelButton.prefab";
+        private static string _mainPanel = "MainPanel.prefab";
+        private static string _notRotatingText = "NotRotatingText.prefab";
 
         /// <summary>
         /// Path of base game object with event system and camera
@@ -33,6 +36,12 @@
         /// Path of a basic UI panel
         /// </summary>
         public static string Panel { get { return Prefabs + _panel;} }
+
+        public static string CogwheelButton { get { return Prefabs + _cogwheelButton;} }
+
+        public static string MainPanel { get { return Prefabs + _mainPanel; } }
+
+        public static string NotRotatingText { get { return Prefabs + _notRotatingText; } }
     }
 
     /// <summary>

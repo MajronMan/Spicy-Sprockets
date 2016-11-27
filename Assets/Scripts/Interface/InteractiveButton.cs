@@ -42,7 +42,7 @@ namespace Assets.Scripts.Interface
         private List<GameObject> panelList;
         private bool clicked = false;
         private bool buttonsDisabled = false;
-
+        /*
         // Needs big refactor
         public void Start()
         {
@@ -189,5 +189,6 @@ namespace Assets.Scripts.Interface
             res5.GetComponent<EventTrigger>().enabled = true;
             res6.GetComponent<EventTrigger>().enabled = true;
         }
+        */
     }
 }
