@@ -16,6 +16,10 @@ namespace Assets.Scripts.Res {
         public readonly ResourceType Type;
         public readonly int Amount;
 
+        public string Name {
+            get { return Type.Name; }
+        }
+
         public int Mass {
             get { return Amount * Type.Mass; }
         }
