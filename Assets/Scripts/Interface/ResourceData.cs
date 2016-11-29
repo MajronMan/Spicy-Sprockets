@@ -1,5 +1,6 @@
 ﻿using System;
 using Assets.Scripts.Game_Controllers;
+using Assets.Scripts.Res;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,7 +10,7 @@ namespace Assets.Scripts.Interface {
     /// </summary>
     public class ResourceData : MonoBehaviour {
         public Text ResourceText;
-        public string Type;
+        public ICountable Resource;
 
         public void Start() {
             ResourceText = GetComponent<Text>();
@@ -18,17 +19,7 @@ namespace Assets.Scripts.Interface {
         public void Update() {
             //show current value
             try {
-                switch (Type) {
-                    case "people":
-                        ResourceText.text = Controllers.CurrentInfo.ThePeople.Number.ToString();
-                        break;
-                    case "money":
-                        ResourceText.text = Controllers.CurrentInfo.MyMoney.GetAmount().ToString();
-                        break;
-                    default:
-                        ResourceText.text = Controllers.CurrentInfo[Type].GetQuantity().ToString();
-                        break;
-                }
+                ResourceText.text = Resource.Amount.ToString();
             } catch (Exception e) {
                 Debug.Log(e.Message);
                 Debug.Log(e.InnerException);

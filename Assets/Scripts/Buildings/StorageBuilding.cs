@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Assets.Scripts.Game_Controllers;
-using Assets.Scripts.Resources;
+using Assets.Scripts.Res;
 using Assets.Scripts.Utils;
 
 namespace Assets.Scripts.Buildings {
@@ -11,7 +11,7 @@ namespace Assets.Scripts.Buildings {
         /// <summary>
         /// Dictionary holding resources present in the storage
         /// </summary>
-        public Dictionary<string, Resource> Storage;
+        public Dictionary<ResourceType, Resource> Storage;
 
         public override void Start() {
             MySize = BuildingSize.Big;

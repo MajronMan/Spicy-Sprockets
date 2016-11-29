@@ -67,7 +67,7 @@ namespace Assets.Scripts.MapGenerator {
         }
 
         private static void RandomizeResource(ResourcePool resourcePool) {
-            var types = new List<string>(Controllers.ConstantData.ResourceTypes.Keys);
+            var types = Controllers.ConstantData.ResourceTypes;
             var rand = Random.Range(0, types.Count);
             resourcePool.Type = types.ElementAt(rand);
         }

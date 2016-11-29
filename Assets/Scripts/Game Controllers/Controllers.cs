@@ -27,9 +27,9 @@ namespace Assets.Scripts.Game_Controllers {
             // create a new game object with behaviour defined in GameController script
             var gameObject = new GameObject("Game Controller", typeof(GameController));
             _gameController = gameObject.GetComponent<GameController>();
-            _gameController.MapPrefab = UnityEngine.Resources.Load<Map>(@"Prefabs\Map");
+            _gameController.MapPrefab = Resources.Load<Map>(@"Prefabs\Map");
             _gameController.BeginGame();
-            _gameController.GetCurrentCity().MyInfo.LoadInitialResources(Data.ResourceTypes);
+            _gameController.GetCurrentCity().MyInfo.LoadInitialResources(Data.InitialResources);
         }
 
         public static GameController GameController {

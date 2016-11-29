@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Game_Controllers;
+using Assets.Scripts.Res;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -33,7 +34,7 @@ namespace Assets.Scripts.Interface {
         /// <summary>
         /// Currently selected resource type
         /// </summary>
-        private static string _type;
+        private static ResourceType _type;
 
         private static bool _buying;
 
@@ -70,28 +71,28 @@ namespace Assets.Scripts.Interface {
         /// Used after click of resource from 'sell' column
         /// </summary>
         /// <param name="which">Type of resource that's sold</param>
-        public void Sell(string which) {
+        public void Sell(int which) {
             _slider.gameObject.SetActive(true);
             _buying = false;
-            _type = which;
+            _type = Controllers.ConstantData.ResourceTypes[which];
 
             SetSprites();
-            _slider.maxValue = Controllers.CurrentInfo[_type].GetQuantity();
+            _slider.maxValue = Controllers.CurrentInfo[_type].Amount;
         }
 
         /// <summary>
         /// Called after click of resource from 'buy' column
         /// </summary>
         /// <param name="which">Type of resource that's bought</param>
-        public void Buy(string which) {
+        public void Buy(int which) {
             _slider.gameObject.SetActive(true);
             _buying = true;
-            _type = which;
+            _type = Controllers.ConstantData.ResourceTypes[which];
 
-            int price = int.Parse(Controllers.ConstantData.ResourceTypes[_type]["price"]);
+            int price = _type.DefaultPrice;
 
             SetSprites();
-            _slider.maxValue = Controllers.CurrentInfo.MyMoney.GetAmount() / price;
+            _slider.maxValue = Controllers.CurrentInfo.MyMoney.Amount / price;
         }
 
         /// <summary>
@@ -102,7 +103,8 @@ namespace Assets.Scripts.Interface {
             int svalue = (int) _slider.value;
             svalue = _buying ? svalue : -svalue;
 
-            int price = int.Parse(Controllers.ConstantData.ResourceTypes[_type]["price"]);
+            int price = _type.DefaultPrice;
+            ;
 
             // buy cheap
             Controllers.CurrentInfo[_type] += svalue;

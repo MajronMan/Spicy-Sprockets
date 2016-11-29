@@ -1,13 +1,13 @@
 ﻿namespace Assets.Scripts.Res {
-    public class Money {
+    public class Money : ICountable {
         private int _amount;
 
         public Money(int amount = 10000) {
             _amount = amount;
         }
 
-        public int GetAmount() {
-            return _amount;
+        public int Amount {
+            get { return _amount; }
         }
 
         public static Money operator +(Money current, int added) {

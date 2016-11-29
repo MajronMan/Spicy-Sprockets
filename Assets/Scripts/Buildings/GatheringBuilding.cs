@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Game_Controllers;
+using Assets.Scripts.Res;
 using Assets.Scripts.ResourcePools;
 using UnityEngine;
 
@@ -14,7 +15,7 @@ namespace Assets.Scripts.Buildings {
         /// <summary>
         /// Actual resource gathered by this building
         /// </summary>
-        public string GatheredResource;
+        public ResourceType GatheredResource;
 
         /// <summary>
         /// Sources from which the resource is gathered

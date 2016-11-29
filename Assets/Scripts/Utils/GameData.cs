@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Assets.Scripts.Res;
 using Newtonsoft.Json;
 using UnityEngine;
@@ -11,17 +12,22 @@ namespace Assets.Scripts.Utils {
     /// </summary>
     public class GameData {
         //is a mess, needs refactor
-        public Dictionary<string, Sprite> SourceSprites = new Dictionary<string, Sprite>();
+        public Dictionary<ResourceType, Sprite> SourceSprites = new Dictionary<ResourceType, Sprite>();
 
-        public Dictionary<string, Dictionary<string, string>> ResourceTypes;
+        public List<ResourceType> ResourceTypes;
+        public List<Resource> InitialResources;
 
         public Dictionary<Type, Sprite> BuildingData = new Dictionary<Type, Sprite>();
         public Dictionary<Type, List<Resource>> BuildingCosts;
 
         public GameData() {
             ResourceTypes =
-                JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, string>>>(
+                JsonConvert.DeserializeObject<List<ResourceType>>(
                     File.ReadAllText(Application.streamingAssetsPath + "/Data/ResourceTypes.json"));
+
+            InitialResources =
+                JsonConvert.DeserializeObject<List<Resource>>(
+                    File.ReadAllText(Application.streamingAssetsPath + "/Data/InitialResources.json"));
 
             List<Type> buildingTypes =
                 JsonConvert.DeserializeObject<List<Type>>(
@@ -50,11 +56,10 @@ namespace Assets.Scripts.Utils {
             //                }));
             //            Debug.Break();
 
-            var sources = new List<string>(ResourceTypes.Keys);
-            foreach (var source in sources) {
-                var sourcePath = "Graphics/Sources/" + source + "Source";
-                SourceSprites.Add(source, UnityEngine.Resources.Load<Sprite>(sourcePath));
-            }
+            ResourceTypes.ForEach(resource => {
+                var sourcePath = "Graphics/Sources/" + resource.Name + "Source";
+                SourceSprites.Add(resource, Resources.Load<Sprite>(sourcePath));
+            });
         }
     }
 }

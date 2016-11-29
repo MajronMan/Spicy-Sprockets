@@ -1,5 +1,5 @@
 ﻿using System.Collections;
-using Assets.Scripts.Resources;
+using Assets.Scripts.Res;
 using Assets.Scripts.Utils;
 using UnityEngine;
 
@@ -32,16 +32,13 @@ namespace Assets.Scripts.Buildings {
             MySize = BuildingSize.Big;
             base.Start();
 
-            _prefabricate = new Resource("stone", 10);
-            _produced = new Resource("coal", 0);
-
             StartCoroutine("Work");
         }
 
         public IEnumerator Work() {
             while (true) {
                 // If there is enough material to process
-                if (_prefabricate.GetQuantity() > 0) {
+                if (_prefabricate > 0) {
                     Process();
                 }
                 yield return new WaitForSeconds(_processTime);

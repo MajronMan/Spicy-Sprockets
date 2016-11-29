@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Utils;
+﻿using Assets.Scripts.Res;
+using Assets.Scripts.Utils;
 
 namespace Assets.Scripts.Buildings {
     /// <summary>
@@ -7,7 +8,7 @@ namespace Assets.Scripts.Buildings {
     public class Mine : GatheringBuilding {
         public override void Start() {
             Radius = 1000;
-            GatheredResource = "coal";
+            GatheredResource = new ResourceType("temporary_solution", 1, 2, 3); //"coal";
             MySize = BuildingSize.Big;
             base.Start();
         }
