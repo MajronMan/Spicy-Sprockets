@@ -66,19 +66,20 @@ namespace Assets.Scripts.MapGenerator
             ret.ChangeIntensity(newRadius, newMagnitude);
 
             //setting it inside the radius of parent source
+            var collider = theMap.GetComponent<PolygonCollider2D>();
             var newTransform = RandomInCircle(parent.transform.position, parent.GetRadius());
-            gameObject.transform.position = new Vector3(newTransform.x, newTransform.y, 0);
-            gameObject.transform.SetParent(theMap.transform, true);
-            renderer.sprite = Controllers.ConstantData.SourceSprites[ret.MyResource];
-            
-            // place it over the map
-            renderer.sortingOrder = 1;
-            Util.Rescale(renderer, magnitude / 100, magnitude / 100);
-            theMap.Sources.Add(ret);
+            if (collider.OverlapPoint(newTransform))
+            {
+                gameObject.transform.position = new Vector3(newTransform.x, newTransform.y, 0);
+                gameObject.transform.SetParent(theMap.transform, true);
+                renderer.sprite = Controllers.ConstantData.SourceSprites[ret.MyResource];
 
-            Debug.Log(parent.transform.position.x);
-            Debug.Log(ret.transform.position.x);
-
+                // place it over the map
+                renderer.sortingOrder = 1;
+                Util.Rescale(renderer, 20, 20);
+                theMap.Sources.Add(ret);
+            }
+ 
             //will start one or two new sources, so their number is truly random, not 2, 4, 8 and so on
             CreateSecondarySource(threshold, depth + 1, parent, theMap);
             int ourRandom = Random.Range(0, 2);
