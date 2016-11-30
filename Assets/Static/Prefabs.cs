@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Assets.Static
 {
-    public class Prefabs
+    public static class Prefabs
     {
         private static GameObject _root;
         private static GameObject _map;
@@ -12,8 +12,10 @@ namespace Assets.Static
         private static GameObject _building;
         private static GameObject _panel;
         private static GameObject _cogwheelButton;
-        private static GameObject _mainPanel;
+        private static GameObject _verticalGroupPanel;
+        private static GameObject _horizontalGroupPanel;
         private static GameObject _notRotatingText;
+        private static GameObject _casualButton;
 
         /// <summary>
         /// Base game object with event system and camera
@@ -42,9 +44,13 @@ namespace Assets.Static
 
         public static GameObject CogwheelButton { get { return _cogwheelButton ?? (_cogwheelButton = Loader.LoadPrefab(PrefabPaths.CogwheelButton)); } }
 
-        public static GameObject MainPanel { get { return _mainPanel ?? (_mainPanel = Loader.LoadPrefab(PrefabPaths.MainPanel)); } }
+        public static GameObject VerticalGroupPanel { get { return _verticalGroupPanel ?? (_verticalGroupPanel = Loader.LoadPrefab(PrefabPaths.VerticalGroupPanel)); } }
+
+        public static GameObject HorizontalGroupPanel { get { return _horizontalGroupPanel ?? (_horizontalGroupPanel = Loader.LoadPrefab(PrefabPaths.HorizontalGroupPanel)); } }
 
         public static GameObject NotRotatingText { get { return _notRotatingText ?? (_notRotatingText = Loader.LoadPrefab(PrefabPaths.NotRotatingText)); } }
+
+        public static GameObject CasualButton { get { return _casualButton ?? (_casualButton = Loader.LoadPrefab(PrefabPaths.CasualButton)); } }
 
         public static Dictionary<string, GameObject> PathsToObjects = new Dictionary<string, GameObject>()
         {
@@ -54,8 +60,10 @@ namespace Assets.Static
             { PrefabPaths.Building, Building},
             { PrefabPaths.Panel, Panel},
             { PrefabPaths.CogwheelButton, CogwheelButton },
-            { PrefabPaths.MainPanel, MainPanel },
-            { PrefabPaths.NotRotatingText, NotRotatingText }
+            { PrefabPaths.VerticalGroupPanel, VerticalGroupPanel },
+            { PrefabPaths.HorizontalGroupPanel, HorizontalGroupPanel },
+            { PrefabPaths.NotRotatingText, NotRotatingText },
+            { PrefabPaths.CasualButton, CasualButton }
         };
     }
 }

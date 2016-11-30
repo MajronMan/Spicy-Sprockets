@@ -13,11 +13,13 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>5.4.1f1</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <LangVersion Condition=" '$(VisualStudioVersion)' != '10.0' ">4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -93,10 +95,12 @@
     <Compile Include="Assets\Scripts\Game Controllers\Game Modes\GameMode.cs" />
     <Compile Include="Assets\Scripts\Game Controllers\GameController.cs" />
     <Compile Include="Assets\Scripts\Game Controllers\GameControllerReferencer.cs" />
+    <Compile Include="Assets\Scripts\Interface\AutomaticInterface.cs" />
     <Compile Include="Assets\Scripts\Interface\CameraMotion.cs" />
     <Compile Include="Assets\Scripts\Interface\Events.cs" />
     <Compile Include="Assets\Scripts\Interface\InteractiveButton.cs" />
     <Compile Include="Assets\Scripts\Interface\Map.cs" />
+    <Compile Include="Assets\Scripts\Interface\NotRotating.cs" />
     <Compile Include="Assets\Scripts\Interface\ResourceData.cs" />
     <Compile Include="Assets\Scripts\Interface\Timer.cs" />
     <Compile Include="Assets\Scripts\Interface\ToggleMap.cs" />
@@ -106,12 +110,18 @@
     <Compile Include="Assets\Scripts\Resources\Population.cs" />
     <Compile Include="Assets\Scripts\Resources\Resource.cs" />
     <Compile Include="Assets\Scripts\Sources of Resources\Source.cs" />
+    <Compile Include="Assets\Scripts\Utils\BuildingPanel.cs" />
     <Compile Include="Assets\Scripts\Utils\Enums.cs" />
     <Compile Include="Assets\Scripts\Utils\GameData.cs" />
     <Compile Include="Assets\Scripts\Utils\Info.cs" />
     <Compile Include="Assets\Scripts\Utils\IntVector2.cs" />
+    <Compile Include="Assets\Scripts\Utils\Loader.cs" />
+    <Compile Include="Assets\Scripts\Utils\Starter.cs" />
     <Compile Include="Assets\Scripts\Utils\Statistics.cs" />
     <Compile Include="Assets\Scripts\Utils\Util.cs" />
+    <Compile Include="Assets\Static\Paths.cs" />
+    <Compile Include="Assets\Static\Prefabs.cs" />
+    <Compile Include="Assets\Static\Sprites.cs" />
     <Compile Include="Assets\UnityTestTools\Assertions\AssertionComponent.cs" />
     <Compile Include="Assets\UnityTestTools\Assertions\AssertionException.cs" />
     <Compile Include="Assets\UnityTestTools\Assertions\Assertions.cs" />

@@ -1,14 +1,23 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Xml.Linq;
 using Assets.Scripts.Game_Controllers;
 using Assets.Scripts.Resources;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Assets.Scripts.Utils
 {
+    /// <summary>
+    /// Event informing about added or removed resources
+    /// </summary>
+    /// <param name="sender">Who sent event</param>
+    //public delegate void ResourceStateChangedHandler();
+
     /// <summary>
     /// Contains variable data about a single city
     /// </summary>
@@ -18,7 +27,8 @@ namespace Assets.Scripts.Utils
         public Money MyMoney = new Money();
         public int CurrentStorageVolume;
         public CityController MyCity;
-
+        private UnityEvent RSCH;
+        //private event ResourceStateChangedHandler Changed;
         //maybe later use given limits from file or depending on sth
         private int _maxStorageVolume = 10000;
         private int _maxPopulation = 200;
@@ -26,6 +36,12 @@ namespace Assets.Scripts.Utils
         public Info(CityController cityController)
         {
             MyCity = cityController;
+        }
+
+        private void OnResourceStateChange()
+        {
+            if (Changed != null)
+                Changed();
         }
 
         public void LoadInitialResources(Dictionary<string, Dictionary<string, string>> resourceTypes)
@@ -48,13 +64,21 @@ namespace Assets.Scripts.Utils
                return Resources[key];
             }
 
-            set { Resources[key] = value; }
+            set
+            {
+                Resources[key] = value; 
+                OnResourceStateChange();
+            }
         }
 
         public Resource this[Resource key]
         {
             get { return Resources[key.MyType]; }
-            set { Resources[key.MyType] = value; }
+            set
+            {
+                Resources[key.MyType] = value; 
+                OnResourceStateChange();
+            }
         }
 
         public int GetPopulationLimit()
@@ -80,6 +104,7 @@ namespace Assets.Scripts.Utils
                 Resources[resource.MyType] -= resource;
                 CurrentStorageVolume -= resource.GetVolume();
             }
+            OnResourceStateChange();
         }
 
         public void BuildingCosts(System.Type buildingType)

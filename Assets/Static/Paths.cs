@@ -1,4 +1,6 @@
-﻿namespace Assets.Static
+﻿using System.IO;
+
+namespace Assets.Static
 {
     /// <summary>
     /// Container with paths to prefabs, so that if one prefab is renamed, we just change its path here instead of searching for usages
@@ -13,8 +15,10 @@
         private static string _building = "Building.prefab";
         private static string _panel = "GenericPanel.prefab";
         private static string _cogwheelButton = "CogwheelButton.prefab";
-        private static string _mainPanel = "MainPanel.prefab";
+        private static string _verticalGroupPanel = "VerticalGroupPanel.prefab";
+        private static string _horizontalGroupPanel = "HorizontalGroupPanel.prefab";
         private static string _notRotatingText = "NotRotatingText.prefab";
+        private static string _casualButton = "CasualButton.prefab";
 
         /// <summary>
         /// Path of base game object with event system and camera
@@ -39,9 +43,13 @@
 
         public static string CogwheelButton { get { return Prefabs + _cogwheelButton;} }
 
-        public static string MainPanel { get { return Prefabs + _mainPanel; } }
+        public static string VerticalGroupPanel { get { return Prefabs + _verticalGroupPanel; } }
+
+        public static string HorizontalGroupPanel { get { return Prefabs + _horizontalGroupPanel; } }
 
         public static string NotRotatingText { get { return Prefabs + _notRotatingText; } }
+
+        public static string CasualButton { get { return Prefabs + _casualButton; } }
     }
 
     /// <summary>
@@ -50,7 +58,21 @@
     public static class GraphicsPaths
     {
         public static string Graphics = "Assets/Graphics/";
-        
 
+        private static string _food = "Bread.png";
+        private static string _coal = "Coal.png";
+        private static string _metal = "Metal.png";
+        private static string _wood = "Wood.png";
+        private static string _stone= "Stone.png";
+        private static string _mineral = "Mineral.png";
+
+        public static string Food { get { return Graphics + _food; } }
+        public static string Coal { get { return Graphics + _coal; } }
+        public static string Metal { get { return Graphics + _metal; } }
+        public static string Wood { get { return Graphics + _wood; } }
+        public static string Stone { get { return Graphics + _stone; } }
+        public static string Mineral { get { return Graphics + _mineral; } }
+
+        public static string[] ResourcesSprites = {Food, Coal, Metal, Wood, Stone, Mineral};
     }
 }
