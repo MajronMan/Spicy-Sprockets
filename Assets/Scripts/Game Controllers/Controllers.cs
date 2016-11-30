@@ -16,7 +16,7 @@ namespace Assets.Scripts.Game_Controllers {
         /// <summary>
         /// Data that does not change throughout the game, loaded from file
         /// </summary>
-        private static GameData Data = new GameData();
+        private static GameData Data;
 
         /// <summary>
         /// Implementation of singleton
@@ -26,6 +26,8 @@ namespace Assets.Scripts.Game_Controllers {
         private Controllers() {
             // create a new game object with behaviour defined in GameController script
             var gameObject = new GameObject("Game Controller", typeof(GameController));
+            Data = new GameData();
+            Data.Load();
             _gameController = gameObject.GetComponent<GameController>();
             _gameController.MapPrefab = Resources.Load<Map>(@"Prefabs\Map");
             _gameController.BeginGame();

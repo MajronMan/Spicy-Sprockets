@@ -1,44 +1,44 @@
-{
-  "coal": {
-    "mass": "87",
-    "volume": "100",
-    "price": "10",
-    "initial": "10"
+[
+  {
+    "Name": "coal",
+    "Mass": 87,
+    "Volume": 100,
+    "DefaultPrice": 10
   },
-  "mineral": {
-    "mass": "3",
-    "volume": "1",
-    "price": "130",
-    "initial": "5"
+  {
+	  "Name": "mineral",
+    "Mass": 3,
+    "Volume": 1,
+    "DefaultPrice": 130
   },
-  "metal": {
-    "mass": "8557",
-    "volume": "10550",
-    "price": "115",
-    "initial": "50"
+  {
+	  "Name": "metal",
+    "Mass": 8557,
+    "Volume": 10550,
+    "DefaultPrice": 115
   },
-  "wood": {
-    "mass": "1237",
-    "volume": "1550",
-    "price": "40",
-    "initial": "100"
+  {
+	  "Name": "wood",
+    "Mass": 1237,
+    "Volume": 1550,
+    "DefaultPrice": 40
   },
-  "food": {
-    "mass": "123",
-    "volume": "100",
-    "price": "12",
-    "initial": "100"
+  {
+	  "Name": "food",
+    "Mass": 123,
+    "Volume": 100,
+    "DefaultPrice": 12
   },
-  "stone": {
-    "mass": "8557",
-    "volume": "2550",
-    "price": "431",
-    "initial": "100"
+  {
+	  "Name": "stone",
+    "Mass": 8557,
+    "Volume": 2550,
+    "DefaultPrice": 431
   },
-  "yomama": {
-    "mass": "8557",
-    "volume": "10550",
-    "price": "1",
-    "initial": "1"
+  {
+	  "Name": "yomama",
+    "Mass": 8557,
+    "Volume": 10550,
+    "DefaultPrice": 1
   }
-}
+]

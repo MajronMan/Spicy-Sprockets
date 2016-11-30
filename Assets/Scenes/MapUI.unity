@@ -1497,7 +1497,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ResourceText: {fileID: 170853329}
-  Type: stone
 --- !u!114 &170853329
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1662,7 +1661,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ResourceText: {fileID: 207235072}
-  Type: food
 --- !u!114 &207235072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2101,7 +2099,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ResourceText: {fileID: 275652659}
-  Type: mineral
 --- !u!114 &275652659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3900,7 +3897,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ResourceText: {fileID: 539817069}
-  Type: people
 --- !u!114 &539817069
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4762,7 +4758,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ResourceText: {fileID: 626958293}
-  Type: metal
 --- !u!114 &626958293
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8007,6 +8002,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1441580011}
+  - 114: {fileID: 1441580012}
   m_Layer: 0
   m_Name: NecessaryKit
   m_TagString: Untagged
@@ -8032,6 +8028,17 @@ Transform:
   - {fileID: 2012188062}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &1441580012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1441580010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d26f35c8b8626a14c87e776ae043b9fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1465741170
 GameObject:
   m_ObjectHideFlags: 0
@@ -10430,7 +10437,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ResourceText: {fileID: 1930721075}
-  Type: money
 --- !u!1 &1965707517
 GameObject:
   m_ObjectHideFlags: 0
@@ -11032,7 +11038,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ResourceText: {fileID: 2041861402}
-  Type: wood
 --- !u!114 &2041861402
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11698,7 +11703,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ResourceText: {fileID: 2115598982}
-  Type: coal
 --- !u!114 &2115598982
 MonoBehaviour:
   m_ObjectHideFlags: 0

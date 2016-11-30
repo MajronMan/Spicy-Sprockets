@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
+using System.Runtime.Serialization;
+using Assets.Scripts.JsonConverters;
 using Assets.Scripts.Res;
 using Newtonsoft.Json;
 using UnityEngine;
@@ -11,19 +12,31 @@ namespace Assets.Scripts.Utils {
     /// Data that's constant through the entire game
     /// </summary>
     public class GameData {
+        public class DataHelper {
+            public Dictionary<string, ResourceType> ResourceTypesByName = new Dictionary<string, ResourceType>();
+        }
+
+        [JsonIgnore] public DataHelper SerializationHelper = new DataHelper();
+
+        [OnDeserialized]
+        void FinalizeHelper() {
+            SerializationHelper = null;
+        }
+
         //is a mess, needs refactor
         public Dictionary<ResourceType, Sprite> SourceSprites = new Dictionary<ResourceType, Sprite>();
+        public Dictionary<Type, Sprite> BuildingData = new Dictionary<Type, Sprite>();
 
+        //        [JsonConverter(typeof(ResourceTypesByNameConverter))]
         public List<ResourceType> ResourceTypes;
         public List<Resource> InitialResources;
-
-        public Dictionary<Type, Sprite> BuildingData = new Dictionary<Type, Sprite>();
         public Dictionary<Type, List<Resource>> BuildingCosts;
 
-        public GameData() {
+        public void Load() {
             ResourceTypes =
                 JsonConvert.DeserializeObject<List<ResourceType>>(
-                    File.ReadAllText(Application.streamingAssetsPath + "/Data/ResourceTypes.json"));
+                    File.ReadAllText(Application.streamingAssetsPath + "/Data/ResourceTypes.json"),
+                    new ResourceTypesByNameConverter());
 
             InitialResources =
                 JsonConvert.DeserializeObject<List<Resource>>(
@@ -36,11 +49,16 @@ namespace Assets.Scripts.Utils {
             var buildingPath = "Graphics/Buildings/";
             foreach (var buildingType in buildingTypes) {
                 var spritePath = buildingPath + buildingType.Name;
-                BuildingData.Add(buildingType, UnityEngine.Resources.Load<Sprite>(spritePath));
+                BuildingData.Add(buildingType, Resources.Load<Sprite>(spritePath));
             }
             BuildingCosts =
                 JsonConvert.DeserializeObject<Dictionary<Type, List<Resource>>>(
                     File.ReadAllText(Application.streamingAssetsPath + "/Data/BuildingCosts.json"));
+
+            ResourceTypes.ForEach(resource => {
+                var sourcePath = "Graphics/Sources/" + resource.Name + "Source";
+                SourceSprites.Add(resource, Resources.Load<Sprite>(sourcePath));
+            });
 
             //            File.WriteAllText(Application.dataPath + "/Data/BuildingCosts.json",
             //                JsonConvert.SerializeObject(BuildingCosts, Formatting.Indented));
@@ -55,11 +73,6 @@ namespace Assets.Scripts.Utils {
             //                    TypeNameAssemblyFormat = FormatterAssemblyStyle.Simple
             //                }));
             //            Debug.Break();
-
-            ResourceTypes.ForEach(resource => {
-                var sourcePath = "Graphics/Sources/" + resource.Name + "Source";
-                SourceSprites.Add(resource, Resources.Load<Sprite>(sourcePath));
-            });
         }
     }
 }

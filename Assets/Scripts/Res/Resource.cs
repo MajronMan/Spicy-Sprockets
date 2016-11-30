@@ -1,4 +1,6 @@
-﻿using UnityEngine.Assertions;
+﻿using Assets.Scripts.JsonConverters;
+using Newtonsoft.Json;
+using UnityEngine.Assertions;
 
 namespace Assets.Scripts.Res {
     /// <summary>
@@ -13,8 +15,8 @@ namespace Assets.Scripts.Res {
     /// </para>
     /// </summary>
     public struct Resource : ICountable {
-        private ResourceType _type;
-        private int _amount;
+        [JsonConverter(typeof(ResourceTypeStringConverter))] [JsonProperty] private ResourceType _type;
+        [JsonProperty] private int _amount;
 
         public ResourceType Type {
             get { return _type; }

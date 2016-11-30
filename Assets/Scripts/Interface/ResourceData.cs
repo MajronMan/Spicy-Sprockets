@@ -16,15 +16,15 @@ namespace Assets.Scripts.Interface {
             ResourceText = GetComponent<Text>();
         }
 
-        public void Update() {
-            //show current value
-            try {
-                ResourceText.text = Resource.Amount.ToString();
-            } catch (Exception e) {
-                Debug.Log(e.Message);
-                Debug.Log(e.InnerException);
-                ResourceText.text = "dupa";
-            }
-        }
+//        public void Update() {
+//            //show current value
+//            try {
+//                ResourceText.text = Resource.Amount.ToString();
+//            } catch (Exception e) {
+//                Debug.Log(e.Message);
+//                Debug.Log(e.InnerException);
+//                ResourceText.text = "dupa";
+//            }
+//        }
     }
 }
