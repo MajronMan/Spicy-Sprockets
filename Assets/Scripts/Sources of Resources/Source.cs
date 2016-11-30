@@ -12,7 +12,7 @@ namespace Assets.Scripts.Sources_of_Resources
     {
         public string MyResource;
         //Colliders are troublesome
-        public float Radius;
+        private float Radius;
         /// <summary>
         /// How much of resource it yields
         /// </summary>
@@ -20,8 +20,29 @@ namespace Assets.Scripts.Sources_of_Resources
 
         public void Start()
         {
-            Radius = 100.0f; 
-            var mag = 500;
+
+        }
+
+        public void ChangeIntensity(float rad, int mag)
+        {
+            Radius = rad;
+            Magnitude = mag;
+        }
+
+        public float GetRadius()
+        {
+            return Radius;
+        }
+
+        public int GetMagnitude()
+        {
+            return Magnitude;
+        }
+
+        public void SetIntensity()
+        {
+            Radius = 20.0f;
+            var mag = 50;
             var r = new Random();
             while (r.Next(2) == 0)
             {

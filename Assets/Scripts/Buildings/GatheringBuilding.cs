@@ -52,7 +52,7 @@ namespace Assets.Scripts.Buildings
             foreach (var source in Controllers.CurrentCityController.MapInstance.Sources)     
             {
                 // check if the source is in range and yields proper resource
-                if (Vector3.Distance(source.transform.position, transform.position) < source.Radius && source.MyResource == GatheredResource)
+                if (Vector3.Distance(source.transform.position, transform.position) < source.GetRadius() && source.MyResource == GatheredResource)
                 {
                     // if so, remember it
                     Sources.Add(source);
