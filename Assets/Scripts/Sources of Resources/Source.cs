@@ -20,18 +20,10 @@ namespace Assets.Scripts.Sources_of_Resources
 
         public void Start()
         {
-            Radius = 100.0f; 
-            var mag = 500;
-            var r = new Random();
-            while (r.Next(2) == 0)
-            {
-                Radius *= 2;
-                mag *= 2;
-            }
-            Magnitude = mag;
+
         }
 
-        public void ChangeVar(float rad, int mag)
+        public void ChangeIntensity(float rad, int mag)
         {
             Radius = rad;
             Magnitude = mag;
@@ -45,6 +37,19 @@ namespace Assets.Scripts.Sources_of_Resources
         public int GetMagnitude()
         {
             return Magnitude;
+        }
+
+        public void SetIntensity()
+        {
+            Radius = 20.0f;
+            var mag = 50;
+            var r = new Random();
+            while (r.Next(2) == 0)
+            {
+                Radius *= 2;
+                mag *= 2;
+            }
+            Magnitude = mag;
         }
     }
 }

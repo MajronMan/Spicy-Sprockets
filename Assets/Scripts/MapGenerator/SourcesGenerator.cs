@@ -44,19 +44,15 @@ namespace Assets.Scripts.MapGenerator
         }
 
         //creating a secondary source inside the parent radius
-        public static void CreateSecondarySource(int treshold, int depth, Source parent, Map theMap)
+        public static void CreateSecondarySource(int threshold, int depth, Source parent, Map theMap)
         {
             //check if not over
-            if (depth == treshold)
+            if (depth == threshold)
                 return;
 
             //max variables for radius and magnitude of new source
             float radius = parent.GetRadius() / 2;
-            int magnitude = parent.GetMagnitude();
-            if (magnitude % 2 == 1)
-                magnitude = (magnitude + 1) / 2;
-            else
-                magnitude = magnitude / 2;
+            int magnitude = (parent.GetMagnitude()+1)/2;
 
             //creating a source
             var gameObject = new GameObject("Source", typeof(Source), typeof(SpriteRenderer));
@@ -65,9 +61,9 @@ namespace Assets.Scripts.MapGenerator
             ret.MyResource = parent.MyResource;
 
             //randomizing variables
-            var newRadius = Random.Range(0.0f, radius / 2);
-            var newMagnitude = Random.Range(0, magnitude);
-            ret.ChangeVar(newRadius, newMagnitude);
+            var newRadius = Random.Range(radius / 4, radius);
+            var newMagnitude = Random.Range(magnitude / 4, magnitude);
+            ret.ChangeIntensity(newRadius, newMagnitude);
 
             //setting it inside the radius of parent source
             var newTransform = RandomInCircle(parent.transform.position, parent.GetRadius());
@@ -77,14 +73,17 @@ namespace Assets.Scripts.MapGenerator
             
             // place it over the map
             renderer.sortingOrder = 1;
-            Util.Rescale(renderer, 50, 50);
+            Util.Rescale(renderer, magnitude / 100, magnitude / 100);
             theMap.Sources.Add(ret);
 
+            Debug.Log(parent.transform.position.x);
+            Debug.Log(ret.transform.position.x);
+
             //will start one or two new sources, so their number is truly random, not 2, 4, 8 and so on
-            CreateSecondarySource(treshold, depth + 1, parent, theMap);
+            CreateSecondarySource(threshold, depth + 1, parent, theMap);
             int ourRandom = Random.Range(0, 2);
             if (ourRandom == 1)
-                CreateSecondarySource(treshold, depth + 1, parent, theMap);
+                CreateSecondarySource(threshold, depth + 1, parent, theMap);
         }
 
         private static Source NewSource(Map theMap, Vector2 around, float r)
@@ -102,6 +101,7 @@ namespace Assets.Scripts.MapGenerator
             var renderer = gameObject.GetComponent<SpriteRenderer>();
             var ret = gameObject.GetComponent<Source>();
             RandomizeResource(ret);
+            ret.SetIntensity();
 
             gameObject.transform.position = new Vector3(position.x, position.y, 0);
             gameObject.transform.SetParent(theMap.transform, true);
@@ -118,7 +118,7 @@ namespace Assets.Scripts.MapGenerator
         {
             var ret = Random.insideUnitCircle;
             ret.x = middle.x + r*ret.x;
-            ret.y = middle.y + r * ret.y;
+            ret.y = middle.y + r*ret.y;
             return ret;
         }
 
