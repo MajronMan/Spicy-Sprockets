@@ -7,7 +7,8 @@ Dzień dobry
 | ------------- |:-------------:                            |
 | Wrzesień      | Robson (nagroda pocieszenia dla Krzysia)  |
 | Październik   | Nikt bo wszyscy to lenie                  |
-| Listopad      | To możesz być Ty!                         |
+| Listopad      | Łuksz                                     |
+| Grudzień      | To możesz być Ty!                         |
 ------------
 
 **Lista pracowników dnia**
