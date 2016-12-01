@@ -1,0 +1,30 @@
+[
+  {
+	"_type": "coal",
+	"_amount": 1
+  },
+  {
+	"_type": "mineral",
+	"_amount": 5
+  },
+  {
+	"_type": "metal",
+	"_amount": 8
+  },
+  {
+	"_type": "wood",
+	"_amount": 0
+  },
+  {
+	"_type": "food",
+	"_amount": 0
+  },
+  {
+	"_type": "stone",
+	"_amount": 8
+  },
+  {
+  	"_type": "yomama",
+    "_amount": 1
+  }
+]

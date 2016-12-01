@@ -1,23 +1,20 @@
-﻿using System.Collections.Generic;
-using Assets.Scripts.Interface;
+﻿using Assets.Scripts.Interface;
 using Assets.Scripts.MapGenerator;
-using Assets.Scripts.Sources_of_Resources;
 using Assets.Scripts.Utils;
 using UnityEngine;
-using UnityEngine.SocialPlatforms;
 
-namespace Assets.Scripts.Game_Controllers
-{
+namespace Assets.Scripts.Game_Controllers {
     /// <summary>
     /// Manages a single city owned by the player
     /// </summary>
-    public class CityController : MonoBehaviour
-    {
+    public class CityController : MonoBehaviour {
         /// <summary>
         /// Actual map where the city is built
         /// </summary>
         public Map MapInstance;
+
         private BuildingManager _buildingManagerInstance;
+
         /// <summary>
         /// This city's data, e. g. collected resources, population etc.
         /// </summary>
@@ -29,16 +26,15 @@ namespace Assets.Scripts.Game_Controllers
         /// Defines what happens when a new city is created
         /// </summary>
         /// <param name="mapPrefab">Prefab which shall be instatiated</param>
-        public void CreateCity(Map mapPrefab)
-        {
+        public void CreateCity(Map mapPrefab) {
             //place the map in the middle of the screen
-            var mapPosition = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width/2, Screen.height/2));
+            var mapPosition = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2));
             mapPosition.z = 0;
-            MapInstance = Instantiate(mapPrefab, mapPosition, transform.rotation) as Map;
+            MapInstance = (Map) Instantiate(mapPrefab, mapPosition, transform.rotation);
             // make the map a child of this city controller
             MapInstance.transform.SetParent(transform);
             // set desired map size
-            Util.Rescale(MapInstance.GetComponent<SpriteRenderer>(), _mapSize.x, _mapSize.y);
+            Util.Rescale(MapInstance.GetComponent<SpriteRenderer>(), _mapSize.X, _mapSize.Y);
             MapInstance.name = "Map";
             // create a building manager for this city
             var newGameObject = new GameObject("Building Manager", typeof(BuildingManager));
@@ -51,8 +47,7 @@ namespace Assets.Scripts.Game_Controllers
             SourcesGenerator.Generate(MapInstance);
         }
 
-        public BuildingManager GetBuildingManager()
-        {
+        public BuildingManager GetBuildingManager() {
             return _buildingManagerInstance;
         }
     }
