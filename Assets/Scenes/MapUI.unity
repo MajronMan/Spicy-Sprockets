@@ -1461,9 +1461,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe96940a5a0194b4e9eadb8c4497846e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ResourceText: {fileID: 170853329}
-  MaxText: {fileID: 0}
-  Type: stone
 --- !u!114 &170853329
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1627,9 +1624,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe96940a5a0194b4e9eadb8c4497846e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ResourceText: {fileID: 207235072}
-  MaxText: {fileID: 0}
-  Type: food
 --- !u!114 &207235072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1934,9 +1928,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe96940a5a0194b4e9eadb8c4497846e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ResourceText: {fileID: 275652659}
-  MaxText: {fileID: 0}
-  Type: mineral
 --- !u!114 &275652659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3655,9 +3646,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe96940a5a0194b4e9eadb8c4497846e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ResourceText: {fileID: 539817069}
-  MaxText: {fileID: 992762773}
-  Type: people
 --- !u!114 &539817069
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4576,9 +4564,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe96940a5a0194b4e9eadb8c4497846e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ResourceText: {fileID: 626958293}
-  MaxText: {fileID: 0}
-  Type: metal
 --- !u!114 &626958293
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9799,9 +9784,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe96940a5a0194b4e9eadb8c4497846e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ResourceText: {fileID: 1930721075}
-  MaxText: {fileID: 0}
-  Type: money
 --- !u!1 &1965707517
 GameObject:
   m_ObjectHideFlags: 0
@@ -10539,9 +10521,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe96940a5a0194b4e9eadb8c4497846e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ResourceText: {fileID: 2041861402}
-  MaxText: {fileID: 0}
-  Type: wood
 --- !u!114 &2041861402
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11246,9 +11225,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe96940a5a0194b4e9eadb8c4497846e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ResourceText: {fileID: 2115598982}
-  MaxText: {fileID: 0}
-  Type: coal
 --- !u!114 &2115598982
 MonoBehaviour:
   m_ObjectHideFlags: 0
