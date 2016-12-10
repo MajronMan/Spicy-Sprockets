@@ -22,7 +22,7 @@ namespace Assets.Scripts.MapGenerator
         /// <param name="theMap">Instance of map</param>
         public static void Generate(Map theMap)
         {
-            const int sourcesCount = 20;
+            int sourcesCount = Random.Range(10, 21);
             
             var collider = theMap.GetComponent<PolygonCollider2D>();
 
@@ -38,17 +38,63 @@ namespace Assets.Scripts.MapGenerator
             {
                 middle = new Vector2(currentResource.transform.position.x, currentResource.transform.position.y);
                 currentResource = NewSource(theMap, middle, r);
+                CreateSecondarySource(3, 0, currentResource, theMap);
             }
 
+        }
+
+        //creating a secondary source inside the parent radius
+        public static void CreateSecondarySource(int threshold, int depth, Source parent, Map theMap)
+        {
+            //check if not over
+            if (depth == threshold)
+                return;
+
+            //max variables for radius and magnitude of new source
+            float radius = parent.GetRadius() / 2;
+            int magnitude = (parent.GetMagnitude()+1)/2;
+
+            //creating a source
+            var gameObject = new GameObject("Source", typeof(Source), typeof(SpriteRenderer));
+            var renderer = gameObject.GetComponent<SpriteRenderer>();
+            var ret = gameObject.GetComponent<Source>();
+            ret.MyResource = parent.MyResource;
+
+            //randomizing variables
+            var newRadius = Random.Range(radius / 4, radius);
+            var newMagnitude = Random.Range(magnitude / 4, magnitude);
+            ret.ChangeIntensity(newRadius, newMagnitude);
+
+            //setting it inside the radius of parent source
+            var collider = theMap.GetComponent<PolygonCollider2D>();
+            var newTransform = RandomInCircle(parent.transform.position, parent.GetRadius());
+            if (collider.OverlapPoint(newTransform))
+            {
+                gameObject.transform.position = new Vector3(newTransform.x, newTransform.y, 0);
+                gameObject.transform.SetParent(theMap.transform, true);
+                renderer.sprite = Controllers.ConstantData.SourceSprites[ret.MyResource];
+
+                // place it over the map
+                renderer.sortingOrder = 1;
+                Util.Rescale(renderer, 20, 20);
+                theMap.Sources.Add(ret);
+            }
+ 
+            //will start one or two new sources, so their number is truly random, not 2, 4, 8 and so on
+            CreateSecondarySource(threshold, depth + 1, parent, theMap);
+            int ourRandom = Random.Range(0, 2);
+            if (ourRandom == 1)
+                CreateSecondarySource(threshold, depth + 1, parent, theMap);
         }
 
         private static Source NewSource(Map theMap, Vector2 around, float r)
         {
             var position = RandomInCircle(around, r);
             var collider = theMap.GetComponent<PolygonCollider2D>();
+            //checking if our next position lies on the map
             while (!collider.OverlapPoint(position))
             {
-                //ensures this won't be an infinite loop if previous point lays within the collider
+                //if not, we repeat the process of positioning in the smaller circe
                 r /= 2;
                 position = RandomInCircle(around, r);
             }
@@ -56,6 +102,7 @@ namespace Assets.Scripts.MapGenerator
             var renderer = gameObject.GetComponent<SpriteRenderer>();
             var ret = gameObject.GetComponent<Source>();
             RandomizeResource(ret);
+            ret.SetIntensity();
 
             gameObject.transform.position = new Vector3(position.x, position.y, 0);
             gameObject.transform.SetParent(theMap.transform, true);
@@ -72,7 +119,7 @@ namespace Assets.Scripts.MapGenerator
         {
             var ret = Random.insideUnitCircle;
             ret.x = middle.x + r*ret.x;
-            ret.y = middle.y + r * ret.y;
+            ret.y = middle.y + r*ret.y;
             return ret;
         }
 
