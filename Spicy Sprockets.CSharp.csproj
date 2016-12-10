@@ -12,14 +12,12 @@
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile>
-    </CompilerResponseFile>
+    <TargetFrameworkProfile>Unity Full v3.5</TargetFrameworkProfile>
+    <CompilerResponseFile></CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>5.4.1f1</UnityVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <LangVersion Condition=" '$(VisualStudioVersion)' != '10.0' ">4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -69,6 +67,9 @@
     <Reference Include="Mono.Cecil.Mdb">
       <HintPath>Assets\UnityTestTools\IntegrationTestsFramework\Libs\Mono.Cecil.Mdb.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Newtonsoft.Json">
+      <HintPath>Assets\Packages\Unity.Newtonsoft.Json.7.0.0.0\lib\net35-Client\Unity.Newtonsoft.Json.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Buildings\Building.cs" />
@@ -82,9 +83,6 @@
     <Compile Include="Assets\Scripts\Buildings\ResidentialBuilding.cs" />
     <Compile Include="Assets\Scripts\Buildings\StorageBuilding.cs" />
     <Compile Include="Assets\Scripts\Buildings\UnbuildableTerrain.cs" />
-    <Compile Include="Assets\Scripts\Data\BuildingContainer.cs" />
-    <Compile Include="Assets\Scripts\Data\BuildingData.cs" />
-    <Compile Include="Assets\Scripts\Data\SaveData.cs" />
     <Compile Include="Assets\Scripts\EnemyCity.cs" />
     <Compile Include="Assets\Scripts\Game Controllers\BuildingManager.cs" />
     <Compile Include="Assets\Scripts\Game Controllers\CityController.cs" />
@@ -95,6 +93,7 @@
     <Compile Include="Assets\Scripts\Game Controllers\Game Modes\GameMode.cs" />
     <Compile Include="Assets\Scripts\Game Controllers\GameController.cs" />
     <Compile Include="Assets\Scripts\Game Controllers\GameControllerReferencer.cs" />
+    <Compile Include="Assets\Scripts\Game Controllers\Starter.cs" />
     <Compile Include="Assets\Scripts\Interface\AutomaticInterface.cs" />
     <Compile Include="Assets\Scripts\Interface\CameraMotion.cs" />
     <Compile Include="Assets\Scripts\Interface\Events.cs" />
@@ -105,11 +104,15 @@
     <Compile Include="Assets\Scripts\Interface\Timer.cs" />
     <Compile Include="Assets\Scripts\Interface\ToggleMap.cs" />
     <Compile Include="Assets\Scripts\Interface\Trade.cs" />
+    <Compile Include="Assets\Scripts\JsonConverters\ResourceTypeStringConverter.cs" />
+    <Compile Include="Assets\Scripts\JsonConverters\ResourceTypesByNameConverter.cs" />
     <Compile Include="Assets\Scripts\MapGenerator\SourcesGenerator.cs" />
-    <Compile Include="Assets\Scripts\Resources\Money.cs" />
-    <Compile Include="Assets\Scripts\Resources\Population.cs" />
-    <Compile Include="Assets\Scripts\Resources\Resource.cs" />
-    <Compile Include="Assets\Scripts\Sources of Resources\Source.cs" />
+    <Compile Include="Assets\Scripts\Res\ICountable.cs" />
+    <Compile Include="Assets\Scripts\Res\Money.cs" />
+    <Compile Include="Assets\Scripts\Res\Population.cs" />
+    <Compile Include="Assets\Scripts\Res\Resource.cs" />
+    <Compile Include="Assets\Scripts\Res\ResourceType.cs" />
+    <Compile Include="Assets\Scripts\ResourcePools\ResourcePool.cs" />
     <Compile Include="Assets\Scripts\Utils\BuildingPanel.cs" />
     <Compile Include="Assets\Scripts\Utils\Enums.cs" />
     <Compile Include="Assets\Scripts\Utils\GameData.cs" />
@@ -166,8 +169,7 @@
     <Compile Include="Assets\UnityTestTools\IntegrationTestsFramework\TestingAssets\CallTesting.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Data\ResourceTypes.xml" />
-    <None Include="Assets\Resources\Data.xml" />
+    <None Include="Assets\Packages\Unity.Newtonsoft.Json.7.0.0.0\lib\net35-Client\Unity.Newtonsoft.Json.xml" />
     <None Include="Assets\Test\Editor\Resources\TestTypes.xml" />
     <None Include="Assets\UnityTestTools\Examples\IntegrationTestsFrameworkExamples\AngryBotsTests\Shaders\BackgroundAndCharacters\AngryInclude.cginc" />
     <None Include="Assets\UnityTestTools\Examples\IntegrationTestsFrameworkExamples\AngryBotsTests\Shaders\BackgroundAndCharacters\CharacterSelfIlluminationReflective.shader" />

@@ -1,4 +1,5 @@
-﻿using System;
+
+using System;
 using Assets.Scripts.Game_Controllers;
 using UnityEngine;
 using UnityEngine.UI;

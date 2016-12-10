@@ -1,17 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Xml.Linq;
-using Assets.Scripts.Game_Controllers;
-using Assets.Scripts.Resources;
+ using System.Linq;
+ using Assets.Scripts.Game_Controllers;
+using Assets.Scripts.Res;
 using UnityEngine;
-using UnityEngine.Events;
 
-namespace Assets.Scripts.Utils
-{
+namespace Assets.Scripts.Utils {
     /// <summary>
     /// Event informing about added or removed resources
     /// </summary>
@@ -22,10 +16,10 @@ namespace Assets.Scripts.Utils
     /// Contains variable data about a single city
     /// </summary>
     public class Info {
-        public Dictionary<string, Resource> Resources = new Dictionary<string, Resource>();
+        public Dictionary<ResourceType, Resource> Resources = new Dictionary<ResourceType, Resource>();
         public Population ThePeople;
         public Money MyMoney = new Money();
-        public int CurrentStorageVolume;
+        public int UsedStorageVolume;
         public CityController MyCity;
         public event ResourceStateChangedEventHandler Changed;
         //private event ResourceStateChangedHandler Changed;
@@ -33,8 +27,7 @@ namespace Assets.Scripts.Utils
         private int _maxStorageVolume = 10000;
         private int _maxPopulation = 200;
 
-        public Info(CityController cityController)
-        {
+        public Info(CityController cityController) {
             MyCity = cityController;
         }
 
@@ -44,25 +37,19 @@ namespace Assets.Scripts.Utils
                 Changed(this, e);
         }
 
-        public void LoadInitialResources(Dictionary<string, Dictionary<string, string>> resourceTypes)
-        {
-            foreach (var type in resourceTypes.Keys)
+        public void LoadInitialResources(List<Resource> initialResources) {
+            foreach (var resource in initialResources)
             {
-                var res = new Resource(type, int.Parse(resourceTypes[type]["initial"]));
-                Resources.Add(type, res);
-                CurrentStorageVolume += res.GetVolume();
+                Resources.Add(resource.Type, resource);
+                UsedStorageVolume += resource.Volume;
             }
-            var gameObject = new GameObject("People", typeof(Population));
+            var gameObject = new GameObject("People");
+            ThePeople = gameObject.AddComponent<Population>();
             gameObject.transform.SetParent(MyCity.transform);
-            ThePeople = gameObject.GetComponent<Population>();
         }
 
-        public Resource this[string key]
-        {
-            get
-            {
-               return Resources[key];
-            }
+        public Resource this[ResourceType key] {
+            get { return Resources[key]; }
 
             set
             {
@@ -73,52 +60,44 @@ namespace Assets.Scripts.Utils
 
         public Resource this[Resource key]
         {
-            get { return Resources[key.MyType]; }
+            get { return Resources[key.Type]; }
             set
             {
-                Resources[key.MyType] = value; 
+                Resources[key.Type] = value; 
                 OnResourceStateChanged(EventArgs.Empty);
             }
         }
 
-        public int GetPopulationLimit()
-        {
+        public int GetPopulationLimit() {
             return _maxPopulation;
         }
 
-        public bool SufficientResources(List<Resource> costs)
-        {
+        public bool SufficientResources(List<Resource> costs) {
             //no idea again but I hope it works
-            return costs.Aggregate(true, (current, resource) => current & Resources[resource.MyType] >= resource);
+            return costs.Aggregate(true, (current, resource) => current && Resources[resource.Type] >= resource);
         }
 
-        public bool HasEnoughStorageSpace(int load)
-        {
-            return CurrentStorageVolume + load < _maxStorageVolume;
+        public bool HasEnoughStorageSpace(int load) {
+            return UsedStorageVolume + load < _maxStorageVolume;
         }
 
-        public void UseResources(List<Resource> costs)
-        {
-            foreach (var resource in costs)
-            {
-                Resources[resource.MyType] -= resource;
-                CurrentStorageVolume -= resource.GetVolume();
-            }
-            OnResourceStateChanged(EventArgs.Empty);
+
+        public void UseResources(List<Resource> costs) {
+            costs.ForEach(resource => {
+                Resources[resource.Type] -= resource;
+                UsedStorageVolume -= resource.Volume;
+            });
         }
 
-        public void BuildingCosts(System.Type buildingType)
-        {
+        public void BuildingCosts(System.Type buildingType) {
             UseResources(Controllers.ConstantData.BuildingCosts[buildingType]);
         }
 
-        public void ChangeStorageLimit(int by)
-        {
+        public void ChangeStorageLimit(int by) {
             _maxStorageVolume += by;
         }
 
-        public void ChangePopulationLimit(int by)
-        {
+        public void ChangePopulationLimit(int by) {
             _maxPopulation += by;
         }
     }

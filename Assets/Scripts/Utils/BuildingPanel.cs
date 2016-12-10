@@ -1,32 +1,25 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
 using Assets.Scripts.Buildings;
 
 [System.Serializable]
-public class BuildingPanel : MonoBehaviour
-{
-    public Text text;
-    public Slider slider;
-    public GatheringBuilding motherBuilding;
+public class BuildingPanel : MonoBehaviour {
+    public Text Text;
+    public Slider Slider;
+    public GatheringBuilding MotherBuilding;
 
-	void Start ()
-    {
-        slider.minValue = 0;
-        slider.maxValue = motherBuilding.MaxStaff;
+    void Start() {
+        Slider.minValue = 0;
+        Slider.maxValue = MotherBuilding.MaxStaff;
 
-        int staff = motherBuilding.CurrentStaff;
-        staff.ToString();
-        text.text = "Employees: " + staff;
-        transform.SetParent(motherBuilding.transform);
-	}
-
-    public void ManageWorkers()
-    {
-        int newStaff = (int)slider.value;
-        motherBuilding.ManageStaff(newStaff);
-        newStaff.ToString();
-        text.text = "Employees: " + newStaff;
+        int staff = MotherBuilding.CurrentStaff;
+        Text.text = "Employees: " + staff;
+        transform.SetParent(MotherBuilding.transform);
     }
-	
+
+    public void ManageWorkers() {
+        int newStaff = (int) Slider.value;
+        MotherBuilding.ManageStaff(newStaff);
+        Text.text = "Employees: " + newStaff;
+    }
 }

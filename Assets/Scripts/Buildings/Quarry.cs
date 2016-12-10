@@ -1,14 +1,12 @@
-﻿using Assets.Scripts.Utils;
+﻿using Assets.Scripts.Res;
+using Assets.Scripts.Utils;
 
-namespace Assets.Scripts.Buildings
-{
-    public class Quarry: GatheringBuilding
-    {
-        public override void Start()
-        {
+namespace Assets.Scripts.Buildings {
+    public class Quarry : GatheringBuilding {
+        public override void Start() {
             Radius = 1000;
-            GatheredResource = "stone";
-            MySize = BuildingSize.Big;
+            GatheredResource = new ResourceType("temporary_solution", 1, 2, 3); //"stone";
+            Size = BuildingSize.Big;
             base.Start();
         }
     }

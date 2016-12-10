@@ -2,47 +2,42 @@
 using Assets.Scripts.Game_Controllers;
 using UnityEngine;
 
-namespace Assets.Scripts.Interface
-{
+namespace Assets.Scripts.Interface {
     /// <summary>
     /// Used to control the camera
     /// </summary>
-    public class CameraMotion : MonoBehaviour
-    {
+    public class CameraMotion : MonoBehaviour {
         /// <summary>
         /// How fast the camera moves
         /// </summary>
         private float _speed;
+
         /// <summary>
         /// How far from the edge pointer needs to be to move the camera
         /// </summary>
         private int _boundary;
-        private Vector3[] _directions;
-        private Camera MyCamera;
 
-        public void Start()
-        {
+        private Vector3[] _directions;
+        private Camera _myCamera;
+
+        public void Start() {
             _speed = 0.5f;
             _boundary = 50;
-            _directions = new Vector3[4]
-            {
-                new Vector3(-_speed, 0, 0),      //left
-                new Vector3(_speed, 0, 0),       //right
-                new Vector3(0, -_speed, 0),       //up    
-                new Vector3(0, _speed, 0)       //down
+            _directions = new[] {
+                new Vector3(-_speed, 0, 0), //left
+                new Vector3(_speed, 0, 0), //right
+                new Vector3(0, -_speed, 0), //up    
+                new Vector3(0, _speed, 0) //down
             };
-            MyCamera = GetComponent<Camera>();
+            _myCamera = GetComponent<Camera>();
         }
 
-        public void Update()
-        {
-          
-            if(Input.GetAxis("Mouse ScrollWheel") > 0 && MyCamera.orthographicSize > 5) //zoom
+        public void Update() {
+            if (Input.GetAxis("Mouse ScrollWheel") > 0 && _myCamera.orthographicSize > 5) //zoom
             {
                 GetComponent<Camera>().orthographicSize -= 5;
             }
-            if(Input.GetAxis("Mouse ScrollWheel") < 0 && MyCamera.orthographicSize < 35)
-            {
+            if (Input.GetAxis("Mouse ScrollWheel") < 0 && _myCamera.orthographicSize < 35) {
                 GetComponent<Camera>().orthographicSize += 5;
             }
             /*
@@ -70,26 +65,21 @@ namespace Assets.Scripts.Interface
             transform.Rotate(new Vector3(0, 0, Input.GetAxis("Mouse X"))); 
             */
             Vector3 newPosition = transform.position;
-           
+
             // move camera on arrow keys down
-            if (Input.GetKey("up"))
-            {
+            if (Input.GetKey("up")) {
                 newPosition.y += _speed;
             }
-            if (Input.GetKey("down"))
-            {
+            if (Input.GetKey("down")) {
                 newPosition.y -= _speed;
             }
-            if (Input.GetKey("left"))
-            {
+            if (Input.GetKey("left")) {
                 newPosition.x -= _speed;
             }
-            if (Input.GetKey("right"))
-            {
+            if (Input.GetKey("right")) {
                 newPosition.x += _speed;
             }
             //TODO: something nice to block going out of map
         }
     }
-    
 }
