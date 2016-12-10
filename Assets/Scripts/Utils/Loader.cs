@@ -29,7 +29,6 @@ namespace Assets.Scripts.Utils
         /// <returns></returns>
         public static GameObject NewInstance(string path)
         {
-      
             var ret = Object.Instantiate(Prefabs.PathsToObjects[path]);
             if (ret == null)
                 throw new NullReferenceException("Cannot create new object from path " + path);

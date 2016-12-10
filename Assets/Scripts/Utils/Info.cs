@@ -16,7 +16,7 @@ namespace Assets.Scripts.Utils
     /// Event informing about added or removed resources
     /// </summary>
     /// <param name="sender">Who sent event</param>
-    //public delegate void ResourceStateChangedHandler();
+    public delegate void ResourceStateChangedEventHandler(object sender, EventArgs e);
 
     /// <summary>
     /// Contains variable data about a single city
@@ -27,7 +27,7 @@ namespace Assets.Scripts.Utils
         public Money MyMoney = new Money();
         public int CurrentStorageVolume;
         public CityController MyCity;
-        private UnityEvent RSCH;
+        public event ResourceStateChangedEventHandler Changed;
         //private event ResourceStateChangedHandler Changed;
         //maybe later use given limits from file or depending on sth
         private int _maxStorageVolume = 10000;
@@ -38,10 +38,10 @@ namespace Assets.Scripts.Utils
             MyCity = cityController;
         }
 
-        private void OnResourceStateChange()
+        protected virtual void OnResourceStateChanged(EventArgs e)
         {
             if (Changed != null)
-                Changed();
+                Changed(this, e);
         }
 
         public void LoadInitialResources(Dictionary<string, Dictionary<string, string>> resourceTypes)
@@ -67,7 +67,7 @@ namespace Assets.Scripts.Utils
             set
             {
                 Resources[key] = value; 
-                OnResourceStateChange();
+                OnResourceStateChanged(EventArgs.Empty);
             }
         }
 
@@ -77,7 +77,7 @@ namespace Assets.Scripts.Utils
             set
             {
                 Resources[key.MyType] = value; 
-                OnResourceStateChange();
+                OnResourceStateChanged(EventArgs.Empty);
             }
         }
 
@@ -104,7 +104,7 @@ namespace Assets.Scripts.Utils
                 Resources[resource.MyType] -= resource;
                 CurrentStorageVolume -= resource.GetVolume();
             }
-            OnResourceStateChange();
+            OnResourceStateChanged(EventArgs.Empty);
         }
 
         public void BuildingCosts(System.Type buildingType)

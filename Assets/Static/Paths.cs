@@ -19,6 +19,7 @@ namespace Assets.Static
         private static string _horizontalGroupPanel = "HorizontalGroupPanel.prefab";
         private static string _notRotatingText = "NotRotatingText.prefab";
         private static string _casualButton = "CasualButton.prefab";
+        private static string _resourceIndicator = "ResourceIndicator.prefab";
 
         /// <summary>
         /// Path of base game object with event system and camera
@@ -50,6 +51,8 @@ namespace Assets.Static
         public static string NotRotatingText { get { return Prefabs + _notRotatingText; } }
 
         public static string CasualButton { get { return Prefabs + _casualButton; } }
+
+        public static string ResourceIndicator { get { return Prefabs + _resourceIndicator; } }
     }
 
     /// <summary>
@@ -58,20 +61,20 @@ namespace Assets.Static
     public static class GraphicsPaths
     {
         public static string Graphics = "Assets/Graphics/";
-
-        private static string _food = "Bread.png";
+        public static string InterfaceGraphics = Graphics + "Interface/";
+        private static string _food = "Food.png";
         private static string _coal = "Coal.png";
         private static string _metal = "Metal.png";
         private static string _wood = "Wood.png";
         private static string _stone= "Stone.png";
         private static string _mineral = "Mineral.png";
 
-        public static string Food { get { return Graphics + _food; } }
-        public static string Coal { get { return Graphics + _coal; } }
-        public static string Metal { get { return Graphics + _metal; } }
-        public static string Wood { get { return Graphics + _wood; } }
-        public static string Stone { get { return Graphics + _stone; } }
-        public static string Mineral { get { return Graphics + _mineral; } }
+        public static string Food { get { return InterfaceGraphics + _food; } }
+        public static string Coal { get { return InterfaceGraphics + _coal; } }
+        public static string Metal { get { return InterfaceGraphics + _metal; } }
+        public static string Wood { get { return InterfaceGraphics + _wood; } }
+        public static string Stone { get { return InterfaceGraphics + _stone; } }
+        public static string Mineral { get { return InterfaceGraphics + _mineral; } }
 
         public static string[] ResourcesSprites = {Food, Coal, Metal, Wood, Stone, Mineral};
     }

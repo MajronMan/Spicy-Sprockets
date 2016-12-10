@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Game_Controllers;
+﻿using System;
+using Assets.Scripts.Game_Controllers;
 using Assets.Scripts.Utils;
 using Assets.Static;
 using UnityEngine;
@@ -56,7 +57,7 @@ namespace Assets.Scripts.Interface
         private void SetPanelPosition(GameObject what, Rect how)
         {
             var rectTransform = what.GetComponent<RectTransform>();
-            rectTransform.SetParent(gameObject.transform);
+            rectTransform.SetParent(this.gameObject.transform);
             rectTransform.anchorMax = how.position + new Vector2(how.width, how.height);
             rectTransform.anchorMin = how.position;
             rectTransform.offsetMax = rectTransform.offsetMin = Vector2.zero;
@@ -95,7 +96,12 @@ namespace Assets.Scripts.Interface
 
             foreach (var sprite in Sprites.ResourcesSprites)
             {
-                
+                var indicator = Instantiate(Prefabs.ResourceIndicator);
+                indicator.transform.SetParent(ResourcePanel.transform);
+                indicator.GetComponentInChildren<Image>().sprite = sprite;
+                Debug.Log(sprite.name);
+                indicator.GetComponentInChildren<Text>().text = Controllers.CurrentInfo.Resources[sprite.name].GetQuantity().ToString();
+                indicator.GetComponentInChildren<ResourceData>().Type = sprite.name;
             }
         }
 

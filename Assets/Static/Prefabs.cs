@@ -16,6 +16,7 @@ namespace Assets.Static
         private static GameObject _horizontalGroupPanel;
         private static GameObject _notRotatingText;
         private static GameObject _casualButton;
+        private static GameObject _resourceIndicator;
 
         /// <summary>
         /// Base game object with event system and camera
@@ -51,6 +52,8 @@ namespace Assets.Static
         public static GameObject NotRotatingText { get { return _notRotatingText ?? (_notRotatingText = Loader.LoadPrefab(PrefabPaths.NotRotatingText)); } }
 
         public static GameObject CasualButton { get { return _casualButton ?? (_casualButton = Loader.LoadPrefab(PrefabPaths.CasualButton)); } }
+
+        public static GameObject ResourceIndicator { get { return _resourceIndicator ?? (_resourceIndicator = Loader.LoadPrefab(PrefabPaths.ResourceIndicator)); } }
 
         public static Dictionary<string, GameObject> PathsToObjects = new Dictionary<string, GameObject>()
         {

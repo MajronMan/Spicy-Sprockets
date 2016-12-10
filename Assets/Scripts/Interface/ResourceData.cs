@@ -16,10 +16,7 @@ namespace Assets.Scripts.Interface
         public void Start ()
         {
             ResourceText = GetComponent<Text>();
-            Controllers.CurrentInfo.AddResourceStateChangedListener(() =>
-            {
-                ResourceText.text = Controllers.CurrentInfo.Resources[Type].ToString();
-            });
+            Controllers.CurrentInfo.Changed += (sender, args) => { Debug.Log(Type); };
         }
 
     }
