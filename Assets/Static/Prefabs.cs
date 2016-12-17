@@ -18,6 +18,8 @@ namespace Assets.Static
         private static GameObject _notRotatingText;
         private static GameObject _casualButton;
         private static GameObject _resourceIndicator;
+        private static GameObject _exitButton;
+        private static GameObject _buildButton;
 
         /// <summary>
         /// Base game object with event system and camera
@@ -56,7 +58,11 @@ namespace Assets.Static
 
         public static GameObject ResourceIndicator { get { return _resourceIndicator ?? (_resourceIndicator = Loader.LoadPrefab(PrefabPaths.ResourceIndicator)); } }
 
-        public static GameObject GridGroupPanel { get { return _gridGroupPanel ?? (_gridGroupPanel = Loader.LoadPrefab(PrefabPaths.ResourceIndicator)); } }
+        public static GameObject GridGroupPanel { get { return _gridGroupPanel ?? (_gridGroupPanel = Loader.LoadPrefab(PrefabPaths.GridGroupPanel)); } }
+
+        public static GameObject ExitButton { get { return _exitButton ?? (_exitButton = Loader.LoadPrefab(PrefabPaths.ExitButton)); } }
+
+        public static GameObject BuildButton { get { return _buildButton ?? (_buildButton = Loader.LoadPrefab(PrefabPaths.BuildButton)); } }
 
         public static Dictionary<string, GameObject> PathsToObjects = new Dictionary<string, GameObject>()
         {

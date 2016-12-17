@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Assets.Scripts.Game_Controllers;
 using Assets.Scripts.Utils;
 using Assets.Static;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Assets.Scripts.Interface
@@ -23,21 +26,12 @@ namespace Assets.Scripts.Interface
         /// Panel which shows minimap
         /// </summary>
         public GameObject MiniMapPanel;
-        private Rect _miniMapPanelRect = new Rect(0.8f, 0, 0.2f, 0.25f);
+        private Rect _miniMapPanelRect = new Rect(0.9f, 0, 0.1f, 0.25f);
 
-        public GameObject ChooseBuildingPanel;
-        private Rect _chooseBuildingPanelRect = new Rect();
+        private Rect _centerRect = new Rect(0.2f, 0.1f, 0.6f, 0.8f);
+        private Rect _exitRect = new Rect(0, 0.95f, 0.05f, 0.05f);
 
-        private string[] _mainButtons =
-        {
-            "Production",
-            "Character",
-            "Diplomacy",
-            "Law",
-            "Science",
-            "Build",
-            "Trade"
-        };
+        private Dictionary<string, GameObject> buttonPanels;
 
         public void Start ()
         {
@@ -49,18 +43,18 @@ namespace Assets.Scripts.Interface
         private void CreatePanels()
         {
             MainPanel = Instantiate(Prefabs.VerticalGroupPanel);
-            SetPanelPosition(MainPanel, _mainPanelRect);
+            SetGameObjectPosition(MainPanel, _mainPanelRect, transform);
 
             MiniMapPanel = Instantiate(Prefabs.Panel);
-            SetPanelPosition(MiniMapPanel, _miniMapPanelRect);
+            SetGameObjectPosition(MiniMapPanel, _miniMapPanelRect, transform);
             
             CreateResourcePanel();
         }
 
-        private void SetPanelPosition(GameObject what, Rect how)
+        private void SetGameObjectPosition(GameObject what, Rect how, Transform parent)
         {
             var rectTransform = what.GetComponent<RectTransform>();
-            rectTransform.SetParent(this.gameObject.transform);
+            rectTransform.SetParent(parent);
             rectTransform.anchorMax = how.position + new Vector2(how.width, how.height);
             rectTransform.anchorMin = how.position;
             rectTransform.offsetMax = rectTransform.offsetMin = Vector2.zero;
@@ -68,14 +62,38 @@ namespace Assets.Scripts.Interface
 
         private void CreateButtons()
         {
-            foreach (var buttonName in _mainButtons)
+            buttonPanels = new Dictionary<string, GameObject>
             {
+                {"Production", Instantiate(Prefabs.Panel)},
+                {"Character", Instantiate(Prefabs.Panel)},
+                {"Diplomacy", Instantiate(Prefabs.Panel)},
+                {"Law", Instantiate(Prefabs.Panel)},
+                {"Science", Instantiate(Prefabs.Panel)},
+                {"Build", Instantiate(Prefabs.GridGroupPanel)},
+                {"Trade", Instantiate(Prefabs.Panel)}
+            };
+            foreach (var namesToPanels in buttonPanels)
+            {
+                var panel = namesToPanels.Value;
+                SetGameObjectPosition(panel, _centerRect, transform);
+
                 var buttonGameObject = Instantiate(Prefabs.CogwheelButton);
-                buttonGameObject.name = buttonName + "Button";
+                buttonGameObject.name = namesToPanels + "Button";
                 buttonGameObject.transform.SetParent(MainPanel.transform);
-                AddNotRotatingTextToButton(buttonGameObject, buttonName);
+                AddNotRotatingTextToButton(buttonGameObject, namesToPanels.Key);
+                buttonGameObject.GetComponent<Button>().onClick.AddListener(() => panel.SetActive(!panel.activeSelf));
+
+                var exit = Instantiate(Prefabs.ExitButton);
+                SetGameObjectPosition(exit, _exitRect, panel.transform);
+
+                panel.SetActive(false);
             }
+
+            FillBuildingsPanel();
+
             var globalMapButton = Instantiate(Prefabs.CasualButton);
+            globalMapButton.transform.position = Vector3.zero;
+            //globalMapButton.GetComponent<Button>().onClick.AddListener(() => SceneManager.LoadScene(""));
         }
 
         private void AddNotRotatingTextToButton(GameObject button, string text)
@@ -95,7 +113,7 @@ namespace Assets.Scripts.Interface
         private void CreateResourcePanel()
         {
             ResourcePanel = Instantiate(Prefabs.HorizontalGroupPanel);
-            SetPanelPosition(ResourcePanel, _resourcePanelRect);
+            SetGameObjectPosition(ResourcePanel, _resourcePanelRect, transform);
 
             foreach (var type in Controllers.ConstantData.ResourceTypes)
             {
@@ -104,14 +122,29 @@ namespace Assets.Scripts.Interface
                 indicator.GetComponentInChildren<Image>().sprite = Sprites.ResourceSprite(type);
                 indicator.GetComponentInChildren<Text>().text =
                     Controllers.CurrentInfo.Resources[type].Amount.ToString();
-                indicator.GetComponentInChildren<ResourceData>().Type = type;
+                indicator.GetComponent<ResourceData>().Type = type;
             }
         }
 
-        /*public static Rect CenterOfScreenRect(float width, float height)
+
+        public static Rect CenterOfScreenRect(float width, float height)
         {
             var relativeWidth = width/Screen.width;
             var relativeHeight = height/Screen.height;
-        }*/
+            var posx = (Screen.width - width)/(2.0f * Screen.width);
+            var posy = (Screen.height - height)/(2.0f * Screen.height);
+            return new Rect(posx, posy, relativeWidth, relativeHeight);
+        }
+
+        private void FillBuildingsPanel()
+        {
+            var buildingPanel = buttonPanels["Build"];
+            foreach (var building in Controllers.ConstantData.BuildingCosts.Keys)
+            {
+                var button = Instantiate(Prefabs.BuildButton);
+                button.transform.SetParent(buildingPanel.transform);
+                button.GetComponent<BuildButton>().SetType(building);
+            }
+        }
     }
 }

@@ -10,7 +10,7 @@ namespace Assets.Scripts.Utils {
     /// Event informing about added or removed resources
     /// </summary>
     /// <param name="sender">Who sent event</param>
-    public delegate void ResourceStateChangedEventHandler(object sender, EventArgs e);
+    public delegate void ResourceStateChangedEventHandler2_primalOrigins(object sender, EventArgs e);
 
     /// <summary>
     /// Contains variable data about a single city
@@ -21,8 +21,7 @@ namespace Assets.Scripts.Utils {
         public Money MyMoney = new Money();
         public int UsedStorageVolume;
         public CityController MyCity;
-        public event ResourceStateChangedEventHandler Changed;
-        //private event ResourceStateChangedHandler Changed;
+        public event ResourceStateChangedEventHandler2_primalOrigins Changed;
         //maybe later use given limits from file or depending on sth
         private int _maxStorageVolume = 10000;
         private int _maxPopulation = 200;

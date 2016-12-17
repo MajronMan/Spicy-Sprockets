@@ -97,8 +97,10 @@
     <Compile Include="Assets\Scripts\Game Controllers\GameControllerReferencer.cs" />
     <Compile Include="Assets\Scripts\Game Controllers\Starter.cs" />
     <Compile Include="Assets\Scripts\Interface\AutomaticInterface.cs" />
+    <Compile Include="Assets\Scripts\Interface\BuildButton.cs" />
     <Compile Include="Assets\Scripts\Interface\CameraMotion.cs" />
     <Compile Include="Assets\Scripts\Interface\Events.cs" />
+    <Compile Include="Assets\Scripts\Interface\ExitButton.cs" />
     <Compile Include="Assets\Scripts\Interface\InteractiveButton.cs" />
     <Compile Include="Assets\Scripts\Interface\Map.cs" />
     <Compile Include="Assets\Scripts\Interface\NotRotating.cs" />

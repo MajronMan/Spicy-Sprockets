@@ -17,8 +17,11 @@ namespace Assets.Scripts.Interface
         
         public void Start ()
         {
-            ResourceText = GetComponent<Text>();
-            Controllers.CurrentInfo.Changed += (sender, args) => { Debug.Log(Type); };
+            ResourceText = GetComponentInChildren<Text>();
+            Controllers.CurrentInfo.Changed += (sender, args) =>
+            {
+                ResourceText.text = Controllers.CurrentInfo[Type].Amount.ToString();
+            };
         }
 
     }

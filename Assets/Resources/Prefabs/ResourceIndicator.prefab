@@ -36,6 +36,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 224: {fileID: 224000014112217272}
+  - 114: {fileID: 114000013701332246}
   m_Layer: 5
   m_Name: ResourceIndicator
   m_TagString: Untagged
@@ -53,7 +54,6 @@ GameObject:
   - 224: {fileID: 224000010370044158}
   - 222: {fileID: 222000010202359742}
   - 114: {fileID: 114000013350340296}
-  - 114: {fileID: 114000013185915266}
   m_Layer: 5
   m_Name: ResourceImage
   m_TagString: Untagged
@@ -61,20 +61,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &114000013185915266
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013252360810}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe96940a5a0194b4e9eadb8c4497846e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ResourceText: {fileID: 0}
-  MaxText: {fileID: 0}
-  Type: 
 --- !u!114 &114000013350340296
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -135,6 +121,19 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 
+--- !u!114 &114000013701332246
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011158967026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe96940a5a0194b4e9eadb8c4497846e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ResourceText: {fileID: 0}
+  MaxText: {fileID: 0}
 --- !u!222 &222000010202359742
 CanvasRenderer:
   m_ObjectHideFlags: 1

@@ -21,6 +21,8 @@ namespace Assets.Static
         private static string _casualButton = "CasualButton.prefab";
         private static string _resourceIndicator = "ResourceIndicator.prefab";
         private static string _gridGroupPanel = "GridGroupPanel.prefab";
+        private static string _exitButton = "ExitButton.prefab";
+        private static string _buildButton = "BuildButton.prefab";
 
         /// <summary>
         /// Path of base game object with event system and camera
@@ -56,6 +58,10 @@ namespace Assets.Static
         public static string ResourceIndicator { get { return Prefabs + _resourceIndicator; } }
 
         public static string GridGroupPanel { get { return Prefabs + _gridGroupPanel; } }
+
+        public static string ExitButton { get { return Prefabs + _exitButton; } }
+
+        public static string BuildButton { get {return Prefabs + _buildButton;} }
     }
 
     /// <summary>
@@ -66,6 +72,7 @@ namespace Assets.Static
         public static string Graphics = "Assets/Resources/Graphics/";
         public static string InterfaceGraphics = Graphics + "Interface/";
         public static string ResourcePoolGraphics = Graphics + "Pools/";
+        public static string BuildingsGraphics = Graphics + "Buildings/";
         private static string _food = "Food.png";
         private static string _coal = "Coal.png";
         private static string _metal = "Metal.png";

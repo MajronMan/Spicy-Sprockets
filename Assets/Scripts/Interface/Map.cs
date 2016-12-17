@@ -15,7 +15,8 @@ namespace Assets.Scripts.Interface {
 
         public void OnMouseDown() {
             //behave properly according to game mode
-            if (Input.GetMouseButtonDown(0)) {
+            if (Input.GetMouseButtonDown(0))
+            {
                 Controllers.CurrentGameMode.LeftMouseClicked();
             }
 
