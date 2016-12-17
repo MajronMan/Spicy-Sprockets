@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Assets.Scripts.Game_Controllers;
+using Assets.Scripts.Res;
 using Assets.Scripts.Utils;
 using UnityEngine;
 
@@ -9,20 +11,25 @@ namespace Assets.Static
 {
     public static class Sprites
     {
-        private static Sprite _food;
-        private static Sprite _coal;
-        private static Sprite _metal;
-        private static Sprite _wood;
-        private static Sprite _stone;
-        private static Sprite _mineral;
+       
+        private static Dictionary<ResourceType, Sprite> _resourcePoolSprites = new Dictionary<ResourceType, Sprite>();
+        private static Dictionary<ResourceType, Sprite> _resourceSprites = new Dictionary<ResourceType, Sprite>();
 
-        public static Sprite Food { get { return _food ?? (_food = Loader.LoadSprite(GraphicsPaths.Food)); } }
-        public static Sprite Coal { get { return _coal ?? (_coal = Loader.LoadSprite(GraphicsPaths.Coal)); } }
-        public static Sprite Metal { get { return _metal ?? (_metal = Loader.LoadSprite(GraphicsPaths.Metal)); } }
-        public static Sprite Wood { get { return _wood ?? (_wood = Loader.LoadSprite(GraphicsPaths.Wood)); } }
-        public static Sprite Stone { get { return _stone ?? (_stone = Loader.LoadSprite(GraphicsPaths.Stone)); } }
-        public static Sprite Mineral { get { return _mineral ?? (_mineral = Loader.LoadSprite(GraphicsPaths.Mineral)); } }
+        public static Sprite ResourceSprite(ResourceType type)
+        {
+            if (!_resourceSprites.ContainsKey(type))
+                _resourceSprites.Add(type, Loader.LoadSprite(GraphicsPaths.InterfaceGraphics + type.InterfaceSpriteName()));
+            
+            return _resourceSprites[type];
+        }
 
-        public static Sprite[] ResourcesSprites = { Food, Coal, Metal, Wood, Stone, Mineral };
+        public static Sprite ResourcePoolSprite(ResourceType type)
+        {
+            if (!_resourcePoolSprites.ContainsKey(type))
+                _resourcePoolSprites.Add(type, Loader.LoadSprite(GraphicsPaths.ResourcePoolGraphics + type.PoolSpriteName()));
+
+            return _resourcePoolSprites[type];
+        }
+
     }
 }

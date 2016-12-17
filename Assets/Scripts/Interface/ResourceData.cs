@@ -1,6 +1,7 @@
 
 using System;
 using Assets.Scripts.Game_Controllers;
+using Assets.Scripts.Res;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,7 +13,7 @@ namespace Assets.Scripts.Interface
     public class ResourceData : MonoBehaviour {
         public Text ResourceText;
         public Text MaxText;
-        public string Type;
+        public ResourceType Type;
         
         public void Start ()
         {

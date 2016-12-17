@@ -22,8 +22,6 @@ namespace Assets.Scripts.Utils {
         void FinalizeHelper() {
             SerializationHelper = null;
         }
-
-        public Dictionary<ResourceType, Sprite> SourceSprites = new Dictionary<ResourceType, Sprite>();
         public Dictionary<Type, Sprite> BuildingData = new Dictionary<Type, Sprite>();
 
         //[JsonConverter(typeof(ResourceTypesByNameConverter))]
@@ -36,11 +34,6 @@ namespace Assets.Scripts.Utils {
                 JsonConvert.DeserializeObject<List<ResourceType>>(
                     File.ReadAllText(Application.streamingAssetsPath + "/Data/ResourceTypes.json"),
                     new ResourceTypesByNameConverter());
-
-            ResourceTypes.ForEach(resource => {
-                var sourcePath = "Graphics/Sources/" + resource.Name + "Source";
-                SourceSprites.Add(resource, Resources.Load<Sprite>(sourcePath));
-            });
 
             InitialResources =
                 JsonConvert.DeserializeObject<List<Resource>>(

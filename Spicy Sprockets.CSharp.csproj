@@ -13,11 +13,13 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Full v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>5.4.1f1</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <LangVersion Condition=" '$(VisualStudioVersion)' != '10.0' ">4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -119,8 +121,8 @@
     <Compile Include="Assets\Scripts\Utils\Info.cs" />
     <Compile Include="Assets\Scripts\Utils\IntVector2.cs" />
     <Compile Include="Assets\Scripts\Utils\Loader.cs" />
-    <Compile Include="Assets\Scripts\Utils\Starter.cs" />
     <Compile Include="Assets\Scripts\Utils\Statistics.cs" />
+    <Compile Include="Assets\Scripts\Utils\Tuple.cs" />
     <Compile Include="Assets\Scripts\Utils\Util.cs" />
     <Compile Include="Assets\Static\Paths.cs" />
     <Compile Include="Assets\Static\Prefabs.cs" />

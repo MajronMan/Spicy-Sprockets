@@ -14,6 +14,7 @@ namespace Assets.Scripts.Game_Controllers.Game_Modes {
         public void RightMouseClicked() {
             Debug.Log("Right" + _i);
             _i++;
+            Controllers.CurrentInfo.Resources[Controllers.ConstantData.ResourceTypes[1]] += 1;
         }
 
         /// <summary>
@@ -22,6 +23,7 @@ namespace Assets.Scripts.Game_Controllers.Game_Modes {
         public void LeftMouseClicked() {
             Debug.Log("Left" + _i);
             _i++;
+            Controllers.CurrentInfo.Resources[Controllers.ConstantData.ResourceTypes[1]] -= 1;
         }
 
         /// <summary>

@@ -7,7 +7,7 @@ namespace Assets.Static
     /// </summary>
     public static class PrefabPaths
     {
-        public static string Prefabs { get { return "Assets/Prefabs/"; } }
+        public static string Prefabs { get { return "Prefabs/"; } }
 
         private static string _root = "Root.prefab";
         private static string _map = "Map.prefab";
@@ -20,6 +20,7 @@ namespace Assets.Static
         private static string _notRotatingText = "NotRotatingText.prefab";
         private static string _casualButton = "CasualButton.prefab";
         private static string _resourceIndicator = "ResourceIndicator.prefab";
+        private static string _gridGroupPanel = "GridGroupPanel.prefab";
 
         /// <summary>
         /// Path of base game object with event system and camera
@@ -53,6 +54,8 @@ namespace Assets.Static
         public static string CasualButton { get { return Prefabs + _casualButton; } }
 
         public static string ResourceIndicator { get { return Prefabs + _resourceIndicator; } }
+
+        public static string GridGroupPanel { get { return Prefabs + _gridGroupPanel; } }
     }
 
     /// <summary>
@@ -60,8 +63,9 @@ namespace Assets.Static
     /// </summary>
     public static class GraphicsPaths
     {
-        public static string Graphics = "Assets/Graphics/";
+        public static string Graphics = "Assets/Resources/Graphics/";
         public static string InterfaceGraphics = Graphics + "Interface/";
+        public static string ResourcePoolGraphics = Graphics + "Pools/";
         private static string _food = "Food.png";
         private static string _coal = "Coal.png";
         private static string _metal = "Metal.png";

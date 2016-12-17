@@ -2,6 +2,7 @@
 using Assets.Scripts.Buildings;
 using UnityEngine;
 using Assets.Scripts.Interface;
+using Assets.Static;
 
 namespace Assets.Scripts.Game_Controllers {
     [System.Serializable]
@@ -30,8 +31,7 @@ namespace Assets.Scripts.Game_Controllers {
         /// <returns>The created building</returns>
         public Building Build(System.Type buildingType, Vector3 location) {
             // create a new building from prefab
-            var prefab = Resources.Load<GameObject>("Prefabs/Building.prefab");
-            var buildingGameObject = Instantiate(prefab);
+            var buildingGameObject = Instantiate(Prefabs.Building);
             var newBuilding = buildingGameObject.AddComponent(buildingType) as Building;
 
             // building should appear at given location on screen, which is not the same as its world location

@@ -79,6 +79,7 @@ namespace Assets.Scripts.Interface {
             if (Input.GetKey("right")) {
                 newPosition.x += _speed;
             }
+            transform.position = newPosition;
             //TODO: something nice to block going out of map
         }
     }

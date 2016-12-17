@@ -13,7 +13,7 @@ namespace Assets.Scripts.Interface
         /// The panel which allows performing most of actions in game
         /// </summary>
         public GameObject MainPanel;
-        private Rect _mainPanelRect = new Rect(0.8f, 0.3f, 0.2f, 0.7f);
+        private Rect _mainPanelRect = new Rect(0.9f, 0.3f, 0.1f, 0.7f);
         /// <summary>
         /// Panel with amounts of resources in current city
         /// </summary>
@@ -24,6 +24,9 @@ namespace Assets.Scripts.Interface
         /// </summary>
         public GameObject MiniMapPanel;
         private Rect _miniMapPanelRect = new Rect(0.8f, 0, 0.2f, 0.25f);
+
+        public GameObject ChooseBuildingPanel;
+        private Rect _chooseBuildingPanelRect = new Rect();
 
         private string[] _mainButtons =
         {
@@ -48,9 +51,9 @@ namespace Assets.Scripts.Interface
             MainPanel = Instantiate(Prefabs.VerticalGroupPanel);
             SetPanelPosition(MainPanel, _mainPanelRect);
 
-            MiniMapPanel = Loader.NewInstance(PrefabPaths.Panel);
+            MiniMapPanel = Instantiate(Prefabs.Panel);
             SetPanelPosition(MiniMapPanel, _miniMapPanelRect);
-
+            
             CreateResourcePanel();
         }
 
@@ -94,16 +97,21 @@ namespace Assets.Scripts.Interface
             ResourcePanel = Instantiate(Prefabs.HorizontalGroupPanel);
             SetPanelPosition(ResourcePanel, _resourcePanelRect);
 
-            foreach (var sprite in Sprites.ResourcesSprites)
+            foreach (var type in Controllers.ConstantData.ResourceTypes)
             {
                 var indicator = Instantiate(Prefabs.ResourceIndicator);
                 indicator.transform.SetParent(ResourcePanel.transform);
-                indicator.GetComponentInChildren<Image>().sprite = sprite;
-                Debug.Log(sprite.name);
-                indicator.GetComponentInChildren<Text>().text = Controllers.CurrentInfo.Resources[sprite.name].GetQuantity().ToString();
-                indicator.GetComponentInChildren<ResourceData>().Type = sprite.name;
+                indicator.GetComponentInChildren<Image>().sprite = Sprites.ResourceSprite(type);
+                indicator.GetComponentInChildren<Text>().text =
+                    Controllers.CurrentInfo.Resources[type].Amount.ToString();
+                indicator.GetComponentInChildren<ResourceData>().Type = type;
             }
         }
 
+        /*public static Rect CenterOfScreenRect(float width, float height)
+        {
+            var relativeWidth = width/Screen.width;
+            var relativeHeight = height/Screen.height;
+        }*/
     }
 }

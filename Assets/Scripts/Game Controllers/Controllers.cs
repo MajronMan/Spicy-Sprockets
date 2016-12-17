@@ -34,11 +34,6 @@ namespace Assets.Scripts.Game_Controllers {
             _gameController.GetCurrentCity().MyInfo.LoadInitialResources(Data.InitialResources);
         }
 
-        /// <summary>
-        /// Fuckin static classes
-        /// </summary>
-        public static void Begin() { }
-
         public static GameController GameController
         {
             get { return Instance._gameController; }

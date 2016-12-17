@@ -22,6 +22,16 @@ namespace Assets.Scripts.Res {
             return Name;
         }
 
+        public string InterfaceSpriteName()
+        {
+            return Name + ".png";
+        }
+
+        public string PoolSpriteName()
+        {
+            return Name + "Pool.png";
+        }
+
         protected bool Equals(ResourceType other) {
             return string.Equals(Name, other.Name);
         }

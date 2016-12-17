@@ -14,6 +14,7 @@ namespace Assets.Static
         private static GameObject _cogwheelButton;
         private static GameObject _verticalGroupPanel;
         private static GameObject _horizontalGroupPanel;
+        private static GameObject _gridGroupPanel;
         private static GameObject _notRotatingText;
         private static GameObject _casualButton;
         private static GameObject _resourceIndicator;
@@ -55,6 +56,8 @@ namespace Assets.Static
 
         public static GameObject ResourceIndicator { get { return _resourceIndicator ?? (_resourceIndicator = Loader.LoadPrefab(PrefabPaths.ResourceIndicator)); } }
 
+        public static GameObject GridGroupPanel { get { return _gridGroupPanel ?? (_gridGroupPanel = Loader.LoadPrefab(PrefabPaths.ResourceIndicator)); } }
+
         public static Dictionary<string, GameObject> PathsToObjects = new Dictionary<string, GameObject>()
         {
             { PrefabPaths.Root, Root},
@@ -66,7 +69,9 @@ namespace Assets.Static
             { PrefabPaths.VerticalGroupPanel, VerticalGroupPanel },
             { PrefabPaths.HorizontalGroupPanel, HorizontalGroupPanel },
             { PrefabPaths.NotRotatingText, NotRotatingText },
-            { PrefabPaths.CasualButton, CasualButton }
+            { PrefabPaths.CasualButton, CasualButton },
+            { PrefabPaths.ResourceIndicator, ResourceIndicator },
+            { PrefabPaths.GridGroupPanel, GridGroupPanel }
         };
     }
 }
