@@ -10,6 +10,7 @@ namespace Assets.Scripts.Game_Controllers {
     public class GameController : MonoBehaviour {
         public List<CityController> Cities = new List<CityController>();
         public List<EnemyController> Enemies = new List<EnemyController>();
+        public ScienceController Science;
         public Map MapPrefab;
         private IGameMode _gameMode;
         private int _currentCity = 0;
