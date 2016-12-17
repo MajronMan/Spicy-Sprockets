@@ -22,7 +22,6 @@ namespace Assets.Scripts.Utils {
         void FinalizeHelper() {
             SerializationHelper = null;
         }
-        public Dictionary<Type, Sprite> BuildingData = new Dictionary<Type, Sprite>();
 
         //[JsonConverter(typeof(ResourceTypesByNameConverter))]
         public List<ResourceType> ResourceTypes;
@@ -44,12 +43,6 @@ namespace Assets.Scripts.Utils {
             List<Type> buildingTypes =
                 JsonConvert.DeserializeObject<List<Type>>(
                     File.ReadAllText(Application.streamingAssetsPath + "/Data/BuildingTypes.json"));
-
-            var buildingPath = "Graphics/Buildings/";
-            foreach (var buildingType in buildingTypes) {
-                var spritePath = buildingPath + buildingType.Name;
-                BuildingData.Add(buildingType, Resources.Load<Sprite>(spritePath));
-            }
 
             BuildingCosts =
                 JsonConvert.DeserializeObject<Dictionary<Type, List<Resource>>>(

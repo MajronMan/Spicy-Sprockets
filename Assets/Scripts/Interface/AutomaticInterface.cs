@@ -26,7 +26,7 @@ namespace Assets.Scripts.Interface
         private Rect _miniMapPanelRect = new Rect(0.8f, 0, 0.2f, 0.25f);
 
         public GameObject ChooseBuildingPanel;
-        private Rect _chooseBuildingPanelRect = new Rect();
+        private Rect _chooseBuildingPanelRect = new Rect(0.5f, 0.5f, 0.5f, 0.4f);
 
         private string[] _mainButtons =
         {
@@ -39,13 +39,13 @@ namespace Assets.Scripts.Interface
             "Trade"
         };
 
-        public void Start ()
+        public void Start()
         {
             CreatePanels();
             CreateButtons();
         }
 
-       
+
         private void CreatePanels()
         {
             MainPanel = Instantiate(Prefabs.VerticalGroupPanel);
@@ -53,7 +53,7 @@ namespace Assets.Scripts.Interface
 
             MiniMapPanel = Instantiate(Prefabs.Panel);
             SetPanelPosition(MiniMapPanel, _miniMapPanelRect);
-            
+
             CreateResourcePanel();
         }
 
@@ -105,6 +105,20 @@ namespace Assets.Scripts.Interface
                 indicator.GetComponentInChildren<Text>().text =
                     Controllers.CurrentInfo.Resources[type].Amount.ToString();
                 indicator.GetComponentInChildren<ResourceData>().Type = type;
+            }
+        }
+
+        private void CreateBuildingPanel()
+        {
+            ChooseBuildingPanel = Instantiate(Prefabs.GridGroupPanel);
+            SetPanelPosition(ChooseBuildingPanel, _chooseBuildingPanelRect);
+
+            foreach (var type in Controllers.ConstantData.BuildingCosts.Keys)
+            {
+                var building = Instantiate(Prefabs.CasualButton);
+                building.transform.SetParent(ChooseBuildingPanel.transform);
+                building.GetComponentInChildren<Image>().sprite = Sprites.BuildingSprite(type);
+                building.GetComponent<Button>().onClick.AddListener(() => Controllers.GameController.EnterBuildingMode(type));
             }
         }
 

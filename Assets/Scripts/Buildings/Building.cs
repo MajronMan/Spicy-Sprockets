@@ -34,7 +34,7 @@ namespace Assets.Scripts.Buildings {
         /// <param name="type">Type of building which sprite we want to display (not always matches with current type)</param>
         public void SetSprite(System.Type type) {
             Renderer = gameObject.GetComponent<SpriteRenderer>();
-            Renderer.sprite = Controllers.ConstantData.BuildingData[type];
+            Renderer.sprite = Static.Sprites.BuildingSprite(type);
             Renderer.sortingOrder = 1;
 
             Util.Rescale(Renderer, (int) Size * 20, (int) Size * 20);

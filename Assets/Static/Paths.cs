@@ -66,12 +66,20 @@ namespace Assets.Static
         public static string Graphics = "Assets/Resources/Graphics/";
         public static string InterfaceGraphics = Graphics + "Interface/";
         public static string ResourcePoolGraphics = Graphics + "Pools/";
+        public static string BuildingGraphics = Graphics + "Buildings/";
         private static string _food = "Food.png";
         private static string _coal = "Coal.png";
         private static string _metal = "Metal.png";
         private static string _wood = "Wood.png";
         private static string _stone= "Stone.png";
         private static string _mineral = "Mineral.png";
+
+        private static string _lumbermill = "LumberMill.png";
+        private static string _mine = "Mine.png";
+        private static string _productionbuilding = "ProductionBuilding.png";
+        private static string _quarry = "Quarry.png";
+        private static string _residentialbuilding = "ResidentialBuilding.png";
+        private static string _storagebuilding = "StorageBuilding.png";
 
         public static string Food { get { return InterfaceGraphics + _food; } }
         public static string Coal { get { return InterfaceGraphics + _coal; } }
@@ -80,6 +88,14 @@ namespace Assets.Static
         public static string Stone { get { return InterfaceGraphics + _stone; } }
         public static string Mineral { get { return InterfaceGraphics + _mineral; } }
 
+        public static string LumberMill { get { return BuildingGraphics + _lumbermill; } }
+        public static string Mine { get { return BuildingGraphics + _mine; } }
+        public static string ProductionBuilding { get { return BuildingGraphics + _productionbuilding; } }
+        public static string Quarry { get { return BuildingGraphics + _quarry; } }
+        public static string ResidentialBuilding { get { return BuildingGraphics + _residentialbuilding; } }
+        public static string StorageBuilding { get { return BuildingGraphics + _storagebuilding; } }
+
         public static string[] ResourcesSprites = {Food, Coal, Metal, Wood, Stone, Mineral};
+        public static string[] BuildingSprites = {LumberMill, Mine, ProductionBuilding, Quarry, ResidentialBuilding, StorageBuilding};
     }
 }
