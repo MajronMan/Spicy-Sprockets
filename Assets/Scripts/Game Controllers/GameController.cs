@@ -5,6 +5,7 @@ using Assets.Scripts.Utils;
 using Assets.Static;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Assets.Scripts.Game_Controllers {
     /// <summary>
@@ -29,7 +30,14 @@ namespace Assets.Scripts.Game_Controllers {
         
         //cannot wait until first frame with start, so calling this explicitly
         public void BeginGame() {
-            CreateUI();
+            if(SceneManager.GetActiveScene().name == "AutomatedUI")
+            {
+                CreateUI(typeof(AutomaticInterface));
+            }
+            if (SceneManager.GetActiveScene().name == "GlobalMapUI")
+            {
+                CreateUI(typeof(GlobalInterface));
+            }
             var newGameObject = new GameObject("City Controller", typeof(CityController));
             var cityController = newGameObject.GetComponent<CityController>();
             Cities.Add(cityController);
@@ -39,13 +47,13 @@ namespace Assets.Scripts.Game_Controllers {
             _gameMode = new DefaultMode();
         }
 
-	    private void CreateUI()
+	    private void CreateUI(System.Type scene)
 	    {
 	        Root = Instantiate(Prefabs.Root);
 	        MainCamera = Root.GetComponentInChildren<Camera>();
 	        Canvas = Instantiate(Prefabs.Canvas);
             Canvas.transform.SetParent(Root.transform, false);
-	        Canvas.AddComponent<AutomaticInterface>();
+            Canvas.AddComponent(scene);
 	    }
 
 	    public void Update()

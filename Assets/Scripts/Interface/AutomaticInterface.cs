@@ -4,6 +4,7 @@ using Assets.Scripts.Utils;
 using Assets.Static;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 namespace Assets.Scripts.Interface
 {
@@ -56,7 +57,7 @@ namespace Assets.Scripts.Interface
             
             CreateResourcePanel();
         }
-
+        
         private void SetPanelPosition(GameObject what, Rect how)
         {
             var rectTransform = what.GetComponent<RectTransform>();
@@ -65,7 +66,7 @@ namespace Assets.Scripts.Interface
             rectTransform.anchorMin = how.position;
             rectTransform.offsetMax = rectTransform.offsetMin = Vector2.zero;
         }
-
+        
         private void CreateButtons()
         {
             foreach (var buttonName in _mainButtons)
@@ -76,8 +77,13 @@ namespace Assets.Scripts.Interface
                 AddNotRotatingTextToButton(buttonGameObject, buttonName);
             }
             var globalMapButton = Instantiate(Prefabs.CasualButton);
+            Vector2 A = new Vector2(globalMapButton.GetComponent<Image>().sprite.bounds.size.x/Screen.width*15, globalMapButton.GetComponent<Image>().sprite.bounds.size.y/Screen.height*15);
+            Rect _globalMapButtonRect = new Rect(0.02f, 0.9f, A.x, A.y);
+            globalMapButton.transform.SetParent(this.gameObject.transform);
+            SetPanelPosition(globalMapButton, _globalMapButtonRect);
+            globalMapButton.GetComponent<Button>().onClick.AddListener(() => SceneManager.LoadScene("GlobalMapUI"));
         }
-
+        
         private void AddNotRotatingTextToButton(GameObject button, string text)
         {
             var buttonRectTransform = button.GetComponent<RectTransform>();
@@ -91,7 +97,7 @@ namespace Assets.Scripts.Interface
             textRectTransform.offsetMax = buttonRectTransform.sizeDelta;
             textRectTransform.offsetMin = -buttonRectTransform.sizeDelta;
         }
-
+        
         private void CreateResourcePanel()
         {
             ResourcePanel = Instantiate(Prefabs.HorizontalGroupPanel);
