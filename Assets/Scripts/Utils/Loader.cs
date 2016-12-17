@@ -16,11 +16,11 @@ namespace Assets.Scripts.Utils
         /// <returns></returns>
         public static GameObject LoadPrefab(string path)
         {
-            //var ret =AssetDatabase.LoadAssetAtPath<GameObject>(path);
-            var ret = Resources.Load<Canvas>(path);
+            var ret =AssetDatabase.LoadAssetAtPath<GameObject>(path);
+            //var ret = Resources.Load<Canvas>(path);
             if (ret == null)
                 throw new NullReferenceException("There is no game object at path " + path);
-            return new GameObject();
+            return ret;
         }
         /// <summary>
         /// Shorthand for Instantiate(AssetDatabase.Load). Use with PrefabPaths.

@@ -41,9 +41,9 @@ namespace Assets.Scripts.Game_Controllers {
 
 	    private void CreateUI()
 	    {
-	        Root = Loader.NewInstance(PrefabPaths.Root);
+	        Root = Instantiate(Prefabs.Root);
 	        MainCamera = Root.GetComponentInChildren<Camera>();
-	        Canvas = Loader.NewInstance(PrefabPaths.Canvas);
+	        Canvas = Instantiate(Prefabs.Canvas);
             Canvas.transform.SetParent(Root.transform, false);
 	        Canvas.AddComponent<AutomaticInterface>();
 	    }

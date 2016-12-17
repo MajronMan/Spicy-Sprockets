@@ -7,7 +7,7 @@ namespace Assets.Static
     /// </summary>
     public static class PrefabPaths
     {
-        public static string Prefabs { get { return "Prefabs/"; } }
+        public static string Prefabs { get { return "Assets/Resources/Prefabs/"; } }
 
         private static string _root = "Root.prefab";
         private static string _map = "Map.prefab";
