@@ -25,7 +25,7 @@ namespace Assets.Scripts.Game_Controllers.Game_Modes {
         /// </summary>
         void Exit();
 
-        // ???
+        // Call this on click of a building or sth
         void Select(GameObject gameObject);
     }
 }

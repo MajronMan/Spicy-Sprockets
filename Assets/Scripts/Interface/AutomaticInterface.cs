@@ -81,7 +81,14 @@ namespace Assets.Scripts.Interface
                 buttonGameObject.name = namesToPanels + "Button";
                 buttonGameObject.transform.SetParent(MainPanel.transform);
                 AddNotRotatingTextToButton(buttonGameObject, namesToPanels.Key);
-                buttonGameObject.GetComponent<Button>().onClick.AddListener(() => panel.SetActive(!panel.activeSelf));
+                buttonGameObject.GetComponent<Button>().onClick.AddListener(() =>
+                {
+                    foreach (var pair in buttonPanels)
+                    {
+                        pair.Value.SetActive(false);
+                    }
+                    panel.SetActive(true);
+                });
 
                 var exit = Instantiate(Prefabs.ExitButton);
                 SetGameObjectPosition(exit, _exitRect, panel.transform);
@@ -143,7 +150,7 @@ namespace Assets.Scripts.Interface
             {
                 var button = Instantiate(Prefabs.BuildButton);
                 button.transform.SetParent(buildingPanel.transform);
-                button.GetComponent<BuildButton>().SetType(building);
+                button.GetComponent<BuildButton>().SetUp(building, buildingPanel);
             }
         }
     }

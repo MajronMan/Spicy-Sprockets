@@ -6,7 +6,7 @@ namespace Assets.Scripts.Game_Controllers
         // Fucking static methods
         public void Start()
         {
-            var unused = Controllers.GameController.MapPrefab;
+            var unused = Controllers.GameController.transform;
         }
     }
 }

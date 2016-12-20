@@ -3,7 +3,6 @@ using Assets.Scripts.Game_Controllers.Game_Modes;
 using Assets.Scripts.Interface;
 using Assets.Scripts.Utils;
 using Assets.Static;
-using UnityEditor;
 using UnityEngine;
 
 namespace Assets.Scripts.Game_Controllers {
@@ -14,7 +13,6 @@ namespace Assets.Scripts.Game_Controllers {
 	{
 		public List<CityController> Cities = new List<CityController>();
 		public List<EnemyController> Enemies = new List<EnemyController>();
-		public Map MapPrefab;
         /// <summary>
         /// The base game object which is parent to everything
         /// </summary>
@@ -33,7 +31,7 @@ namespace Assets.Scripts.Game_Controllers {
             var newGameObject = new GameObject("City Controller", typeof(CityController));
             var cityController = newGameObject.GetComponent<CityController>();
             Cities.Add(cityController);
-            cityController.CreateCity(MapPrefab);
+            cityController.CreateCity();
             cityController.transform.SetParent(transform, true);
             // later also add enemies
             _gameMode = new DefaultMode();

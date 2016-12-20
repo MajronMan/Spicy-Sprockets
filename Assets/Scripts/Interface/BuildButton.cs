@@ -4,19 +4,27 @@ using System.Linq;
 using System.Text;
 using Assets.Scripts.Game_Controllers;
 using Assets.Static;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Assets.Scripts.Interface
 {
     public class BuildButton: Button
     {
-        private Type myType;
+        private Type _myType;
+        private GameObject _myPanel;
 
-        public void SetType(Type type)
+        public void SetUp(Type type, GameObject myPanel)
         {
-            myType = type;
+            _myType = type;
+            _myPanel = myPanel;
             GetComponent<Image>().sprite = Sprites.BuildingSprite(type);
-            onClick.AddListener(() => Controllers.GameController.EnterBuildingMode(type));
+            onClick.AddListener(() =>
+            {
+                Controllers.GameController.EnterBuildingMode(type);
+                _myPanel.SetActive(false);
+            });
+
         }
     }
 }

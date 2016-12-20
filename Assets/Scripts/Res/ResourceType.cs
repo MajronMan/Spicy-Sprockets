@@ -24,12 +24,12 @@ namespace Assets.Scripts.Res {
 
         public string InterfaceSpriteName()
         {
-            return Name + ".png";
+            return Name;
         }
 
         public string PoolSpriteName()
         {
-            return Name + "Pool.png";
+            return Name + "Pool";
         }
 
         protected bool Equals(ResourceType other) {

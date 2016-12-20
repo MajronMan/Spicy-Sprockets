@@ -29,7 +29,6 @@ namespace Assets.Scripts.Game_Controllers {
             Data = new GameData();
             Data.Load();
             _gameController = gameObject.GetComponent<GameController>();
-            _gameController.MapPrefab = Resources.Load<Map>(@"Prefabs\Map");
             _gameController.BeginGame();
             _gameController.GetCurrentCity().MyInfo.LoadInitialResources(Data.InitialResources);
         }

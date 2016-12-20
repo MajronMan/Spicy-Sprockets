@@ -7,22 +7,22 @@ namespace Assets.Static
     /// </summary>
     public static class PrefabPaths
     {
-        public static string Prefabs { get { return "Assets/Resources/Prefabs/"; } }
+        public static string Prefabs { get { return @"Prefabs/"; } }
 
-        private static string _root = "Root.prefab";
-        private static string _map = "Map.prefab";
-        private static string _canvas = "CanvasPrefab.prefab";
-        private static string _building = "Building.prefab";
-        private static string _panel = "GenericPanel.prefab";
-        private static string _cogwheelButton = "CogwheelButton.prefab";
-        private static string _verticalGroupPanel = "VerticalGroupPanel.prefab";
-        private static string _horizontalGroupPanel = "HorizontalGroupPanel.prefab";
-        private static string _notRotatingText = "NotRotatingText.prefab";
-        private static string _casualButton = "CasualButton.prefab";
-        private static string _resourceIndicator = "ResourceIndicator.prefab";
-        private static string _gridGroupPanel = "GridGroupPanel.prefab";
-        private static string _exitButton = "ExitButton.prefab";
-        private static string _buildButton = "BuildButton.prefab";
+        private static string _root = @"Root";
+        private static string _map = @"Map";
+        private static string _canvas = @"CanvasPrefab";
+        private static string _building = @"Building";
+        private static string _panel = @"GenericPanel";
+        private static string _cogwheelButton = @"CogwheelButton";
+        private static string _verticalGroupPanel = @"VerticalGroupPanel";
+        private static string _horizontalGroupPanel = @"HorizontalGroupPanel";
+        private static string _notRotatingText = @"NotRotatingText";
+        private static string _casualButton = @"CasualButton";
+        private static string _resourceIndicator = @"ResourceIndicator";
+        private static string _gridGroupPanel = @"GridGroupPanel";
+        private static string _exitButton = @"ExitButton";
+        private static string _buildButton = @"BuildButton";
 
         /// <summary>
         /// Path of base game object with event system and camera
@@ -69,16 +69,16 @@ namespace Assets.Static
     /// </summary>
     public static class GraphicsPaths
     {
-        public static string Graphics = "Assets/Resources/Graphics/";
-        public static string InterfaceGraphics = Graphics + "Interface/";
-        public static string ResourcePoolGraphics = Graphics + "Pools/";
-        public static string BuildingsGraphics = Graphics + "Buildings/";
-        private static string _food = "Food.png";
-        private static string _coal = "Coal.png";
-        private static string _metal = "Metal.png";
-        private static string _wood = "Wood.png";
-        private static string _stone= "Stone.png";
-        private static string _mineral = "Mineral.png";
+        public static string Graphics = @"Graphics/";
+        public static string InterfaceGraphics = Graphics + @"Interface/";
+        public static string ResourcePoolGraphics = Graphics + @"Pools/";
+        public static string BuildingsGraphics = Graphics + @"Buildings/";
+        private static string _food = @"Food";
+        private static string _coal = @"Coal";
+        private static string _metal = @"Metal";
+        private static string _wood = @"Wood";
+        private static string _stone= @"Stone";
+        private static string _mineral = @"Mineral";
 
         public static string Food { get { return InterfaceGraphics + _food; } }
         public static string Coal { get { return InterfaceGraphics + _coal; } }

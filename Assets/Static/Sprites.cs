@@ -35,7 +35,7 @@ namespace Assets.Static
         public static Sprite BuildingSprite(Type type)
         {
             if (!_buildingSprites.ContainsKey(type))
-                _buildingSprites.Add(type, Loader.LoadSprite(GraphicsPaths.BuildingsGraphics + type.Name.ToString() + ".png"));
+                _buildingSprites.Add(type, Loader.LoadSprite(GraphicsPaths.BuildingsGraphics + type.Name));
 
             return _buildingSprites[type];
         }
