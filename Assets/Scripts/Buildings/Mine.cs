@@ -1,19 +1,19 @@
-﻿using Assets.Scripts.Sources_of_Resources;
+﻿using Assets.Scripts.Game_Controllers;
+using Assets.Scripts.Res;
 using Assets.Scripts.Utils;
-using UnityEngine;
 
-namespace Assets.Scripts.Buildings
-{
+namespace Assets.Scripts.Buildings {
     /// <summary>
     /// Traditional silesian restaurant
     /// </summary>
-    public class Mine : GatheringBuilding
-    {
-        public override void Start()
-        {
+    public class Mine : GatheringBuilding {
+        public override void Start() {
             Radius = 1000;
-            GatheredResource = "coal";
-            MySize = BuildingSize.Big;
+
+            GatheredResource = Controllers.ConstantData.ResourceTypes.Find((type => type.Name == "coal"));
+            Size = BuildingSize.Big;
+            MaxStaff = 50;
+            MinStaff = 10;
             base.Start();
         }
     }

@@ -1,0 +1,26 @@
+[
+  {
+	"_type": "coal",
+	"_amount": 155
+  },
+  {
+	"_type": "mineral",
+	"_amount": 555
+  },
+  {
+	"_type": "metal",
+	"_amount": 855
+  },
+  {
+	"_type": "wood",
+	"_amount": 500
+  },
+  {
+	"_type": "food",
+	"_amount": 550
+  },
+  {
+	"_type": "stone",
+	"_amount": 855
+  }
+]
