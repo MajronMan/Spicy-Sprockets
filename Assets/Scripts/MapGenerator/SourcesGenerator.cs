@@ -19,7 +19,7 @@ namespace Assets.Scripts.MapGenerator {
         public static void Generate(Map theMap) {
             int sourcesCount = Random.Range(10, 21);
 
-            var collider = theMap.GetComponent<PolygonCollider2D>();
+            //var collider = theMap.GetComponent<PolygonCollider2D>();
 
             //create a first random point in a circle roughly inscribed into collider's shape
             var middle = new Vector2(theMap.transform.position.x, theMap.transform.position.y);

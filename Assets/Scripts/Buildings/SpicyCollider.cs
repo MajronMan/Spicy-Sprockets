@@ -1,13 +1,14 @@
 ﻿using UnityEngine;
 
 namespace Assets.Scripts.Buildings {
-    public class Collider : MonoBehaviour {
+    //cannot be named as built-in unity component
+    public class SpicyCollider : MonoBehaviour {
         // Use this for initialization
-        void Start() {
+        public void Start() {
         }
 
         // Update is called once per frame
-        void Update() {
+        public void Update() {
         }
 
 
