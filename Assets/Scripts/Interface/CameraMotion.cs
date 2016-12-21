@@ -15,14 +15,14 @@ namespace Assets.Scripts.Interface {
         /// <summary>
         /// How far from the edge pointer needs to be to move the camera
         /// </summary>
-        private int _boundary;
+        //private int _boundary;
 
         private Vector3[] _directions;
         private Camera _myCamera;
 
         public void Start() {
             _speed = 0.5f;
-            _boundary = 50;
+            //_boundary = 50;
             _directions = new[] {
                 new Vector3(-_speed, 0, 0), //left
                 new Vector3(_speed, 0, 0), //right

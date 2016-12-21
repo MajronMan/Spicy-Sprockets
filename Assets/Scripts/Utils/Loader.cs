@@ -17,7 +17,6 @@ namespace Assets.Scripts.Utils
         public static GameObject LoadPrefab(string path)
         {
             var ret = (GameObject) Resources.Load(path);
-            var why = Resources.Load<Map>(@"Prefabs/Map");
             //var ret = Resources.Load<Canvas>(path);
             if (ret == null)
                 throw new NullReferenceException("There is no game object at path " + path);
