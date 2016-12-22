@@ -23,7 +23,7 @@ namespace Assets.Static
         private static string _gridGroupPanel = @"GridGroupPanel";
         private static string _exitButton = @"ExitButton";
         private static string _buildButton = @"BuildButton";
-
+        private static string _dialogueBox = @"DialogueBox";
         /// <summary>
         /// Path of base game object with event system and camera
         /// </summary>
@@ -62,6 +62,8 @@ namespace Assets.Static
         public static string ExitButton { get { return Prefabs + _exitButton; } }
 
         public static string BuildButton { get {return Prefabs + _buildButton;} }
+
+        public static string DialogueBox { get { return Prefabs + _dialogueBox; } }
     }
 
     /// <summary>

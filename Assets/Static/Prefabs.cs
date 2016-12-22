@@ -20,6 +20,7 @@ namespace Assets.Static
         private static GameObject _resourceIndicator;
         private static GameObject _exitButton;
         private static GameObject _buildButton;
+        private static GameObject _dialogueBox;
 
         /// <summary>
         /// Base game object with event system and camera
@@ -64,6 +65,8 @@ namespace Assets.Static
 
         public static GameObject BuildButton { get { return _buildButton ?? (_buildButton = Loader.LoadPrefab(PrefabPaths.BuildButton)); } }
 
+        public static GameObject DialogueBox { get { return _dialogueBox ?? (_dialogueBox = Loader.LoadPrefab(PrefabPaths.DialogueBox)); } }
+
         public static Dictionary<string, GameObject> PathsToObjects = new Dictionary<string, GameObject>()
         {
             { PrefabPaths.Root, Root},
@@ -77,7 +80,9 @@ namespace Assets.Static
             { PrefabPaths.NotRotatingText, NotRotatingText },
             { PrefabPaths.CasualButton, CasualButton },
             { PrefabPaths.ResourceIndicator, ResourceIndicator },
-            { PrefabPaths.GridGroupPanel, GridGroupPanel }
+            { PrefabPaths.GridGroupPanel, GridGroupPanel },
+            { PrefabPaths.DialogueBox, DialogueBox }
+
         };
     }
 }
