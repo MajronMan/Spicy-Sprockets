@@ -1,0 +1,41 @@
+@ Bimberiev 
+<
+Wydajesz siê przybity. Coœ siê sta³o?
+>
+@ Durszlakov: 
+<
+Otrzyma³em w³aœnie pismo… 
+$wczeœniejsze raporty dobre$ Pañskie sukcesy paradoksalnie mog¹ zadzia³aæ na nasz¹ niekorzyœæ. Przyci¹gnêliœmy uwagê kogoœ, kto jednym s³owem mo¿e zniechêciæ cara do wojny o Indie. I teraz przyje¿d¿a on w imieniu cara z wizytacj¹.
+$wczeœniejsze raporty neutralne$ Car zaczyna siê niecierpliwiæ. Spodziewa³ siê szybkich sukcesów i jest rozczarowany tempem naszej ekspansji. Dlatego przysy³a wizytatora.
+$wczeœniejsze raporty s³abe$ Ogólnie rzecz bior¹c mamy problem. Moje dotychczasowe raporty nie przypad³y do gustu carowi i postanowi³ on wys³aæ swojego zaufanego cz³owieka z wizytacj¹.
+Nazywa siê Nikolaj Materacov, ale szerzej znany jest pod przezwiskiem Sêp. Zanim rozpocz¹³ karierê na dworze cara, s³u¿y³ w Armii Imperium. Podczas wojny z Napoleonem s³u¿y³ pod genera³em Suworowem (historyczne, nie cisne beki teraz) i po wyparciu francuzów z doliny Padu wydawa³o siê ju¿, ¿e zwyciêstwo jest bliskie i wróci do kraju jako bohater. A potem nasi uderzyli na Szwajcariê… Nie muszê ci przypominaæ, jak to siê skoñczy³o. Oddzia³ Materacova wróci³ zdziesi¹tkowany, ale on sam zosta³ awansowany na pu³kownika. Nied³ugo potem sta³ siê doradc¹ cara, a Suworow zosta³ zdegradowany za naruszenie Najwy¿szego Regulaminu. Ponoæ to w³aœnie Sêp doniós³ na swojego dowódcê, za co zyska³ przychylnoœæ cara i swój przydomek. Powiem szczerze – nie mogliœmy gorzej trafiæ.
+> 
+@ Bimberiev
+<
+Myœlê, ¿e za bardzo dramatyzujesz. To tylko zwyk³a wizytacja, a car przecie¿ nie rozka¿e nam od tak rzuciæ wszystkiego i wróciæ.
+>
+@ Durszlakov
+<
+Byæ mo¿e nie, ale obciêcie funduszy mo¿e okazaæ siê druzgoc¹ce dla naszej ekonomii. Gdyby to chocia¿ by³ ktoœ przewidywalny… Ale nie, Materacov znany jest z tego, ¿e nikt go nie zna. Nie ma rodziny i rozmawia wy³¹cznie z carem. Równie dobrze moglibyœmy oczekiwaæ przybycia ducha.\n	Móg³bym spróbowaæ u¿yæ swoich kontaktów i przekonaæ cara, ¿e to nie jest dobry pomys³. Nie musielibyœmy siê wtedy przejmowaæ Materacovem. Z drugiej strony, mo¿e warto zaryzykowaæ? Co o tym myœlisz?
+>
+@ Bimberiev[3]
+<
+1 Tak, zrób to. Mamy zbyt du¿o na g³owie, ¿eby dok³adaæ do tego jeszcze wizytacje.
+2 Nie, niech przyjedzie. Je¿eli wyda nam dobr¹ opiniê, Nowa Moskwa mo¿e du¿o na tym zyskaæ.
+3 Na razie siê wstrzymaj. Muszê przemyœleæ tê decyzjê.
+>
+@ Durszlakov[:3]
+<
+1 Zgadzam siê, to najbezpieczniejsza opcja. Teraz przepraszam najmocniej, muszê wys³aæ parê listów… 
+2 Mam nadziejê, ¿e wiesz co robisz, Bimberiev. Je¿eli odpowiednio nie przygotujesz siê do tej wizytacji, nie mo¿emy liczyæ na przychylnoœæ Sêpa na dworze.\nWizyta jest zaplanowana na przysz³y miesi¹c. Oczywiœcie wszystko bêdzie zale¿eæ od jej przebiegu, ale mo¿emy zwiêkszyæ nasze szanse na pozytywn¹ ocenê, przygotowuj¹c siê wczeœniej. Po pierwsze warto pokazaæ, ¿e ca³y czas siê rozwijamy. Zbudowanie i wyposa¿enie paru dodatkowych kopalni i budynków przetwórczych od razu pozytywnie ustosunkuje do nas Materacova. Po drugie, nie mo¿emy przyj¹æ go z pustymi rêkami. Chocia¿ gardzê farsami, z bólem serca przyznajê, ¿e w tym wypadku bêdzie to nieuniknione. Je¿eli do czasu przyjazdu Sêpa uda nam siê zgromadziæ odpowiedni¹ iloœæ jedzenia, mo¿emy wyprawiæ ucztê i sprawiæ wra¿enie dobrobytu. Te rzeczy nie za³atwi¹ za nas sprawy, ale na pewno nam pomog¹.
+3 Dobrze, ale myœl szybko. Inaczej mogê nie zdo³aæ ju¿ tego odkrêciæ.
+>
+#Kolacja przy œwiecach#
+<
+Cel g³ówny: 
+•	Przyjmij Sêpa 
+
+Cele poboczne:
+•	Zbuduj i zaopatrz w pracowników trzy kopalnie wêgla
+•	Podczas wizytacji miej w spichlerzu co najmniej 1000 jednostek po¿ywienia i 50 jednostek przypraw.
+>

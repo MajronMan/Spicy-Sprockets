@@ -1,0 +1,17 @@
+@ Durszlakov 
+<
+Wiêc jak? Namyœli³eœ siê?
+>
+@ Bimberiev[3]
+<
+1 Tak, chcia³bym, byœ spróbowa³ odwo³aæ wizytacjê.
+2 Tak, nic nie rób. Przyjmiemy go.
+3 Nie, potrzebujê wiêcej czasu do namys³u.
+>
+@ Durszlakov[:3]
+<
+1 Zgadzam siê, to najbezpieczniejsza opcja. Teraz przepraszam najmocniej, muszê wys³aæ parê listów…
+2 Mam nadziejê, ¿e wiesz co robisz, Bimberiev. Je¿eli odpowiednio nie przygotujesz siê do tej wizytacji, nie mo¿emy liczyæ na przychylnoœæ Sêpa na dworze.\n
+Wizyta jest zaplanowana na przysz³y miesi¹c. Oczywiœcie wszystko bêdzie zale¿eæ od jej przebiegu, ale mo¿emy zwiêkszyæ nasze szanse na pozytywn¹ ocenê, przygotowuj¹c siê wczeœniej. Po pierwsze warto pokazaæ, ¿e ca³y czas siê rozwijamy. Zbudowanie i wyposa¿enie paru dodatkowych kopalni i budynków przetwórczych od razu pozytywnie ustosunkuje do nas Materacova. Po drugie, nie mo¿emy przyj¹æ go z pustymi rêkami. Chocia¿ gardzê farsami, z bólem serca przyznajê, ¿e w tym wypadku bêdzie to nieuniknione. Je¿eli do czasu przyjazdu Sêpa uda nam siê zgromadziæ odpowiedni¹ iloœæ jedzenia, mo¿emy wyprawiæ ucztê i sprawiæ wra¿enie dobrobytu. Te rzeczy nie za³atwi¹ za nas sprawy, ale na pewno nam pomog¹.
+3 Dobrze, ale œpiesz siê. Nied³ugo mogê ju¿ nie byæ w stanie nic zrobiæ. Chcia³eœ czegoœ jeszcze?
+>
