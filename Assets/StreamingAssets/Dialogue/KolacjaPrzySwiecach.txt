@@ -1,0 +1,196 @@
+//<Quest otrzymujemy po wys³aniu trzech raportów, od Durszlakova. Tri@er przy rozmowie z nim.>
+//<DIALOG I>
+@ Bimberiev 
+<
+Wydajesz siê przybity. Coœ siê sta³o?
+>
+@ Durszlakov: 
+<
+Otrzyma³em w³aœnie pismo… 
+$wczeœniejsze raporty dobre$ Pañskie sukcesy paradoksalnie mog¹ zadzia³aæ na nasz¹ niekorzyœæ. Przyci¹gnêliœmy uwagê kogoœ, kto jednym s³owem mo¿e zniechêciæ cara do wojny o Indie. I teraz przyje¿d¿a on w imieniu cara z wizytacj¹.
+$wczeœniejsze raporty neutralne$ Car zaczyna siê niecierpliwiæ. Spodziewa³ siê szybkich sukcesów i jest rozczarowany tempem naszej ekspansji. Dlatego przysy³a wizytatora.
+$wczeœniejsze raporty s³abe$ Ogólnie rzecz bior¹c mamy problem. Moje dotychczasowe raporty nie przypad³y do gustu carowi i postanowi³ on wys³aæ swojego zaufanego cz³owieka z wizytacj¹.
+Nazywa siê Nikolaj Materacov, ale szerzej znany jest pod przezwiskiem Sêp. Zanim rozpocz¹³ karierê na dworze cara, s³u¿y³ w Armii Imperium. Podczas wojny z Napoleonem s³u¿y³ pod genera³em Suworowem (historyczne, nie cisne beki teraz) i po wyparciu francuzów z doliny Padu wydawa³o siê ju¿, ¿e zwyciêstwo jest bliskie i wróci do kraju jako bohater. A potem nasi uderzyli na Szwajcariê… Nie muszê ci przypominaæ, jak to siê skoñczy³o. Oddzia³ Materacova wróci³ zdziesi¹tkowany, ale on sam zosta³ awansowany na pu³kownika. Nied³ugo potem sta³ siê doradc¹ cara, a Suworow zosta³ zdegradowany za naruszenie Najwy¿szego Regulaminu. Ponoæ to w³aœnie Sêp doniós³ na swojego dowódcê, za co zyska³ przychylnoœæ cara i swój przydomek. Powiem szczerze – nie mogliœmy gorzej trafiæ.
+> 
+@ Bimberiev
+<
+Myœlê, ¿e za bardzo dramatyzujesz. To tylko zwyk³a wizytacja, a car przecie¿ nie rozka¿e nam od tak rzuciæ wszystkiego i wróciæ.
+>
+@ Durszlakov
+<
+Byæ mo¿e nie, ale obciêcie funduszy mo¿e okazaæ siê druzgoc¹ce dla naszej ekonomii. Gdyby to chocia¿ by³ ktoœ przewidywalny… Ale nie, Materacov znany jest z tego, ¿e nikt go nie zna. Nie ma rodziny i rozmawia wy³¹cznie z carem. Równie dobrze moglibyœmy oczekiwaæ przybycia ducha.\n	Móg³bym spróbowaæ u¿yæ swoich kontaktów i przekonaæ cara, ¿e to nie jest dobry pomys³. Nie musielibyœmy siê wtedy przejmowaæ Materacovem. Z drugiej strony, mo¿e warto zaryzykowaæ? Co o tym myœlisz?
+>
+@ Bimberiev[3]
+<
+1 Tak, zrób to. Mamy zbyt du¿o na g³owie, ¿eby dok³adaæ do tego jeszcze wizytacje.
+2 Nie, niech przyjedzie. Je¿eli wyda nam dobr¹ opiniê, Nowa Moskwa mo¿e du¿o na tym zyskaæ.
+3 Na razie siê wstrzymaj. Muszê przemyœleæ tê decyzjê.
+>
+@ Durszlakov[:3]
+<
+1 Zgadzam siê, to najbezpieczniejsza opcja. Teraz przepraszam najmocniej, muszê wys³aæ parê listów… 
+2 Mam nadziejê, ¿e wiesz co robisz, Bimberiev. Je¿eli odpowiednio nie przygotujesz siê do tej wizytacji, nie mo¿emy liczyæ na przychylnoœæ Sêpa na dworze.\nWizyta jest zaplanowana na przysz³y miesi¹c. Oczywiœcie wszystko bêdzie zale¿eæ od jej przebiegu, ale mo¿emy zwiêkszyæ nasze szanse na pozytywn¹ ocenê, przygotowuj¹c siê wczeœniej. Po pierwsze warto pokazaæ, ¿e ca³y czas siê rozwijamy. Zbudowanie i wyposa¿enie paru dodatkowych kopalni i budynków przetwórczych od razu pozytywnie ustosunkuje do nas Materacova. Po drugie, nie mo¿emy przyj¹æ go z pustymi rêkami. Chocia¿ gardzê farsami, z bólem serca przyznajê, ¿e w tym wypadku bêdzie to nieuniknione. Je¿eli do czasu przyjazdu Sêpa uda nam siê zgromadziæ odpowiedni¹ iloœæ jedzenia, mo¿emy wyprawiæ ucztê i sprawiæ wra¿enie dobrobytu. Te rzeczy nie za³atwi¹ za nas sprawy, ale na pewno nam pomog¹.
+3 Dobrze, ale myœl szybko. Inaczej mogê nie zdo³aæ ju¿ tego odkrêciæ.
+>
+//<Opcja pierwsza i trzecia koñcz¹ dialog.>
+ 
+#Kolacja przy œwiecach#
+<
+Cel g³ówny: 
+•	Przyjmij Sêpa 
+
+Cele poboczne:
+•	Zbuduj i zaopatrz w pracowników trzy kopalnie wêgla
+•	Podczas wizytacji miej w spichlerzu co najmniej 1000 jednostek po¿ywienia i 50 jednostek przypraw.
+>
+//<Liczby tu trochê z dupy, przy optymalizacji siê poprawi.>
+//<DIALOG II (kiedy wybra³eœ opcjê pierwsz¹ przy rozmowie z Durszlakovem i tri@erujesz z nim kolejn¹ rozmowê):>
+@ Durszlakov 
+<
+Witaj Bimberiev, mam dobr¹ wiadomoœæ. Moi przyjaciele z otoczenia cara zdo³ali go odwieŸæ od pomys³u wizytacji. Sêp podobno by³ wœciek³y, ale przynajmniej nie mo¿e nam zaszkodziæ. Tak wiêc o czym chcia³eœ ze mn¹ porozmawiaæ?
+>
+//<Dalej normalne opcje dialogowe.>
+//<DIALOG III (kiedy wybra³eœ opcjê trzeci¹ i znów rozmawiasz z Durszlakovem):>
+@ Durszlakov 
+<
+Wiêc jak? Namyœli³eœ siê?
+>
+@ Bimberiev[3]
+<
+1 Tak, chcia³bym, byœ spróbowa³ odwo³aæ wizytacjê.
+2 Tak, nic nie rób. Przyjmiemy go.
+3 Nie, potrzebujê wiêcej czasu do namys³u.
+>
+@ Durszlakov[:3]
+<
+1 Zgadzam siê, to najbezpieczniejsza opcja. Teraz przepraszam najmocniej, muszê wys³aæ parê listów…
+2 Mam nadziejê, ¿e wiesz co robisz, Bimberiev. Je¿eli odpowiednio nie przygotujesz siê do tej wizytacji, nie mo¿emy liczyæ na przychylnoœæ Sêpa na dworze.\n
+Wizyta jest zaplanowana na przysz³y miesi¹c. Oczywiœcie wszystko bêdzie zale¿eæ od jej przebiegu, ale mo¿emy zwiêkszyæ nasze szanse na pozytywn¹ ocenê, przygotowuj¹c siê wczeœniej. Po pierwsze warto pokazaæ, ¿e ca³y czas siê rozwijamy. Zbudowanie i wyposa¿enie paru dodatkowych kopalni i budynków przetwórczych od razu pozytywnie ustosunkuje do nas Materacova. Po drugie, nie mo¿emy przyj¹æ go z pustymi rêkami. Chocia¿ gardzê farsami, z bólem serca przyznajê, ¿e w tym wypadku bêdzie to nieuniknione. Je¿eli do czasu przyjazdu Sêpa uda nam siê zgromadziæ odpowiedni¹ iloœæ jedzenia, mo¿emy wyprawiæ ucztê i sprawiæ wra¿enie dobrobytu. Te rzeczy nie za³atwi¹ za nas sprawy, ale na pewno nam pomog¹.
+3 Dobrze, ale œpiesz siê. Nied³ugo mogê ju¿ nie byæ w stanie nic zrobiæ. Chcia³eœ czegoœ jeszcze?
+>
+//<Normalne opcje dialogowe.>
+//<DIALOG IV (kiedy wybra³eœ opcjê trzeci¹ i zbyt d³ugo siê zastanawia³eœ – powiedzmy miesi¹c):>
+@ Durszlakova
+<
+(oschle) Ach, jesteœ wreszcie. Zastanawia³em siê, kiedy wreszcie do mnie zajrzysz. Wiedz, ¿e przez twoje niezdecydowanie mog³o byæ ju¿ za póŸno na próbê odwo³ania wizytacji, wiêc póki da³o siê coœ jeszcze zrobiæ, napisa³em do swoich przyjació³ na dworze. Na szczêœcie zdo³ali przekonaæ cara do zmiany decyzji. Sêp by³ wœciek³y, ale nie mo¿e nam ju¿ zagroziæ. Chcia³eœ czegoœ jeszcze?
+>
+//<NOD>
+//<DIALOG V (kiedy wybra³eœ opcjê drug¹ i przychodzisz znowu do Durszlakova. Od razu, lub w przeci¹gu paru dni):>
+//<Do normalnych opcji dialogowych zostaje dodana:>
+@ Bimberiev[1]
+1 W sprawie Sêpa... 
+> 
+@ Durszlakova: 
+<
+Tak?
+>
+@ Bimberiev[3]
+1 Chcia³bym jeszcze raz us³yszeæ jego historiê.
+2 Przypomnij mi jeszcze raz, jak bêdzie wygl¹da³a wizytacja.
+3 Dowiedzia³eœ siê czegoœ o nim?
+>
+@ Durszlakov[:3]
+<
+1 Nazywa siê Nikolaj Materacov, ale szerzej znany jest pod przezwiskiem Sêp. Zanim rozpocz¹³ karierê na dworze cara, s³u¿y³ w Armii Imperium. Podczas wojny z Napoleonem s³u¿y³ pod genera³em Suworowem (historyczne, nie cisne beki teraz) i po wyparciu francuzów z doliny Padu wydawa³o siê ju¿, ¿e zwyciêstwo jest bliskie i wróci do kraju jako bohater. A potem nasi uderzyli na Szwajcariê… Nie muszê ci przypominaæ, jak to siê skoñczy³o. Oddzia³ Materacova wróci³ zdziesi¹tkowany, ale on sam zosta³ awansowany na pu³kownika. Nied³ugo potem sta³ siê doradc¹ cara, a Suworow zosta³ zdegradowany za naruszenie Najwy¿szego Regulaminu. Ponoæ to w³aœnie Sêp doniós³ na swojego dowódcê, za co zyska³ przychylnoœæ cara i swój przydomek.
+2 Wizyta jest zaplanowana na jakiœ dzieñ. Oczywiœcie wszystko bêdzie zale¿eæ od jej przebiegu, ale mo¿emy zwiêkszyæ nasze szanse na pozytywn¹ ocenê, przygotowuj¹c siê wczeœniej. Po pierwsze warto pokazaæ, ¿e ca³y czas siê rozwijamy. Zbudowanie i wyposa¿enie paru dodatkowych kopalni i budynków przetwórczych od razu pozytywnie ustosunkuje do nas Materacova. Po drugie, nie mo¿emy przyj¹æ go z pustymi rêkami. Chocia¿ gardzê farsami, z bólem serca przyznajê, ¿e w tym wypadku bêdzie to nieuniknione. Je¿eli do czasu przyjazdu Sêpa uda nam siê zgromadziæ odpowiedni¹ iloœæ jedzenia, mo¿emy wyprawiæ ucztê i sprawiæ wra¿enie dobrobytu. Te rzeczy nie za³atwi¹ za nas sprawy, ale na pewno nam pomog¹.
+3 Na razie nie. Czekam na odpowiedzi od moich przyjació³ na dworze. PrzyjdŸ do mnie za parê dni, mo¿e wtedy bêdê wiedzia³ wiêcej.
+>
+//<DIALOG VI (po wybraniu opcji drugiej i odczekaniu paru dni)>
+//<Pocz¹tek ten sam co w V, ale na pytanie o Sêpa Durszlakov zmienia kwestiê>
+@ Durszlakov 
+Tak, okaza³o siê, ¿e mia³em racjê. Jada sam, ca³e dnie spêdza w swoim dworze, a kiedy okazjonalnie pojawia siê u cara, to tylko na prywatnych audiencjach. Ma jednak skrybê, od którego moglibyœmy dowiedzieæ siê, chocia¿ pobie¿nie, czego mo¿na siê po nim spodziewaæ. Ta informacja bêdzie jednak kosztowaæ. Dowiedzia³em siê tak¿e, ¿e Materacov planuje remont swojego dworku i rozgl¹da siê za robotnikami. Móg³bym podsun¹æ mu ludzi z Nowej Moskwy, którzy przy okazji dowiedzieliby siê o nim wszystkiego, ale musielibyœmy zamkn¹æ na jakiœ czas jedn¹ z fabryk. Co s¹dzisz o tych rozwi¹zaniach?
+@ Bimberiev[3]
+<
+1 Powinniœmy zap³aciæ skrybie. Powie nam wiêcej, ni¿ robotnicy zdo³aliby siê dowiedzieæ.
+2 Wyœlemy swoich ludzi. S¹ bardziej zaufani, ni¿ przekupny skryba.
+3 Nie podobaj¹ mi siê. Poradzimy sobie bez tego.
+>
+@ Durszlakov
+<
+1 Dobrze, poczyniê odpowiednie przygotowania.
+2 Dobrze, poczyniê odpowiednie przygotowania.
+3 Jak pan sobie ¿yczy.
+>
+//<Opcja pierwsza – tracimy hajsy, opcja druga – mamy zastój w jakiejœ fabryce. Mo¿naby te¿ daæ graczowi czas na zdobycie funduszy, ¿eby opcja z wydawaniem pieniêdzy go nie zaskoczy³a, ale nie chce mi siê wszystkiego rozpatrywaæ teraz. Je¿eli zgodzimy siê szpiegowaæ Materacova, dostajemy notkê, z której wynikaæ bêd¹ zerojedynkowe pogl¹dy Sêpa na wojnê, technologiê, Boga i Anglików. Dobrze by by³o gdyby nie by³y podane na tacy, ale przeszmuglowane pomiêdzy bezwartoœciowymi informacjami o wystroju jego dworku, albo lekturach do poduszki. W rozmowie z wizytatorem bêdziemy poruszaæ te kwestie i zdobywaæ przychylnoœæ Sêpa, lub te¿ nie. Gdy Materacov przyje¿d¿a, a gracz wie o jego cechach, to zale¿nie od poprowadzonej rozmowy dostaje cechê pokorny, lub niepokorny. Taki ma³y dodatek.
+//<Po up³yniêciu okreœlonego czasu (miesi¹ca powiedzmy), nastêpuje wizytacja. Pojawia siê @ Durszlakova (chyba ¿e jesteœmy w innym mieœcie, wtedy od razu po powrocie):>
+@ Durszlakov
+<
+Agencie Bimberiev. Przyby³ wizytator.
+>
+@ Bimberiev[1]
+1 Miejmy to ju¿ za sob¹.
+>
+//<Cutscenka. Wiem, ¿e mia³y byæ tylko przy pobocznych questach, ale nie wiem, jak to inaczej rozwi¹zaæ bez utraty ca³ego nastroju. Bimberiev siedzi przy koñcu sto³u. Przy drugim siedzi Materacov. Wyobra¿am go sobie jak Dragunova z Tekkena. Stó³ zastawiony jedzeniem (na bogato, albo oszczêdnie, zale¿nie od tego, czy spe³niliœmy cel poboczny) i rozœwietlony tytu³owymi œwiecami. W tle skrobanie widelców i typowe odg³osy jedzenia. Chwila ciszy.>
+[CUTS]{
+^ je¿eli spe³niliœmy cel poboczny pierwszy^
++
+Materacov
+<
+Jestem pod wra¿eniem waszej produkcji. Od czasu waszego ostatniego raportu wybudowaliœcie nowe kopalnie. Wydajnoœæ godna pochwa³y, jak na koloniê.
+>
++
+^ drugi^
++
+Materacov
+<
+Muszê pana pochwaliæ za tê ucztê, agencie Bimberiev. Czêsto zdarza mi siê jadaæ z carem, ale nawet jego kucharze mieliby problemy z przygotowaniem tego wszystkiego.
+>
++
+Bimberiev 
+<
+A wiêc co pan s¹dzi o naszej Nowej Moskwie, pu³kowniku?
+>
+Materacov 
+<
+Wci¹¿ nie jest to rosyjska metropolia na skalê Petersburga, ale to was jeszcze nie skreœla. Mimo wszystko nie podzielam ekscytacji cara tym projektem. 
+>
+Bimberiev[2]
+<
+1 Anglicy byli dla nas wa¿nym sojusznikiem w wojnie z Napoleonem. Nie odbieram im tego. Jednak¿e musimy mieæ na celu przede wszystkim dobro Rosji, a wiêc w tym przypadku jej ekspansjê.
+2 My tylko odpowiadamy na zagro¿enie, jakie stanowi dla nas Królestwo Brytyjskie. Ich ambicje zawiod³y ich zbyt daleko, nie uwa¿a pan? Je¿eli odpuœcimy im Indie, kto wie, czy nastêpna nie bêdzie Rosja?
+>
+Materacov 
+<
+$Cecha Materacova$ Ma pan absolutn¹ racjê, panie Bimberiev. Mo¿e zbyt pochopnie oceni³em pomys³ cara.
+$Cecha Materacova$ Obawiam siê, ¿e nie popieram pañskiej opinii, panie Bimberiev.
+Wracaj¹c do Nowej Moskwy, widzê, ¿e pañscy ludzie id¹ z duchem czasu. Nawet w stolicy nie widzia³em tylu angielskich maszyn, co tutaj.
+>
+Bimberiev[2] 
+<
+1 Nazywam to z³em koniecznym. Ca³a ta technologia jest nienaturalna i sprzeczna z prawami œwiata. Staramy siê minimalizowaæ jej u¿ycie, ale sam pan rozumie, ¿e w dzisiejszym œwiecie to niemal niemo¿liwe.
+2 „Angielskie” mog³y byæ na pocz¹tku. Teraz ca³y œwiat pracuje nad udoskonalaniem tej technologii i w rezultacie codziennie gdzieœ ktoœ wymyœla coœ nowego. Nawet tutaj mamy specjalistów g³owi¹cych siê nad nowymi rozwi¹zaniami.
+>
+Materacov
+<
+$Cecha Materacova$ I to jest opinia za któr¹ mogê wypiæ toast. Niech maszyny siê panu przys³u¿¹ i oby pan nie zapomnia³, ¿e to pan je kontroluje, a nie na odwrót. 
+$Cecha Materacova$ Nasze pogl¹dy na temat technologii s¹ od siebie tak daleko, jak wam do potêgi Kompanii Wschodnioindyjskiej. Na szczêœcie tak¿e car powoli zaczyna dostrzegaæ bezsens tego przedsiêwziêcia. 
+(Westchnienie) Mo¿na lubiæ maszyny, lub ich nienawidziæ, ale Bóg mi œwiadkiem, ¿e przyda³yby siê nam na froncie. 
+>
+Bimberiev[2]
+< 
+1 Bóg nie ma tu nic do gadania, pu³kowniku. Okropieñstwa wojny s¹ sprawk¹ tylko i wy³¹cznie ludzi. To nie ja walczy³em na froncie, ale dobrze wiem, ¿e do niektórych rzeczach lepiej nie wracaæ.
+2 Och, a co to za zabawa, siedzieæ w opancerzonym wehikule, gdzie nie mo¿na nawet zobaczyæ przeciwnika? Nie ma tej adrenaliny, kiedy kule lataj¹ ko³o ucha... Ale komu ja to mówiê, przecie¿ pan o tym doskonale wie.
+>	
+Materacov
+<
+$Cecha Materacova$ Ha, dobrze powiedziane. Jak mi³o porozmawiaæ z cz³owiekiem, który widzi œwiat w tych samych barwach, co ja.
+$Cecha Materacova$ Nie ma pan bladego pojêcia, o czym pan mówi, Bimberiev. Wojna nie jest taka, jak siê panu zdaje.
+Mogê spytaæ, jak czuj¹ siê mieszkañcy Nowej Moskwy? Jeszcze niedawno mieszkali w peryferyjnym miasteczku, a dziœ sami wolni kupcy nadk³adaj¹ drogi, by sprzedaæ tu swoje towary. Tak wielka zmiana w tak krótkim czasie musia³a byæ traumatyczna.
+>
+Bimberiev[2]
+<
+1 Mieszkañcy Nowej Moskwy s¹ bardzo z¿yt¹ wspólnot¹. Razem odnajdujemy si³ê w Bogu, który codziennie nas umacnia. Coœ tak b³ahego, jak zmiana otoczenia nie jest w stanie nas z³amaæ.
+2 Moi ludzie wiedz¹, co dla nich dobre. Ciê¿ko pracuj¹ i zamiast czekaæ, a¿ coœ im spadnie z nieba, sami po to siêgaj¹. Nie potrzebujemy tu ¿adnej si³y wy¿szej.
+>
+Materacov
+<
+$Cecha Materacova$ Oby tak dalej! Gdyby tylko te dzikusy mia³y takie podejœcie, nie zostaliby zdominowani przez Kompaniê.
+$Cecha Materacova$ Mo¿e to i nie moja sprawa, w co wierzycie, ale zapamiêtaj sobie moje s³owa, Bimberiev – ignorancja zniszczy³a ju¿ silniejszych ludzi, ni¿ ty.
+Hmm, muszê przyznaæ, ¿e rozmowa z panem by³a... interesuj¹ca, agencie Bimberiev. Myœlê, ¿e wiem ju¿, co uwzglêdniæ w raporcie dla cara.
+> 
+//<(Mo¿e ta kwestia bêdzie siê zmieniaæ w zale¿noœci od tego, jak posz³o graczowi.)>
+//<Podsumowanie: 
+//Gracz ma do zdobycia 6 punktów: dwa za cele dodatkowe i cztery za odpowiednie poprowadzenie rozmowy. 
+//•	0-3 : oblanie. Datki za raporty zostaj¹ obni¿one o po³owê.
+//•	4-5: zdane. Datki wzrastaj¹ o po³owê.
+//•	6: celuj¹cy. Datki wzrastaj¹ dwukrotnie.>
