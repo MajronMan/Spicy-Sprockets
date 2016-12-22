@@ -16,11 +16,11 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 4000010073152206}
-  - 212: {fileID: 212000013260112398}
-  - 60: {fileID: 60000010273030220}
+  - component: {fileID: 4000010073152206}
+  - component: {fileID: 212000013260112398}
+  - component: {fileID: 60000010273030220}
   m_Layer: 0
   m_Name: Building
   m_TagString: Untagged
@@ -37,10 +37,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -263, y: 166, z: -465}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!60 &60000010273030220
 PolygonCollider2D:
   m_ObjectHideFlags: 1
@@ -55,55 +55,10 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Points:
     m_Paths:
-    - - {x: 0.93, y: -0.105}
-      - {x: 0.82, y: -0.085}
-      - {x: 0.72999996, y: -0.085}
-      - {x: 0.7, y: 0.145}
-      - {x: 0.62, y: 0.275}
-      - {x: 0.55, y: 0.295}
-      - {x: 0.42999998, y: 0.235}
-      - {x: 0.13, y: 0.525}
-      - {x: 0, y: 0.525}
-      - {x: -0.04, y: 0.505}
-      - {x: -0.12, y: 0.445}
-      - {x: -0.34, y: 0.375}
-      - {x: -0.58, y: 0.225}
-      - {x: -0.78, y: 0.13499999}
-      - {x: -0.9, y: 0.035}
-      - {x: -0.96, y: -0.074999996}
-      - {x: -0.96, y: -0.145}
-      - {x: -0.84999996, y: -0.195}
-      - {x: -0.61, y: -0.105}
-      - {x: -0.66999996, y: -0.175}
-      - {x: -0.64, y: -0.295}
-      - {x: -0.55, y: -0.345}
-      - {x: -0.34, y: -0.445}
-      - {x: -0.19, y: -0.49499997}
-      - {x: -0.11, y: -0.49499997}
-      - {x: 0.06, y: -0.385}
-      - {x: 0.089999996, y: -0.325}
-      - {x: 0.48, y: -0.49499997}
-      - {x: 0.55, y: -0.475}
-      - {x: 0.66999996, y: -0.435}
-      - {x: 0.97999996, y: -0.265}
-      - {x: 0.97999996, y: -0.175}
-    - - {x: -0.44, y: -0.074999996}
-      - {x: -0.45999998, y: -0.085}
-      - {x: -0.39999998, y: -0.125}
-      - {x: -0.35, y: -0.13499999}
-      - {x: -0.34, y: -0.13499999}
-    - - {x: -0.07, y: 0.024999999}
-      - {x: -0.01, y: -0.005}
-      - {x: -0.07, y: -0.035}
-    - - {x: 0.19999999, y: 0.085}
-      - {x: 0.24, y: 0.125}
-      - {x: 0.24, y: 0.205}
-      - {x: 0.17999999, y: 0.085}
-    - - {x: 0.22, y: 0.415}
-      - {x: 0.17, y: 0.405}
-      - {x: 0.29999998, y: 0.265}
-      - {x: 0.29999998, y: 0.255}
-      - {x: 0.39, y: 0.175}
+    - - {x: 0.4159546, y: -0.20780945}
+      - {x: -0.007598877, y: -0.42941284}
+      - {x: -0.43173218, y: -0.22380066}
+      - {x: -0.004211426, y: -0.04005432}
 --- !u!212 &212000013260112398
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -118,7 +73,9 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 0
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_SubsetIndices: 
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
@@ -126,14 +83,14 @@ SpriteRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_SelectedWireframeHidden: 1
+  m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5f27c930cdff9d04585a480ed04d8cc1, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
