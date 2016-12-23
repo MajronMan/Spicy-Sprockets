@@ -60,7 +60,7 @@ namespace Assets.Scripts.Game_Controllers {
 
         public static GameObject UIBase
         {
-            get { return Instance._gameController.Canvas; }
+            get { return Instance._gameController.LocalMapCanvas; }
         }
 
         public static Camera MainCamera

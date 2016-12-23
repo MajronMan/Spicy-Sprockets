@@ -76,6 +76,10 @@ namespace Assets.Scripts.Buildings {
 
         //will gather only if manned
         public void Update() {
+            StartCoroutine(Gather());
+            //TODO: Something is wrong when changing maps - then it stops gathering when returning to local map once and for all - make it work
+            //I made it that way so the bulding only stops gathering when we are on the global map. In this case the building have been stopping gathering at all when scene change has ocurred
+            /*
             if (CurrentStaff < MinStaff) {
                 StopCoroutine(Gather());
                 _gatherRunning = false;
@@ -85,6 +89,7 @@ namespace Assets.Scripts.Buildings {
                     StartCoroutine(Gather());
                     _gatherRunning = true;
                 }
+           */
         }
 
         //used to hire and fire

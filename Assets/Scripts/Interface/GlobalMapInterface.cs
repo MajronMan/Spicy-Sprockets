@@ -10,8 +10,11 @@ using UnityEngine.UI;
 
 namespace Assets.Scripts.Interface
 {
-    public class AutomaticInterface : MonoBehaviour
+    public class GlobalMapInterface : MonoBehaviour
     {
+
+        //For now it's just a copy of AutomaticInterface of local map
+
         /// <summary>
         /// The panel which allows performing most of actions in game
         /// </summary>
@@ -34,22 +37,22 @@ namespace Assets.Scripts.Interface
 
         private Dictionary<string, GameObject> buttonPanels;
 
-        public void Start ()
+        public void Start()
         {
             CreatePanels();
             CreateButtons();
         }
 
-       
+
         private void CreatePanels()
         {
-            MainPanel = Instantiate(Prefabs.VerticalGroupPanel);
-            SetGameObjectPosition(MainPanel, _mainPanelRect, transform);
+            //MainPanel = Instantiate(Prefabs.VerticalGroupPanel);
+            //SetGameObjectPosition(MainPanel, _mainPanelRect, transform);
 
-            MiniMapPanel = Instantiate(Prefabs.Panel);
-            SetGameObjectPosition(MiniMapPanel, _miniMapPanelRect, transform);
-            
-            CreateResourcePanel();
+            //MiniMapPanel = Instantiate(Prefabs.Panel);
+            //SetGameObjectPosition(MiniMapPanel, _miniMapPanelRect, transform);
+
+            //CreateResourcePanel();
         }
 
         private void SetGameObjectPosition(GameObject what, Rect how, Transform parent)
@@ -63,6 +66,7 @@ namespace Assets.Scripts.Interface
 
         private void CreateButtons()
         {
+            /*
             buttonPanels = new Dictionary<string, GameObject>
             {
                 {"Production", Instantiate(Prefabs.Panel)},
@@ -98,10 +102,10 @@ namespace Assets.Scripts.Interface
             }
 
             FillBuildingsPanel();
-
+            */
             var toggleMapButton = Instantiate(Prefabs.CasualButton);
             SetGameObjectPosition(toggleMapButton, _toggleMapRect, transform);
-            toggleMapButton.GetComponent<Button>().onClick.AddListener(() => Controllers.GameController.ChangeScene("GlobalMap"));
+            toggleMapButton.GetComponent<Button>().onClick.AddListener(() => Controllers.GameController.ChangeScene("LocalMap"));
             //globalMapButton.transform.position = Vector3.zero;
             //globalMapButton.GetComponent<Button>().onClick.AddListener(() => SceneManager.LoadScene(""));
         }
@@ -139,10 +143,10 @@ namespace Assets.Scripts.Interface
 
         public static Rect CenterOfScreenRect(float width, float height)
         {
-            var relativeWidth = width/Screen.width;
-            var relativeHeight = height/Screen.height;
-            var posx = (Screen.width - width)/(2.0f * Screen.width);
-            var posy = (Screen.height - height)/(2.0f * Screen.height);
+            var relativeWidth = width / Screen.width;
+            var relativeHeight = height / Screen.height;
+            var posx = (Screen.width - width) / (2.0f * Screen.width);
+            var posy = (Screen.height - height) / (2.0f * Screen.height);
             return new Rect(posx, posy, relativeWidth, relativeHeight);
         }
 
