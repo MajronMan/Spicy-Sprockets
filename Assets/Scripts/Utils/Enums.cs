@@ -1,15 +1,12 @@
-﻿namespace Assets.Scripts.Utils
-{
-    public enum BuildingSize
-    {
+﻿namespace Assets.Scripts.Utils {
+    public enum BuildingSize {
         Penis,
         Small,
         Medium,
         Big,
     }
 
-    public enum MovementEnvironment
-    {
+    public enum MovementEnvironment {
         Water,
         Ground,
         Underground,

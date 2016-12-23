@@ -1,5 +1,7 @@
-﻿using System;
+
+using System;
 using Assets.Scripts.Game_Controllers;
+using Assets.Scripts.Res;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,37 +13,15 @@ namespace Assets.Scripts.Interface
     public class ResourceData : MonoBehaviour {
         public Text ResourceText;
         public Text MaxText;
-        public string Type;
+        public ResourceType Type;
         
         public void Start ()
         {
-            ResourceText = GetComponent<Text>();
-        }
-	
-        public void Update () {
-            //show current value
-            try
+            ResourceText = GetComponentInChildren<Text>();
+            Controllers.CurrentInfo.Changed += (sender, args) =>
             {
-                switch (Type)
-                {
-                    case "people":
-                        ResourceText.text = Controllers.CurrentInfo.ThePeople.Number.ToString();
-                        MaxText.text = Controllers.CurrentInfo.GetPopulationLimit().ToString();
-                        break;
-                    case "money":
-                        ResourceText.text = Controllers.CurrentInfo.MyMoney.GetAmount().ToString();
-                        break;
-                    default:
-                        ResourceText.text = Controllers.CurrentInfo[Type].GetQuantity().ToString();
-                        break;
-                }
-            }
-            catch (Exception e)
-            {
-                Debug.Log(e.Message);
-                Debug.Log(e.InnerException);
-                ResourceText.text = "dupa";
-            }
+                ResourceText.text = Controllers.CurrentInfo[Type].Amount.ToString();
+            };
         }
 
     }

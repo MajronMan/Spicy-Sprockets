@@ -1,32 +1,30 @@
-﻿using System.Collections.Generic;
-using Assets.Scripts.Game_Controllers;
-using Assets.Scripts.Resources;
+﻿using Assets.Scripts.Game_Controllers;
 using Assets.Scripts.Utils;
 using UnityEngine;
-using System.Collections;
 
-namespace Assets.Scripts.Buildings
-{
+namespace Assets.Scripts.Buildings {
     /// <summary>
     /// A class that represents all buildings
     /// </summary>
-    public abstract class Building : MonoBehaviour
-    {
+    public abstract class Building : MonoBehaviour {
         /// <summary>
         /// Optional colouring for the sprite
         /// </summary>
-        protected Color MyColor;
+        protected Color Color;
+
         /// <summary>
         /// Scale factor for sprite size
         /// </summary>
-        protected BuildingSize MySize = BuildingSize.Medium;
+        protected BuildingSize Size = BuildingSize.Medium;
+
         /// <summary>
         /// GetComponent takes too much time
         /// </summary>
-        public SpriteRenderer MyRenderer;
+        public SpriteRenderer Renderer;
+
         public int Collides = 0;
-        public virtual void Start()
-        {
+
+        public virtual void Start() {
             SetSprite(GetType());
         }
 
@@ -34,25 +32,20 @@ namespace Assets.Scripts.Buildings
         /// Sets sprite for certain type from global data(loaded from file) as current sprite 
         /// </summary>
         /// <param name="type">Type of building which sprite we want to display (not always matches with current type)</param>
-        public void SetSprite(System.Type type)
-        {
-            MyRenderer = gameObject.GetComponent<SpriteRenderer>();
-            MyRenderer.sprite = Controllers.ConstantData.BuildingData[type];
-            MyRenderer.sortingOrder = 1;
+        public void SetSprite(System.Type type) {
+            Renderer = gameObject.GetComponent<SpriteRenderer>();
+            Renderer.sprite = Controllers.ConstantData.BuildingData[type];
+            Renderer.sortingOrder = 1;
 
-            Util.Rescale(MyRenderer, (int)MySize * 20, (int)MySize * 20);            
-
+            Util.Rescale(Renderer, (int) Size * 20, (int) Size * 20);
         }
 
-        void OnCollisionExit2D()
-        {
-            Collides --;
+        void OnCollisionExit2D() {
+            Collides--;
         }
-        
-        void OnCollisionEnter2D()
-        {   
-            Collides ++;
+
+        void OnCollisionEnter2D() {
+            Collides++;
         }
-        
-    }   
+    }
 }

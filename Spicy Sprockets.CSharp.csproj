@@ -12,12 +12,14 @@
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <TargetFrameworkProfile>Unity Full v3.5</TargetFrameworkProfile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>5.4.1f1</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <LangVersion Condition=" '$(VisualStudioVersion)' != '10.0' ">4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -67,20 +69,22 @@
     <Reference Include="Mono.Cecil.Mdb">
       <HintPath>Assets\UnityTestTools\IntegrationTestsFramework\Libs\Mono.Cecil.Mdb.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Newtonsoft.Json">
+      <HintPath>Assets\Packages\Unity.Newtonsoft.Json.7.0.0.0\lib\net35-Client\Unity.Newtonsoft.Json.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Buildings\Building.cs" />
     <Compile Include="Assets\Scripts\Buildings\BuildingPreview.cs" />
+    <Compile Include="Assets\Scripts\Buildings\Collider.cs" />
     <Compile Include="Assets\Scripts\Buildings\GatheringBuilding.cs" />
     <Compile Include="Assets\Scripts\Buildings\LumberMill.cs" />
     <Compile Include="Assets\Scripts\Buildings\Mine.cs" />
     <Compile Include="Assets\Scripts\Buildings\ProductionBuilding.cs" />
+    <Compile Include="Assets\Scripts\Buildings\Quarry.cs" />
     <Compile Include="Assets\Scripts\Buildings\ResidentialBuilding.cs" />
     <Compile Include="Assets\Scripts\Buildings\StorageBuilding.cs" />
     <Compile Include="Assets\Scripts\Buildings\UnbuildableTerrain.cs" />
-    <Compile Include="Assets\Scripts\Data\BuildingContainer.cs" />
-    <Compile Include="Assets\Scripts\Data\BuildingData.cs" />
-    <Compile Include="Assets\Scripts\Data\SaveData.cs" />
     <Compile Include="Assets\Scripts\EnemyCity.cs" />
     <Compile Include="Assets\Scripts\Game Controllers\BuildingManager.cs" />
     <Compile Include="Assets\Scripts\Game Controllers\CityController.cs" />
@@ -91,24 +95,40 @@
     <Compile Include="Assets\Scripts\Game Controllers\Game Modes\GameMode.cs" />
     <Compile Include="Assets\Scripts\Game Controllers\GameController.cs" />
     <Compile Include="Assets\Scripts\Game Controllers\GameControllerReferencer.cs" />
+    <Compile Include="Assets\Scripts\Game Controllers\Starter.cs" />
+    <Compile Include="Assets\Scripts\Interface\AutomaticInterface.cs" />
+    <Compile Include="Assets\Scripts\Interface\BuildButton.cs" />
     <Compile Include="Assets\Scripts\Interface\CameraMotion.cs" />
     <Compile Include="Assets\Scripts\Interface\Events.cs" />
+    <Compile Include="Assets\Scripts\Interface\ExitButton.cs" />
     <Compile Include="Assets\Scripts\Interface\InteractiveButton.cs" />
     <Compile Include="Assets\Scripts\Interface\Map.cs" />
+    <Compile Include="Assets\Scripts\Interface\NotRotating.cs" />
     <Compile Include="Assets\Scripts\Interface\ResourceData.cs" />
     <Compile Include="Assets\Scripts\Interface\Timer.cs" />
     <Compile Include="Assets\Scripts\Interface\ToggleMap.cs" />
     <Compile Include="Assets\Scripts\Interface\Trade.cs" />
+    <Compile Include="Assets\Scripts\JsonConverters\ResourceTypeStringConverter.cs" />
+    <Compile Include="Assets\Scripts\JsonConverters\ResourceTypesByNameConverter.cs" />
     <Compile Include="Assets\Scripts\MapGenerator\SourcesGenerator.cs" />
-    <Compile Include="Assets\Scripts\Resources\Money.cs" />
-    <Compile Include="Assets\Scripts\Resources\Population.cs" />
-    <Compile Include="Assets\Scripts\Resources\Resource.cs" />
-    <Compile Include="Assets\Scripts\Sources of Resources\Source.cs" />
+    <Compile Include="Assets\Scripts\Res\ICountable.cs" />
+    <Compile Include="Assets\Scripts\Res\Money.cs" />
+    <Compile Include="Assets\Scripts\Res\Population.cs" />
+    <Compile Include="Assets\Scripts\Res\Resource.cs" />
+    <Compile Include="Assets\Scripts\Res\ResourceType.cs" />
+    <Compile Include="Assets\Scripts\ResourcePools\ResourcePool.cs" />
+    <Compile Include="Assets\Scripts\Utils\BuildingPanel.cs" />
     <Compile Include="Assets\Scripts\Utils\Enums.cs" />
     <Compile Include="Assets\Scripts\Utils\GameData.cs" />
     <Compile Include="Assets\Scripts\Utils\Info.cs" />
     <Compile Include="Assets\Scripts\Utils\IntVector2.cs" />
+    <Compile Include="Assets\Scripts\Utils\Loader.cs" />
+    <Compile Include="Assets\Scripts\Utils\Statistics.cs" />
+    <Compile Include="Assets\Scripts\Utils\Tuple.cs" />
     <Compile Include="Assets\Scripts\Utils\Util.cs" />
+    <Compile Include="Assets\Static\Paths.cs" />
+    <Compile Include="Assets\Static\Prefabs.cs" />
+    <Compile Include="Assets\Static\Sprites.cs" />
     <Compile Include="Assets\UnityTestTools\Assertions\AssertionComponent.cs" />
     <Compile Include="Assets\UnityTestTools\Assertions\AssertionException.cs" />
     <Compile Include="Assets\UnityTestTools\Assertions\Assertions.cs" />
@@ -132,11 +152,6 @@
     <Compile Include="Assets\UnityTestTools\Assertions\MemberResolver.cs" />
     <Compile Include="Assets\UnityTestTools\Common\ITestResult.cs" />
     <Compile Include="Assets\UnityTestTools\Common\TestResultState.cs" />
-    <Compile Include="Assets\UnityTestTools\Examples\IntegrationTestsFrameworkExamples\AngryBotsTests\Scripts\GameScore.cs" />
-    <Compile Include="Assets\UnityTestTools\Examples\IntegrationTestsFrameworkExamples\CodeBasedAssertionExample.cs" />
-    <Compile Include="Assets\UnityTestTools\Examples\IntegrationTestsFrameworkExamples\CustomComponent.cs" />
-    <Compile Include="Assets\UnityTestTools\Examples\IntegrationTestsFrameworkExamples\DynamicIntegrationTest.cs" />
-    <Compile Include="Assets\UnityTestTools\Examples\IntegrationTestsFrameworkExamples\ThrowCustomException.cs" />
     <Compile Include="Assets\UnityTestTools\IntegrationTestsFramework\TestRunner\DTOFormatter.cs" />
     <Compile Include="Assets\UnityTestTools\IntegrationTestsFramework\TestRunner\ITestRunnerCallback.cs" />
     <Compile Include="Assets\UnityTestTools\IntegrationTestsFramework\TestRunner\IntegrationTest.cs" />
@@ -153,23 +168,8 @@
     <Compile Include="Assets\UnityTestTools\IntegrationTestsFramework\TestingAssets\CallTesting.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Data\ResourceTypes.xml" />
-    <None Include="Assets\Resources\Data.xml" />
+    <None Include="Assets\Packages\Unity.Newtonsoft.Json.7.0.0.0\lib\net35-Client\Unity.Newtonsoft.Json.xml" />
     <None Include="Assets\Test\Editor\Resources\TestTypes.xml" />
-    <None Include="Assets\UnityTestTools\Examples\IntegrationTestsFrameworkExamples\AngryBotsTests\Shaders\BackgroundAndCharacters\AngryInclude.cginc" />
-    <None Include="Assets\UnityTestTools\Examples\IntegrationTestsFrameworkExamples\AngryBotsTests\Shaders\BackgroundAndCharacters\CharacterSelfIlluminationReflective.shader" />
-    <None Include="Assets\UnityTestTools\Examples\IntegrationTestsFrameworkExamples\AngryBotsTests\Shaders\BackgroundAndCharacters\EnemySelfIlluminationReflective.shader" />
-    <None Include="Assets\UnityTestTools\Examples\IntegrationTestsFrameworkExamples\AngryBotsTests\Shaders\BackgroundAndCharacters\Fallback.shader" />
-    <None Include="Assets\UnityTestTools\Examples\IntegrationTestsFrameworkExamples\AngryBotsTests\Shaders\BackgroundAndCharacters\PlanarRealtimeReflection.shader" />
-    <None Include="Assets\UnityTestTools\Examples\IntegrationTestsFrameworkExamples\AngryBotsTests\Shaders\BackgroundAndCharacters\ReflectiveBackgroundPlanar.shader" />
-    <None Include="Assets\UnityTestTools\Examples\IntegrationTestsFrameworkExamples\AngryBotsTests\Shaders\BackgroundAndCharacters\SuperSimpleSelfIllumination.shader" />
-    <None Include="Assets\UnityTestTools\Examples\IntegrationTestsFrameworkExamples\AngryBotsTests\Shaders\Fx\Additive.shader" />
-    <None Include="Assets\UnityTestTools\Examples\IntegrationTestsFrameworkExamples\AngryBotsTests\Shaders\Fx\Cursor.shader" />
-    <None Include="Assets\UnityTestTools\Examples\IntegrationTestsFrameworkExamples\AngryBotsTests\Shaders\Fx\LaserScope.shader" />
-    <None Include="Assets\UnityTestTools\Examples\IntegrationTestsFrameworkExamples\AngryBotsTests\Shaders\Fx\Multiply.shader" />
-    <None Include="Assets\UnityTestTools\Examples\IntegrationTestsFrameworkExamples\AngryBotsTests\Shaders\Fx\ParticleAdditive.shader" />
-    <None Include="Assets\UnityTestTools\Examples\IntegrationTestsFrameworkExamples\AngryBotsTests\Shaders\Fx\ParticleAdditiveBlend.shader" />
-    <None Include="Assets\UnityTestTools\Examples\IntegrationTestsFrameworkExamples\AngryBotsTests\Shaders\Fx\ParticleBlend.shader" />
     <None Include="Assets\UnityTestTools\LICENSE.txt" />
     <None Include="Assets\UnityTestTools\changelog.txt" />
   </ItemGroup>
