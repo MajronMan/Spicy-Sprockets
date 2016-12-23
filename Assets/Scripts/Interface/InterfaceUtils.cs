@@ -1,4 +1,5 @@
-﻿using Assets.Static;
+﻿using Assets.Scripts.Game_Controllers;
+using Assets.Static;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -14,26 +15,31 @@ namespace Assets.Scripts.Interface {
             return _activePopup != null;
         }
 
-        public static GameObject CreatePopup(GameObject parent) {
+        public static GameObject CreatePopup(MonoBehaviour parent) {
             DestroyActivePopup();
 
-            _activePopup = Object.Instantiate(Prefabs.Popup/*, parent.transform*/);
+            _activePopup = Object.Instantiate(Prefabs.Popup, parent.transform);
+            _activePopup.transform.position = Controllers.MainCamera.ScreenToWorldPoint(Input.mousePosition);
 
-            //determine if the popup will fit on the screen
-            Vector3 position = Input.mousePosition;
+            //move the popup, so that the proper corner is at mouse position and not the middle
             SpriteRenderer renderer = _activePopup.GetComponent<SpriteRenderer>();
+            float unitsPerPixel = 1 / renderer.sprite.pixelsPerUnit;
+            float halfWidth = renderer.sprite.textureRect.width / 2;
+            float halfHeight = renderer.sprite.textureRect.height / 2;
 
-            float width = renderer.sprite.textureRect.width;
-            float height = renderer.sprite.textureRect.height;
+            Vector3 rightBottomShift = new Vector3(halfWidth * unitsPerPixel, (-halfHeight) * unitsPerPixel);
 
-            if (position.x + width > Screen.width) position.x -= width;
-            if (position.y - height > Screen.height) position.y += height;
+            _activePopup.transform.position += rightBottomShift;
 
-            //move popup, so that the proper corner and not the middle is where the mouse was clicked
-            position.x += width / 2;
-            position.y -= height / 2;
+            //check whether popup fits on the screen and move properly if not
+            Vector3 rightBottomCorner = _activePopup.transform.position + rightBottomShift;
+            //move to screen space
+            rightBottomCorner = Controllers.MainCamera.WorldToScreenPoint(rightBottomCorner);
 
-            _activePopup.transform.position = position;
+            if (rightBottomCorner.x > Screen.width)
+                _activePopup.transform.position += Vector3.left * 2 * halfWidth * unitsPerPixel;
+            if (rightBottomCorner.y < 0)
+                _activePopup.transform.position += Vector3.up * 2 * halfHeight * unitsPerPixel;
 
             return _activePopup;
         }
