@@ -1,18 +1,135 @@
-﻿//using Assets.Scripts.Game_Controllers;
-//using Assets.Scripts.Res;
-//using UnityEngine;
-//using UnityEngine.UI;
-//
-//namespace Assets.Scripts.Interface {
-//    /// <summary>
-//    /// Handles trade panel where player may exchange resources for money
-//    /// </summary>
-//    public class Trade : MonoBehaviour {
-//        /// <summary>
-//        /// Image of current action (buy/sell)
-//        /// </summary>
-//        private static Image _transactionImage;
-//
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Globalization;
+using Assets.Scripts.Game_Controllers;
+using Assets.Scripts.Res;
+using Assets.Scripts.Utils;
+using Assets.Static;
+using UnityEngine;
+using UnityEngine.UI;
+
+namespace Assets.Scripts.Interface
+{
+    /// <summary>
+    /// Handles trade panel where player may exchange resources for money
+    /// </summary>
+    public class Trade : MonoBehaviour
+    {
+        private Slider theSlider;
+        private ResourceType _selected;
+        private Dictionary<ResourceType, GameObject> _buttons = new Dictionary<ResourceType, GameObject>();
+        private Rect resourceButtonsRect = new Rect(0, 0, 1, 0.2f);
+        private bool buying = true;
+        private int _selectedAmount;
+        private GameObject[] _controlButtons;
+
+        public void Start()
+        {
+            SetSliderStuff();
+
+            string[] controlButtonNames = {"Buy", "Sell", "Confirm"};
+            Rect[] controlRects =
+            {
+                new Rect(0.1f, 0.8f, 0.2f, 0.1f),
+                new Rect(0.7f, 0.8f, 0.2f, 0.1f),
+                new Rect(0.4f, 0.3f, 0.2f, 0.1f),
+            };
+            _controlButtons = new GameObject[3];
+            for (var i = 0; i < _controlButtons.Length; i++)
+            {
+                var button = Instantiate(Prefabs.TextButton);
+                button.name = controlButtonNames[i] + "Button";
+                button.GetComponentInChildren<Text>().text = controlButtonNames[i];
+                Util.SetUIObjectPosition(button, controlRects[i], transform);
+                _controlButtons[i] = button;
+
+                if (i >= 2) continue;
+                var i1 = i; //closure stuff
+
+                button.GetComponent<Button>().onClick.AddListener(() =>
+                {
+                    buying = i1 == 0;
+                    _controlButtons[1-i1].SetActive(true);
+                    button.SetActive(false);
+                });
+            }
+
+            _controlButtons[2].GetComponent<Button>().onClick.AddListener(FinalizeTransaction);
+
+            var tradeButtons = Instantiate(Prefabs.HorizontalGroupPanel, transform);
+            var getRekt = (RectTransform) transform;
+            Util.SetUIObjectPosition(tradeButtons, resourceButtonsRect, getRekt);
+
+            foreach (var resType in Controllers.ConstantData.ResourceTypes)
+            {
+                var button = Instantiate(Prefabs.TradeButton);
+                button.GetComponent<Image>().sprite = Sprites.ResourceSprite(resType);
+                button.name = resType + "Button";
+                _buttons.Add(resType, button);
+                button.transform.SetParent(tradeButtons.transform, false);
+                var type = resType;
+                button.GetComponent<Button>().onClick.AddListener(() =>
+                {
+                    if(_selected != null)
+                        _buttons[_selected].SetActive(true);
+
+                    _selected = type;
+                    theSlider.value = 0;
+                    button.SetActive(false);
+                });
+            }
+        }
+
+        private void FinalizeTransaction()
+        {
+            if (_selected == null) return;
+
+            var modifier = buying ? -1 : 1;
+            var moneyDelta = modifier * _selectedAmount * _selected.DefaultPrice;
+            var resourceDelta = -modifier * _selectedAmount;
+            var moneyAmount = Controllers.CurrentInfo.MyMoney.Amount;
+            var resourceAmount = Controllers.CurrentInfo.Resources[_selected].Amount;
+
+            Controllers.CurrentInfo.MyMoney = new Money(moneyAmount + moneyDelta);
+            Controllers.CurrentInfo[_selected] = new Resource(_selected, resourceAmount + resourceDelta);
+
+            _controlButtons[Math.Max(0, modifier)].SetActive(true);
+
+            _buttons[_selected].SetActive(true);
+            _selected = null;
+            transform.parent.gameObject.SetActive(false);
+        }
+
+        private void SetSliderStuff()
+        {
+            var sliderGO = Instantiate(Prefabs.Slider, transform);
+            var value = sliderGO.GetComponentInChildren<Text>();
+            theSlider = sliderGO.GetComponent<Slider>();
+            theSlider.onValueChanged.AddListener((fvalue) =>
+            {
+                if (_selected == null)
+                {
+                    value.text = "0";
+                    return;
+                }
+
+                if (!buying)
+                {
+                    _selectedAmount = (int) Math.Round(fvalue*Controllers.CurrentInfo.Resources[_selected].Amount);
+                    value.text = _selectedAmount.ToString();
+                }
+                else
+                {
+                    _selectedAmount = (int) Math.Round(fvalue* Controllers.CurrentInfo.MyMoney.Amount / _selected.DefaultPrice);
+                    value.text = _selectedAmount.ToString();
+                }
+            });
+            Util.SetUIObjectPosition(sliderGO, new Rect(0.4f, 0.2f, 0.2f, 0.03f), transform);
+        }
+    }
+}
+
 //        /// <summary>
 //        /// Image of currently selected resource
 //        /// </summary>

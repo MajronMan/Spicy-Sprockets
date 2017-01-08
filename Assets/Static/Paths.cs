@@ -23,6 +23,10 @@ namespace Assets.Static
         private static string _gridGroupPanel = @"GridGroupPanel";
         private static string _exitButton = @"ExitButton";
         private static string _buildButton = @"BuildButton";
+        private static string _exitablePanel = @"ExitablePanel";
+        private static string _tradeButton = @"TradeButton";
+        private static string _slider = @"Slider";
+        private static string _textButton = @"TextButton";
 
         /// <summary>
         /// Path of base game object with event system and camera
@@ -62,6 +66,14 @@ namespace Assets.Static
         public static string ExitButton { get { return Prefabs + _exitButton; } }
 
         public static string BuildButton { get {return Prefabs + _buildButton;} }
+
+        public static string ExitablePanel { get {return Prefabs + _exitablePanel;} }
+
+        public static string TradeButton { get { return Prefabs + _tradeButton; } }
+
+        public static string Slider { get { return Prefabs + _slider; } }
+
+        public static string TextButton { get { return Prefabs + _textButton;  } }
     }
 
     /// <summary>

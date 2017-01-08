@@ -20,6 +20,10 @@ namespace Assets.Static
         private static GameObject _resourceIndicator;
         private static GameObject _exitButton;
         private static GameObject _buildButton;
+        private static GameObject _exitablePanel;
+        private static GameObject _tradeButton;
+        private static GameObject _slider;
+        private static GameObject _textButton;
 
         /// <summary>
         /// Base game object with event system and camera
@@ -63,6 +67,14 @@ namespace Assets.Static
         public static GameObject ExitButton { get { return _exitButton ?? (_exitButton = Loader.LoadPrefab(PrefabPaths.ExitButton)); } }
 
         public static GameObject BuildButton { get { return _buildButton ?? (_buildButton = Loader.LoadPrefab(PrefabPaths.BuildButton)); } }
+
+        public static GameObject ExitablePanel { get { return _exitablePanel ?? (_exitablePanel = Loader.LoadPrefab(PrefabPaths.ExitablePanel)); } }
+
+        public static GameObject TradeButton { get { return _tradeButton ?? (_tradeButton = Loader.LoadPrefab(PrefabPaths.TradeButton)); } }
+
+        public static GameObject Slider { get { return _slider ?? (_slider = Loader.LoadPrefab(PrefabPaths.Slider)); } }
+
+        public static GameObject TextButton { get { return _textButton ?? (_textButton = Loader.LoadPrefab(PrefabPaths.TextButton)); } }
 
         public static Dictionary<string, GameObject> PathsToObjects = new Dictionary<string, GameObject>()
         {
