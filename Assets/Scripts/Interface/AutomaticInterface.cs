@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Game_Controllers;
+using Assets.Scripts.Res;
 using Assets.Scripts.Utils;
 using Assets.Static;
 using UnityEngine;
@@ -21,7 +22,7 @@ namespace Assets.Scripts.Interface
         /// Panel with amounts of resources in current city
         /// </summary>
         public GameObject ResourcePanel;
-        private Rect _resourcePanelRect = new Rect(0.05f, 0, 0.7f, 0.05f);
+        private Rect _resourcePanelRect = new Rect(0.1f, 0, 0.75f, 0.05f);
         /// <summary>
         /// Panel which shows minimap
         /// </summary>
@@ -33,6 +34,7 @@ namespace Assets.Scripts.Interface
         private Rect _leftHalfRect = new Rect(0, 0, 0.5f, 0.5f);
         private Rect _rightHalfRect = new Rect(0.5f, 0, 0.5f, 0.5f);
         private Rect _fullRect = new Rect(0, 0, 1, 1);
+        private Rect _peopleMoneyRect = new Rect(0, 0, 0.1f, 0.1f);
 
         private Dictionary<string, ExitablePanel> _buttonPanels;
 
@@ -52,6 +54,8 @@ namespace Assets.Scripts.Interface
             Util.SetUIObjectPosition(MiniMapPanel, _miniMapPanelRect, transform);
             
             CreateResourcePanel();
+
+            PeopleAndMoney();
         }
 
         private void CreateButtons()
@@ -154,6 +158,28 @@ namespace Assets.Scripts.Interface
                 button.transform.SetParent(buildingPanel.Content.transform);
                 button.GetComponent<BuildButton>().SetUp(building, buildingPanel.gameObject);
             }
+        }
+
+        private void PeopleAndMoney()
+        {
+            var panel = Instantiate(Prefabs.VerticalGroupPanel);
+            Util.SetUIObjectPosition(panel, _peopleMoneyRect, transform);
+
+            var people = Instantiate(Prefabs.ResourceIndicator);
+            var peopleData = people.GetComponent<ResourceData>();
+            peopleData.PopulationRef = Controllers.CurrentInfo.ThePeople;
+            people.transform.SetParent(panel.transform);
+            people.GetComponentInChildren<Image>().sprite = Sprites.SpecialResourceSprite(typeof(Population));
+            var rt = (RectTransform) people.transform;
+            rt.sizeDelta = new Vector2(0, 0);
+
+            var money = Instantiate(Prefabs.ResourceIndicator);
+            var moneyData = money.GetComponent<ResourceData>();
+            moneyData.MoneyRef = Controllers.CurrentInfo.MyMoney;
+            money.transform.SetParent(panel.transform);
+            money.GetComponentInChildren<Image>().sprite = Sprites.SpecialResourceSprite(typeof(Money));
+            rt = (RectTransform) money.transform;
+            rt.sizeDelta = new Vector2(0, 0);
         }
     }
 }
