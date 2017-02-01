@@ -8,7 +8,8 @@ namespace Assets.Scripts.Interface {
     public class InteractiveButton : MonoBehaviour {
         //TODO fukin' generate'em, 10^6 references are not what we want
         public GameObject UI;
-
+        /*
+=======
         private Transform _buildButton;
         private Transform _productionButton;
         private Transform _diplomacyButton;
@@ -41,6 +42,7 @@ namespace Assets.Scripts.Interface {
         private bool _clicked = false;
         private bool _buttonsDisabled = false;
 
+>>>>>>> develop
         // Needs big refactor
         public void Start() {
             UI = GameObject.Find("UI").gameObject;
@@ -177,5 +179,6 @@ namespace Assets.Scripts.Interface {
             _res5.GetComponent<EventTrigger>().enabled = true;
             _res6.GetComponent<EventTrigger>().enabled = true;
         }
+        */
     }
 }

@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
-using Assets.Scripts.Game_Controllers;
 
-public class Starter : MonoBehaviour {
-    // Use this for initialization
-    void Start() {
-        var unused = Controllers.GameController;
+namespace Assets.Scripts.Game_Controllers
+{
+    public class Starter : MonoBehaviour {
+        // Fucking static methods
+        public void Start()
+        {
+            var unused = Controllers.GameController.transform;
+        }
     }
 }

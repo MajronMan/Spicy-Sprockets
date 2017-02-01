@@ -3,6 +3,7 @@ using Assets.Scripts.Game_Controllers;
 using Assets.Scripts.Interface;
 using Assets.Scripts.ResourcePools;
 using Assets.Scripts.Utils;
+using Assets.Static;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -18,7 +19,7 @@ namespace Assets.Scripts.MapGenerator {
         public static void Generate(Map theMap) {
             int sourcesCount = Random.Range(10, 21);
 
-            var collider = theMap.GetComponent<PolygonCollider2D>();
+            //var collider = theMap.GetComponent<PolygonCollider2D>();
 
             //create a first random point in a circle roughly inscribed into collider's shape
             var middle = new Vector2(theMap.transform.position.x, theMap.transform.position.y);
@@ -46,7 +47,7 @@ namespace Assets.Scripts.MapGenerator {
             int magnitude = (parent.Magnitude + 1) / 2;
 
             //creating a source
-            var gameObject = new GameObject("Source", typeof(ResourcePool), typeof(SpriteRenderer));
+            var gameObject = new GameObject(parent.Resource.Name + "pool", typeof(ResourcePool), typeof(SpriteRenderer));
             var renderer = gameObject.GetComponent<SpriteRenderer>();
             var ret = gameObject.GetComponent<ResourcePool>();
             ret.Resource = parent.Resource;
@@ -62,7 +63,7 @@ namespace Assets.Scripts.MapGenerator {
             if (collider.OverlapPoint(newTransform)) {
                 gameObject.transform.position = new Vector3(newTransform.x, newTransform.y, 0);
                 gameObject.transform.SetParent(theMap.transform, true);
-                renderer.sprite = Controllers.ConstantData.SourceSprites[ret.Resource];
+                renderer.sprite = Sprites.ResourcePoolSprite(ret.Resource);
 
                 // place it over the map
                 renderer.sortingOrder = 1;
@@ -94,7 +95,7 @@ namespace Assets.Scripts.MapGenerator {
 
             gameObject.transform.position = new Vector3(position.x, position.y, 0);
             gameObject.transform.SetParent(theMap.transform, true);
-            renderer.sprite = Controllers.ConstantData.SourceSprites[ret.Resource];
+            renderer.sprite = Sprites.ResourcePoolSprite(ret.Resource);
             // place it over the map
             renderer.sortingOrder = 1;
             Util.Rescale(renderer, 50, 50);

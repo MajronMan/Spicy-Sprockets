@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Res;
+﻿using Assets.Scripts.Game_Controllers;
+using Assets.Scripts.Res;
 using Assets.Scripts.Utils;
 
 namespace Assets.Scripts.Buildings {
@@ -8,7 +9,8 @@ namespace Assets.Scripts.Buildings {
     public class Mine : GatheringBuilding {
         public override void Start() {
             Radius = 1000;
-            GatheredResource = new ResourceType("temporary_solution", 1, 2, 3); //"coal";
+
+            GatheredResource = Controllers.ConstantData.ResourceTypes.Find((type => type.Name == "coal"));
             Size = BuildingSize.Big;
             MaxStaff = 50;
             MinStaff = 10;

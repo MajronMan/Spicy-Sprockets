@@ -1,9 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Assets.Scripts.Game_Controllers;
 using UnityEngine;
 
 namespace Assets.Scripts.Res {
+    public delegate void PopulationStateChangedEventHandler(object sender, EventArgs e);
+
     /// <summary>
     /// People living in a certain city
     /// </summary>
@@ -12,6 +15,8 @@ namespace Assets.Scripts.Res {
             get { return _number; }
             private set { _number = value; }
         }
+
+        public event PopulationStateChangedEventHandler Changed;
 
         private int _number = 100;
 
@@ -32,6 +37,12 @@ namespace Assets.Scripts.Res {
             Cultures.Add("Hindu", 1.0f);
         }
 
+        public virtual void OnPopulationStateChanged(EventArgs e)
+        {
+            if (Changed != null)
+                Changed(this, e);
+        }
+
         /// <summary>
         /// Increase the population in a regular manner
         /// </summary>
@@ -43,6 +54,7 @@ namespace Assets.Scripts.Res {
                     Amount += growing;
                 else
                     Amount += space;
+                OnPopulationStateChanged(EventArgs.Empty);
                 yield return new WaitForSeconds(1);
             }
         }

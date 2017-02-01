@@ -29,12 +29,12 @@ namespace Assets.Scripts.Game_Controllers {
             Data = new GameData();
             Data.Load();
             _gameController = gameObject.GetComponent<GameController>();
-            _gameController.MapPrefab = Resources.Load<Map>(@"Prefabs\Map");
             _gameController.BeginGame();
             _gameController.GetCurrentCity().MyInfo.LoadInitialResources(Data.InitialResources);
         }
 
-        public static GameController GameController {
+        public static GameController GameController
+        {
             get { return Instance._gameController; }
         }
 
@@ -56,6 +56,16 @@ namespace Assets.Scripts.Game_Controllers {
 
         public static GameData ConstantData {
             get { return Data; }
+        }
+
+        public static GameObject UIBase
+        {
+            get { return Instance._gameController.Canvas; }
+        }
+
+        public static Camera MainCamera
+        {
+            get { return Instance._gameController.MainCamera; }
         }
     }
 }

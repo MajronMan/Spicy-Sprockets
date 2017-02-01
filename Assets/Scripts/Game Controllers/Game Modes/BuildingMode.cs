@@ -2,7 +2,6 @@
 using Assets.Scripts.Buildings;
 using Assets.Scripts.Utils;
 using UnityEngine;
-using Collider = Assets.Scripts.Buildings.Collider;
 using Object = UnityEngine.Object;
 
 
@@ -21,7 +20,7 @@ namespace Assets.Scripts.Game_Controllers.Game_Modes {
         /// </summary>
         private Building _preview;
 
-        private int _time;
+        //private int _time;
         private bool _canBeBuilt = true;
 
 
@@ -81,8 +80,6 @@ namespace Assets.Scripts.Game_Controllers.Game_Modes {
             previewPosition.z = 0;
             _preview.transform.position = previewPosition;
 
-
-            var collider = _preview.gameObject.GetComponent<BoxCollider2D>();
             _canBeBuilt =
                 Controllers.CurrentCityController.MyInfo.SufficientResources(
                     Controllers.ConstantData.BuildingCosts[ToBeBuiltType]);
@@ -118,9 +115,9 @@ namespace Assets.Scripts.Game_Controllers.Game_Modes {
             _preview.transform.SetParent(Controllers.CurrentCityController.MapInstance.transform, true);
             // change size of the sprite
 
-            Collider.AddCollider(gameObject, new Vector2(2, 1), Camera.main.ScreenToWorldPoint(buildingPosition),
+            SpicyCollider.AddCollider(gameObject, new Vector2(2, 1), Camera.main.ScreenToWorldPoint(buildingPosition),
                 Controllers.CurrentCityController.MapInstance.transform);
-            Collider.AddFakeRigidBody(gameObject);
+            SpicyCollider.AddFakeRigidBody(gameObject);
 
             Util.Rescale(_preview.GetComponent<SpriteRenderer>(), 60, 60);
         }

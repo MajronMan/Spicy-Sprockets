@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Res;
+﻿using Assets.Scripts.Game_Controllers;
+using Assets.Scripts.Res;
 using Assets.Scripts.Utils;
 
 namespace Assets.Scripts.Buildings {
@@ -6,8 +7,9 @@ namespace Assets.Scripts.Buildings {
     /// Building that gathers wood
     /// </summary>
     public class LumberMill : GatheringBuilding {
-        public override void Start() {
-            GatheredResource = new ResourceType("temporary_solution", 1, 2, 3); //wood
+        public override void Start()
+        {
+            GatheredResource = Controllers.ConstantData.ResourceTypes.Find((type => type.Name == "wood"));
             Size = BuildingSize.Big;
             base.Start();
         }
