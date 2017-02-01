@@ -14,14 +14,30 @@ namespace Assets.Scripts.Interface
         public Text ResourceText;
         public Text MaxText;
         public ResourceType Type;
-        
+        public Money MoneyRef;
+        public Population PopulationRef;
+
         public void Start ()
         {
             ResourceText = GetComponentInChildren<Text>();
-            Controllers.CurrentInfo.Changed += (sender, args) =>
+            if (MoneyRef != null)
             {
+                Controllers.CurrentInfo.MoneyChanged +=
+                    (sender, args) => ResourceText.text = MoneyRef.Amount.ToString();
+                ResourceText.text = MoneyRef.Amount.ToString();
+            }
+            else if (PopulationRef != null)
+            {
+                PopulationRef.Changed +=
+                    (sender, args) => ResourceText.text = PopulationRef.Amount.ToString();
+                ResourceText.text = PopulationRef.Amount.ToString();
+            }
+            else
+            {
+                Controllers.CurrentInfo.Changed += 
+                    (sender, args) => ResourceText.text = Controllers.CurrentInfo[Type].Amount.ToString();
                 ResourceText.text = Controllers.CurrentInfo[Type].Amount.ToString();
-            };
+            }
         }
 
     }

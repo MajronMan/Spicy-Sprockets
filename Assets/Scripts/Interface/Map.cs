@@ -21,9 +21,9 @@ namespace Assets.Scripts.Interface {
 
             if (Input.GetMouseButtonDown(1)) {
                 Controllers.CurrentGameMode.RightMouseClicked();
+                InterfaceUtils.CreatePopup(this);
             }
 
-            InterfaceUtils.CreatePopup(this);
         }
 
         public void OnMouseOver() {

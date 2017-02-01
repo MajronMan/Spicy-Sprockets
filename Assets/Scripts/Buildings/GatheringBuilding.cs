@@ -43,7 +43,6 @@ namespace Assets.Scripts.Buildings {
         /// </summary>
         public int MinStaff;
 
-        private Population _thePeople;
         //I need it to check if gather is working
         private bool _gatherRunning = false;
         //maybe someone will change it later, for now I think it looks pretty
@@ -61,7 +60,6 @@ namespace Assets.Scripts.Buildings {
                 }
             }
             //employing staff
-            _thePeople = Controllers.CurrentInfo.ThePeople;
             if (Controllers.CurrentInfo.ThePeople.CheckPossibleEmployment(MinStaff)) {
                 Controllers.CurrentInfo.ThePeople.Employ(MinStaff);
                 CurrentStaff = MinStaff;
