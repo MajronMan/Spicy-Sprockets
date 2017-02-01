@@ -80,8 +80,6 @@ namespace Assets.Scripts.Game_Controllers.Game_Modes {
             previewPosition.z = 0;
             _preview.transform.position = previewPosition;
 
-
-            var collider = _preview.gameObject.GetComponent<BoxCollider2D>();
             _canBeBuilt =
                 Controllers.CurrentCityController.MyInfo.SufficientResources(
                     Controllers.ConstantData.BuildingCosts[ToBeBuiltType]);

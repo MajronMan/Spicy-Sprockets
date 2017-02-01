@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Game_Controllers;
+using Assets.Scripts.Res;
 using Assets.Scripts.Utils;
 using Assets.Static;
 using UnityEngine;
@@ -21,7 +22,7 @@ namespace Assets.Scripts.Interface
         /// Panel with amounts of resources in current city
         /// </summary>
         public GameObject ResourcePanel;
-        private Rect _resourcePanelRect = new Rect(0.05f, 0, 0.7f, 0.05f);
+        private Rect _resourcePanelRect = new Rect(0.1f, 0, 0.75f, 0.05f);
         /// <summary>
         /// Panel which shows minimap
         /// </summary>
@@ -30,8 +31,12 @@ namespace Assets.Scripts.Interface
 
         private Rect _centerRect = new Rect(0.2f, 0.1f, 0.6f, 0.8f);
         private Rect _exitRect = new Rect(0, 0.95f, 0.05f, 0.05f);
+        private Rect _leftHalfRect = new Rect(0, 0, 0.5f, 0.5f);
+        private Rect _rightHalfRect = new Rect(0.5f, 0, 0.5f, 0.5f);
+        private Rect _fullRect = new Rect(0, 0, 1, 1);
+        private Rect _peopleMoneyRect = new Rect(0, 0, 0.1f, 0.1f);
 
-        private Dictionary<string, GameObject> buttonPanels;
+        private Dictionary<string, ExitablePanel> _buttonPanels;
 
         public void Start ()
         {
@@ -43,64 +48,65 @@ namespace Assets.Scripts.Interface
         private void CreatePanels()
         {
             MainPanel = Instantiate(Prefabs.VerticalGroupPanel);
-            SetGameObjectPosition(MainPanel, _mainPanelRect, transform);
+            Util.SetUIObjectPosition(MainPanel, _mainPanelRect, transform);
 
             MiniMapPanel = Instantiate(Prefabs.Panel);
-            SetGameObjectPosition(MiniMapPanel, _miniMapPanelRect, transform);
+            Util.SetUIObjectPosition(MiniMapPanel, _miniMapPanelRect, transform);
             
             CreateResourcePanel();
-        }
 
-        private void SetGameObjectPosition(GameObject what, Rect how, Transform parent)
-        {
-            var rectTransform = what.GetComponent<RectTransform>();
-            rectTransform.SetParent(parent);
-            rectTransform.anchorMax = how.position + new Vector2(how.width, how.height);
-            rectTransform.anchorMin = how.position;
-            rectTransform.offsetMax = rectTransform.offsetMin = Vector2.zero;
+            PeopleAndMoney();
         }
 
         private void CreateButtons()
         {
-            buttonPanels = new Dictionary<string, GameObject>
+            _buttonPanels = new Dictionary<string, ExitablePanel>
             {
-                {"Production", Instantiate(Prefabs.Panel)},
-                {"Character", Instantiate(Prefabs.Panel)},
-                {"Diplomacy", Instantiate(Prefabs.Panel)},
-                {"Law", Instantiate(Prefabs.Panel)},
-                {"Science", Instantiate(Prefabs.Panel)},
-                {"Build", Instantiate(Prefabs.GridGroupPanel)},
-                {"Trade", Instantiate(Prefabs.Panel)}
+                {"Production", CreateExitablePanel(Prefabs.Panel)},
+                {"Character", CreateExitablePanel(Prefabs.Panel)},
+                {"Diplomacy", CreateExitablePanel(Prefabs.Panel)},
+                {"Law", CreateExitablePanel(Prefabs.Panel)},
+                {"Science", CreateExitablePanel(Prefabs.Panel)},
+                {"Build", CreateExitablePanel(Prefabs.GridGroupPanel)},
+                {"Trade", CreateExitablePanel(Prefabs.Panel)}
             };
-            foreach (var namesToPanels in buttonPanels)
+            foreach (var namesToPanels in _buttonPanels)
             {
                 var panel = namesToPanels.Value;
-                SetGameObjectPosition(panel, _centerRect, transform);
+                panel.name = namesToPanels.Key + "Panel";
+                Util.SetUIObjectPosition(panel.gameObject, _centerRect, transform);
 
                 var buttonGameObject = Instantiate(Prefabs.CogwheelButton);
-                buttonGameObject.name = namesToPanels + "Button";
+                buttonGameObject.name = namesToPanels.Key + "Button";
                 buttonGameObject.transform.SetParent(MainPanel.transform);
                 AddNotRotatingTextToButton(buttonGameObject, namesToPanels.Key);
                 buttonGameObject.GetComponent<Button>().onClick.AddListener(() =>
                 {
-                    foreach (var pair in buttonPanels)
+                    foreach (var pair in _buttonPanels)
                     {
-                        pair.Value.SetActive(false);
+                        pair.Value.gameObject.SetActive(false);
                     }
-                    panel.SetActive(true);
+                    panel.gameObject.SetActive(true);
                 });
-
-                var exit = Instantiate(Prefabs.ExitButton);
-                SetGameObjectPosition(exit, _exitRect, panel.transform);
-
-                panel.SetActive(false);
+                panel.gameObject.SetActive(false);
             }
 
             FillBuildingsPanel();
+            _buttonPanels["Trade"].Content.AddComponent<Trade>();
 
             var globalMapButton = Instantiate(Prefabs.CasualButton);
             globalMapButton.transform.position = Vector3.zero;
             //globalMapButton.GetComponent<Button>().onClick.AddListener(() => SceneManager.LoadScene(""));
+        }
+
+        private ExitablePanel CreateExitablePanel(GameObject child)
+        {
+            var panel = Instantiate(Prefabs.ExitablePanel);
+            var inner = Instantiate(child);
+            Util.SetUIObjectPosition(inner, _fullRect, panel.transform);
+            var exitable = panel.GetComponent<ExitablePanel>();
+            exitable.Content = inner;
+            return exitable;
         }
 
         private void AddNotRotatingTextToButton(GameObject button, string text)
@@ -120,7 +126,7 @@ namespace Assets.Scripts.Interface
         private void CreateResourcePanel()
         {
             ResourcePanel = Instantiate(Prefabs.HorizontalGroupPanel);
-            SetGameObjectPosition(ResourcePanel, _resourcePanelRect, transform);
+            Util.SetUIObjectPosition(ResourcePanel, _resourcePanelRect, transform);
 
             foreach (var type in Controllers.ConstantData.ResourceTypes)
             {
@@ -145,13 +151,35 @@ namespace Assets.Scripts.Interface
 
         private void FillBuildingsPanel()
         {
-            var buildingPanel = buttonPanels["Build"];
+            var buildingPanel = _buttonPanels["Build"];
             foreach (var building in Controllers.ConstantData.BuildingCosts.Keys)
             {
                 var button = Instantiate(Prefabs.BuildButton);
-                button.transform.SetParent(buildingPanel.transform);
-                button.GetComponent<BuildButton>().SetUp(building, buildingPanel);
+                button.transform.SetParent(buildingPanel.Content.transform);
+                button.GetComponent<BuildButton>().SetUp(building, buildingPanel.gameObject);
             }
+        }
+
+        private void PeopleAndMoney()
+        {
+            var panel = Instantiate(Prefabs.VerticalGroupPanel);
+            Util.SetUIObjectPosition(panel, _peopleMoneyRect, transform);
+
+            var people = Instantiate(Prefabs.ResourceIndicator);
+            var peopleData = people.GetComponent<ResourceData>();
+            peopleData.PopulationRef = Controllers.CurrentInfo.ThePeople;
+            people.transform.SetParent(panel.transform);
+            people.GetComponentInChildren<Image>().sprite = Sprites.SpecialResourceSprite(typeof(Population));
+            var rt = (RectTransform) people.transform;
+            rt.sizeDelta = new Vector2(0, 0);
+
+            var money = Instantiate(Prefabs.ResourceIndicator);
+            var moneyData = money.GetComponent<ResourceData>();
+            moneyData.MoneyRef = Controllers.CurrentInfo.MyMoney;
+            money.transform.SetParent(panel.transform);
+            money.GetComponentInChildren<Image>().sprite = Sprites.SpecialResourceSprite(typeof(Money));
+            rt = (RectTransform) money.transform;
+            rt.sizeDelta = new Vector2(0, 0);
         }
     }
 }

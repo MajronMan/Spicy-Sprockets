@@ -12,22 +12,44 @@ namespace Assets.Scripts.Utils {
     /// <param name="sender">Who sent event</param>
     public delegate void ResourceStateChangedEventHandler2_primalOrigins(object sender, EventArgs e);
 
+    public delegate void MoneyStateChangedEH(object sender, EventArgs e);
+
     /// <summary>
     /// Contains variable data about a single city
     /// </summary>
     public class Info {
         public Dictionary<ResourceType, Resource> Resources = new Dictionary<ResourceType, Resource>();
         public Population ThePeople;
-        public Money MyMoney = new Money();
+        private Money _myMoney = new Money();
         public int UsedStorageVolume;
         public CityController MyCity;
         public event ResourceStateChangedEventHandler2_primalOrigins Changed;
+        public event MoneyStateChangedEH MoneyChanged;
         //maybe later use given limits from file or depending on sth
         private int _maxStorageVolume = 10000;
         private int _maxPopulation = 200;
 
+        public Money MyMoney
+        {
+            get
+            {
+                return _myMoney;
+            }
+            set
+            {
+                _myMoney = value;
+                OnMoneyChanged(EventArgs.Empty);
+            }
+        }
+
         public Info(CityController cityController) {
             MyCity = cityController;
+        }
+
+        protected virtual void OnMoneyChanged(EventArgs e)
+        {
+            if (MoneyChanged != null)
+                MoneyChanged(this, e);
         }
 
         protected virtual void OnResourceStateChanged(EventArgs e)
@@ -86,6 +108,7 @@ namespace Assets.Scripts.Utils {
                 Resources[resource.Type] -= resource;
                 UsedStorageVolume -= resource.Volume;
             });
+            OnResourceStateChanged(EventArgs.Empty);
         }
 
         public void BuildingCosts(System.Type buildingType) {
@@ -98,6 +121,7 @@ namespace Assets.Scripts.Utils {
 
         public void ChangePopulationLimit(int by) {
             _maxPopulation += by;
+            ThePeople.OnPopulationStateChanged(EventArgs.Empty);
         }
     }
 }

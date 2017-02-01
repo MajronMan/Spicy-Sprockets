@@ -15,6 +15,7 @@ namespace Assets.Static
         private static Dictionary<ResourceType, Sprite> _resourcePoolSprites = new Dictionary<ResourceType, Sprite>();
         private static Dictionary<ResourceType, Sprite> _resourceSprites = new Dictionary<ResourceType, Sprite>();
         private static Dictionary<Type, Sprite> _buildingSprites = new Dictionary<Type, Sprite>();
+        private static Dictionary<Type, Sprite> _specialResources = new Dictionary<Type, Sprite>();
 
         public static Sprite ResourceSprite(ResourceType type)
         {
@@ -38,6 +39,14 @@ namespace Assets.Static
                 _buildingSprites.Add(type, Loader.LoadSprite(GraphicsPaths.BuildingsGraphics + type.Name));
 
             return _buildingSprites[type];
+        }
+
+        public static Sprite SpecialResourceSprite(Type type)
+        {
+            if(!_specialResources.ContainsKey(type))
+                _specialResources.Add(type, Loader.LoadSprite(GraphicsPaths.InterfaceGraphics + type.Name));
+
+            return _specialResources[type];
         }
 
     }

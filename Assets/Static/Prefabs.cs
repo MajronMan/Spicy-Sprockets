@@ -2,10 +2,8 @@
 using Assets.Scripts.Utils;
 using UnityEngine;
 
-namespace Assets.Static
-{
-    public static class Prefabs
-    {
+namespace Assets.Static {
+    public static class Prefabs {
         private static GameObject _root;
         private static GameObject _map;
         private static GameObject _canvas;
@@ -20,6 +18,11 @@ namespace Assets.Static
         private static GameObject _resourceIndicator;
         private static GameObject _exitButton;
         private static GameObject _buildButton;
+        private static GameObject _popup;
+        private static GameObject _exitablePanel;
+        private static GameObject _tradeButton;
+        private static GameObject _slider;
+        private static GameObject _textButton;
 
         /// <summary>
         /// Base game object with event system and camera
@@ -34,12 +37,12 @@ namespace Assets.Static
         /// <summary>
         /// Base of UI
         /// </summary>
-        public static GameObject Canvas { get { return _canvas ?? (_canvas = Loader.LoadPrefab(PrefabPaths.Canvas)); } }
+        public static GameObject Canvas { get { return _canvas ?? (_canvas = Loader.LoadPrefab(PrefabPaths.Canvas)); }}
 
         /// <summary>
         /// Generic building prefab
         /// </summary>
-        public static GameObject Building { get { return _building ?? (_building = Loader.LoadPrefab(PrefabPaths.Building)); } }
+        public static GameObject Building { get { return _building ?? (_building = Loader.LoadPrefab(PrefabPaths.Building)); }}
 
         /// <summary>
         /// Basic UI panel
@@ -63,6 +66,16 @@ namespace Assets.Static
         public static GameObject ExitButton { get { return _exitButton ?? (_exitButton = Loader.LoadPrefab(PrefabPaths.ExitButton)); } }
 
         public static GameObject BuildButton { get { return _buildButton ?? (_buildButton = Loader.LoadPrefab(PrefabPaths.BuildButton)); } }
+
+        public static GameObject ExitablePanel { get { return _exitablePanel ?? (_exitablePanel = Loader.LoadPrefab(PrefabPaths.ExitablePanel)); } }
+
+        public static GameObject TradeButton { get { return _tradeButton ?? (_tradeButton = Loader.LoadPrefab(PrefabPaths.TradeButton)); } }
+
+        public static GameObject Slider { get { return _slider ?? (_slider = Loader.LoadPrefab(PrefabPaths.Slider)); } }
+
+        public static GameObject TextButton { get { return _textButton ?? (_textButton = Loader.LoadPrefab(PrefabPaths.TextButton)); } }
+
+        public static GameObject Popup { get { return _popup ?? (_popup = Loader.LoadPrefab(PrefabPaths.Popup)); }}
 
         public static Dictionary<string, GameObject> PathsToObjects = new Dictionary<string, GameObject>()
         {
