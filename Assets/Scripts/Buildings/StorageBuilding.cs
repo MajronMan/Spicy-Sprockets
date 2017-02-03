@@ -7,11 +7,11 @@ namespace Assets.Scripts.Buildings {
     /// <summary>
     /// A building which stores collected resources and increases storage limit
     /// </summary>
-    public class StorageBuilding : Building {
+    public class StorageBuilding : Building, IResourceStorage {
         /// <summary>
-        /// Dictionary holding resources present in the storage
+        /// Resources present in the storage
         /// </summary>
-        public Dictionary<ResourceType, Resource> Storage;
+        public Dictionary<ResourceType, Resource> Stored { get; set; }
 
         public override void Start() {
             Size = BuildingSize.Small;
