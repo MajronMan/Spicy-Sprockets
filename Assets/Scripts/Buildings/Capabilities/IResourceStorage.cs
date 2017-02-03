@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Assets.Scripts.Res;
 
-namespace Assets.Scripts.Buildings {
+namespace Assets.Scripts.Buildings.Capabilities {
     /// <summary>
     /// Represents the ability to store resources.
     /// To keep storage state consistent, adding and removing resources
