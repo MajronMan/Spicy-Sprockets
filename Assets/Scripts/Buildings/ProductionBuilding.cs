@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Assets.Scripts.Buildings.Capabilities;
 using Assets.Scripts.Res;
 using Assets.Scripts.Utils;
+using UnityEngine;
 
 namespace Assets.Scripts.Buildings {
     /// <summary>
@@ -14,6 +15,8 @@ namespace Assets.Scripts.Buildings {
         public override void Start() {
             Size = BuildingSize.Big;
             base.Start();
+            //todo test if the Produce() will start when it's inside ResourceProducer's Start()
+            //todo test what will happen if instead having _resourceProducer, there's gameObject.AddComponent<ResourceProducer> in Start, here or in ResourceProducer's Start()
             Produce();
         }
 
