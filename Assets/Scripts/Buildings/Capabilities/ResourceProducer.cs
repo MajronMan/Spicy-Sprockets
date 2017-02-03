@@ -22,18 +22,7 @@ namespace Assets.Scripts.Buildings.Capabilities {
             private set { _productionCycleSeconds = value; }
         }
 
-        public bool IsProducing() {
-            return _producing;
-        }
-
-        public bool IsEnoughResources() {
-            return Prefabricates.TrueForAll(p => Stored[p.Type] >= p);
-        }
-
-        /// <summary>
-        /// Repeatedly performs production cycle while there is enough resources inside
-        /// </summary>
-        private IEnumerator Produce() {
+        public IEnumerator Produce() {
             if (IsEnoughResources()) {
                 _producing = true;
             }
@@ -45,6 +34,14 @@ namespace Assets.Scripts.Buildings.Capabilities {
             }
 
             _producing = false;
+        }
+
+        public bool IsProducing() {
+            return _producing;
+        }
+
+        public bool IsEnoughResources() {
+            return Prefabricates.TrueForAll(p => Stored[p.Type] >= p);
         }
 
 

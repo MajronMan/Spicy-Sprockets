@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using Assets.Scripts.Buildings.Capabilities;
 using Assets.Scripts.Res;
 using Assets.Scripts.Utils;
@@ -13,6 +14,7 @@ namespace Assets.Scripts.Buildings {
         public override void Start() {
             Size = BuildingSize.Big;
             base.Start();
+            Produce();
         }
 
         public Dictionary<ResourceType, Resource> Stored {
@@ -41,6 +43,10 @@ namespace Assets.Scripts.Buildings {
 
         public List<Resource> Products {
             get { return _resourceProducer.Products; }
+        }
+
+        public IEnumerator Produce() {
+            return _resourceProducer.Produce();
         }
 
         public int ProductionCycleSeconds {

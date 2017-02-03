@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using Assets.Scripts.Res;
 
 namespace Assets.Scripts.Buildings.Capabilities {
@@ -18,9 +19,14 @@ namespace Assets.Scripts.Buildings.Capabilities {
         List<Resource> Products { get; }
 
         /// <summary>
+        /// Repeatedly performs production cycle while there is enough resources inside
+        /// </summary>
+        IEnumerator Produce();
+
+        /// <summary>
         /// Production cycle length in seconds
         /// </summary>
-        int ProductionCycleSeconds { get; } // 30
+        int ProductionCycleSeconds { get; }
 
         /// <summary>
         /// Indicates whether this object is during the production cycle
