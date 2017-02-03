@@ -3,7 +3,7 @@ using Assets.Scripts.Res;
 
 namespace Assets.Scripts.Buildings.Capabilities {
     /// <summary>
-    /// Represents the ability to store resources.
+    /// Represents the capability to store resources.
     /// To keep storage state consistent, adding and removing resources
     /// should be performed using provided interface functions.
     /// </summary>

@@ -1,9 +1,12 @@
 ﻿using System.Collections.Generic;
-using Assets.Scripts.Buildings.Capabilities;
 using Assets.Scripts.Res;
+using UnityEngine;
 
-namespace Assets.Scripts.Buildings {
-    public class ResourceStorage : IResourceStorage {
+namespace Assets.Scripts.Buildings.Capabilities {
+    /// <summary>
+    /// Default implementation of IResourceStorage
+    /// </summary>
+    public class ResourceStorage : MonoBehaviour, IResourceStorage {
         public Dictionary<ResourceType, Resource> Stored { get; private set; }
         public Dictionary<ResourceType, Resource> Capacity { get; private set; }
 

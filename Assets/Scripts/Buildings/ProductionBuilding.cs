@@ -1,54 +1,58 @@
-﻿using System.Collections;
+﻿using System.Collections.Generic;
+using Assets.Scripts.Buildings.Capabilities;
 using Assets.Scripts.Res;
 using Assets.Scripts.Utils;
-using UnityEngine;
 
 namespace Assets.Scripts.Buildings {
     /// <summary>
-    /// General class of buildings that processes one set of resources and yield another
+    /// General class of buildings that transform resources into another ones
     /// </summary>
-    public class ProductionBuilding : Building {
-        /// <summary>
-        /// The resource used as base for creating something new
-        /// </summary>
-        private Resource _prefabricate;
-
-        /// <summary>
-        /// The resource that is output from this building
-        /// </summary>
-        private Resource _produced;
-
-        /// <summary>
-        /// How long does production take (seconds)
-        /// </summary>
-        private int _processTime = 30;
-
-        /// <summary>
-        /// How much of produced resource is given in one cycle
-        /// </summary>
-        private int _efficiency = 1;
+    public class ProductionBuilding : Building, IResourceProduction {
+        private readonly IResourceProduction _resourceProducer = new ResourceProducer();
 
         public override void Start() {
             Size = BuildingSize.Big;
             base.Start();
-
-            StartCoroutine(Work());
         }
 
-        public IEnumerator Work() {
-            while (true) {
-                // If there is enough material to process
-                if (_prefabricate > 0) {
-                    Process();
-                }
-                yield return new WaitForSeconds(_processTime);
-            }
+        public Dictionary<ResourceType, Resource> Stored {
+            get { return _resourceProducer.Stored; }
         }
 
-        private void Process() {
-            // change prefabricate into produced good
-            _prefabricate -= _efficiency;
-            _produced += _efficiency;
+        public Dictionary<ResourceType, Resource> Capacity {
+            get { return _resourceProducer.Capacity; }
+        }
+
+        public bool Add(Resource resource) {
+            return _resourceProducer.Add(resource);
+        }
+
+        public bool Remove(Resource resource) {
+            return _resourceProducer.Remove(resource);
+        }
+
+        public Resource FreeSpace(ResourceType resourceType) {
+            return _resourceProducer.FreeSpace(resourceType);
+        }
+
+        public List<Resource> Prefabricates {
+            get { return _resourceProducer.Prefabricates; }
+        }
+
+        public List<Resource> Products {
+            get { return _resourceProducer.Products; }
+        }
+
+        public int ProductionCycleSeconds {
+            get { return _resourceProducer.ProductionCycleSeconds; }
+        }
+
+        public bool IsProducing() {
+            return _resourceProducer.IsProducing();
+        }
+
+        public bool IsEnoughResources() {
+            return _resourceProducer.IsEnoughResources();
         }
     }
 }
