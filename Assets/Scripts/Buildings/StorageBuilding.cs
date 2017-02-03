@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Assets.Scripts.Buildings.Capabilities;
 using Assets.Scripts.Game_Controllers;
 using Assets.Scripts.Res;
 using Assets.Scripts.Utils;
@@ -8,38 +9,26 @@ namespace Assets.Scripts.Buildings {
     /// A building which stores collected resources and increases storage limit
     /// </summary>
     public class StorageBuilding : Building, IResourceStorage {
-        public Dictionary<ResourceType, Resource> Stored { get; private set; }
+        private readonly IResourceStorage _resourceStorage = new ResourceStorage();
 
-        public Dictionary<ResourceType, Resource> Capacity { get; private set; }
+        public Dictionary<ResourceType, Resource> Stored {
+            get { return _resourceStorage.Stored; }
+        }
+
+        public Dictionary<ResourceType, Resource> Capacity {
+            get { return _resourceStorage.Capacity; }
+        }
 
         public bool Add(Resource resource) {
-            ResourceType type = resource.Type;
-
-            if (!Capacity.ContainsKey(type) || FreeSpace(type) < resource) {
-                return false;
-            }
-
-            Stored[type] += resource;
-            return true;
+            return _resourceStorage.Add(resource);
         }
 
         public bool Remove(Resource resource) {
-            ResourceType type = resource.Type;
-
-            if (!Capacity.ContainsKey(type) || Stored[type] < resource) {
-                return false;
-            }
-
-            Stored[type] -= resource;
-            return true;
+            return _resourceStorage.Remove(resource);
         }
 
         public Resource FreeSpace(ResourceType resourceType) {
-            if (!Capacity.ContainsKey(resourceType) || !Stored.ContainsKey(resourceType)) {
-                return new Resource(resourceType, 0);
-            }
-
-            return Capacity[resourceType] - Stored[resourceType];
+            return _resourceStorage.FreeSpace(resourceType);
         }
 
         public override void Start() {
