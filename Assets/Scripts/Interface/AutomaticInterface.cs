@@ -32,9 +32,7 @@ namespace Assets.Scripts.Interface
         /// <summary>
         /// A button that switches between maps (interfaces)
         /// </summary>
-        //TODO: Make something about those repeating elements of the interfaces like this
-        public GameObject GlobalMapButtonG; //Global map button on the global interface
-        public GameObject GlobalMapButtonL; //Global map button on the local interface
+        public GameObject GlobalMapButton;
         private Rect _globalMapButtonRect = new Rect(0.02f, 0.9f, 0.05f, 0.1f);
 
         public GameObject PeopleAndMoneyPanel;
@@ -48,9 +46,28 @@ namespace Assets.Scripts.Interface
 
         private Dictionary<string, ExitablePanel> _buttonPanels;
 
+        /// <summary>
+        /// List of local map elements (without repeating ones)
+        /// </summary>
+        private List<GameObject> Local = new List<GameObject>();
+        /// <summary>
+        /// List of global map elements (without repeating ones)
+        /// </summary>
+        private List<GameObject> Global = new List<GameObject>();
+
         public void Start ()
         {
-            CreateInterface();
+            CreateInterface(); //Creates all the interfaces
+
+            Local.Add(MainPanel);
+            Local.Add(ResourcePanel);
+            Local.Add(MiniMapPanel);
+            Local.Add(PeopleAndMoneyPanel);
+            //TODO: Add also the panels activated through the main panel buttons (because they stay open)
+            //Or find another way like disabling buttons while some panel is open (maybe interactive button script?)
+            //Also we ought to disable the map, but then I think the resources will stop being gathered. Something to think about
+            
+
             SwitchToInterface("Local"); //Starting at local interface (can change) - means that any other interfaces are created but deactivated
         }
 
@@ -63,33 +80,40 @@ namespace Assets.Scripts.Interface
             CreateLocalInterface();
             //Global Interface
             CreateGlobalInterface();
+            //Repeating elements
+            CreateRepeatingElements();
         }
 
-
+        /// <summary>
+        /// Activates 'name' interface and deactivates others
+        /// </summary>
+        /// <param name="name"></param>
         private void SwitchToInterface(string name)
         {
-            //Will be activating 'name' interface and deactivating others
             switch (name)
             {
                 case "Local":
-                //Deactivating global (+ other) interface elements. 
-                //TODO: Make the elements assigned to a certain interface so we don't have to deactivate single elements
-                //TODO: Make some elements assigned to both (or more) interfaces - then we can make them as one element which just changes properties f.e globalmapbutton changing listener
-                    MainPanel.SetActive(true);
-                    ResourcePanel.SetActive(true);
-                    MiniMapPanel.SetActive(true);
-                    PeopleAndMoneyPanel.SetActive(true);
-                    GlobalMapButtonL.SetActive(true);
-                    GlobalMapButtonG.SetActive(false);
+                    foreach(var item in Local)
+                    {
+                        item.SetActive(true);
+                    }
+                    foreach(var item in Global)
+                    {
+                        item.SetActive(false);
+                    }
+                    GlobalMapButton.GetComponent<Button>().onClick.AddListener(() => SwitchToInterface("Global")); //Changing listener of globalmapbutton
                     break;
 
                 case "Global":
-                    MainPanel.SetActive(false);
-                    ResourcePanel.SetActive(false);
-                    MiniMapPanel.SetActive(false);
-                    PeopleAndMoneyPanel.SetActive(false);
-                    GlobalMapButtonL.SetActive(false);
-                    GlobalMapButtonG.SetActive(true);
+                    foreach (var item in Local)
+                    {
+                        item.SetActive(false);
+                    }
+                    foreach (var item in Global)
+                    {
+                        item.SetActive(true);
+                    }
+                    GlobalMapButton.GetComponent<Button>().onClick.AddListener(() => SwitchToInterface("Local")); //Changing listener of globalmapbutton
                     break;
             }
         }
@@ -108,7 +132,17 @@ namespace Assets.Scripts.Interface
         /// </summary>
         private void CreateGlobalInterface()
         {
+            CreateGlobalPanels();
             CreateGlobalButtons();
+        }
+
+        /// <summary>
+        /// A method used to create repeating elements (like globalmapbutton) so they are instantiated no matter on which scene we start
+        /// </summary>
+        private void CreateRepeatingElements()
+        {
+            GlobalMapButton = Instantiate(Prefabs.CasualButton);
+            Util.SetUIObjectPosition(GlobalMapButton, _globalMapButtonRect, transform);
         }
 
         //Elements of the local interface
@@ -161,19 +195,13 @@ namespace Assets.Scripts.Interface
 
             FillBuildingsPanel();
             _buttonPanels["Trade"].Content.AddComponent<Trade>();
-
-            GlobalMapButtonL = Instantiate(Prefabs.CasualButton);
-            Util.SetUIObjectPosition(GlobalMapButtonL, _globalMapButtonRect , transform);
-            GlobalMapButtonL.GetComponent<Button>().onClick.AddListener(() => SwitchToInterface("Global")); //TODO: Toggle between maps
         }
 
         //Elements of the global interface
 
         private void CreateGlobalButtons()
         {
-            GlobalMapButtonG = Instantiate(Prefabs.CasualButton);
-            Util.SetUIObjectPosition(GlobalMapButtonG, _globalMapButtonRect, transform);
-            GlobalMapButtonG.GetComponent<Button>().onClick.AddListener(() => SwitchToInterface("Local"));
+
         }
 
         private void CreateGlobalPanels()
