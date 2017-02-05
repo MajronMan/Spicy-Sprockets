@@ -29,6 +29,16 @@ namespace Assets.Scripts.Interface
         public GameObject MiniMapPanel;
         private Rect _miniMapPanelRect = new Rect(0.9f, 0, 0.1f, 0.25f);
 
+        /// <summary>
+        /// A button that switches between maps (interfaces)
+        /// </summary>
+        //TODO: Make something about those repeating elements of the interfaces like this
+        public GameObject GlobalMapButtonG; //Global map button on the global interface
+        public GameObject GlobalMapButtonL; //Global map button on the local interface
+        private Rect _globalMapButtonRect = new Rect(0.02f, 0.9f, 0.05f, 0.1f);
+
+        public GameObject PeopleAndMoneyPanel;
+
         private Rect _centerRect = new Rect(0.2f, 0.1f, 0.6f, 0.8f);
         private Rect _exitRect = new Rect(0, 0.95f, 0.05f, 0.05f);
         private Rect _leftHalfRect = new Rect(0, 0, 0.5f, 0.5f);
@@ -40,12 +50,70 @@ namespace Assets.Scripts.Interface
 
         public void Start ()
         {
-            CreatePanels();
-            CreateButtons();
+            CreateInterface();
+            SwitchToInterface("Local"); //Starting at local interface (can change) - means that any other interfaces are created but deactivated
         }
 
-       
-        private void CreatePanels()
+       /// <summary>
+       /// A method used to create all the interfaces of the game
+       /// </summary>
+        private void CreateInterface()
+        {
+            //Local Interface
+            CreateLocalInterface();
+            //Global Interface
+            CreateGlobalInterface();
+        }
+
+
+        private void SwitchToInterface(string name)
+        {
+            //Will be activating 'name' interface and deactivating others
+            switch (name)
+            {
+                case "Local":
+                //Deactivating global (+ other) interface elements. 
+                //TODO: Make the elements assigned to a certain interface so we don't have to deactivate single elements
+                //TODO: Make some elements assigned to both (or more) interfaces - then we can make them as one element which just changes properties f.e globalmapbutton changing listener
+                    MainPanel.SetActive(true);
+                    ResourcePanel.SetActive(true);
+                    MiniMapPanel.SetActive(true);
+                    PeopleAndMoneyPanel.SetActive(true);
+                    GlobalMapButtonL.SetActive(true);
+                    GlobalMapButtonG.SetActive(false);
+                    break;
+
+                case "Global":
+                    MainPanel.SetActive(false);
+                    ResourcePanel.SetActive(false);
+                    MiniMapPanel.SetActive(false);
+                    PeopleAndMoneyPanel.SetActive(false);
+                    GlobalMapButtonL.SetActive(false);
+                    GlobalMapButtonG.SetActive(true);
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// A method used to create elements of the local interface
+        /// </summary>
+        private void CreateLocalInterface()
+        {
+            CreateLocalPanels();
+            CreateLocalButtons();
+        }
+
+        /// <summary>
+        /// A method used to create elements of the global interface
+        /// </summary>
+        private void CreateGlobalInterface()
+        {
+            CreateGlobalButtons();
+        }
+
+        //Elements of the local interface
+
+        private void CreateLocalPanels()
         {
             MainPanel = Instantiate(Prefabs.VerticalGroupPanel);
             Util.SetUIObjectPosition(MainPanel, _mainPanelRect, transform);
@@ -58,7 +126,7 @@ namespace Assets.Scripts.Interface
             PeopleAndMoney();
         }
 
-        private void CreateButtons()
+        private void CreateLocalButtons()
         {
             _buttonPanels = new Dictionary<string, ExitablePanel>
             {
@@ -94,10 +162,26 @@ namespace Assets.Scripts.Interface
             FillBuildingsPanel();
             _buttonPanels["Trade"].Content.AddComponent<Trade>();
 
-            var globalMapButton = Instantiate(Prefabs.CasualButton);
-            globalMapButton.transform.position = Vector3.zero;
-            //globalMapButton.GetComponent<Button>().onClick.AddListener(() => SceneManager.LoadScene(""));
+            GlobalMapButtonL = Instantiate(Prefabs.CasualButton);
+            Util.SetUIObjectPosition(GlobalMapButtonL, _globalMapButtonRect , transform);
+            GlobalMapButtonL.GetComponent<Button>().onClick.AddListener(() => SwitchToInterface("Global")); //TODO: Toggle between maps
         }
+
+        //Elements of the global interface
+
+        private void CreateGlobalButtons()
+        {
+            GlobalMapButtonG = Instantiate(Prefabs.CasualButton);
+            Util.SetUIObjectPosition(GlobalMapButtonG, _globalMapButtonRect, transform);
+            GlobalMapButtonG.GetComponent<Button>().onClick.AddListener(() => SwitchToInterface("Local"));
+        }
+
+        private void CreateGlobalPanels()
+        {
+
+        }
+
+        //Other methods
 
         private ExitablePanel CreateExitablePanel(GameObject child)
         {
@@ -162,13 +246,13 @@ namespace Assets.Scripts.Interface
 
         private void PeopleAndMoney()
         {
-            var panel = Instantiate(Prefabs.VerticalGroupPanel);
-            Util.SetUIObjectPosition(panel, _peopleMoneyRect, transform);
+            PeopleAndMoneyPanel = Instantiate(Prefabs.VerticalGroupPanel);
+            Util.SetUIObjectPosition(PeopleAndMoneyPanel, _peopleMoneyRect, transform);
 
             var people = Instantiate(Prefabs.ResourceIndicator);
             var peopleData = people.GetComponent<ResourceData>();
             peopleData.PopulationRef = Controllers.CurrentInfo.ThePeople;
-            people.transform.SetParent(panel.transform);
+            people.transform.SetParent(PeopleAndMoneyPanel.transform);
             people.GetComponentInChildren<Image>().sprite = Sprites.SpecialResourceSprite(typeof(Population));
             var rt = (RectTransform) people.transform;
             rt.sizeDelta = new Vector2(0, 0);
@@ -176,7 +260,7 @@ namespace Assets.Scripts.Interface
             var money = Instantiate(Prefabs.ResourceIndicator);
             var moneyData = money.GetComponent<ResourceData>();
             moneyData.MoneyRef = Controllers.CurrentInfo.MyMoney;
-            money.transform.SetParent(panel.transform);
+            money.transform.SetParent(PeopleAndMoneyPanel.transform);
             money.GetComponentInChildren<Image>().sprite = Sprites.SpecialResourceSprite(typeof(Money));
             rt = (RectTransform) money.transform;
             rt.sizeDelta = new Vector2(0, 0);
