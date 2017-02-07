@@ -13,7 +13,7 @@ namespace Assets.Scripts.Game_Controllers {
 	{
 		public List<CityController> Cities = new List<CityController>();
 		public List<EnemyController> Enemies = new List<EnemyController>();
-        public ScienceController Science;
+	    public ScienceController Science;
         /// <summary>
         /// The base game object which is parent to everything
         /// </summary>
@@ -34,6 +34,10 @@ namespace Assets.Scripts.Game_Controllers {
             Cities.Add(cityController);
             cityController.CreateCity();
             cityController.transform.SetParent(transform, true);
+
+            var scienceObject = new GameObject("Science Controller", typeof(ScienceController));
+            Science = scienceObject.GetComponent<ScienceController>();
+            Science.transform.SetParent(transform);
             // later also add enemies
             _gameMode = new DefaultMode();
         }

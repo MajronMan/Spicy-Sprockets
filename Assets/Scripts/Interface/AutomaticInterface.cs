@@ -66,7 +66,7 @@ namespace Assets.Scripts.Interface
                 {"Character", CreateExitablePanel(Prefabs.Panel)},
                 {"Diplomacy", CreateExitablePanel(Prefabs.Panel)},
                 {"Law", CreateExitablePanel(Prefabs.Panel)},
-                {"Science", CreateExitablePanel(Prefabs.Panel)},
+                {"Science", CreateExitablePanel(Prefabs.VerticalGroupPanel)},
                 {"Build", CreateExitablePanel(Prefabs.GridGroupPanel)},
                 {"Trade", CreateExitablePanel(Prefabs.Panel)}
             };
@@ -95,8 +95,10 @@ namespace Assets.Scripts.Interface
             _buttonPanels["Trade"].Content.AddComponent<Trade>();
 
             var globalMapButton = Instantiate(Prefabs.CasualButton);
-            globalMapButton.transform.position = Vector3.zero;
+            Util.SetUIObjectPosition(globalMapButton, new Rect(0, 0.95f, 0.05f, 0.05f), transform);
             //globalMapButton.GetComponent<Button>().onClick.AddListener(() => SceneManager.LoadScene(""));
+
+            FillSciencePanel();
         }
 
         private ExitablePanel CreateExitablePanel(GameObject child)
@@ -157,6 +159,21 @@ namespace Assets.Scripts.Interface
                 var button = Instantiate(Prefabs.BuildButton);
                 button.transform.SetParent(buildingPanel.Content.transform);
                 button.GetComponent<BuildButton>().SetUp(building, buildingPanel.gameObject);
+            }
+        }
+
+        private void FillSciencePanel()
+        {
+            var sciencePanel = _buttonPanels["Science"];
+            sciencePanel.Content.GetComponent<Image>().color = new Color(1, 1, 1, 0.5f);
+            foreach (var branch in Controllers.Science.Branches)
+            {
+                var button = Instantiate(Prefabs.Toggle);
+                button.transform.SetParent(sciencePanel.Content.transform);
+                button.GetComponentInChildren<Text>().text = branch.name;
+
+                var toggle = button.GetComponent<Toggle>();
+                toggle.onValueChanged.AddListener((value => branch.setFinanced(value)));
             }
         }
 

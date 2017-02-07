@@ -67,5 +67,10 @@ namespace Assets.Scripts.Game_Controllers {
         {
             get { return Instance._gameController.MainCamera; }
         }
+
+        public static ScienceController Science
+        {
+            get { return Instance._gameController.Science; }
+        }
     }
 }

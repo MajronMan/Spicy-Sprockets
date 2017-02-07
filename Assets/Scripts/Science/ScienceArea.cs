@@ -1,8 +1,8 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
+using Assets.Scripts.Game_Controllers;
+using UnityEngine;
 
-namespace Assets.Scripts.Game_Controllers {
+namespace Assets.Scripts.Science {
 
     public class ScienceArea : MonoBehaviour {
         public int Scientists;
@@ -10,7 +10,9 @@ namespace Assets.Scripts.Game_Controllers {
         public int TimeFromLastDiscover;
         public int DiscoverDifficulty;
         public int WorkingPeriod;
-
+        private ScienceArea _parent;
+        private ScienceBranch _branch;
+        
         public void Start() {
 
             StartCoroutine(Work());

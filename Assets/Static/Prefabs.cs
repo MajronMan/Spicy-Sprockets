@@ -23,6 +23,7 @@ namespace Assets.Static {
         private static GameObject _tradeButton;
         private static GameObject _slider;
         private static GameObject _textButton;
+        private static GameObject _toggle;
 
         /// <summary>
         /// Base game object with event system and camera
@@ -76,6 +77,8 @@ namespace Assets.Static {
         public static GameObject TextButton { get { return _textButton ?? (_textButton = Loader.LoadPrefab(PrefabPaths.TextButton)); } }
 
         public static GameObject Popup { get { return _popup ?? (_popup = Loader.LoadPrefab(PrefabPaths.Popup)); }}
+
+        public static GameObject Toggle { get { return _toggle ?? (_toggle = Loader.LoadPrefab(PrefabPaths.Toggle)); } }
 
         public static Dictionary<string, GameObject> PathsToObjects = new Dictionary<string, GameObject>()
         {
