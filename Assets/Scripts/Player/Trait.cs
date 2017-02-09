@@ -23,32 +23,7 @@ public class Trait : MonoBehaviour{
         TraitName = name;
         isActive = false;
         value = 0;
-        //using a file to set actiVal and deactiVal
-        StreamReader reader = new StreamReader("Assets/Static/Traits.txt", Encoding.Default);
-        string line;
-        using (reader)
-        {
-            do
-            {
-                line = reader.ReadLine();
-                if (line != null)
-                {
-                    string[] entries = line.Split(',');
-                    try {
-                        if (entries[0] == name) {
-                            deactiVal = float.Parse(entries[1]);
-                            actiVal = float.Parse(entries[2]);
-                            break;
-                        }
-                    }
-                    catch (NullReferenceException) {
-                        Debug.Log("Error in Traits.txt format");
-                    }
-                }
-            }
-            while (line != null);  
-            reader.Close();
-        }
+        LoadFromFile();
     }
 
     public void UpgradeTrait(float val){
@@ -69,5 +44,38 @@ public class Trait : MonoBehaviour{
 
     public bool CheckIfActive() {
         return isActive;
+    }
+
+    private void LoadFromFile() {
+        //using a file to set actiVal and deactiVal
+        StreamReader reader = new StreamReader("Assets/Static/Traits.txt", Encoding.Default);
+        //TODO change txt to json
+        string line;
+        using (reader)
+        {
+            do
+            {
+                line = reader.ReadLine();
+                if (line != null)
+                {
+                    string[] entries = line.Split(',');
+                    try
+                    {
+                        if (entries[0] == name)
+                        {
+                            deactiVal = float.Parse(entries[1]);
+                            actiVal = float.Parse(entries[2]);
+                            break;
+                        }
+                    }
+                    catch (NullReferenceException)
+                    {
+                        Debug.Log("Error in Traits.txt format");
+                    }
+                }
+            }
+            while (line != null);
+            reader.Close();
+        }
     }
 }

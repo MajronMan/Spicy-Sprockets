@@ -7,9 +7,9 @@ using UnityEngine;
 /// </summary>
 public abstract class Player : MonoBehaviour {
 
-    private List<Trait> traits;
+    private Dictionary<string,Trait> traits;
 
     public virtual void Start() {
-        
+        traits = new Dictionary<string, Trait>();
     }
 }
