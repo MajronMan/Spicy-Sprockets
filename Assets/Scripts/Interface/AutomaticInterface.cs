@@ -45,6 +45,11 @@ namespace Assets.Scripts.Interface
         public GameObject LocalMap;
         public Component[] localMapChildren;
 
+        //Global map elements
+        public Map GlobalMap;
+        private IntVector2 _globalMapSize = new IntVector2(10000, 10000);
+        //TODO: Place the cities - but how to set their position relative to map?
+
         private Rect _centerRect = new Rect(0.2f, 0.1f, 0.6f, 0.8f);
         private Rect _exitRect = new Rect(0, 0.95f, 0.05f, 0.05f);
         private Rect _leftHalfRect = new Rect(0, 0, 0.5f, 0.5f);
@@ -75,7 +80,6 @@ namespace Assets.Scripts.Interface
             Local.Add(GlobalMapButton);
             //TODO: Add also the panels activated through the main panel buttons (because they stay open)
             //Or find another way like disabling buttons while some panel is open (maybe interactive button script?)
-            //Also we ought to disable the map, but then I think the resources will stop being gathered. Something to think about
             Global.Add(ResourcePanel);
             Global.Add(PeopleAndMoneyPanel);
             Global.Add(GlobalMapButton);
@@ -107,7 +111,7 @@ namespace Assets.Scripts.Interface
                 case "Local":
                     foreach (var item in Global)
                     {       
-                        item.SetActive(false); //Produces lags after some time (no idea why)
+                        item.SetActive(false); //Produces lags after some time (no idea why). TODO
                     }
                     foreach (var item in Local)
                     {
@@ -118,6 +122,8 @@ namespace Assets.Scripts.Interface
                         sr.enabled = true;
                     LocalMap.GetComponent<SpriteRenderer>().enabled = true; //Activating local map sprite renderer 
                                       
+                    GlobalMap.GetComponent<SpriteRenderer>().enabled = false; //Deactivating global map spirte renderer
+
                     GlobalMapButton.GetComponent<Button>().onClick.AddListener(() => SwitchToInterface("Global")); //Changing listener of globalmapbutton
 
                     break;
@@ -135,6 +141,8 @@ namespace Assets.Scripts.Interface
                     foreach (SpriteRenderer sr in localMapChildren) //Deactivating elements of local map
                         sr.enabled = false;
                     LocalMap.GetComponent<SpriteRenderer>().enabled = false; //Deactivating local map sprite renderer
+
+                    GlobalMap.GetComponent<SpriteRenderer>().enabled = true; //Activating global map sprite renderer
 
                     GlobalMapButton.GetComponent<Button>().onClick.AddListener(() => SwitchToInterface("Local")); //Changing listener of globalmapbutton
 
@@ -226,6 +234,20 @@ namespace Assets.Scripts.Interface
         {
             TraitsPanel = Instantiate(Prefabs.HorizontalGroupPanel);
             Util.SetUIObjectPosition(TraitsPanel, _traitsPanelRect, transform);
+
+            //Global map - for now here. Because there is no other script like CityController. TODO
+            //Maybe another method?
+            var mapPosition = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2));
+            mapPosition.z = 0;
+
+            var mapGameObject = Instantiate(Prefabs.Map, mapPosition, transform.rotation) as GameObject;
+            GlobalMap = mapGameObject.GetComponent<Map>();
+            Util.Rescale(GlobalMap.GetComponent<SpriteRenderer>(), _globalMapSize.X, _globalMapSize.Y);
+            GlobalMap.transform.SetParent(transform);
+            GlobalMap.name = "GlobalMap";
+
+            //TODO: Change global map sprite
+            //GlobalMap.GetComponent<Sprite>() =
         }
 
         //Other methods
