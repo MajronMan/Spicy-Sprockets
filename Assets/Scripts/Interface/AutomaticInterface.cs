@@ -33,16 +33,23 @@ namespace Assets.Scripts.Interface
         /// A button that switches between maps (interfaces)
         /// </summary>
         public GameObject GlobalMapButton;
-        private Rect _globalMapButtonRect = new Rect(0.02f, 0.9f, 0.05f, 0.1f);
+        private Rect _globalMapButtonRect = new Rect(0.01f, 0.85f, 0.05f, 0.1f);
 
         public GameObject PeopleAndMoneyPanel;
+        private Rect _peopleMoneyRect = new Rect(0, 0, 0.1f, 0.1f);
+
+        public GameObject TraitsPanel;
+        private Rect _traitsPanelRect = new Rect(0, 0.95f, 0.5f, 0.05f);
+
+        //Local map elements
+        public GameObject LocalMap;
+        public Component[] localMapChildren;
 
         private Rect _centerRect = new Rect(0.2f, 0.1f, 0.6f, 0.8f);
         private Rect _exitRect = new Rect(0, 0.95f, 0.05f, 0.05f);
         private Rect _leftHalfRect = new Rect(0, 0, 0.5f, 0.5f);
         private Rect _rightHalfRect = new Rect(0.5f, 0, 0.5f, 0.5f);
         private Rect _fullRect = new Rect(0, 0, 1, 1);
-        private Rect _peopleMoneyRect = new Rect(0, 0, 0.1f, 0.1f);
 
         private Dictionary<string, ExitablePanel> _buttonPanels;
 
@@ -59,14 +66,20 @@ namespace Assets.Scripts.Interface
         {
             CreateInterface(); //Creates all the interfaces
 
+            LocalMap = GameObject.Find("Map"); //Finds local map (so we can disable its sprite renderer)
+
             Local.Add(MainPanel);
             Local.Add(ResourcePanel);
             Local.Add(MiniMapPanel);
             Local.Add(PeopleAndMoneyPanel);
+            Local.Add(GlobalMapButton);
             //TODO: Add also the panels activated through the main panel buttons (because they stay open)
             //Or find another way like disabling buttons while some panel is open (maybe interactive button script?)
             //Also we ought to disable the map, but then I think the resources will stop being gathered. Something to think about
-            
+            Global.Add(ResourcePanel);
+            Global.Add(PeopleAndMoneyPanel);
+            Global.Add(GlobalMapButton);
+            Global.Add(TraitsPanel);
 
             SwitchToInterface("Local"); //Starting at local interface (can change) - means that any other interfaces are created but deactivated
         }
@@ -80,28 +93,33 @@ namespace Assets.Scripts.Interface
             CreateLocalInterface();
             //Global Interface
             CreateGlobalInterface();
-            //Repeating elements
-            CreateRepeatingElements();
         }
 
         /// <summary>
-        /// Activates 'name' interface and deactivates others
+        /// Activates 'name' interface and deactivates others. Important note: Firstly deactivating, later activating (for repeating elements)
         /// </summary>
         /// <param name="name"></param>
         private void SwitchToInterface(string name)
         {
+            localMapChildren = LocalMap.GetComponentsInChildren<SpriteRenderer>(); //Checks whether any new children of local map have been found
             switch (name)
             {
                 case "Local":
-                    foreach(var item in Local)
+                    foreach (var item in Global)
+                    {       
+                        item.SetActive(false); //Produces lags after some time (no idea why)
+                    }
+                    foreach (var item in Local)
                     {
                         item.SetActive(true);
                     }
-                    foreach(var item in Global)
-                    {
-                        item.SetActive(false);
-                    }
+
+                    foreach (SpriteRenderer sr in localMapChildren) //Activating elements of local map
+                        sr.enabled = true;
+                    LocalMap.GetComponent<SpriteRenderer>().enabled = true; //Activating local map sprite renderer 
+                                      
                     GlobalMapButton.GetComponent<Button>().onClick.AddListener(() => SwitchToInterface("Global")); //Changing listener of globalmapbutton
+
                     break;
 
                 case "Global":
@@ -113,7 +131,13 @@ namespace Assets.Scripts.Interface
                     {
                         item.SetActive(true);
                     }
+
+                    foreach (SpriteRenderer sr in localMapChildren) //Deactivating elements of local map
+                        sr.enabled = false;
+                    LocalMap.GetComponent<SpriteRenderer>().enabled = false; //Deactivating local map sprite renderer
+
                     GlobalMapButton.GetComponent<Button>().onClick.AddListener(() => SwitchToInterface("Local")); //Changing listener of globalmapbutton
+
                     break;
             }
         }
@@ -136,15 +160,6 @@ namespace Assets.Scripts.Interface
             CreateGlobalButtons();
         }
 
-        /// <summary>
-        /// A method used to create repeating elements (like globalmapbutton) so they are instantiated no matter on which scene we start
-        /// </summary>
-        private void CreateRepeatingElements()
-        {
-            GlobalMapButton = Instantiate(Prefabs.CasualButton);
-            Util.SetUIObjectPosition(GlobalMapButton, _globalMapButtonRect, transform);
-        }
-
         //Elements of the local interface
 
         private void CreateLocalPanels()
@@ -155,8 +170,7 @@ namespace Assets.Scripts.Interface
             MiniMapPanel = Instantiate(Prefabs.Panel);
             Util.SetUIObjectPosition(MiniMapPanel, _miniMapPanelRect, transform);
             
-            CreateResourcePanel();
-
+            CreateResourcePanel(); //Instantiated as local elements - then added to global elements list
             PeopleAndMoney();
         }
 
@@ -195,6 +209,10 @@ namespace Assets.Scripts.Interface
 
             FillBuildingsPanel();
             _buttonPanels["Trade"].Content.AddComponent<Trade>();
+
+            //There is no need for another method for repeating elements. Simply adding element to both lists (firstly it's deactivated and later activated - so no problem here)
+            GlobalMapButton = Instantiate(Prefabs.CasualButton);
+            Util.SetUIObjectPosition(GlobalMapButton, _globalMapButtonRect, transform);
         }
 
         //Elements of the global interface
@@ -206,7 +224,8 @@ namespace Assets.Scripts.Interface
 
         private void CreateGlobalPanels()
         {
-
+            TraitsPanel = Instantiate(Prefabs.HorizontalGroupPanel);
+            Util.SetUIObjectPosition(TraitsPanel, _traitsPanelRect, transform);
         }
 
         //Other methods

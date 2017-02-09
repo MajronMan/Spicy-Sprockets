@@ -1,10 +1,17 @@
 fileFormatVersion: 2
 guid: 6b5328fd88eb6aa499b34b226065d223
-timeCreated: 1480152573
+timeCreated: 1486665706
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - MainPanel: {instanceID: 0}
+  - ResourcePanel: {instanceID: 0}
+  - MiniMapPanel: {instanceID: 0}
+  - GlobalMapButton: {instanceID: 0}
+  - PeopleAndMoneyPanel: {instanceID: 0}
+  - TraitsPanel: {instanceID: 0}
+  - LocalMap: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

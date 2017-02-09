@@ -289,7 +289,7 @@ AnimationClip:
         value: 0.9
         inSlope: 0
         outSlope: 0
-        tangentMode: 34
+        tangentMode: 136
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -305,7 +305,7 @@ AnimationClip:
         value: 0.9
         inSlope: 0
         outSlope: 0
-        tangentMode: 34
+        tangentMode: 136
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -321,7 +321,7 @@ AnimationClip:
         value: 0.9
         inSlope: 0
         outSlope: 0
-        tangentMode: 34
+        tangentMode: 136
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -588,10 +588,10 @@ AnimatorStateMachine:
     m_Position: {x: 456, y: -60, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102000010720661624}
-    m_Position: {x: 276, y: -120, z: 0}
+    m_Position: {x: 276, y: -96, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102000014040851518}
-    m_Position: {x: 384, y: 72, z: 0}
+    m_Position: {x: 348, y: 60, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102000012332978754}
     m_Position: {x: 348, y: 192, z: 0}
