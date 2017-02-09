@@ -1,0 +1,59 @@
+Staranny,0.5,0.75
+Niedba³y,0.5,0.75
+Bezkompromisowy,0.5,0.75
+Ugodowy,0.5,0.75
+Œwiatowy,0.5,0.75
+Zaœciankowy,0.5,0.75
+Hojny,0.5,0.75
+Sk¹py,0.5,0.75
+Ryzykant,0.5,0.75
+Zachowawczy,0.5,0.75
+Intrygant,0.5,0.75
+Ateista,0.5,0.75
+Religijny,0.5,0.75
+Pracowity,0.5,0.75
+Wygodny,0.5,0.75
+Logistyk,0.5,0.75
+Agresywny,0.5,0.75
+£agodny,0.5,0.75
+Dociekliwy,0.5,0.75
+Ambitny,0.5,0.75
+Honorowy,0.5,0.75
+Dwulicowy,0.5,0.75
+Chciwy,0.5,0.75
+Ciekawy œwiata,0.5,0.75
+Spekulant,0.5,0.75
+Komunikatywny,0.5,0.75
+Oszust,0.5,0.75
+Uczciwy,0.5,0.75
+Przyjaciel œrodowiska,0.5,0.75
+Wróg œrodowiska,0.5,0.75
+Szanuj¹cy tradycjê,0.5,0.75
+Narzucaj¹cy w³asn¹ wolê,0.5,0.75
+Odpowiedzialny,0.5,0.75
+Niezdecydowany,0.5,0.75
+Honorowy,0.5,0.75
+Ekonomiczny,0.5,0.75
+Konsekwentny,0.5,0.75
+Zmienny,0.5,0.75
+Dok³adny,0.5,0.75
+Wyrachowany,0.5,0.75
+Empatyczny,0.5,0.75
+Idealista,0.5,0.75
+Moralny,0.5,0.75
+Niemoralny,0.5,0.75
+Ekstrawertyczny,0.5,0.75
+Introwertyczny,0.5,0.75
+Egoista,0.5,0.75
+Altruista,0.5,0.75
+Kreatywny,0.5,0.75
+M¹dry,0.5,0.75
+Niezale¿ny,0.5,0.75
+Pokorny,0.5,0.75
+Ufny,0.5,0.75
+Nieufny,0.5,0.75
+Uwa¿ny,0.5,0.75
+Roztargniony,0.5,0.75
+K³amca,0.5,0.75
+Zrównowa¿ony,0.5,0.75
+Faworyzuj¹cy,0.5,0.75
