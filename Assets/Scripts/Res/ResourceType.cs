@@ -1,15 +1,13 @@
-﻿using Newtonsoft.Json;
-
-namespace Assets.Scripts.Res {
+﻿namespace Assets.Scripts.Res {
     /// <summary>
     /// Provides info like mass, volume, about some resource type, e.g. wood, stone, etc.
     /// </summary>
     public class ResourceType {
-        [JsonProperty] public readonly string Name;
-        [JsonProperty] public readonly int Mass;
-        [JsonProperty] public readonly int Volume;
+        public readonly string Name;
+        public readonly int Mass;
+        public readonly int Volume;
         //Default price should definitely go somewhere else
-        [JsonProperty] public readonly int DefaultPrice;
+        public readonly int DefaultPrice;
 
         public ResourceType(string name, int mass, int volume, int defaultPrice) {
             Name = name;
@@ -22,13 +20,11 @@ namespace Assets.Scripts.Res {
             return Name;
         }
 
-        public string InterfaceSpriteName()
-        {
+        public string InterfaceSpriteName() {
             return Name;
         }
 
-        public string PoolSpriteName()
-        {
+        public string PoolSpriteName() {
             return Name + "Pool";
         }
 

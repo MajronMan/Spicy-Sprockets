@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using Assets.Scripts.Res;
 
-namespace Assets.Scripts.Buildings.Capabilities {
+namespace Assets.Scripts.Buildings.Components {
     /// <summary>
     /// Represents the capabililty to produce resources,
     /// i.e. transform one set of resources into antoher
     /// </summary>
-    interface IResourceProduction : IResourceStorage {
+    public interface IResourceProduction : IResourceStorage {
         /// <summary>
         /// Resources consumed in one production cycle
         /// </summary>

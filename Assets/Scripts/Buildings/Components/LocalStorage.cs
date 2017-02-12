@@ -1,14 +1,23 @@
 ﻿using System.Collections.Generic;
+using Assets.Scripts.Game_Controllers;
 using Assets.Scripts.Res;
 using UnityEngine;
 
-namespace Assets.Scripts.Buildings.Capabilities {
+namespace Assets.Scripts.Buildings.Components {
     /// <summary>
     /// Default implementation of IResourceStorage
     /// </summary>
-    public class ResourceStorage : MonoBehaviour, IResourceStorage {
+    public sealed class LocalStorage : MonoBehaviour, IResourceStorage {
         public Dictionary<ResourceType, Resource> Stored { get; private set; }
         public Dictionary<ResourceType, Resource> Capacity { get; private set; }
+
+        public void Start() {
+            //todo inject those
+            Capacity = new Dictionary<ResourceType, Resource>();
+            Controllers.ConstantData.ResourceTypes.ForEach(t => Capacity[t] = new Resource(t, 100));
+            Stored = new Dictionary<ResourceType, Resource>();
+            Controllers.ConstantData.ResourceTypes.ForEach(t => Stored[t] = new Resource(t, 0));
+        }
 
         public bool Add(Resource resource) {
             ResourceType type = resource.Type;

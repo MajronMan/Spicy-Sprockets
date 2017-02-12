@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using Assets.Scripts.Res;
 using UnityEngine;
 
-namespace Assets.Scripts.Buildings.Capabilities {
+namespace Assets.Scripts.Buildings.Components {
     /// <summary>
     /// Default implementation of IResourceProduction
     /// </summary>
-    class ResourceProducer : MonoBehaviour, IResourceProduction {
-        private readonly IResourceStorage _resourceStorage = new ResourceStorage();
+    sealed class ResourceProducer : MonoBehaviour, IResourceProduction {
+        private readonly IResourceStorage _resourceStorage = new LocalStorage();
 
         private bool _producing = false;
         private int _productionCycleSeconds = 30;

@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.Game_Controllers;
 using Assets.Scripts.Utils;
+using Newtonsoft.Json;
 using UnityEngine;
 
 namespace Assets.Scripts.Buildings {
@@ -23,8 +24,9 @@ namespace Assets.Scripts.Buildings {
         public SpriteRenderer Renderer;
 
         public int Collides = 0;
-
+        
         public virtual void Start() {
+            //todo inject this pucker
             SetSprite(GetType());
         }
 

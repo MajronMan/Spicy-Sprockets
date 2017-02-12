@@ -21,7 +21,7 @@ namespace Assets.Scripts.Res {
         private int _number = 100;
 
         //There is no actual class Statistics, so I'm making a mock for real employment check
-        private int _employed = 0;
+        public int Employed { get; private set; }
 
         // Those are just stubs for actual statistics
         public float Hygiene = 0.1f;
@@ -32,13 +32,13 @@ namespace Assets.Scripts.Res {
         //TODO: class Statistic working like a Dictionary<string, float> which values add up to 1.0f (100%)
 
         public void Start() {
+            Employed = 0;
             StartCoroutine(Grow());
             Religions.Add("Hinduism", 1.0f);
             Cultures.Add("Hindu", 1.0f);
         }
 
-        public virtual void OnPopulationStateChanged(EventArgs e)
-        {
+        public virtual void OnPopulationStateChanged(EventArgs e) {
             if (Changed != null)
                 Changed(this, e);
         }
@@ -59,25 +59,17 @@ namespace Assets.Scripts.Res {
             }
         }
 
-        public void Employ(int workers) {
-            if (_employed + workers <= Amount)
-                _employed += workers;
-        }
-
-        public void Fire(int workers) {
-            if (_employed >= workers)
-                _employed -= workers;
-        }
-
-        //returns true if there are enough workers for basic tasks
-        public bool CheckPossibleEmployment(int potentialWorkers) {
-            if (_employed + potentialWorkers > Amount)
-                return false;
+        public bool Employ(int employees) {
+            if (!CanEmploy(employees)) return false;
+            Employed += employees;
             return true;
         }
 
-        public int CheckEmployment() {
-            return _employed;
+        //returns true if there are enough employees for basic tasks
+        public bool CanEmploy(int potentialEmployees) {
+            var afterEmployed = Employed + potentialEmployees;
+            return (0 <= afterEmployed
+                    && afterEmployed <= Amount);
         }
     }
 }

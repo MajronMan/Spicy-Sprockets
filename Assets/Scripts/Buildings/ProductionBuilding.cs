@@ -1,67 +1,70 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using Assets.Scripts.Buildings.Capabilities;
+using Assets.Scripts.Buildings.Components;
 using Assets.Scripts.Res;
 using Assets.Scripts.Utils;
-using UnityEngine;
 
 namespace Assets.Scripts.Buildings {
     /// <summary>
     /// General class of buildings that transform resources into another ones
     /// </summary>
-    public class ProductionBuilding : Building, IResourceProduction {
-        private readonly IResourceProduction _resourceProducer = new ResourceProducer();
+    public sealed class ProductionBuilding : Building, IResourceProduction {
+        private IResourceProduction _resourceProduction;
+
+        public void Awake() {
+            gameObject.AddComponent<LocalStorage>();
+            _resourceProduction = gameObject.AddComponent<ResourceProduction>();
+        }
 
         public override void Start() {
             Size = BuildingSize.Big;
             base.Start();
-            //todo test if the Produce() will start when it's inside ResourceProducer's Start()
-            //todo test what will happen if instead having _resourceProducer, there's gameObject.AddComponent<ResourceProducer> in Start, here or in ResourceProducer's Start()
+
             Produce();
         }
 
         public Dictionary<ResourceType, Resource> Stored {
-            get { return _resourceProducer.Stored; }
+            get { return _resourceProduction.Stored; }
         }
 
         public Dictionary<ResourceType, Resource> Capacity {
-            get { return _resourceProducer.Capacity; }
+            get { return _resourceProduction.Capacity; }
         }
 
         public bool Add(Resource resource) {
-            return _resourceProducer.Add(resource);
+            return _resourceProduction.Add(resource);
         }
 
         public bool Remove(Resource resource) {
-            return _resourceProducer.Remove(resource);
+            return _resourceProduction.Remove(resource);
         }
 
         public Resource FreeSpace(ResourceType resourceType) {
-            return _resourceProducer.FreeSpace(resourceType);
+            return _resourceProduction.FreeSpace(resourceType);
         }
 
         public List<Resource> Prefabricates {
-            get { return _resourceProducer.Prefabricates; }
+            get { return _resourceProduction.Prefabricates; }
         }
 
         public List<Resource> Products {
-            get { return _resourceProducer.Products; }
+            get { return _resourceProduction.Products; }
         }
 
         public IEnumerator Produce() {
-            return _resourceProducer.Produce();
+            return _resourceProduction.Produce();
         }
 
         public int ProductionCycleSeconds {
-            get { return _resourceProducer.ProductionCycleSeconds; }
+            get { return _resourceProduction.ProductionCycleSeconds; }
         }
 
         public bool IsProducing() {
-            return _resourceProducer.IsProducing();
+            return _resourceProduction.IsProducing();
         }
 
         public bool IsEnoughResources() {
-            return _resourceProducer.IsEnoughResources();
+            return _resourceProduction.IsEnoughResources();
         }
     }
 }

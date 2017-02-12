@@ -1,14 +1,22 @@
-﻿using Assets.Scripts.Game_Controllers;
+﻿using Assets.Scripts.Buildings.Components;
 
 namespace Assets.Scripts.Buildings {
     /// <summary>
     /// A building that provides housing and increases population limit
     /// </summary>
-    public class ResidentialBuilding : Building {
+    public sealed class ResidentialBuilding : Building, IHouse {
+        private IHouse _house;
+
+        public void Awake() {
+            _house = gameObject.AddComponent<House>();
+        }
+
         public override void Start() {
             base.Start();
-            //increase the population limit
-            Controllers.CurrentInfo.ChangePopulationLimit(10);
+        }
+
+        public int PeopleLimitIncrease {
+            get { return _house.PeopleLimitIncrease; }
         }
     }
 }

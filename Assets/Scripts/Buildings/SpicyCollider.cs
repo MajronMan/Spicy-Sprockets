@@ -2,16 +2,7 @@
 
 namespace Assets.Scripts.Buildings {
     //cannot be named as built-in unity component
-    public class SpicyCollider : MonoBehaviour {
-        // Use this for initialization
-        public void Start() {
-        }
-
-        // Update is called once per frame
-        public void Update() {
-        }
-
-
+    public sealed class SpicyCollider : MonoBehaviour {
         public static BoxCollider2D AddCollider(GameObject to, Vector2 size, Vector3 where, Transform parent) {
             to.layer = 8;
 

@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using Assets.Scripts.Res;
 
-namespace Assets.Scripts.Buildings.Capabilities {
+namespace Assets.Scripts.Buildings.Components {
     /// <summary>
     /// Represents the capability to store resources.
     /// To keep storage state consistent, adding and removing resources
     /// should be performed using provided interface functions.
     /// </summary>
-    interface IResourceStorage {
+    public interface IResourceStorage {
         /// <summary>
         /// Resources currently stored in this object
         /// </summary>

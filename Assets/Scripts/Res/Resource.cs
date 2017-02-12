@@ -1,6 +1,4 @@
-﻿using Assets.Scripts.JsonConverters;
-using Newtonsoft.Json;
-using UnityEngine.Assertions;
+﻿using UnityEngine.Assertions;
 
 namespace Assets.Scripts.Res {
     /// <summary>
@@ -15,27 +13,23 @@ namespace Assets.Scripts.Res {
     /// </para>
     /// </summary>
     public struct Resource : ICountable {
-        public bool Equals(Resource other)
-        {
+        public bool Equals(Resource other) {
             return Equals(_type, other._type) && _amount == other._amount;
         }
 
-        public override bool Equals(object obj)
-        {
+        public override bool Equals(object obj) {
             if (ReferenceEquals(null, obj)) return false;
-            return obj is Resource && ((Resource)obj == this);
+            return obj is Resource && ((Resource) obj == this);
         }
 
-        public override int GetHashCode()
-        {
-            unchecked
-            {
-                return ((_type != null ? _type.GetHashCode() : 0)*397) ^ _amount;
+        public override int GetHashCode() {
+            unchecked {
+                return ((_type != null ? _type.GetHashCode() : 0) * 397) ^ _amount;
             }
         }
 
-        [JsonConverter(typeof(ResourceTypeStringConverter))] [JsonProperty] private ResourceType _type;
-        [JsonProperty] private int _amount;
+        private ResourceType _type;
+        private int _amount;
 
         public ResourceType Type {
             get { return _type; }
