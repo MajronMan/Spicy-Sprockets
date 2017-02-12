@@ -23,6 +23,7 @@ namespace Assets.Static {
         private static GameObject _tradeButton;
         private static GameObject _slider;
         private static GameObject _textButton;
+        private static GameObject _city;
 
         /// <summary>
         /// Base game object with event system and camera
@@ -77,6 +78,8 @@ namespace Assets.Static {
 
         public static GameObject Popup { get { return _popup ?? (_popup = Loader.LoadPrefab(PrefabPaths.Popup)); }}
 
+        public static GameObject City { get { return _city ?? (_city = Loader.LoadPrefab(PrefabPaths.City)); } }
+
         public static Dictionary<string, GameObject> PathsToObjects = new Dictionary<string, GameObject>()
         {
             { PrefabPaths.Root, Root},
@@ -90,7 +93,8 @@ namespace Assets.Static {
             { PrefabPaths.NotRotatingText, NotRotatingText },
             { PrefabPaths.CasualButton, CasualButton },
             { PrefabPaths.ResourceIndicator, ResourceIndicator },
-            { PrefabPaths.GridGroupPanel, GridGroupPanel }
+            { PrefabPaths.GridGroupPanel, GridGroupPanel },
+            { PrefabPaths.City, City }
         };
     }
 }

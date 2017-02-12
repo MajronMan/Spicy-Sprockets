@@ -49,7 +49,6 @@ namespace Assets.Scripts.Interface
         public Map GlobalMap;
         private IntVector2 _globalMapSize = new IntVector2(10000, 10000);
         //TODO: Place the cities - but how to set their position relative to map?
-
         public GameObject OurCity;
 
         private Rect _centerRect = new Rect(0.2f, 0.1f, 0.6f, 0.8f);
@@ -86,7 +85,7 @@ namespace Assets.Scripts.Interface
             Global.Add(PeopleAndMoneyPanel);
             Global.Add(GlobalMapButton);
             Global.Add(TraitsPanel);
-            Global.Add(OurCity); //Should be some list of all cities TODO
+            Global.Add(OurCity);
 
             SwitchToInterface("Local"); //Starting at local interface (can change) - means that any other interfaces are created but deactivated
         }
@@ -109,7 +108,6 @@ namespace Assets.Scripts.Interface
         private void SwitchToInterface(string name)
         {
             localMapChildren = LocalMap.GetComponentsInChildren<SpriteRenderer>(); //Checks whether any new children of local map have been found
-            //There should be something like that in global too TODO
             switch (name)
             {
                 case "Local":
@@ -127,8 +125,6 @@ namespace Assets.Scripts.Interface
                     LocalMap.GetComponent<SpriteRenderer>().enabled = true; //Activating local map sprite renderer 
                                       
                     GlobalMap.GetComponent<SpriteRenderer>().enabled = false; //Deactivating global map spirte renderer
-
-                    //TODO: Deactivate collider(?) so the local/global map won't be clickable
 
                     GlobalMapButton.GetComponent<Button>().onClick.AddListener(() => SwitchToInterface("Global")); //Changing listener of globalmapbutton
 
@@ -172,7 +168,6 @@ namespace Assets.Scripts.Interface
         {
             CreateGlobalPanels();
             CreateGlobalButtons();
-            CreateGlobalMap();
         }
 
         //Elements of the local interface
@@ -234,17 +229,15 @@ namespace Assets.Scripts.Interface
 
         private void CreateGlobalButtons()
         {
-
+            OurCity = Instantiate(Prefabs.CasualButton);
+            OurCity.transform.SetParent(GlobalMap.transform, true);
         }
 
         private void CreateGlobalPanels()
         {
             TraitsPanel = Instantiate(Prefabs.HorizontalGroupPanel);
             Util.SetUIObjectPosition(TraitsPanel, _traitsPanelRect, transform);
-        }
 
-        private void CreateGlobalMap()
-        {
             //Global map - for now here. Because there is no other script like CityController. TODO
             //Maybe another method?
             var mapPosition = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2));
@@ -258,10 +251,6 @@ namespace Assets.Scripts.Interface
 
             //TODO: Change global map sprite
             //GlobalMap.GetComponent<Sprite>() =
-
-            //Cities, maybe another method? TODO
-            OurCity = Instantiate(Prefabs.City, GlobalMap.transform.position, GlobalMap.transform.rotation);
-            OurCity.transform.SetParent(GlobalMap.transform, true);
         }
 
         //Other methods
