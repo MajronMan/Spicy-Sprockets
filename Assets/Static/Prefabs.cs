@@ -23,6 +23,9 @@ namespace Assets.Static {
         private static GameObject _tradeButton;
         private static GameObject _slider;
         private static GameObject _textButton;
+        private static GameObject _dialoguePanel;
+        private static GameObject _eventPanel;
+        private static GameObject _optionButton;
 
         /// <summary>
         /// Base game object with event system and camera
@@ -77,6 +80,12 @@ namespace Assets.Static {
 
         public static GameObject Popup { get { return _popup ?? (_popup = Loader.LoadPrefab(PrefabPaths.Popup)); }}
 
+        public static GameObject DialoguePanel { get { return _dialoguePanel ?? (_dialoguePanel = Loader.LoadPrefab(PrefabPaths.DialoguePanel)); } }
+
+        public static GameObject EventPanel { get { return _eventPanel ?? (_eventPanel = Loader.LoadPrefab(PrefabPaths.EventPanel)); } }
+
+        public static GameObject OptionButton { get { return _optionButton ?? (_optionButton = Loader.LoadPrefab(PrefabPaths.OptionButton)); } }
+
         public static Dictionary<string, GameObject> PathsToObjects = new Dictionary<string, GameObject>()
         {
             { PrefabPaths.Root, Root},
@@ -90,7 +99,10 @@ namespace Assets.Static {
             { PrefabPaths.NotRotatingText, NotRotatingText },
             { PrefabPaths.CasualButton, CasualButton },
             { PrefabPaths.ResourceIndicator, ResourceIndicator },
-            { PrefabPaths.GridGroupPanel, GridGroupPanel }
+            { PrefabPaths.GridGroupPanel, GridGroupPanel },
+            { PrefabPaths.DialoguePanel, DialoguePanel },
+            { PrefabPaths.EventPanel, EventPanel },
+            { PrefabPaths.OptionButton, OptionButton }
         };
     }
 }
