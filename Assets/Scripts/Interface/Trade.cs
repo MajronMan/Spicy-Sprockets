@@ -92,7 +92,7 @@ namespace Assets.Scripts.Interface
             var resourceAmount = Controllers.CurrentInfo.Resources[_selected].Amount;
 
             Controllers.CurrentInfo.MyMoney = new Money(moneyAmount + moneyDelta);
-            Controllers.CurrentInfo[_selected] = new Resource(_selected, resourceAmount + resourceDelta);
+            Controllers.CurrentInfo[_selected] = new Commodity(_selected, resourceAmount + resourceDelta);
 
             _controlButtons[Math.Max(0, modifier)].SetActive(true);
 

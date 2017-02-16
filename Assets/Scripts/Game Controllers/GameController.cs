@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Assets.Scripts.Game_Controllers.Game_Modes;
 using Assets.Scripts.Interface;
 using Assets.Scripts.Utils;
@@ -53,8 +54,15 @@ namespace Assets.Scripts.Game_Controllers {
 
 	    public void Update()
         {
-            _gameMode.Update();
-
+            try
+            {
+                //It's really bad and crashes with debugger, no idea why
+                _gameMode.Update();
+            }
+            catch (NullReferenceException e)
+            {
+                Debug.Log("kurwa");
+            }
             //Now you can pause the game by pressing 'p'
             if (Input.GetKeyDown("p")) {
                 Debug.Break();

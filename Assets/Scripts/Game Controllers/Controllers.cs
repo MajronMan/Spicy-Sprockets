@@ -30,7 +30,7 @@ namespace Assets.Scripts.Game_Controllers {
             Data.Load();
             _gameController = gameObject.GetComponent<GameController>();
             _gameController.BeginGame();
-            _gameController.GetCurrentCity().MyInfo.LoadInitialResources(Data.InitialResources);
+            _gameController.GetCurrentCity().MyInfo.LoadInitialResources(Data.InitialCommodities);
         }
 
         public static GameController GameController

@@ -18,8 +18,8 @@ namespace Assets.Scripts.Utils {
     /// Contains variable data about a single city
     /// </summary>
     public class Info {
-        public Dictionary<ResourceType, Resource> Resources = new Dictionary<ResourceType, Resource>();
-        public Population ThePeople;
+        public Dictionary<ResourceType, Commodity> Resources = new Dictionary<ResourceType, Commodity>();
+        public PopulationManager ThePeople;
         private Money _myMoney = new Money();
         public int UsedStorageVolume;
         public CityController MyCity;
@@ -58,18 +58,16 @@ namespace Assets.Scripts.Utils {
                 Changed(this, e);
         }
 
-        public void LoadInitialResources(List<Resource> initialResources) {
+        public void LoadInitialResources(List<Commodity> initialResources) {
             foreach (var resource in initialResources)
             {
-                Resources.Add(resource.Type, resource);
+                Resources.Add(resource.MyType, resource);
                 UsedStorageVolume += resource.Volume;
             }
-            var gameObject = new GameObject("People");
-            ThePeople = gameObject.AddComponent<Population>();
-            gameObject.transform.SetParent(MyCity.transform);
+            ThePeople = Util.NewMonoBehaviour<PopulationManager>(MyCity.transform);
         }
 
-        public Resource this[ResourceType key] {
+        public Commodity this[ResourceType key] {
             get { return Resources[key]; }
 
             set
@@ -79,12 +77,12 @@ namespace Assets.Scripts.Utils {
             }
         }
 
-        public Resource this[Resource key]
+        public Commodity this[Commodity key]
         {
-            get { return Resources[key.Type]; }
+            get { return Resources[key.MyType]; }
             set
             {
-                Resources[key.Type] = value; 
+                Resources[key.MyType] = value; 
                 OnResourceStateChanged(EventArgs.Empty);
             }
         }
@@ -93,9 +91,9 @@ namespace Assets.Scripts.Utils {
             return _maxPopulation;
         }
 
-        public bool SufficientResources(List<Resource> costs) {
+        public bool SufficientResources(List<Commodity> costs) {
             //no idea again but I hope it works
-            return costs.Aggregate(true, (current, resource) => current && Resources[resource.Type] >= resource);
+            return costs.Aggregate(true, (current, resource) => current && resource.Lt(Resources[resource.MyType]));
         }
 
         public bool HasEnoughStorageSpace(int load) {
@@ -103,9 +101,9 @@ namespace Assets.Scripts.Utils {
         }
 
 
-        public void UseResources(List<Resource> costs) {
+        public void UseResources(List<Commodity> costs) {
             costs.ForEach(resource => {
-                Resources[resource.Type] -= resource;
+                Resources[resource.MyType].Sub(resource);
                 UsedStorageVolume -= resource.Volume;
             });
             OnResourceStateChanged(EventArgs.Empty);

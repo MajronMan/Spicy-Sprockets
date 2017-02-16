@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using Assets.Scripts.Game_Controllers;
+using Assets.Scripts.Res;
 using UnityEngine;
 
 namespace Assets.Scripts.Science {
@@ -15,15 +16,15 @@ namespace Assets.Scripts.Science {
         
         public void Start() {
 
-            StartCoroutine(Work());
+            StartCoroutine(Discover());
         }
 
-        private IEnumerator Work()
+        private IEnumerator Discover()
         {
             while (true)
             {
                 TimeFromLastDiscover++;
-                Controllers.CurrentInfo.MyMoney -= Financing;
+                Controllers.CurrentInfo.MyMoney.Sub(Financing);
 
                 if (Chance() > new System.Random().NextDouble())
                 {

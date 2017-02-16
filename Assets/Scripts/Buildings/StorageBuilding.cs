@@ -11,7 +11,7 @@ namespace Assets.Scripts.Buildings {
         /// <summary>
         /// Dictionary holding resources present in the storage
         /// </summary>
-        public Dictionary<ResourceType, Resource> Storage;
+        public Dictionary<ResourceType, Commodity> Storage;
 
         public override void Start() {
             Size = BuildingSize.Small;
