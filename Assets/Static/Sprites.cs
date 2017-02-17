@@ -11,6 +11,15 @@ namespace Assets.Static {
         private static Dictionary<Type, Sprite> _buildingSprites = new Dictionary<Type, Sprite>();
         private static Dictionary<Type, Sprite> _specialResources = new Dictionary<Type, Sprite>();
 
+        private static int _pixelsPerUnit = 100;
+
+        /// <summary>
+        /// All sprites should have exactly this value set in their preferences
+        /// </summary>
+        public static int PixelsPerUnit {
+            get { return _pixelsPerUnit; }
+        }
+
         private static Sprite LoadOrGetCached<TKey>(
             Dictionary<TKey, Sprite> cache, TKey key, string loadPath
         ) {

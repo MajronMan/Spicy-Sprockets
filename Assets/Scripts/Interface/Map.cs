@@ -11,7 +11,8 @@ namespace Assets.Scripts.Interface {
     /// </summary>
     public class Map : MonoBehaviour {
         private Grid _grid;
-        private static int _sideTiles = 40;
+
+        public int SideTiles { get; set; }
 
         /// <summary>
         /// All sources present on this map
@@ -20,12 +21,13 @@ namespace Assets.Scripts.Interface {
 
         public void DrawGrid() {
             _grid = Instantiate(Prefabs.Grid, transform).GetComponent<Grid>();
-            _grid.Draw(
-                GetComponent<PolygonCollider2D>()
-                    .points.Select(p => transform.TransformPoint(p))
-                    .Select(p => new Vector2(p.x, p.y))
-                    .ToArray(),
-                _sideTiles);
+
+            var cornersWorldSpace = GetComponent<PolygonCollider2D>()
+                .points.Select(p => transform.TransformPoint(p))
+                .Select(p => new Vector2(p.x, p.y))
+                .ToArray();
+
+            _grid.Draw(cornersWorldSpace, SideTiles);
         }
 
         public bool ToggleGrid() {

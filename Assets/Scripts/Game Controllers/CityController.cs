@@ -22,31 +22,28 @@ namespace Assets.Scripts.Game_Controllers {
         /// </summary>
         public Info MyInfo;
 
-        private IntVector2 _mapSize = new IntVector2(10000, 10000);
+        private const int MapSideTiles = 40;
 
         /// <summary>
         /// Defines what happens when a new city is created
         /// </summary>
         public void CreateCity() {
             //place the map in the middle of the screen
-            var mapPosition = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2));
+            var mapPosition = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2.0f, Screen.height / 2.0f));
             mapPosition.z = 0;
-            var mapGameObject = Instantiate(Prefabs.Map, mapPosition, transform.rotation) as GameObject;
-            try
-            {
-                MapInstance = mapGameObject.GetComponent<Map>();
-                // make the map a child of this city controller
-                MapInstance.transform.SetParent(transform);
-                // set desired map size
-                Util.Rescale(MapInstance.GetComponent<SpriteRenderer>(), _mapSize.X, _mapSize.Y);
-                MapInstance.name = "Map";
-            }
-            catch (Exception e)
-            {
-                Debug.Log("Cannot instantiate map from Prefabs.Map. Exception was \n"+ e.StackTrace);
-            }
+
+            MapInstance = Instantiate(Prefabs.Map, mapPosition, Quaternion.identity, transform).GetComponent<Map>();
+            MapInstance.name = "Map";
+
+            // set desired map size
+            Util.Rescale(
+                MapInstance.GetComponent<SpriteRenderer>(),
+                Sprites.PixelsPerUnit * MapSideTiles,
+                Sprites.PixelsPerUnit * MapSideTiles);
+
+            MapInstance.SideTiles = MapSideTiles;
             MapInstance.DrawGrid();
-           
+
             // create a building manager for this city
             var newGameObject = new GameObject("Building Manager", typeof(BuildingManager));
             _buildingManagerInstance = newGameObject.GetComponent<BuildingManager>();
