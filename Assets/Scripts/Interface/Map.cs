@@ -4,20 +4,19 @@ using Assets.Scripts.Game_Controllers;
 using Assets.Scripts.ResourcePools;
 using Assets.Static;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Assets.Scripts.Interface {
     /// <summary>
     /// Controls the behaviour of a single map upon which a city is built
     /// </summary>
     public class Map : MonoBehaviour {
+        private Grid _grid;
+        private static int _sideTiles = 40;
+
         /// <summary>
         /// All sources present on this map
         /// </summary>
         public List<ResourcePool> Pools = new List<ResourcePool>();
-
-        private Grid _grid;
-        private static int _sideTiles = 10;
 
         public void DrawGrid() {
             _grid = Instantiate(Prefabs.Grid, transform).GetComponent<Grid>();
