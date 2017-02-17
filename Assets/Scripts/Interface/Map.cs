@@ -2,6 +2,7 @@
 using System.Linq;
 using Assets.Scripts.Game_Controllers;
 using Assets.Scripts.ResourcePools;
+using Assets.Scripts.Utils;
 using Assets.Static;
 using UnityEngine;
 
@@ -19,12 +20,31 @@ namespace Assets.Scripts.Interface {
         /// </summary>
         public List<ResourcePool> Pools = new List<ResourcePool>();
 
+        public Vector3 SnapMouse() {
+            return _grid.SnapMouse();
+        }
+
+        /// <inheritdoc cref="Grid.WorldToGrid"/>
+        public IntVector2 WorldToGrid(Vector3 position) {
+            return _grid.WorldToGrid(position);
+        }
+
+        /// <inheritdoc cref="Grid.GridToWorld(int,int)"/>
+        public Vector3 GridToWorld(int i, int j) {
+            return _grid.GridToWorld(i, j);
+        }
+
+        /// <inheritdoc cref="Grid.GridToWorld(IntVector2)"/>
+        public Vector3 GridToWorld(IntVector2 index) {
+            return _grid.GridToWorld(index);
+        }
+
         public void DrawGrid() {
             _grid = Instantiate(Prefabs.Grid, transform).GetComponent<Grid>();
 
             var cornersWorldSpace = GetComponent<PolygonCollider2D>()
                 .points.Select(p => transform.TransformPoint(p))
-                .Select(p => new Vector2(p.x, p.y))
+                .Select(p => new Vector3(p.x, p.y))
                 .ToArray();
 
             _grid.Draw(cornersWorldSpace, SideTiles);

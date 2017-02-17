@@ -1,5 +1,6 @@
 ﻿using System;
 using Assets.Scripts.Buildings;
+using Assets.Scripts.Interface;
 using Assets.Scripts.Utils;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -23,12 +24,18 @@ namespace Assets.Scripts.Game_Controllers.Game_Modes {
         //private int _time;
         private bool _canBeBuilt = true;
 
+        /// <summary>
+        /// Map, on which the building shall be built
+        /// </summary>
+        private Map _map;
 
         /// <summary>
         /// Initialize the mode to create a building of type buildingType
         /// </summary>
         /// <param name="buildingType">Type of building player wishes to create</param>
         public BuildingMode(Type buildingType) {
+            _map = Controllers.CurrentCityController.MapInstance;
+
             ToBeBuiltType = buildingType;
             //Create a sprite of given type that hovers after cursor
             SetPreview();
@@ -59,8 +66,7 @@ namespace Assets.Scripts.Game_Controllers.Game_Modes {
         public void LeftMouseClicked() {
             if (_canBeBuilt && _preview.Collides == 0) {
                 // get mouse position and create a building of desired type placed by the cursor
-                Controllers.CurrentBuildingManager.Build(ToBeBuiltType,
-                    new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0));
+                Controllers.CurrentBuildingManager.Build(ToBeBuiltType, _map.SnapMouse());
                 // return to default mode
                 Exit();
             } else {
@@ -75,10 +81,8 @@ namespace Assets.Scripts.Game_Controllers.Game_Modes {
             // Check if preview exists
             if (_preview == null) return;
 
-            // if it does, place it by the mouse cursor
-            var previewPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            previewPosition.z = 0;
-            _preview.transform.position = previewPosition;
+            // if it does, place it by the mouse cursor snapped to grid
+            _preview.transform.position = _map.SnapMouse();
 
             _canBeBuilt =
                 Controllers.CurrentCityController.MyInfo.SufficientResources(
@@ -108,15 +112,13 @@ namespace Assets.Scripts.Game_Controllers.Game_Modes {
             _preview.SetSprite(ToBeBuiltType);
 
             // place it by the mouse cursor
-            var buildingPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            buildingPosition.z = 0;
-            _preview.transform.position = Camera.main.ScreenToWorldPoint(buildingPosition);
+            var buildingPosition = _map.SnapMouse();
+            _preview.transform.position = buildingPosition;
             // make the preview a child of map
-            _preview.transform.SetParent(Controllers.CurrentCityController.MapInstance.transform, true);
+            _preview.transform.SetParent(gameObject.transform, true);
             // change size of the sprite
 
-            SpicyCollider.AddCollider(gameObject, new Vector2(2, 1), Camera.main.ScreenToWorldPoint(buildingPosition),
-                Controllers.CurrentCityController.MapInstance.transform);
+            SpicyCollider.AddCollider(gameObject, new Vector2(2, 1), buildingPosition, _map.transform);
             SpicyCollider.AddFakeRigidBody(gameObject);
 
             Util.Rescale(_preview.GetComponent<SpriteRenderer>(), 60, 60);

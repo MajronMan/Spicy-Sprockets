@@ -22,7 +22,8 @@ namespace Assets.Scripts.Game_Controllers {
         /// </summary>
         public Info MyInfo;
 
-        private const int MapSideTiles = 40;
+        private const int MapSize = 100;
+        private const int MapSideTiles = 5;
 
         /// <summary>
         /// Defines what happens when a new city is created
@@ -38,8 +39,8 @@ namespace Assets.Scripts.Game_Controllers {
             // set desired map size
             Util.Rescale(
                 MapInstance.GetComponent<SpriteRenderer>(),
-                Sprites.PixelsPerUnit * MapSideTiles,
-                Sprites.PixelsPerUnit * MapSideTiles);
+                Sprites.PixelsPerUnit * MapSize,
+                Sprites.PixelsPerUnit * MapSize);
 
             MapInstance.SideTiles = MapSideTiles;
             MapInstance.DrawGrid();
