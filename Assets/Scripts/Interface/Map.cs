@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Assets.Scripts.Game_Controllers;
 using Assets.Scripts.ResourcePools;
+using Assets.Static;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.Scripts.Interface {
     /// <summary>
@@ -13,6 +16,23 @@ namespace Assets.Scripts.Interface {
         /// </summary>
         public List<ResourcePool> Pools = new List<ResourcePool>();
 
+        private Grid _grid;
+        private static int _sideTiles = 10;
+
+        public void DrawGrid() {
+            _grid = Instantiate(Prefabs.Grid, transform).GetComponent<Grid>();
+            _grid.Draw(
+                GetComponent<PolygonCollider2D>()
+                    .points.Select(p => transform.TransformPoint(p))
+                    .Select(p => new Vector2(p.x, p.y))
+                    .ToArray(),
+                _sideTiles);
+        }
+
+        public bool ToggleGrid() {
+            return _grid.ToggleVisibility();
+        }
+
         public void OnMouseDown() {
             //behave properly according to game mode
             if (Input.GetMouseButtonDown(0)) {
@@ -23,7 +43,6 @@ namespace Assets.Scripts.Interface {
                 Controllers.CurrentGameMode.RightMouseClicked();
                 InterfaceUtils.CreatePopup(this);
             }
-
         }
 
         public void OnMouseOver() {

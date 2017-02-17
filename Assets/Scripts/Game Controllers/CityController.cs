@@ -45,6 +45,7 @@ namespace Assets.Scripts.Game_Controllers {
             {
                 Debug.Log("Cannot instantiate map from Prefabs.Map. Exception was \n"+ e.StackTrace);
             }
+            MapInstance.DrawGrid();
            
             // create a building manager for this city
             var newGameObject = new GameObject("Building Manager", typeof(BuildingManager));

@@ -11,6 +11,8 @@ namespace Assets.Static {
 
         private static string _root = @"Root";
         private static string _map = @"Map";
+        private static string _grid = @"Grid";
+        private static string _gridLine = @"GridLine";
         private static string _canvas = @"CanvasPrefab";
         private static string _building = @"Building";
         private static string _panel = @"GenericPanel";
@@ -37,10 +39,21 @@ namespace Assets.Static {
         }
 
         /// <summary>
-        /// path of main map prefab
+        /// Path of main map prefab
         /// </summary>
         public static string Map {
             get { return Prefabs + _map; }
+        }
+
+        public static string Grid {
+            get { return Prefabs + _grid; }
+        }
+
+        /// <summary>
+        /// Path of lines which make up grid on local map
+        /// </summary>
+        public static string GridLine {
+            get { return Prefabs + _gridLine; }
         }
 
         /// <summary>
@@ -99,15 +112,26 @@ namespace Assets.Static {
         public static string Popup {
             get { return Prefabs + _popup; }
         }
-        public static string BuildButton { get {return Prefabs + _buildButton;} }
 
-        public static string ExitablePanel { get {return Prefabs + _exitablePanel;} }
+        public static string BuildButton {
+            get { return Prefabs + _buildButton; }
+        }
 
-        public static string TradeButton { get { return Prefabs + _tradeButton; } }
+        public static string ExitablePanel {
+            get { return Prefabs + _exitablePanel; }
+        }
 
-        public static string Slider { get { return Prefabs + _slider; } }
+        public static string TradeButton {
+            get { return Prefabs + _tradeButton; }
+        }
 
-        public static string TextButton { get { return Prefabs + _textButton;  } }
+        public static string Slider {
+            get { return Prefabs + _slider; }
+        }
+
+        public static string TextButton {
+            get { return Prefabs + _textButton; }
+        }
     }
 
     /// <summary>
