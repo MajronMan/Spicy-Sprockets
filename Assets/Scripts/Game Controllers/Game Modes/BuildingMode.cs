@@ -2,6 +2,7 @@
 using Assets.Scripts.Buildings;
 using Assets.Scripts.Interface;
 using Assets.Scripts.Utils;
+using Assets.Static;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -121,7 +122,7 @@ namespace Assets.Scripts.Game_Controllers.Game_Modes {
             SpicyCollider.AddCollider(gameObject, new Vector2(2, 1), buildingPosition, _map.transform);
             SpicyCollider.AddFakeRigidBody(gameObject);
 
-            Util.Rescale(_preview.GetComponent<SpriteRenderer>(), 60, 60);
+            Sprites.Rescale(_preview.GetComponent<SpriteRenderer>(), 0.6f, 0.6f);
         }
 
         /// <summary>

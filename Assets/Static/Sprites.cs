@@ -20,6 +20,29 @@ namespace Assets.Static {
             get { return _pixelsPerUnit; }
         }
 
+        /// <summary>
+        /// Resize Sprite instance attached to renderer parameter
+        /// </summary>
+        /// <param name="renderer">Renderer which displays the sprite</param>
+        /// <param name="xUnits">Width in units</param>
+        /// <param name="yUnits">Height in units</param>
+        /// <returns>The created building</returns>
+        public static void Rescale(SpriteRenderer renderer, float xUnits, float yUnits) {
+            // Get the sprite we want to rescale
+            var sprite = renderer.sprite;
+            if (sprite == null) return;
+
+            // Original resource size
+            float resX = sprite.rect.width, resY = sprite.rect.height;
+
+            // Desired scale
+            float scaleX = xUnits / resX * PixelsPerUnit, scaleY = yUnits / resY * PixelsPerUnit;
+
+            // Actual scaling
+            renderer.gameObject.transform.localScale = new Vector3(scaleX, scaleY, 0);
+        }
+
+
         private static Sprite LoadOrGetCached<TKey>(
             Dictionary<TKey, Sprite> cache, TKey key, string loadPath
         ) {

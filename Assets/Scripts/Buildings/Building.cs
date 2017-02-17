@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.Game_Controllers;
 using Assets.Scripts.Utils;
+using Assets.Static;
 using UnityEngine;
 
 namespace Assets.Scripts.Buildings {
@@ -37,7 +38,7 @@ namespace Assets.Scripts.Buildings {
             Renderer.sprite = Controllers.ConstantData.BuildingData[type];
             Renderer.sortingOrder = 1;
 
-            Util.Rescale(Renderer, (int) Size * 20, (int) Size * 20);
+            Sprites.Rescale(Renderer, ((int) Size) * 0.2f, ((int) Size) * 0.2f);
         }
 
         void OnCollisionExit2D() {

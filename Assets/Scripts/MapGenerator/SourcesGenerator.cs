@@ -67,7 +67,7 @@ namespace Assets.Scripts.MapGenerator {
 
                 // place it over the map
                 renderer.sortingOrder = 1;
-                Util.Rescale(renderer, 20, 20);
+                Sprites.Rescale(renderer, 0.2f, 0.2f);
                 theMap.Pools.Add(ret);
             }
 
@@ -98,7 +98,7 @@ namespace Assets.Scripts.MapGenerator {
             renderer.sprite = Sprites.ResourcePoolSprite(ret.Resource);
             // place it over the map
             renderer.sortingOrder = 1;
-            Util.Rescale(renderer, 50, 50);
+            Sprites.Rescale(renderer, 0.5f, 0.5f);
 
             theMap.Pools.Add(ret);
             return ret;

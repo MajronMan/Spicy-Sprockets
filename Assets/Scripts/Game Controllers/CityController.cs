@@ -37,10 +37,7 @@ namespace Assets.Scripts.Game_Controllers {
             MapInstance.name = "Map";
 
             // set desired map size
-            Util.Rescale(
-                MapInstance.GetComponent<SpriteRenderer>(),
-                Sprites.PixelsPerUnit * MapSize,
-                Sprites.PixelsPerUnit * MapSize);
+            Sprites.Rescale(MapInstance.GetComponent<SpriteRenderer>(), MapSize, MapSize);
 
             MapInstance.SideTiles = MapSideTiles;
             MapInstance.DrawGrid();
