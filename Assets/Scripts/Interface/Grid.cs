@@ -96,23 +96,6 @@ namespace Assets.Scripts.Interface {
             return (int) ((orthoProjection.magnitude - gridSkewAmendment) / directionTileLen);
         }
 
-        /// <summary>
-        /// Convenience, which takes mouse position pos,
-        /// sets pos.z = 0 and calls GridToWorld(WorldToGrid(pos))
-        /// </summary>
-        /// <returns>i/j grid index
-        /// <code>
-        /// Directions:
-        ///   i \    j /\
-        ///     \/     /
-        /// </code>
-        /// </returns>
-        public Vector3 SnapMouse() {
-            Vector3 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            mouse.z = 0;
-            return GridToWorld(WorldToGrid(mouse));
-        }
-
         /// <returns>
         /// Position of the left corner of the cell with index i / j
         /// <code>
@@ -135,6 +118,23 @@ namespace Assets.Scripts.Interface {
         /// </returns>
         public Vector3 GridToWorld(IntVector2 index) {
             return GridToWorld(index.X, index.Y);
+        }
+
+        /// <summary>
+        /// Convenience for GridToWorld(WorldToGrid(pos))
+        /// </summary>
+        public Vector3 Snap(Vector3 position) {
+            return GridToWorld(WorldToGrid(position));
+        }
+
+        /// <summary>
+        /// Convenience, which takes mouse position pos,
+        /// sets pos.z = 0 and calls Snap(pos)
+        /// </summary>
+        public Vector3 SnapMouse() {
+            Vector3 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mouse.z = 0;
+            return Snap(mouse);
         }
 
 

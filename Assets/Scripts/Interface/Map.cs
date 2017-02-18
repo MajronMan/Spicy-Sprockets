@@ -15,11 +15,18 @@ namespace Assets.Scripts.Interface {
 
         public int SideTiles { get; set; }
 
+
         /// <summary>
         /// All sources present on this map
         /// </summary>
         public List<ResourcePool> Pools = new List<ResourcePool>();
 
+        /// <inheritdoc cref="Grid.Snap"/>
+        public Vector3 Snap(Vector3 position) {
+            return _grid.Snap(position);
+        }
+
+        /// <inheritdoc cref="Grid.SnapMouse"/>
         public Vector3 SnapMouse() {
             return _grid.SnapMouse();
         }
@@ -54,6 +61,7 @@ namespace Assets.Scripts.Interface {
             return _grid.ToggleVisibility();
         }
 
+
         public void OnMouseDown() {
             //behave properly according to game mode
             if (Input.GetMouseButtonDown(0)) {
@@ -64,10 +72,6 @@ namespace Assets.Scripts.Interface {
                 Controllers.CurrentGameMode.RightMouseClicked();
                 InterfaceUtils.CreatePopup(this);
             }
-        }
-
-        public void OnMouseOver() {
-            //just a hook
         }
     }
 }
