@@ -1,5 +1,4 @@
-﻿using System;
-using Assets.Scripts.Interface;
+﻿using Assets.Scripts.Interface;
 using Assets.Scripts.MapGenerator;
 using Assets.Scripts.Utils;
 using Assets.Static;
@@ -23,7 +22,7 @@ namespace Assets.Scripts.Game_Controllers {
         public Info MyInfo;
 
         private const int MapSize = 100;
-        private const int MapSideTiles = 5;
+        private const int MapSideTiles = 100;
 
         /// <summary>
         /// Defines what happens when a new city is created
