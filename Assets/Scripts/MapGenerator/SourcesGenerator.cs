@@ -47,7 +47,8 @@ namespace Assets.Scripts.MapGenerator {
             int magnitude = (parent.Magnitude + 1) / 2;
 
             //creating a source
-            var gameObject = new GameObject(parent.Resource.Name + "pool", typeof(ResourcePool), typeof(SpriteRenderer));
+            var gameObject = new GameObject(parent.Resource.Name + " Pool", typeof(ResourcePool), typeof(SpriteRenderer));
+            gameObject.transform.SetParent(parent.transform);
             var renderer = gameObject.GetComponent<SpriteRenderer>();
             var ret = gameObject.GetComponent<ResourcePool>();
             ret.Resource = parent.Resource;

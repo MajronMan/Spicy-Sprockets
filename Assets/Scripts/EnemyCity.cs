@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Assets.Scripts {
     public class EnemyCity : MonoBehaviour {
-        public Dictionary<ResourceType, Resource> Resources;
+        public Dictionary<ResourceType, Commodity> Resources;
         public HashSet<ResourceType> Needs;
         public int Wealth;
         public List<Building> Buildings;

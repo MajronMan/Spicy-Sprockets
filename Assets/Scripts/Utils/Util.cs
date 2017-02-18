@@ -5,7 +5,10 @@ namespace Assets.Scripts.Utils {
     /// <summary>
     /// General tools
     /// </summary>
-    public static class Util {
+    public static class Util
+    {
+        private static int _objectCount;
+
         /// <summary>
         /// Change size of the object to match desired size(in pixels) 
         /// </summary>
@@ -38,5 +41,26 @@ namespace Assets.Scripts.Utils {
             rectTransform.anchorMin = how.position;
             rectTransform.offsetMax = rectTransform.offsetMin = Vector2.zero;
         }
+
+        public static T NewMonoBehaviour<T>(string s, Transform parent = null)
+        {
+            var newGameObject = new GameObject(s, typeof(T));
+            if (parent != null)
+            {
+                newGameObject.transform.SetParent(parent);
+            }
+            return newGameObject.GetComponent<T>();
+        }
+        public static T NewMonoBehaviour<T>()
+        {
+            return NewMonoBehaviour<T>("Mono no. " + _objectCount++);
+        }
+
+        public static T NewMonoBehaviour<T>(Transform parent)
+        {
+            return NewMonoBehaviour<T>("Mono no. " + _objectCount++, parent);
+        }
+
+
     }
 }
