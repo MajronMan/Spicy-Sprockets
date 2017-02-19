@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
+using System.Linq;
 using Assets.Scripts.Game_Controllers;
 using Assets.Scripts.Res;
 using Assets.Scripts.Utils;
@@ -69,11 +70,14 @@ namespace Assets.Scripts.Interface {
         /// </summary>
         private List<GameObject> Global = new List<GameObject>();
 
+        //All available interfaces
+        private enum Interface {Local, Global};
+
         public void Start ()
         {
             CreateInterface(); //Creates all the interfaces
 
-            LocalMap = GameObject.Find("Map"); //Finds local map (so we can disable its sprite renderer)
+            LocalMap = GameObject.Find("Map"); //Finds local map (so we can disable its sprite renderer)        
 
             Local.Add(MainPanel);
             Local.Add(ResourcePanel);
@@ -88,7 +92,7 @@ namespace Assets.Scripts.Interface {
             Global.Add(TraitsPanel);
             Global.Add(OurCity); //Should be some list of all cities TODO
 
-            SwitchToInterface("Local"); //Starting at local interface (can change) - means that any other interfaces are created but deactivated
+            SwitchToInterface(Interface.Local); //Starting at local interface (can change) - means that any other interfaces are created but deactivated
         }
 
        /// <summary>
@@ -105,14 +109,14 @@ namespace Assets.Scripts.Interface {
         /// <summary>
         /// Activates 'name' interface and deactivates others. Important note: Firstly deactivating, later activating (for repeating elements)
         /// </summary>
-        /// <param name="name"></param>
-        private void SwitchToInterface(string name)
+        /// <param name="name">Defines which interface will be active</param>
+        private void SwitchToInterface(Interface name)
         {
             localMapChildren = LocalMap.GetComponentsInChildren<SpriteRenderer>(); //Checks whether any new children of local map have been found
             //There should be something like that in global too TODO
             switch (name)
             {
-                case "Local":
+                case Interface.Local:
                     foreach (var item in Global)
                     {       
                         item.SetActive(false); //Produces lags after some time (no idea why). TODO
@@ -130,12 +134,15 @@ namespace Assets.Scripts.Interface {
 
                     //TODO: Deactivate collider(?) so the local/global map won't be clickable
 
+                    GlobalMapButton.GetComponent<Button>().onClick.AddListener(() => SwitchToInterface(Interface.Global)); //Changing listener of globalmapbutton
+
+
                     var globalButton = GlobalMapButton.GetComponent<Button>();
                     globalButton.onClick.AddListener(() => SwitchToInterface("Global")); //Changing listener of globalmapbutton
                     globalButton.onClick.AddListener(() => { Controllers.CurrentCityController.MapInstance.DisableGrid(); });
                     break;
 
-                case "Global":
+                case Interface.Global:
                     foreach (var item in Local)
                     {
                         item.SetActive(false);
@@ -151,7 +158,7 @@ namespace Assets.Scripts.Interface {
 
                     GlobalMap.GetComponent<SpriteRenderer>().enabled = true; //Activating global map sprite renderer
 
-                    GlobalMapButton.GetComponent<Button>().onClick.AddListener(() => SwitchToInterface("Local")); //Changing listener of globalmapbutton
+                    GlobalMapButton.GetComponent<Button>().onClick.AddListener(() => SwitchToInterface(Interface.Local)); //Changing listener of globalmapbutton
 
                     break;
             }
