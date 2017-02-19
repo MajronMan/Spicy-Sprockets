@@ -6,6 +6,8 @@ namespace Assets.Static {
     public static class Prefabs {
         private static GameObject _root;
         private static GameObject _map;
+        private static GameObject _grid;
+        private static GameObject _gridLine;
         private static GameObject _canvas;
         private static GameObject _building;
         private static GameObject _panel;
@@ -23,27 +25,50 @@ namespace Assets.Static {
         private static GameObject _tradeButton;
         private static GameObject _slider;
         private static GameObject _textButton;
+        private static GameObject _toggle;
         private static GameObject _city;
+        private static GameObject _dialoguePanel;
+        private static GameObject _eventPanel;
+        private static GameObject _optionButton;
 
         /// <summary>
         /// Base game object with event system and camera
         /// </summary>
-        public static GameObject Root { get { return _root ?? (_root = Loader.LoadPrefab(PrefabPaths.Root)); }}
+        public static GameObject Root {
+            get { return _root ?? (_root = Loader.LoadPrefab(PrefabPaths.Root)); }
+        }
 
         /// <summary>
         /// Main map prefab
         /// </summary>
-        public static GameObject Map { get { return _map ?? (_map = Loader.LoadPrefab(PrefabPaths.Map)); } }
+        public static GameObject Map {
+            get { return _map ?? (_map = Loader.LoadPrefab(PrefabPaths.Map)); }
+        }
+
+        public static GameObject Grid {
+            get { return _grid ?? (_grid = Loader.LoadPrefab(PrefabPaths.Grid)); }
+        }
+
+        /// <summary>
+        /// One of the lines that make up grid on local map
+        /// </summary>
+        public static GameObject GridLine {
+            get { return _gridLine ?? (_gridLine = Loader.LoadPrefab(PrefabPaths.GridLine)); }
+        }
 
         /// <summary>
         /// Base of UI
         /// </summary>
-        public static GameObject Canvas { get { return _canvas ?? (_canvas = Loader.LoadPrefab(PrefabPaths.Canvas)); }}
+        public static GameObject Canvas {
+            get { return _canvas ?? (_canvas = Loader.LoadPrefab(PrefabPaths.Canvas)); }
+        }
 
         /// <summary>
         /// Generic building prefab
         /// </summary>
-        public static GameObject Building { get { return _building ?? (_building = Loader.LoadPrefab(PrefabPaths.Building)); }}
+        public static GameObject Building {
+            get { return _building ?? (_building = Loader.LoadPrefab(PrefabPaths.Building)); }
+        }
 
         /// <summary>
         /// Basic UI panel
@@ -78,7 +103,15 @@ namespace Assets.Static {
 
         public static GameObject Popup { get { return _popup ?? (_popup = Loader.LoadPrefab(PrefabPaths.Popup)); }}
 
+        public static GameObject Toggle { get { return _toggle ?? (_toggle = Loader.LoadPrefab(PrefabPaths.Toggle)); } }
+
         public static GameObject City { get { return _city ?? (_city = Loader.LoadPrefab(PrefabPaths.City)); } }
+
+        public static GameObject DialoguePanel { get { return _dialoguePanel ?? (_dialoguePanel = Loader.LoadPrefab(PrefabPaths.DialoguePanel)); } }
+
+        public static GameObject EventPanel { get { return _eventPanel ?? (_eventPanel = Loader.LoadPrefab(PrefabPaths.EventPanel)); } }
+
+        public static GameObject OptionButton { get { return _optionButton ?? (_optionButton = Loader.LoadPrefab(PrefabPaths.OptionButton)); } }
 
         public static Dictionary<string, GameObject> PathsToObjects = new Dictionary<string, GameObject>()
         {
@@ -94,7 +127,10 @@ namespace Assets.Static {
             { PrefabPaths.CasualButton, CasualButton },
             { PrefabPaths.ResourceIndicator, ResourceIndicator },
             { PrefabPaths.GridGroupPanel, GridGroupPanel },
-            { PrefabPaths.City, City }
+            { PrefabPaths.City, City },
+            { PrefabPaths.DialoguePanel, DialoguePanel },
+            { PrefabPaths.EventPanel, EventPanel },
+            { PrefabPaths.OptionButton, OptionButton }
         };
     }
 }

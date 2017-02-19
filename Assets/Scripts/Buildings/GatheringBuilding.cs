@@ -101,11 +101,12 @@ namespace Assets.Scripts.Buildings {
         public IEnumerator Gather() {
             while (true) {
                 //For each source that is in range, get amount=magnitude/distance of resource
-                Controllers.CurrentInfo[GatheredResource] += (int)
-                (from source in Sources
-                    let distance = Vector3.Distance(source.gameObject.transform.position,
-                        gameObject.transform.position)
-                    select source.Magnitude / distance).Sum();
+                Controllers.CurrentInfo[GatheredResource].Add(
+                    (int) (
+                        from source in Sources
+                        let distance = Vector3.Distance(source.gameObject.transform.position,
+                            gameObject.transform.position)
+                        select source.Magnitude/distance).Sum());
                 //wait for next turn of gathering
                 yield return new WaitForSeconds(1.0f);
             }

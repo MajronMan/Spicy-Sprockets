@@ -34,8 +34,7 @@ namespace Assets.Scripts.Game_Controllers {
             var buildingGameObject = Instantiate(Prefabs.Building);
             var newBuilding = buildingGameObject.AddComponent(buildingType) as Building;
 
-            // building should appear at given location on screen, which is not the same as its world location
-            var buildingPosition = Camera.main.ScreenToWorldPoint(location);
+            var buildingPosition = location;
 
             // to set proper order of sprites rendered
             buildingPosition.z = 0;

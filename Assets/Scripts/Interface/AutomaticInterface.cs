@@ -1,31 +1,33 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Game_Controllers;
 using Assets.Scripts.Res;
 using Assets.Scripts.Utils;
 using Assets.Static;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace Assets.Scripts.Interface
-{
-    public class AutomaticInterface : MonoBehaviour
-    {
+namespace Assets.Scripts.Interface {
+    public class AutomaticInterface : MonoBehaviour {
         /// <summary>
         /// The panel which allows performing most of actions in game
         /// </summary>
         public GameObject MainPanel;
+
         private Rect _mainPanelRect = new Rect(0.9f, 0.3f, 0.1f, 0.7f);
+
         /// <summary>
         /// Panel with amounts of resources in current city
         /// </summary>
         public GameObject ResourcePanel;
+
         private Rect _resourcePanelRect = new Rect(0.1f, 0, 0.75f, 0.05f);
+
         /// <summary>
         /// Panel which shows minimap
         /// </summary>
         public GameObject MiniMapPanel;
+
         private Rect _miniMapPanelRect = new Rect(0.9f, 0, 0.1f, 0.25f);
 
         /// <summary>
@@ -134,6 +136,10 @@ namespace Assets.Scripts.Interface
 
                     GlobalMapButton.GetComponent<Button>().onClick.AddListener(() => SwitchToInterface(Interface.Global)); //Changing listener of globalmapbutton
 
+
+                    var globalButton = GlobalMapButton.GetComponent<Button>();
+                    globalButton.onClick.AddListener(() => SwitchToInterface("Global")); //Changing listener of globalmapbutton
+                    globalButton.onClick.AddListener(() => { Controllers.CurrentCityController.MapInstance.DisableGrid(); });
                     break;
 
                 case Interface.Global:
@@ -191,6 +197,26 @@ namespace Assets.Scripts.Interface
             PeopleAndMoney();
         }
 
+        private void CreateToggleGridButton()
+        {
+            var gridToggleButton = Instantiate(Prefabs.TextButton);
+
+            Util.SetUIObjectPosition(gridToggleButton, new Rect(0.0f, 0.75f, 1.0f, 0.25f), MiniMapPanel.transform);
+
+            gridToggleButton.name = "GridToggleButton";
+
+            var text = gridToggleButton.GetComponentInChildren<Text>();
+            if (text == null) Debug.Log("Text component not found in the hierarchy of TextButton prefab");
+
+            text.text = "Toggle grid";
+            text.resizeTextMaxSize = 12;
+
+            var button = gridToggleButton.GetComponentInChildren<Button>();
+            if (button == null) Debug.Log("Button component not found in the hierarchy of TextButton prefab");
+
+            button.onClick.AddListener(() => { Controllers.CurrentCityController.MapInstance.ToggleGrid(); });
+        }
+
         private void CreateLocalButtons()
         {
             _buttonPanels = new Dictionary<string, ExitablePanel>
@@ -199,12 +225,11 @@ namespace Assets.Scripts.Interface
                 {"Character", CreateExitablePanel(Prefabs.Panel)},
                 {"Diplomacy", CreateExitablePanel(Prefabs.Panel)},
                 {"Law", CreateExitablePanel(Prefabs.Panel)},
-                {"Science", CreateExitablePanel(Prefabs.Panel)},
+                {"Science", CreateExitablePanel(Prefabs.VerticalGroupPanel)},
                 {"Build", CreateExitablePanel(Prefabs.GridGroupPanel)},
                 {"Trade", CreateExitablePanel(Prefabs.Panel)}
             };
-            foreach (var namesToPanels in _buttonPanels)
-            {
+            foreach (var namesToPanels in _buttonPanels) {
                 var panel = namesToPanels.Value;
                 panel.name = namesToPanels.Key + "Panel";
                 Util.SetUIObjectPosition(panel.gameObject, _centerRect, transform);
@@ -213,10 +238,8 @@ namespace Assets.Scripts.Interface
                 buttonGameObject.name = namesToPanels.Key + "Button";
                 buttonGameObject.transform.SetParent(MainPanel.transform);
                 AddNotRotatingTextToButton(buttonGameObject, namesToPanels.Key);
-                buttonGameObject.GetComponent<Button>().onClick.AddListener(() =>
-                {
-                    foreach (var pair in _buttonPanels)
-                    {
+                buttonGameObject.GetComponent<Button>().onClick.AddListener(() => {
+                    foreach (var pair in _buttonPanels) {
                         pair.Value.gameObject.SetActive(false);
                     }
                     panel.gameObject.SetActive(true);
@@ -226,6 +249,10 @@ namespace Assets.Scripts.Interface
 
             FillBuildingsPanel();
             _buttonPanels["Trade"].Content.AddComponent<Trade>();
+
+            CreateToggleGridButton();
+
+            FillSciencePanel();
 
             //There is no need for another method for repeating elements. Simply adding element to both lists (firstly it's deactivated and later activated - so no problem here)
             GlobalMapButton = Instantiate(Prefabs.CasualButton);
@@ -278,8 +305,7 @@ namespace Assets.Scripts.Interface
             return exitable;
         }
 
-        private void AddNotRotatingTextToButton(GameObject button, string text)
-        {
+        private void AddNotRotatingTextToButton(GameObject button, string text) {
             var buttonRectTransform = button.GetComponent<RectTransform>();
             var textGO = Instantiate(Prefabs.NotRotatingText);
 
@@ -292,13 +318,11 @@ namespace Assets.Scripts.Interface
             textRectTransform.offsetMin = -buttonRectTransform.sizeDelta;
         }
 
-        private void CreateResourcePanel()
-        {
+        private void CreateResourcePanel() {
             ResourcePanel = Instantiate(Prefabs.HorizontalGroupPanel);
             Util.SetUIObjectPosition(ResourcePanel, _resourcePanelRect, transform);
 
-            foreach (var type in Controllers.ConstantData.ResourceTypes)
-            {
+            foreach (var type in Controllers.ConstantData.ResourceTypes) {
                 var indicator = Instantiate(Prefabs.ResourceIndicator);
                 indicator.transform.SetParent(ResourcePanel.transform);
                 indicator.GetComponentInChildren<Image>().sprite = Sprites.ResourceSprite(type);
@@ -309,23 +333,35 @@ namespace Assets.Scripts.Interface
         }
 
 
-        public static Rect CenterOfScreenRect(float width, float height)
-        {
-            var relativeWidth = width/Screen.width;
-            var relativeHeight = height/Screen.height;
-            var posx = (Screen.width - width)/(2.0f * Screen.width);
-            var posy = (Screen.height - height)/(2.0f * Screen.height);
+        public static Rect CenterOfScreenRect(float width, float height) {
+            var relativeWidth = width / Screen.width;
+            var relativeHeight = height / Screen.height;
+            var posx = (Screen.width - width) / (2.0f * Screen.width);
+            var posy = (Screen.height - height) / (2.0f * Screen.height);
             return new Rect(posx, posy, relativeWidth, relativeHeight);
         }
 
-        private void FillBuildingsPanel()
-        {
+        private void FillBuildingsPanel() {
             var buildingPanel = _buttonPanels["Build"];
-            foreach (var building in Controllers.ConstantData.BuildingCosts.Keys)
-            {
+            foreach (var building in Controllers.ConstantData.BuildingCosts.Keys) {
                 var button = Instantiate(Prefabs.BuildButton);
                 button.transform.SetParent(buildingPanel.Content.transform);
                 button.GetComponent<BuildButton>().SetUp(building, buildingPanel.gameObject);
+            }
+        }
+
+        private void FillSciencePanel()
+        {
+            var sciencePanel = _buttonPanels["Science"];
+            sciencePanel.Content.GetComponent<Image>().color = new Color(1, 1, 1, 0.5f);
+            foreach (var branch in Controllers.Science.Branches)
+            {
+                var button = Instantiate(Prefabs.Toggle);
+                button.transform.SetParent(sciencePanel.Content.transform);
+                button.GetComponentInChildren<Text>().text = branch.name;
+
+                var toggle = button.GetComponent<Toggle>();
+                toggle.onValueChanged.AddListener((value => branch.setFinanced(value)));
             }
         }
 

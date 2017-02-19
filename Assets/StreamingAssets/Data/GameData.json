@@ -1,0 +1,103 @@
+{
+	"ResourceTypes": [
+		{
+			"Name": "coal",
+			"Mass": 87,
+			"Volume": 100,
+			"DefaultPrice": 10
+		},
+		{
+			"Name": "mineral",
+			"Mass": 3,
+			"Volume": 1,
+			"DefaultPrice": 130
+		},
+		{
+			"Name": "metal",
+			"Mass": 8557,
+			"Volume": 10550,
+			"DefaultPrice": 115
+		},
+		{
+			"Name": "wood",
+			"Mass": 1237,
+			"Volume": 1550,
+			"DefaultPrice": 40
+		},
+		{
+			"Name": "food",
+			"Mass": 123,
+			"Volume": 100,
+			"DefaultPrice": 12
+		},
+		{
+			"Name": "stone",
+			"Mass": 8557,
+			"Volume": 2550,
+			"DefaultPrice": 431
+		},
+	],
+	"InitialResources": [
+		{
+			"Type": "coal",
+			"Amount": 155
+		},
+		{
+			"Type": "mineral",
+			"Amount": 555
+		},
+		{
+			"Type": "metal",
+			"Amount": 855
+		},
+		{
+			"Type": "wood",
+			"Amount": 500
+		},
+		{
+			"Type": "food",
+			"Amount": 550
+		},
+		{
+			"Type": "stone",
+			"Amount": 855
+		}
+	],
+	"BuildingTypes": [
+		"ProductionBuilding",
+		"StorageBuilding",
+		"ResidentialBuilding"
+	],
+	"BuildingCosts": {
+		"ProductionBuilding": [
+			{
+				"Type": "wood",
+				"Amount": 7
+			},
+			{
+				"Type": "stone",
+				"Amount": 16
+			}
+		],
+		"StorageBuilding": [
+			{
+				"Type": "wood",
+				"Amount": 7
+			},
+			{
+				"Type": "stone",
+				"Amount": 25
+			}
+		],
+		"ResidentialBuilding": [
+			{
+				"Type": "wood",
+				"Amount": 11
+			},
+			{
+				"Type": "stone",
+				"Amount": 18
+			}
+		]
+	}
+}

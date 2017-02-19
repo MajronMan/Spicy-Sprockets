@@ -15,7 +15,7 @@ namespace Assets.Scripts.Interface
         public Text MaxText;
         public ResourceType Type;
         public Money MoneyRef;
-        public Population PopulationRef;
+        public PopulationManager PopulationRef;
 
         public void Start ()
         {

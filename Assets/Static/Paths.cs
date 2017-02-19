@@ -11,6 +11,8 @@ namespace Assets.Static {
 
         private static string _root = @"Root";
         private static string _map = @"Map";
+        private static string _grid = @"Grid";
+        private static string _gridLine = @"GridLine";
         private static string _canvas = @"CanvasPrefab";
         private static string _building = @"Building";
         private static string _panel = @"GenericPanel";
@@ -28,7 +30,11 @@ namespace Assets.Static {
         private static string _tradeButton = @"TradeButton";
         private static string _slider = @"Slider";
         private static string _textButton = @"TextButton";
+        private static string _toggle = @"Toggle";
         private static string _city = @"City";
+        private static string _dialoguePanel = @"DialoguePanel";
+        private static string _eventPanel = @"EventPanel";
+        private static string _optionButton = @"OptionButton";
 
         /// <summary>
         /// Path of base game object with event system and camera
@@ -38,10 +44,21 @@ namespace Assets.Static {
         }
 
         /// <summary>
-        /// path of main map prefab
+        /// Path of main map prefab
         /// </summary>
         public static string Map {
             get { return Prefabs + _map; }
+        }
+
+        public static string Grid {
+            get { return Prefabs + _grid; }
+        }
+
+        /// <summary>
+        /// Path of lines which make up grid on local map
+        /// </summary>
+        public static string GridLine {
+            get { return Prefabs + _gridLine; }
         }
 
         /// <summary>
@@ -106,15 +123,31 @@ namespace Assets.Static {
             get { return Prefabs + _city; }
         }
 
-        public static string BuildButton { get {return Prefabs + _buildButton;} }
+        public static string BuildButton {
+            get { return Prefabs + _buildButton; }
+        }
 
-        public static string ExitablePanel { get {return Prefabs + _exitablePanel;} }
+        public static string ExitablePanel {
+            get { return Prefabs + _exitablePanel; }
+        }
 
-        public static string TradeButton { get { return Prefabs + _tradeButton; } }
+        public static string TradeButton {
+            get { return Prefabs + _tradeButton; }
+        }
 
-        public static string Slider { get { return Prefabs + _slider; } }
+        public static string Slider {
+            get { return Prefabs + _slider; }
+        }
 
         public static string TextButton { get { return Prefabs + _textButton;  } }
+
+        public static string Toggle { get { return Prefabs + _toggle; } }
+
+        public static string DialoguePanel { get { return Prefabs + _dialoguePanel; } }
+
+        public static string EventPanel { get { return Prefabs + _eventPanel; } }
+
+        public static string OptionButton { get { return Prefabs + _optionButton; } }
     }
 
     /// <summary>

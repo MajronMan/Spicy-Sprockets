@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Assets.Scripts.Game_Controllers.Game_Modes;
 using Assets.Scripts.Interface;
 using Assets.Scripts.Utils;
@@ -13,10 +14,11 @@ namespace Assets.Scripts.Game_Controllers {
 	{
 		public List<CityController> Cities = new List<CityController>();
 		public List<EnemyController> Enemies = new List<EnemyController>();
+	    public ScienceController Science;
         /// <summary>
         /// The base game object which is parent to everything
         /// </summary>
-	    public GameObject Root;
+        public GameObject Root;
         /// <summary>
         /// Where UI is drawn
         /// </summary>
@@ -24,7 +26,7 @@ namespace Assets.Scripts.Game_Controllers {
 		private IGameMode _gameMode;
 		private int _currentCity = 0;
 	    public Camera MainCamera;
-        
+
         //cannot wait until first frame with start, so calling this explicitly
         public void BeginGame() {
             CreateUI();
@@ -33,6 +35,10 @@ namespace Assets.Scripts.Game_Controllers {
             Cities.Add(cityController);
             cityController.CreateCity();
             cityController.transform.SetParent(transform, true);
+
+            var scienceObject = new GameObject("Science Controller", typeof(ScienceController));
+            Science = scienceObject.GetComponent<ScienceController>();
+            Science.transform.SetParent(transform);
             // later also add enemies
             _gameMode = new DefaultMode();
         }
@@ -48,8 +54,15 @@ namespace Assets.Scripts.Game_Controllers {
 
 	    public void Update()
         {
-            _gameMode.Update();
-
+            try
+            {
+                //It's really bad and crashes with debugger, no idea why
+                _gameMode.Update();
+            }
+            catch (NullReferenceException e)
+            {
+                Debug.Log("kurwa");
+            }
             //Now you can pause the game by pressing 'p'
             if (Input.GetKeyDown("p")) {
                 Debug.Break();
