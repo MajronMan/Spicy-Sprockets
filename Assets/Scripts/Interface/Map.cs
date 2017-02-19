@@ -34,6 +34,11 @@ namespace Assets.Scripts.Interface {
             return _grid.ToggleVisibility();
         }
 
+        public void DisableGrid()
+        {
+            _grid.gameObject.SetActive(false);
+        }
+
         public void OnMouseDown() {
             //behave properly according to game mode
             if (Input.GetMouseButtonDown(0)) {

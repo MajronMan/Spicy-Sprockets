@@ -29,40 +29,169 @@ namespace Assets.Scripts.Interface {
 
         private Rect _miniMapPanelRect = new Rect(0.9f, 0, 0.1f, 0.25f);
 
+        /// <summary>
+        /// A button that switches between maps (interfaces)
+        /// </summary>
+        public GameObject GlobalMapButton;
+        private Rect _globalMapButtonRect = new Rect(0.01f, 0.85f, 0.05f, 0.1f);
+
+        public GameObject PeopleAndMoneyPanel;
+        private Rect _peopleMoneyRect = new Rect(0, 0, 0.1f, 0.1f);
+
+        public GameObject TraitsPanel;
+        private Rect _traitsPanelRect = new Rect(0, 0.95f, 0.5f, 0.05f);
+
+        //Local map elements
+        public GameObject LocalMap;
+        public Component[] localMapChildren;
+
+        //Global map elements
+        public Map GlobalMap;
+        private IntVector2 _globalMapSize = new IntVector2(10000, 10000);
+        //TODO: Place the cities - but how to set their position relative to map?
+
+        public GameObject OurCity;
+
         private Rect _centerRect = new Rect(0.2f, 0.1f, 0.6f, 0.8f);
         private Rect _exitRect = new Rect(0, 0.95f, 0.05f, 0.05f);
         private Rect _leftHalfRect = new Rect(0, 0, 0.5f, 0.5f);
         private Rect _rightHalfRect = new Rect(0.5f, 0, 0.5f, 0.5f);
         private Rect _fullRect = new Rect(0, 0, 1, 1);
-        private Rect _peopleMoneyRect = new Rect(0, 0, 0.1f, 0.1f);
 
         private Dictionary<string, ExitablePanel> _buttonPanels;
 
-        public void Start() {
-            CreatePanels();
-            CreateButtons();
+        /// <summary>
+        /// List of local map elements (without repeating ones)
+        /// </summary>
+        private List<GameObject> Local = new List<GameObject>();
+        /// <summary>
+        /// List of global map elements (without repeating ones)
+        /// </summary>
+        private List<GameObject> Global = new List<GameObject>();
+
+        public void Start ()
+        {
+            CreateInterface(); //Creates all the interfaces
+
+            LocalMap = GameObject.Find("Map"); //Finds local map (so we can disable its sprite renderer)
+
+            Local.Add(MainPanel);
+            Local.Add(ResourcePanel);
+            Local.Add(MiniMapPanel);
+            Local.Add(PeopleAndMoneyPanel);
+            Local.Add(GlobalMapButton);
+            //TODO: Add also the panels activated through the main panel buttons (because they stay open)
+            //Or find another way like disabling buttons while some panel is open (maybe interactive button script?)
+            Global.Add(ResourcePanel);
+            Global.Add(PeopleAndMoneyPanel);
+            Global.Add(GlobalMapButton);
+            Global.Add(TraitsPanel);
+            Global.Add(OurCity); //Should be some list of all cities TODO
+
+            SwitchToInterface("Local"); //Starting at local interface (can change) - means that any other interfaces are created but deactivated
         }
 
+       /// <summary>
+       /// A method used to create all the interfaces of the game
+       /// </summary>
+        private void CreateInterface()
+        {
+            //Local Interface
+            CreateLocalInterface();
+            //Global Interface
+            CreateGlobalInterface();
+        }
 
-        private void CreatePanels() {
+        /// <summary>
+        /// Activates 'name' interface and deactivates others. Important note: Firstly deactivating, later activating (for repeating elements)
+        /// </summary>
+        /// <param name="name"></param>
+        private void SwitchToInterface(string name)
+        {
+            localMapChildren = LocalMap.GetComponentsInChildren<SpriteRenderer>(); //Checks whether any new children of local map have been found
+            //There should be something like that in global too TODO
+            switch (name)
+            {
+                case "Local":
+                    foreach (var item in Global)
+                    {       
+                        item.SetActive(false); //Produces lags after some time (no idea why). TODO
+                    }
+                    foreach (var item in Local)
+                    {
+                        item.SetActive(true);
+                    }
+
+                    foreach (SpriteRenderer sr in localMapChildren) //Activating elements of local map
+                        sr.enabled = true;
+                    LocalMap.GetComponent<SpriteRenderer>().enabled = true; //Activating local map sprite renderer 
+                                      
+                    GlobalMap.GetComponent<SpriteRenderer>().enabled = false; //Deactivating global map spirte renderer
+
+                    //TODO: Deactivate collider(?) so the local/global map won't be clickable
+
+                    var globalButton = GlobalMapButton.GetComponent<Button>();
+                    globalButton.onClick.AddListener(() => SwitchToInterface("Global")); //Changing listener of globalmapbutton
+                    globalButton.onClick.AddListener(() => { Controllers.CurrentCityController.MapInstance.DisableGrid(); });
+                    break;
+
+                case "Global":
+                    foreach (var item in Local)
+                    {
+                        item.SetActive(false);
+                    }
+                    foreach (var item in Global)
+                    {
+                        item.SetActive(true);
+                    }
+
+                    foreach (SpriteRenderer sr in localMapChildren) //Deactivating elements of local map
+                        sr.enabled = false;
+                    LocalMap.GetComponent<SpriteRenderer>().enabled = false; //Deactivating local map sprite renderer
+
+                    GlobalMap.GetComponent<SpriteRenderer>().enabled = true; //Activating global map sprite renderer
+
+                    GlobalMapButton.GetComponent<Button>().onClick.AddListener(() => SwitchToInterface("Local")); //Changing listener of globalmapbutton
+
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// A method used to create elements of the local interface
+        /// </summary>
+        private void CreateLocalInterface()
+        {
+            CreateLocalPanels();
+            CreateLocalButtons();
+        }
+
+        /// <summary>
+        /// A method used to create elements of the global interface
+        /// </summary>
+        private void CreateGlobalInterface()
+        {
+            CreateGlobalPanels();
+            CreateGlobalButtons();
+            CreateGlobalMap();
+        }
+
+        //Elements of the local interface
+
+        private void CreateLocalPanels()
+        {
             MainPanel = Instantiate(Prefabs.VerticalGroupPanel);
             Util.SetUIObjectPosition(MainPanel, _mainPanelRect, transform);
 
-            CreateMiniMapPanel();
-
-            CreateResourcePanel();
-
+            MiniMapPanel = Instantiate(Prefabs.Panel);
+            Util.SetUIObjectPosition(MiniMapPanel, _miniMapPanelRect, transform);
+            
+            CreateResourcePanel(); //Instantiated as local elements - then added to global elements list
             PeopleAndMoney();
         }
 
-        private void CreateMiniMapPanel() {
-            MiniMapPanel = Instantiate(Prefabs.Panel);
-            Util.SetUIObjectPosition(MiniMapPanel, _miniMapPanelRect, transform);
-
-            CreateToggleGridButton();
-        }
-
-        private void CreateToggleGridButton() {
+        private void CreateToggleGridButton()
+        {
             var gridToggleButton = Instantiate(Prefabs.TextButton);
 
             Util.SetUIObjectPosition(gridToggleButton, new Rect(0.0f, 0.75f, 1.0f, 0.25f), MiniMapPanel.transform);
@@ -81,8 +210,10 @@ namespace Assets.Scripts.Interface {
             button.onClick.AddListener(() => { Controllers.CurrentCityController.MapInstance.ToggleGrid(); });
         }
 
-        private void CreateButtons() {
-            _buttonPanels = new Dictionary<string, ExitablePanel> {
+        private void CreateLocalButtons()
+        {
+            _buttonPanels = new Dictionary<string, ExitablePanel>
+            {
                 {"Production", CreateExitablePanel(Prefabs.Panel)},
                 {"Character", CreateExitablePanel(Prefabs.Panel)},
                 {"Diplomacy", CreateExitablePanel(Prefabs.Panel)},
@@ -112,14 +243,53 @@ namespace Assets.Scripts.Interface {
             FillBuildingsPanel();
             _buttonPanels["Trade"].Content.AddComponent<Trade>();
 
-            var globalMapButton = Instantiate(Prefabs.CasualButton);
-            Util.SetUIObjectPosition(globalMapButton, new Rect(0, 0.95f, 0.05f, 0.05f), transform);
-            //globalMapButton.GetComponent<Button>().onClick.AddListener(() => SceneManager.LoadScene(""));
+            CreateToggleGridButton();
 
             FillSciencePanel();
+
+            //There is no need for another method for repeating elements. Simply adding element to both lists (firstly it's deactivated and later activated - so no problem here)
+            GlobalMapButton = Instantiate(Prefabs.CasualButton);
+            Util.SetUIObjectPosition(GlobalMapButton, _globalMapButtonRect, transform);
         }
 
-        private ExitablePanel CreateExitablePanel(GameObject child) {
+        //Elements of the global interface
+
+        private void CreateGlobalButtons()
+        {
+
+        }
+
+        private void CreateGlobalPanels()
+        {
+            TraitsPanel = Instantiate(Prefabs.HorizontalGroupPanel);
+            Util.SetUIObjectPosition(TraitsPanel, _traitsPanelRect, transform);
+        }
+
+        private void CreateGlobalMap()
+        {
+            //Global map - for now here. Because there is no other script like CityController. TODO
+            //Maybe another method?
+            var mapPosition = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2));
+            mapPosition.z = 0;
+
+            var mapGameObject = Instantiate(Prefabs.Map, mapPosition, transform.rotation) as GameObject;
+            GlobalMap = mapGameObject.GetComponent<Map>();
+            Util.Rescale(GlobalMap.GetComponent<SpriteRenderer>(), _globalMapSize.X, _globalMapSize.Y);
+            GlobalMap.transform.SetParent(transform);
+            GlobalMap.name = "GlobalMap";
+
+            //TODO: Change global map sprite
+            //GlobalMap.GetComponent<Sprite>() =
+
+            //Cities, maybe another method? TODO
+            OurCity = Instantiate(Prefabs.City, GlobalMap.transform.position, GlobalMap.transform.rotation);
+            OurCity.transform.SetParent(GlobalMap.transform, true);
+        }
+
+        //Other methods
+
+        private ExitablePanel CreateExitablePanel(GameObject child)
+        {
             var panel = Instantiate(Prefabs.ExitablePanel);
             var inner = Instantiate(child);
             Util.SetUIObjectPosition(inner, _fullRect, panel.transform);
@@ -190,13 +360,13 @@ namespace Assets.Scripts.Interface {
 
         private void PeopleAndMoney()
         {
-            var panel = Instantiate(Prefabs.VerticalGroupPanel);
-            Util.SetUIObjectPosition(panel, _peopleMoneyRect, transform);
+            PeopleAndMoneyPanel = Instantiate(Prefabs.VerticalGroupPanel);
+            Util.SetUIObjectPosition(PeopleAndMoneyPanel, _peopleMoneyRect, transform);
 
             var people = Instantiate(Prefabs.ResourceIndicator);
             var peopleData = people.GetComponent<ResourceData>();
             peopleData.PopulationRef = Controllers.CurrentInfo.ThePeople;
-            people.transform.SetParent(panel.transform);
+            people.transform.SetParent(PeopleAndMoneyPanel.transform);
             people.GetComponentInChildren<Image>().sprite = Sprites.SpecialResourceSprite(typeof(Population));
             var rt = (RectTransform) people.transform;
             rt.sizeDelta = new Vector2(0, 0);
@@ -204,7 +374,7 @@ namespace Assets.Scripts.Interface {
             var money = Instantiate(Prefabs.ResourceIndicator);
             var moneyData = money.GetComponent<ResourceData>();
             moneyData.MoneyRef = Controllers.CurrentInfo.MyMoney;
-            money.transform.SetParent(panel.transform);
+            money.transform.SetParent(PeopleAndMoneyPanel.transform);
             money.GetComponentInChildren<Image>().sprite = Sprites.SpecialResourceSprite(typeof(Money));
             rt = (RectTransform) money.transform;
             rt.sizeDelta = new Vector2(0, 0);

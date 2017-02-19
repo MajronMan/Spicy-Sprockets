@@ -31,6 +31,7 @@ namespace Assets.Static {
         private static string _slider = @"Slider";
         private static string _textButton = @"TextButton";
         private static string _toggle = @"Toggle";
+        private static string _city = @"City";
 
         /// <summary>
         /// Path of base game object with event system and camera
@@ -112,6 +113,11 @@ namespace Assets.Static {
 
         public static string Popup {
             get { return Prefabs + _popup; }
+        }
+
+        public static string City
+        {
+            get { return Prefabs + _city; }
         }
 
         public static string BuildButton {
