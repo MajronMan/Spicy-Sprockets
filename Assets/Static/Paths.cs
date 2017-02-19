@@ -32,6 +32,9 @@ namespace Assets.Static {
         private static string _textButton = @"TextButton";
         private static string _toggle = @"Toggle";
         private static string _city = @"City";
+        private static string _dialoguePanel = @"DialoguePanel";
+        private static string _eventPanel = @"EventPanel";
+        private static string _optionButton = @"OptionButton";
 
         /// <summary>
         /// Path of base game object with event system and camera
@@ -137,8 +140,14 @@ namespace Assets.Static {
         }
 
         public static string TextButton { get { return Prefabs + _textButton;  } }
-        
+
         public static string Toggle { get { return Prefabs + _toggle; } }
+
+        public static string DialoguePanel { get { return Prefabs + _dialoguePanel; } }
+
+        public static string EventPanel { get { return Prefabs + _eventPanel; } }
+
+        public static string OptionButton { get { return Prefabs + _optionButton; } }
     }
 
     /// <summary>

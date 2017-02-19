@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using Assets.Static;
 
 namespace Assets.Scripts.Interface {
     /// <summary>
@@ -9,8 +10,6 @@ namespace Assets.Scripts.Interface {
     public class Events : MonoBehaviour {
         public GameObject Content;
         private bool _activeEvent;
-        public GameObject EventPrefab;
-        public GameObject EventbuttonPrefab;
         private int _numberofevents = 0;
         private GameObject _eventInstance; //Have to pass the reference to News method
 
@@ -36,7 +35,7 @@ namespace Assets.Scripts.Interface {
         void Event() {
             _activeEvent = true; //Prevents from opening new event when other is active
 
-            _eventInstance = Instantiate(EventPrefab); //New instance of event panel
+            _eventInstance = Instantiate(Prefabs.EventPanel); //New instance of event panel
 
             //Somehow it sets prefab position where it used to be when it was GameObject
             _eventInstance.transform.SetParent(transform, false);
@@ -46,7 +45,7 @@ namespace Assets.Scripts.Interface {
             //TODO: Here there would be reading information from a file and loading it into panel elements like text, title and image
             //TODO: Here there would be reading button options from file and also creating earlier defined amount of options
             //for(int i=1, i<=options i++){}
-            GameObject optionInstance = Instantiate(EventbuttonPrefab); //New instance of event option button
+            GameObject optionInstance = Instantiate(Prefabs.OptionButton); //New instance of event option button
             optionInstance.transform.SetParent(_eventInstance.transform.Find("Options"), false);
             optionInstance.transform.localPosition = new Vector3(0, 0, 0);
             optionInstance.name = "Option";
@@ -56,18 +55,18 @@ namespace Assets.Scripts.Interface {
             }); //On click function which closes event for now
 
             //This fragment is just temporary
-            GameObject optionInstance1 = Instantiate(EventbuttonPrefab); //New instance of event option button
+            GameObject optionInstance1 = Instantiate(Prefabs.OptionButton); //New instance of event option button
             optionInstance1.transform.SetParent(_eventInstance.transform.Find("Options"), false);
             optionInstance1.transform.localPosition = new Vector3(0, 50, 0);
             optionInstance1.name = "Option1";
 
-            GameObject optionInstance2 = Instantiate(EventbuttonPrefab); //New instance of event option button
+            GameObject optionInstance2 = Instantiate(Prefabs.OptionButton); //New instance of event option button
             optionInstance2.transform.SetParent(_eventInstance.transform.Find("Options"), false);
             optionInstance2.transform.localPosition = new Vector3(0, -50, 0);
             optionInstance2.name = "Option2";
 
             _numberofevents++;
-            News();
+            //News();
         }
 
         /// <summary>

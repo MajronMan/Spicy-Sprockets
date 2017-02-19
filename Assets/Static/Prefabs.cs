@@ -27,6 +27,9 @@ namespace Assets.Static {
         private static GameObject _textButton;
         private static GameObject _toggle;
         private static GameObject _city;
+        private static GameObject _dialoguePanel;
+        private static GameObject _eventPanel;
+        private static GameObject _optionButton;
 
         /// <summary>
         /// Base game object with event system and camera
@@ -104,6 +107,12 @@ namespace Assets.Static {
 
         public static GameObject City { get { return _city ?? (_city = Loader.LoadPrefab(PrefabPaths.City)); } }
 
+        public static GameObject DialoguePanel { get { return _dialoguePanel ?? (_dialoguePanel = Loader.LoadPrefab(PrefabPaths.DialoguePanel)); } }
+
+        public static GameObject EventPanel { get { return _eventPanel ?? (_eventPanel = Loader.LoadPrefab(PrefabPaths.EventPanel)); } }
+
+        public static GameObject OptionButton { get { return _optionButton ?? (_optionButton = Loader.LoadPrefab(PrefabPaths.OptionButton)); } }
+
         public static Dictionary<string, GameObject> PathsToObjects = new Dictionary<string, GameObject>()
         {
             { PrefabPaths.Root, Root},
@@ -118,7 +127,10 @@ namespace Assets.Static {
             { PrefabPaths.CasualButton, CasualButton },
             { PrefabPaths.ResourceIndicator, ResourceIndicator },
             { PrefabPaths.GridGroupPanel, GridGroupPanel },
-            { PrefabPaths.City, City }
+            { PrefabPaths.City, City },
+            { PrefabPaths.DialoguePanel, DialoguePanel },
+            { PrefabPaths.EventPanel, EventPanel },
+            { PrefabPaths.OptionButton, OptionButton }
         };
     }
 }
