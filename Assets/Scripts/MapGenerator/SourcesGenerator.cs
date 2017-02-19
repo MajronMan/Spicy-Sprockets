@@ -2,7 +2,6 @@
 using Assets.Scripts.Game_Controllers;
 using Assets.Scripts.Interface;
 using Assets.Scripts.ResourcePools;
-using Assets.Scripts.Utils;
 using Assets.Static;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -15,29 +14,29 @@ namespace Assets.Scripts.MapGenerator {
         /// <summary>
         /// Create actual sources
         /// </summary>
-        /// <param name="theMap">Instance of map</param>
-        public static void Generate(Map theMap) {
+        /// <param name="map">Instance of map</param>
+        public static void Generate(Map map) {
             int sourcesCount = Random.Range(10, 21);
 
-            //var collider = theMap.GetComponent<PolygonCollider2D>();
+            //var collider = map.GetComponent<PolygonCollider2D>();
 
-            //create a first random point in a circle roughly inscribed into collider's shape
-            var middle = new Vector2(theMap.transform.position.x, theMap.transform.position.y);
-            var mapRenderer = theMap.GetComponent<SpriteRenderer>();
+            //create a first random point in a circle roughly inscribed into sprite's shape
+            var middle = new Vector2(map.transform.position.x, map.transform.position.y);
+            var mapRenderer = map.GetComponent<SpriteRenderer>();
             var r = mapRenderer.sprite.textureRect.width / 4;
 
             //get the first resourcePool
-            var currentResource = NewSource(theMap, middle, r);
+            var currentResource = NewSource(map, middle, r);
             //and all other
             for (var i = 1; i < sourcesCount; i++) {
                 middle = new Vector2(currentResource.transform.position.x, currentResource.transform.position.y);
-                currentResource = NewSource(theMap, middle, r);
-                CreateSecondarySource(3, 0, currentResource, theMap);
+                currentResource = NewSource(map, middle, r);
+                CreateSecondarySource(3, 0, currentResource, map);
             }
         }
 
         //creating a secondary source inside the parent radius
-        public static void CreateSecondarySource(int threshold, int depth, ResourcePool parent, Map theMap) {
+        public static void CreateSecondarySource(int threshold, int depth, ResourcePool parent, Map map) {
             //check if not over
             if (depth == threshold)
                 return;
@@ -59,29 +58,29 @@ namespace Assets.Scripts.MapGenerator {
             ret.ChangeIntensity(newRadius, newMagnitude);
 
             //setting it inside the radius of parent source
-            var collider = theMap.GetComponent<PolygonCollider2D>();
+            var collider = map.GetComponent<PolygonCollider2D>();
             var newTransform = RandomInCircle(parent.transform.position, parent.Radius);
             if (collider.OverlapPoint(newTransform)) {
-                gameObject.transform.position = new Vector3(newTransform.x, newTransform.y, 0);
-                gameObject.transform.SetParent(theMap.transform, true);
+                gameObject.transform.position = map.Snap(new Vector3(newTransform.x, newTransform.y, 0));
+                gameObject.transform.SetParent(map.transform, true);
                 renderer.sprite = Sprites.ResourcePoolSprite(ret.Resource);
 
                 // place it over the map
                 renderer.sortingOrder = 1;
-                Util.Rescale(renderer, 20, 20);
-                theMap.Pools.Add(ret);
+                Sprites.Rescale(renderer, 0.2f, 0.2f);
+                map.Pools.Add(ret);
             }
 
             //will start one or two new sources, so their number is truly random, not 2, 4, 8 and so on
-            CreateSecondarySource(threshold, depth + 1, parent, theMap);
+            CreateSecondarySource(threshold, depth + 1, parent, map);
             int ourRandom = Random.Range(0, 2);
             if (ourRandom == 1)
-                CreateSecondarySource(threshold, depth + 1, parent, theMap);
+                CreateSecondarySource(threshold, depth + 1, parent, map);
         }
 
-        private static ResourcePool NewSource(Map theMap, Vector2 around, float r) {
+        private static ResourcePool NewSource(Map map, Vector2 around, float r) {
             var position = RandomInCircle(around, r);
-            var collider = theMap.GetComponent<PolygonCollider2D>();
+            var collider = map.GetComponent<PolygonCollider2D>();
             //checking if our next position lies on the map
             while (!collider.OverlapPoint(position)) {
                 //if not, we repeat the process of positioning in the smaller circe
@@ -94,14 +93,14 @@ namespace Assets.Scripts.MapGenerator {
             RandomizeResource(ret);
             ret.RandomizeIntensity();
 
-            gameObject.transform.position = new Vector3(position.x, position.y, 0);
-            gameObject.transform.SetParent(theMap.transform, true);
+            gameObject.transform.position = map.Snap(new Vector3(position.x, position.y, 0));
+            gameObject.transform.SetParent(map.transform, true);
             renderer.sprite = Sprites.ResourcePoolSprite(ret.Resource);
             // place it over the map
             renderer.sortingOrder = 1;
-            Util.Rescale(renderer, 50, 50);
+            Sprites.Rescale(renderer, 0.5f, 0.5f);
 
-            theMap.Pools.Add(ret);
+            map.Pools.Add(ret);
             return ret;
         }
 

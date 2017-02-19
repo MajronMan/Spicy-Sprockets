@@ -1,4 +1,5 @@
 ﻿using System;
+using Assets.Static;
 using UnityEngine;
 
 namespace Assets.Scripts.Utils {
@@ -32,8 +33,7 @@ namespace Assets.Scripts.Utils {
         public static void SetUIObjectPosition(GameObject what, Rect how, Transform parent)
         {
             var rectTransform = what.GetComponent<RectTransform>();
-            if (rectTransform == null)
-            {
+            if (rectTransform == null) {
                 throw new NullReferenceException("Given object is not a part of UI");
             }
             rectTransform.SetParent(parent);

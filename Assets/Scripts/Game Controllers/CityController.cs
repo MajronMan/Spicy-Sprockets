@@ -1,5 +1,4 @@
-﻿using System;
-using Assets.Scripts.Interface;
+﻿using Assets.Scripts.Interface;
 using Assets.Scripts.MapGenerator;
 using Assets.Scripts.Utils;
 using Assets.Static;
@@ -22,7 +21,8 @@ namespace Assets.Scripts.Game_Controllers {
         /// </summary>
         public Info MyInfo;
 
-        private const int MapSideTiles = 40;
+        private const int MapSize = 100;
+        private const int MapSideTiles = 100;
 
         /// <summary>
         /// Defines what happens when a new city is created
@@ -36,10 +36,7 @@ namespace Assets.Scripts.Game_Controllers {
             MapInstance.name = "Map";
 
             // set desired map size
-            Util.Rescale(
-                MapInstance.GetComponent<SpriteRenderer>(),
-                Sprites.PixelsPerUnit * MapSideTiles,
-                Sprites.PixelsPerUnit * MapSideTiles);
+            Sprites.Rescale(MapInstance.GetComponent<SpriteRenderer>(), MapSize, MapSize);
 
             MapInstance.SideTiles = MapSideTiles;
             MapInstance.DrawGrid();
