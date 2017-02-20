@@ -138,7 +138,7 @@ namespace Assets.Scripts.Interface {
 
 
                     var globalButton = GlobalMapButton.GetComponent<Button>();
-                    globalButton.onClick.AddListener(() => SwitchToInterface("Global")); //Changing listener of globalmapbutton
+                    globalButton.onClick.AddListener(() => SwitchToInterface(Interface.Global)); //Changing listener of globalmapbutton
                     globalButton.onClick.AddListener(() => { Controllers.CurrentCityController.MapInstance.DisableGrid(); });
                     break;
 
