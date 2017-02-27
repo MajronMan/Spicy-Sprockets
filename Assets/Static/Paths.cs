@@ -35,6 +35,7 @@ namespace Assets.Static {
         private static string _dialoguePanel = @"DialoguePanel";
         private static string _eventPanel = @"EventPanel";
         private static string _optionButton = @"OptionButton";
+        private static string _movingObject = @"MovingObject";
 
         /// <summary>
         /// Path of base game object with event system and camera
@@ -148,6 +149,8 @@ namespace Assets.Static {
         public static string EventPanel { get { return Prefabs + _eventPanel; } }
 
         public static string OptionButton { get { return Prefabs + _optionButton; } }
+
+        public static string MovingObject { get { return Prefabs + _movingObject; } }
     }
 
     /// <summary>

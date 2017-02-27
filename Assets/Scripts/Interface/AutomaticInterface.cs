@@ -3,9 +3,11 @@ using System.Linq;
 using Assets.Scripts.Game_Controllers;
 using Assets.Scripts.Res;
 using Assets.Scripts.Utils;
+using Assets.Scripts.Interface;
 using Assets.Static;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 namespace Assets.Scripts.Interface {
     public class AutomaticInterface : MonoBehaviour {
@@ -51,7 +53,9 @@ namespace Assets.Scripts.Interface {
         private IntVector2 _globalMapSize = new IntVector2(10000, 10000);
         //TODO: Place the cities - but how to set their position relative to map?
 
+        //Temporary TODO
         public GameObject OurCity;
+        public GameObject Dude;
 
         private Rect _centerRect = new Rect(0.2f, 0.1f, 0.6f, 0.8f);
         private Rect _exitRect = new Rect(0, 0.95f, 0.05f, 0.05f);
@@ -75,9 +79,8 @@ namespace Assets.Scripts.Interface {
 
         public void Start ()
         {
-            CreateInterface(); //Creates all the interfaces
-
-            LocalMap = GameObject.Find("Map"); //Finds local map (so we can disable its sprite renderer)        
+            LocalMap = GameObject.Find("Map"); //Finds local map (so we can disable its sprite renderer)   
+            CreateInterface(); //Creates all the interfaces           
 
             Local.Add(MainPanel);
             Local.Add(ResourcePanel);
@@ -171,6 +174,7 @@ namespace Assets.Scripts.Interface {
         {
             CreateLocalPanels();
             CreateLocalButtons();
+            CreateMovingObjects();
         }
 
         /// <summary>
@@ -184,6 +188,31 @@ namespace Assets.Scripts.Interface {
         }
 
         //Elements of the local interface
+
+        private void CreateMovingObjects() //Just temporary TODO: In another script
+        {
+            Dude = Instantiate(Prefabs.MovingObject, LocalMap.transform.position, LocalMap.transform.rotation);
+            Dude.transform.SetParent(LocalMap.transform, true);
+
+            StartCoroutine(MoveDudes());
+        }
+
+        public IEnumerator MoveDudes()
+        {
+            while (true)
+            {
+                int x = new System.Random().Next(1, 20); //TODO: Make them move only on the map
+                int y = new System.Random().Next(1, 20);
+                Vector3 vec = new Vector3(x, y, 0);
+                float dist = vec.magnitude;
+                float vel = 2; //Some constant velocity
+                float time = dist / vel; //This doesn't work as planned
+                //TODO: Make them actually move with constant velocity
+                //Also they appear to be moving on some line
+                iTween.MoveTo(Dude, vec, time);
+                yield return new WaitForSeconds(time);
+            }
+        }
 
         private void CreateLocalPanels()
         {

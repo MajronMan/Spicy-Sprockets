@@ -30,6 +30,7 @@ namespace Assets.Static {
         private static GameObject _dialoguePanel;
         private static GameObject _eventPanel;
         private static GameObject _optionButton;
+        private static GameObject _movingObject;
 
         /// <summary>
         /// Base game object with event system and camera
@@ -113,6 +114,8 @@ namespace Assets.Static {
 
         public static GameObject OptionButton { get { return _optionButton ?? (_optionButton = Loader.LoadPrefab(PrefabPaths.OptionButton)); } }
 
+        public static GameObject MovingObject { get { return _movingObject ?? (_movingObject = Loader.LoadPrefab(PrefabPaths.MovingObject)); } }
+
         public static Dictionary<string, GameObject> PathsToObjects = new Dictionary<string, GameObject>()
         {
             { PrefabPaths.Root, Root},
@@ -130,7 +133,8 @@ namespace Assets.Static {
             { PrefabPaths.City, City },
             { PrefabPaths.DialoguePanel, DialoguePanel },
             { PrefabPaths.EventPanel, EventPanel },
-            { PrefabPaths.OptionButton, OptionButton }
+            { PrefabPaths.OptionButton, OptionButton },
+            { PrefabPaths.MovingObject, MovingObject }
         };
     }
 }
