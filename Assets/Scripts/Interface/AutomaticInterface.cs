@@ -199,17 +199,18 @@ namespace Assets.Scripts.Interface {
 
         public IEnumerator MoveDudes()
         {
+            System.Random random = new System.Random();
             while (true)
             {
-                int x = new System.Random().Next(1, 20); //TODO: Make them move only on the map
-                int y = new System.Random().Next(1, 20);
+                int x = random.Next(1, 15); //TODO: Make them move only on the map
+                int y = random.Next(1, 15);
                 Vector3 vec = new Vector3(x, y, 0);
                 float dist = vec.magnitude;
-                float vel = 2; //Some constant velocity
-                float time = dist / vel; //This doesn't work as planned
+                float vel = 5; //Some constant velocity
+                float time = dist / vel;
                 //TODO: Make them actually move with constant velocity
-                //Also they appear to be moving on some line
-                iTween.MoveTo(Dude, vec, time);
+                iTween.MoveTo(Dude, iTween.Hash("position", vec, "time", time, "easetype", "linear"));
+                Debug.Log(x + " " + y + " " + dist + " " + time);
                 yield return new WaitForSeconds(time);
             }
         }
