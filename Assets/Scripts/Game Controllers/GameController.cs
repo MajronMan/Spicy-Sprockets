@@ -50,6 +50,7 @@ namespace Assets.Scripts.Game_Controllers {
 	        Canvas = Instantiate(Prefabs.Canvas);
             Canvas.transform.SetParent(Root.transform, false);
 	        Canvas.AddComponent<AutomaticInterface>();
+            Canvas.AddComponent<MovingElements>();
 	    }
 
 	    public void Update()

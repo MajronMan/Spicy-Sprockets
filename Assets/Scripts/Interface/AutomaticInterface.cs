@@ -55,7 +55,6 @@ namespace Assets.Scripts.Interface {
 
         //Temporary TODO
         public GameObject OurCity;
-        public GameObject Dude;
 
         private Rect _centerRect = new Rect(0.2f, 0.1f, 0.6f, 0.8f);
         private Rect _exitRect = new Rect(0, 0.95f, 0.05f, 0.05f);
@@ -174,7 +173,6 @@ namespace Assets.Scripts.Interface {
         {
             CreateLocalPanels();
             CreateLocalButtons();
-            CreateMovingObjects();
         }
 
         /// <summary>
@@ -188,32 +186,6 @@ namespace Assets.Scripts.Interface {
         }
 
         //Elements of the local interface
-
-        private void CreateMovingObjects() //Just temporary TODO: In another script
-        {
-            Dude = Instantiate(Prefabs.MovingObject, LocalMap.transform.position, LocalMap.transform.rotation);
-            Dude.transform.SetParent(LocalMap.transform, true);
-
-            StartCoroutine(MoveDudes());
-        }
-
-        public IEnumerator MoveDudes()
-        {
-            System.Random random = new System.Random();
-            while (true)
-            {
-                int x = random.Next(1, 15); //TODO: Make them move only on the map
-                int y = random.Next(1, 15);
-                Vector3 vec = new Vector3(x, y, 0);
-                float dist = vec.magnitude;
-                float vel = 5; //Some constant velocity
-                float time = dist / vel;
-                //TODO: Make them actually move with constant velocity
-                iTween.MoveTo(Dude, iTween.Hash("position", vec, "time", time, "easetype", "linear"));
-                Debug.Log(x + " " + y + " " + dist + " " + time);
-                yield return new WaitForSeconds(time);
-            }
-        }
 
         private void CreateLocalPanels()
         {
