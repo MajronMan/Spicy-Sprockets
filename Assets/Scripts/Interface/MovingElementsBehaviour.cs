@@ -23,12 +23,14 @@ public class MovingElementsBehaviour : MonoBehaviour
     {
 
     }
-
+    
     void OnCollisionEnter2D(Collision2D other)
     {
         if (other.transform.gameObject.tag == "Dude")
         {
-            StopCoroutine(MoveDude(gameObject)); //I don't know why this won't work
+            StopAllCoroutines();
+            //StopCoroutine(MoveDude(gameObject)); //I don't know why this won't work
+            StartCoroutine(MoveDude(gameObject));
             //I don't know what i want on collision. When I tried to start another coroutine magic happens
         }
     }
