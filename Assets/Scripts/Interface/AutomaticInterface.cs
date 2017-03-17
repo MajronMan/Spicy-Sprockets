@@ -3,9 +3,11 @@ using System.Linq;
 using Assets.Scripts.Game_Controllers;
 using Assets.Scripts.Res;
 using Assets.Scripts.Utils;
+using Assets.Scripts.Interface;
 using Assets.Static;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 namespace Assets.Scripts.Interface {
     public class AutomaticInterface : MonoBehaviour {
@@ -51,6 +53,7 @@ namespace Assets.Scripts.Interface {
         private IntVector2 _globalMapSize = new IntVector2(10000, 10000);
         //TODO: Place the cities - but how to set their position relative to map?
 
+        //Temporary TODO
         public GameObject OurCity;
 
         private Rect _centerRect = new Rect(0.2f, 0.1f, 0.6f, 0.8f);
@@ -75,9 +78,8 @@ namespace Assets.Scripts.Interface {
 
         public void Start ()
         {
-            CreateInterface(); //Creates all the interfaces
-
-            LocalMap = GameObject.Find("Map"); //Finds local map (so we can disable its sprite renderer)        
+            LocalMap = GameObject.Find("Map"); //Finds local map (so we can disable its sprite renderer)   
+            CreateInterface(); //Creates all the interfaces           
 
             Local.Add(MainPanel);
             Local.Add(ResourcePanel);
